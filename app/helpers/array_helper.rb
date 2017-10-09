@@ -22,7 +22,7 @@ module ArrayHelper
   end
 
   def delivery_providers
-    { 'Postelbe' => 'postelbe', 'DHLDE' => 'dhlde', 'EMS' => 'ems', 'EMS Guoji' => 'emsguoji' }
+    { 'Postelbe' => 'postelbe', 'DHLDE' => 'dhlde', 'EMS' => 'ems', 'EMS Guoji' => 'emsguoji', 'Adler' => 'adlierlogi' }
   end
 
   def logistic_partners
