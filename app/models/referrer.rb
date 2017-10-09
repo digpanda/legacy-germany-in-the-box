@@ -3,14 +3,14 @@ class Referrer
   include Mongoid::Search
 
   # research system
-  search_in :id, :reference_id, :nickname, :group, coupons: :code, user: :email, group: :name
+  search_in :id, :reference_id, :nickname, :group, coupons: :code, user: [decorate: :full_name, :email], group: :name
 
   field :reference_id, type: String # was referrer_id in User
   field :nickname, type: String
   field :group, type: String # not sure it's still in use in our system since we use referrer group
   field :agb, type: Boolean, default: false
   field :label, type: String
-  
+
   belongs_to :user, class_name: 'User', inverse_of: :referrer
   has_many :children_users, class_name: 'User', inverse_of: :parent_referrer
 
