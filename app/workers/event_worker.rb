@@ -5,6 +5,7 @@ class EventWorker
   include Sidekiq::Worker
 
   def perform(stream, arguments)
+    SlackDispatcher.new.message("what the shit #{result}")
     result = keen.publish(stream, arguments)
     SlackDispatcher.new.message("RESULT OF SIDEKIQ PERF : #{result}")
     # geo may blow up because of some weird IP result
