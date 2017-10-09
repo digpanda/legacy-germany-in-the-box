@@ -25,9 +25,7 @@ class EventDispatcher
   end
 
   def test
-    result = keen.delay.publish(:tests,
-      random: 'test_achieved',
-    )
+    result = EventWorker.perform_async(keen, :tests, {random: 'test_achieved'})
     SlackDispatcher.new.message("RESULT #{result}")
   end
 
