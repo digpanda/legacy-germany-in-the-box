@@ -34,7 +34,8 @@
     "tooltipster": "^4.1.4",
     "underscore": "^1.8.3",
     "intl-tel-input": "^11.0.14",
-    "distpicker": "^2.0.0"
+    "distpicker": "^2.0.0",
+    "chart.js": "^2.7.0"
   },
   "overrides": {
     "distpicker": {

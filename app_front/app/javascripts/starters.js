@@ -7,6 +7,7 @@ var Starters = [
   'auto_resize',
   'back_to_top',
   'bootstrap',
+  'charts',
   'datepicker',
   'distpicker',
   'editable_fields',
