@@ -3,7 +3,7 @@ class Referrer
   include Mongoid::Search
 
   # research system
-  search_in :id, :reference_id, :nickname, :group, coupons: :code, user: [decorate: :full_name, :email], group: :name
+  search_in :id, :reference_id, :nickname, :group, coupons: :code, user: [:email, decorate: :full_name], group: :name
 
   field :reference_id, type: String # was referrer_id in User
   field :nickname, type: String
