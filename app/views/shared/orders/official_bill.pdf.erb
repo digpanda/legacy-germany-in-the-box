@@ -75,7 +75,7 @@
   </thead>
   <tbody>
     <% @order.order_items.each_with_index do |order_item, index| %>
-    <% SlackDispatcher.new.message("PRICE PER UNIT #{order_item.price_per_unit}") %>
+    <% SlackDispatcher.new.message("PRICE PER UNIT #{order_item.sku.price_per_unit}") %>
     <tr>
       <td>
       <%= (index+1) %>
