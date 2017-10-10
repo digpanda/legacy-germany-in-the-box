@@ -17,7 +17,7 @@ Mongoid::Search.setup do |config|
 
   # search such as 2017-10-08 might result in a "2017 10 08" one
   # we can trim characters beforehand to avoid this issue
-  config.trim_characters = ['-']
+  # config.trim_characters = ['-']
 
   ## Words to ignore
   config.ignore_list = []
