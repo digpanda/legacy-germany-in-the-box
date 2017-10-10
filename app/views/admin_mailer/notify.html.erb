@@ -273,11 +273,11 @@ body,.wrapper{background-color:#f2f6f7}.wrapper h1{color:#58595b}.wrapper h1{}.w
               </div>
 
               <div style="Margin-left: 20px;Margin-right: 20px;">
-                <%= EmailsHelper.email_line("你有新的来因盒通知：#{@title}") %>  <br>
+                <%= EmailsHelper.email_line("Notification ：#{@title}") %>  <br>
               </div>
 
               <div style="Margin-left: 20px;Margin-right: 20px;">
-                <%= EmailsHelper.email_line("祝你购物愉快，让优质的德国产品带给你美好的一天。") %>  <br>
+                <%= EmailsHelper.email_line("Click the link below for more details") %>  <br>
               </div>
 
 
@@ -289,7 +289,7 @@ body,.wrapper{background-color:#f2f6f7}.wrapper h1{color:#58595b}.wrapper h1{}.w
               </div>
 
               <div style="Margin-left: 20px;Margin-right: 20px;">
-                <%= EmailsHelper.email_action("详情请点击这里", root_url.chomp('/') + @url) %>
+                <%= EmailsHelper.email_action("More", root_url.chomp('/') + @url) %>
               </div>
 
                 <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
