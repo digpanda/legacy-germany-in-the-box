@@ -16,3 +16,15 @@
   <% end %>
 </div>
 <div class="+small-spacer"></div>
+
+<!-- Referrer Exclusive Services -->
+<% if @referrer_services %>
+<hr />
+<div class="row">
+  <% @referrer_services.sort_by(&:position).each_with_index do |service, index| %>
+    <% cache service do %>
+      <%= render "guest/services/index/block", options: { reversed: reversed?(index) }, service: service %>
+    <% end %>
+  <% end %>
+</div>
+<% end %>

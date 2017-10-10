@@ -37,5 +37,6 @@ class Service
 
   scope :active,   -> { self.and(active: true) }
   scope :with_brand, -> (brand) { self.where(brand: brand) }
-  scope :without_referrer, -> { self.and(:referrers_only.ne => true); }
+  scope :with_referrer, -> { self.and(:referrers_only => true) }
+  scope :without_referrer, -> { self.and(:referrers_only.ne => true) }
 end

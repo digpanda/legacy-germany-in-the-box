@@ -18,10 +18,9 @@ class Guest::ServicesController < ApplicationController
   # otherwise we redirect the user to the /categories area
   def index
     if current_user&.referrer?
-      @services = Service.active.order_by(position: :asc)
-    else
-      @services = Service.active.without_referrer.order_by(position: :asc)
+      @referrer_services = Service.active.with_referrer.order_by(position: :asc)
     end
+    @services = Service.active.without_referrer.order_by(position: :asc)
 
     # brand querying
     if brand
