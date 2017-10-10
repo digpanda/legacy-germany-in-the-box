@@ -84,7 +84,10 @@ class OrderItem
   end
 
   def total_price
-    ensure_price_per_unit # TODO : to remove at some point
+    unless price_per_unit
+      ensure_price_per_unit # TODO : to remove at some point -> to 10/10/2017 it has still issues.
+      self.save(validate: false)
+    end
     quantity * price_per_unit
   end
 
