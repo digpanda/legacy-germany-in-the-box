@@ -1,5 +1,6 @@
 zh-CN:
   services:
+    referrer_services: 导游专区
     email_placeholder: 您的邮箱或微信号
     referrer: 导游联系人
     email: 邮箱|微信号

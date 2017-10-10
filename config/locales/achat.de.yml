@@ -1,6 +1,7 @@
 de:
   services:
-    email_placeholder: TO REPLACE
+    referrer_services: Referrer Services
+    email_placeholder: Email
     referrer: Referrer
     email: Email
     mobile: Mobile

@@ -18,8 +18,9 @@
 <div class="+small-spacer"></div>
 
 <!-- Referrer Exclusive Services -->
-<% if @referrer_services %>
+<% if @referrer_services && current_user&.tester? %>
 <hr />
+<h3><%= I18n.t('services.referrer_services') %></h3>
 <div class="row">
   <% @referrer_services.sort_by(&:position).each_with_index do |service, index| %>
     <% cache service do %>
