@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/Loschcode/mongoid_search.git
-  revision: f1fe8684f77e5972d9b35e7d15d01e491b0cfca2
-  branch: master
-  specs:
-    mongoid_search (0.3.3)
-      fast-stemmer (~> 1.0.0)
-      mongoid (>= 3.0.0)
-
-GIT
   remote: https://github.com/yangsr/omniauth-wechat-oauth2.git
   revision: 3dd51708e2fc4019a5c58dbf92e2c17d1733fc0c
   specs:
@@ -230,7 +221,6 @@ GEM
       i18n (~> 0.5)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    fast-stemmer (1.0.2)
     fast_stack (0.2.0)
     ffi (1.9.14)
     figaro (1.1.1)
@@ -691,7 +681,6 @@ DEPENDENCIES
   mongoid_includes
   mongoid_magic_counter_cache
   mongoid_rails_migrations
-  mongoid_search!
   net-ping
   oauth
   omniauth
