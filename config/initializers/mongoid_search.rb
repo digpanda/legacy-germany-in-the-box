@@ -15,6 +15,10 @@ Mongoid::Search.setup do |config|
   # For example using ruby-stemmer:
   # config.stem_proc = Proc.new { |word| Lingua.stemmer(word, :language => 'nl') }
 
+  # search such as 2017-10-08 might result in a "2017 10 08" one
+  # we can trim characters beforehand to avoid this issue
+  config.trim_characters = ['-']
+
   ## Words to ignore
   config.ignore_list = []
 
@@ -38,9 +42,7 @@ Mongoid::Search.setup do |config|
 
   # Ligatures to be replaced
   # http://en.wikipedia.org/wiki/Typographic_ligature
-  config.ligatures = { 'œ' => 'oe', 'æ' => 'ae', '-' => '' }
-
-  config
+  config.ligatures = { 'œ' => 'oe', 'æ' => 'ae' }
 
   # Minimum word size. Words smaller than it won't be indexed
   config.minimum_word_size = 0

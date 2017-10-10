@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Loschcode/mongoid_search.git
-  revision: 77bf98e8be446e5e18fc4424a4efd1446df73bd0
+  revision: f1fe8684f77e5972d9b35e7d15d01e491b0cfca2
   branch: master
   specs:
     mongoid_search (0.3.3)

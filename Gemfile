@@ -15,7 +15,7 @@ gem 'rails', '4.2.1'
 gem 'mongoid', '~> 5.0.0'
 gem 'mongoid_includes'
 gem 'mongoid_rails_migrations'
-gem 'mongoid_search', github: 'Loschcode/mongoid_search', branch: 'master'
+gem 'mongoid_search', github: 'Loschcode/mongoid_search', branch: 'master' # path: '../../mongoid_search'
 
 gem 'keen'
 
