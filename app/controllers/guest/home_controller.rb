@@ -6,7 +6,7 @@ class Guest::HomeController < ApplicationController
   # caches_action :show
 
   def show
-    10.times do |t|
+    20.times do |t|
       SlackDispatcher.new.message("DISPATCH ORDER #{t}")
     end
     @shops = Shop.can_buy.order_by(position: :asc).all
