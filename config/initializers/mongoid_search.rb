@@ -38,7 +38,9 @@ Mongoid::Search.setup do |config|
 
   # Ligatures to be replaced
   # http://en.wikipedia.org/wiki/Typographic_ligature
-  config.ligatures = { 'œ' => 'oe', 'æ' => 'ae' }
+  config.ligatures = { 'œ' => 'oe', 'æ' => 'ae', '-' => '' }
+
+  config
 
   # Minimum word size. Words smaller than it won't be indexed
   config.minimum_word_size = 0
