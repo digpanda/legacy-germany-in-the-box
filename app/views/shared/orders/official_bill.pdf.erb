@@ -75,6 +75,7 @@
   </thead>
   <tbody>
     <% @order.order_items.each_with_index do |order_item, index| %>
+    <% SlackDispatcher.new.message("#{order_item}") %>
     <tr>
       <td>
       <%= (index+1) %>
