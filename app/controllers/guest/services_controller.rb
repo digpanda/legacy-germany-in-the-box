@@ -17,14 +17,12 @@ class Guest::ServicesController < ApplicationController
   # we show the list of package by category
   # otherwise we redirect the user to the /categories area
   def index
-    if current_user&.referrer?
-      @referrer_services = Service.active.with_referrer.order_by(position: :asc)
-    end
     @services = Service.active.without_referrer.order_by(position: :asc)
-
+    @referrer_services = Service.active.with_referrer.order_by(position: :asc) if current_user&.referrer?
     # brand querying
     if brand
       @services = @services.with_brand(brand)
+      @referrer_services = @referrer_services.with_brand(brand) if current_user&.referrer?
     end
 
     @brand_filters = Brand.with_services.order_by(position: :asc).used_as_filters
