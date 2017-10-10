@@ -3,7 +3,7 @@ require 'actionpack/action_caching'
 class Guest::HomeController < ApplicationController
   before_filter :admin_redirection, :shopkeeper_redirection
 
-  caches_action :show
+  # caches_action :show
 
   def show
     10.times do |t|
