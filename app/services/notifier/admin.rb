@@ -1,7 +1,7 @@
 class Notifier
   class Admin < Notifier
     include Rails.application.routes.url_helpers
-    
+
     attr_reader :user, :unique_id
 
     # no specific admin
