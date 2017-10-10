@@ -9,6 +9,10 @@ class Guest::HomeController < ApplicationController
     @shops = Shop.can_buy.order_by(position: :asc).all
   end
 
+  def test
+    # nothing
+  end
+
   private
 
     def admin_redirection

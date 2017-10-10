@@ -2,6 +2,7 @@
 namespace :guest do
 
   resource :home, controller: 'home' do
+    get :test
   end
 
   resource :pages do
