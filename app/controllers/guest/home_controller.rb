@@ -11,7 +11,7 @@ class Guest::HomeController < ApplicationController
 
   def test
     # testing emailing
-    Notifier::Admin.new.referrer_claimed_money(Referrer.first)
+    Notifier::Admin.new.referrer_claimed_money(Referrer.all.sample)
     SlackDispatcher.new.message("SENDING EMAIL")
   end
 
