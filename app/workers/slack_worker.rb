@@ -3,6 +3,7 @@
 # To avoid repeating ourselves
 class SlackWorker
   include Sidekiq::Worker
+  sidekiq_options queue: 'one_at_a_time'
 
   WEBHOOK_URL = 'https://hooks.slack.com/services/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'.freeze
   CHANNEL = '#notifs'.freeze
