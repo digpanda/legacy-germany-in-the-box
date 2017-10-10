@@ -10,9 +10,7 @@ class Guest::HomeController < ApplicationController
   end
 
   def test
-    5.times do |t|
-      SlackDispatcher.new.message("DISPATCH ORDER #{t}")
-    end
+    # nothing
   end
 
   private
