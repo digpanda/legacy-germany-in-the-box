@@ -78,6 +78,7 @@ gem 'abstract_method'
 gem 'mongoid_magic_counter_cache'
 gem 'carrierwave-ftp', require: 'carrierwave/storage/ftp' # FTP only
 gem 'sidekiq'
+gem 'sidekiq-limit_fetch'
 gem 'redis-rails'
 
 gem 'omniauth'

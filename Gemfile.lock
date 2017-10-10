@@ -522,6 +522,8 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-limit_fetch (3.4.0)
+      sidekiq (>= 4)
     simple_token_authentication (1.13.0)
       actionmailer (>= 3.2.6, < 5)
       actionpack (>= 3.2.6, < 5)
@@ -711,6 +713,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   selenium-webdriver
   sidekiq
+  sidekiq-limit_fetch
   simple_token_authentication
   slack-notifier
   spring
