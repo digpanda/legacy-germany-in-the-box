@@ -83,13 +83,21 @@
         <%= order_item.product.name_translations[:de] %> (<%= order_item.selected_options(:de).join(', ') %>)
       </td>
       <td>
-        <%= order_item.price_per_unit.in_euro.display_formal %>
+        <% if order_item.price_per_unit %>
+          <%= order_item.price_per_unit.in_euro.display_formal %>
+        <% else %>
+          -
+        <% end %>
       </td>
       <td align="center">
-        <%= order_item.quantity %>
+        <%= order_item&.quantity %>
       </td>
       <td style="text-align:right;">
-        <%= (order_item.price_per_unit * order_item.quantity).in_euro.display_formal %>
+        <% if order_item.price_per_unit %>
+          <%= (order_item.price_per_unit * order_item.quantity).in_euro.display_formal %>
+        <% else %>
+          -
+        <% end %>
       </td>
     </tr>
     <% end %>
