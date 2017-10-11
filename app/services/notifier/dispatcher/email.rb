@@ -15,8 +15,9 @@ class Notifier
           recipient_email: recipient_email,
           user_id: user_id,
           title: dispatcher.title,
+          desc: dispatcher.desc,
           url: link_url,
-        ).deliver_later(wait: 1.minutes)
+        ).deliver_now # .deliver_later(wait: 1.minutes) <-- if we want to delay the discpatch
       end
 
       private

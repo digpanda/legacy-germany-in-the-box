@@ -10,7 +10,7 @@ class Guest::HomeController < ApplicationController
   end
 
   def test
-    # nothing
+    render text: "ok"
   end
 
   private

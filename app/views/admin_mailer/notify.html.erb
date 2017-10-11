@@ -272,24 +272,26 @@ body,.wrapper{background-color:#f2f6f7}.wrapper h1{color:#58595b}.wrapper h1{}.w
                 <div class="divider" style="display: block;font-size: 2px;line-height: 2px;width: 40px;background-color: #b3cad0;Margin-left: 260px;Margin-right: 260px;Margin-bottom: 20px;">&nbsp;</div>
               </div>
 
+              <% if @desc %>
+                <div style="Margin-left: 20px;Margin-right: 20px;">
+                  <%= EmailsHelper.email_line("#{@desc}") %>  <br>
+                </div>
+              <% end %>
+
               <div style="Margin-left: 20px;Margin-right: 20px;">
-                <%= EmailsHelper.email_line("Notification ：#{@title}") %>  <br>
+                <%= EmailsHelper.email_line("Click the link below for more details") %>
+                <br>
               </div>
 
               <div style="Margin-left: 20px;Margin-right: 20px;">
-                <%= EmailsHelper.email_line("Click the link below for more details") %>  <br>
-              </div>
-
-
-              <div style="Margin-left: 20px;Margin-right: 20px;">
-                <div style="line-height:10px;font-size:1px">&nbsp;</div>
+                <div style="line-height:10px;font-size:1px"> </div>
               </div>
               <div style="Margin-left: 20px;Margin-right: 20px;">
-                <div style="line-height:10px;font-size:1px">&nbsp;</div>
+                <div style="line-height:10px;font-size:1px"> </div>
               </div>
 
               <div style="Margin-left: 20px;Margin-right: 20px;">
-                <%= EmailsHelper.email_action("More", root_url.chomp('/') + @url) %>
+                <%= EmailsHelper.email_action("See more", root_url.chomp('/') + @url) %>
               </div>
 
                 <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
@@ -319,8 +321,8 @@ body,.wrapper{background-color:#f2f6f7}.wrapper h1{color:#58595b}.wrapper h1{}.w
                       <div>
                         <div>
                           <p>
-                          来因盒服务团队 <br>
-                          customer@germanyinthebox.com <br>
+                          This email was sent for the administrators of Germany In The Box
+                          <br>
                           www.germanyinthebox.com <br>
                           </p>
                         </div>
