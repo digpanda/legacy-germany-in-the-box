@@ -1,5 +1,0 @@
-class ChartService < BaseService
-
-  #
-
-end
