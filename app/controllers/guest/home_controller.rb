@@ -10,7 +10,8 @@ class Guest::HomeController < ApplicationController
   end
 
   def test
-    # nothing
+    # testing emailing
+    Notifier::Admin.new.referrer_claimed_money(Referrer.all.sample)
   end
 
   private

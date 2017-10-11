@@ -273,8 +273,15 @@ body,.wrapper{background-color:#f2f6f7}.wrapper h1{color:#58595b}.wrapper h1{}.w
               </div>
 
               <div style="Margin-left: 20px;Margin-right: 20px;">
-                <%= EmailsHelper.email_line("Notification ：#{@title}") %>  <br>
+                <h3><%= EmailsHelper.email_line("#{@title}") %></h3>
+                <br>
               </div>
+
+              <% if @desc %>
+                <div style="Margin-left: 20px;Margin-right: 20px;">
+                  <%= EmailsHelper.email_line("#{@desc}") %>  <br>
+                </div>
+              <% end %>
 
               <div style="Margin-left: 20px;Margin-right: 20px;">
                 <%= EmailsHelper.email_line("Click the link below for more details") %>  <br>
