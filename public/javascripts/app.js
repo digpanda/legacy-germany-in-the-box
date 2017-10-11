@@ -2192,6 +2192,48 @@ module.exports = Cart;
 
 });
 
+require.register("javascripts/models/chart.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Chart Class
+ */
+var Chart = {
+
+  /**
+   * Get the total number of products within the cart
+   */
+  get: function get(action, callback) {
+
+    console.log("/api/admin/charts/" + action);
+    // NOTE : condition race made it impossible to build
+    // I passed 2 full days on this problem
+    // Good luck.
+    // - Laurent
+    $.ajax({
+      method: "GET",
+      url: "/api/admin/charts/" + action,
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      if (typeof err == "undefined") {
+        return;
+      }
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+
+};
+
+module.exports = Chart;
+
+});
+
 require.register("javascripts/models/duty_category.js", function(exports, require, module) {
 "use strict";
 
@@ -2847,6 +2889,7 @@ module.exports = Bootstrap;
 require.register("javascripts/starters/charts.js", function(exports, require, module) {
 'use strict';
 
+var ChartModel = require("javascripts/models/chart");
 /**
  * Charts Class
  */
@@ -2860,46 +2903,23 @@ var Charts = {
     this.setupCharts();
   },
 
+  /**
+   * This will try to render any chart present on the HTML
+   * <canvas class="js-chart" data-action="total_users" width="500" height="150"></canvas>
+   */
   setupCharts: function setupCharts() {
 
-    var target = $('#myChart');
-    var myChart = new Chart(target, {
-      type: 'line',
-      data: {
-        labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
-        datasets: [{
-          data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-          label: "Africa",
-          borderColor: "#3e95cd",
-          fill: false
-        }, {
-          data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],
-          label: "Asia",
-          borderColor: "#8e5ea2",
-          fill: false
-        }, {
-          data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],
-          label: "Europe",
-          borderColor: "#3cba9f",
-          fill: false
-        }, {
-          data: [40, 20, 10, 16, 24, 38, 74, 167, 508, 784],
-          label: "Latin America",
-          borderColor: "#e8c3b9",
-          fill: false
-        }, {
-          data: [6, 3, 2, 2, 7, 26, 82, 172, 312, 433],
-          label: "North America",
-          borderColor: "#c45850",
-          fill: false
-        }]
-      },
-      options: {
-        title: {
-          display: true,
-          text: 'World population per region (in millions)'
-        }
-      }
+    // We will load one after the other each chart
+    // with their matching action
+    $('.js-chart').each(function (index, value) {
+      var action = $(this).data('action');
+      Charts.renderChart(action, $(this));
+    });
+  },
+
+  renderChart: function renderChart(action, target) {
+    ChartModel.get(action, function (res) {
+      var myChart = new Chart(target, res.data);
     });
   }
 
