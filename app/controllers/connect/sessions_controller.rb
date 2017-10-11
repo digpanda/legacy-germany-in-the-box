@@ -1,9 +1,9 @@
 require 'open-uri'
 
 class Connect::SessionsController < Devise::SessionsController
-  skip_before_action :get_cart_orders
 
   def new
+    SlackDispatcher.new.message("CONNECT NEW REACHED")
   end
 
   def create
