@@ -12,6 +12,7 @@ class Guest::HomeController < ApplicationController
   def test
     # testing emailing
     Notifier::Admin.new.referrer_claimed_money(Referrer.all.sample)
+    Notifier::Customer.new.published_link(Link.all.sample)
     SlackDispatcher.new.message("EMAILING PROCESSING")
     render text: "ok"
   end
