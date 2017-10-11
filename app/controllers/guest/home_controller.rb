@@ -13,6 +13,7 @@ class Guest::HomeController < ApplicationController
     # testing emailing
     Notifier::Admin.new.referrer_claimed_money(Referrer.all.sample)
     SlackDispatcher.new.message("EMAILING PROCESSING")
+    render text: "ok"
   end
 
   private
