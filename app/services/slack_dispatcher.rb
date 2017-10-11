@@ -27,7 +27,7 @@ class SlackDispatcher < BaseService
   end
 
   def login(user)
-    message "[Wechat] Auth #{user.decorate.readable_role} `#{user.decorate.who}`", url: admin_user_url(user)
+    message "[Login] Auth #{user.decorate.readable_role} `#{user.decorate.who}`", url: admin_user_url(user)
   end
 
   def error(error)

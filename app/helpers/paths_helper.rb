@@ -10,6 +10,7 @@ module PathsHelper
   end
 
   def resolve_profile_path
+    SlackDispatcher.new.message("PROFILE PATH RESOLVE CURRENT USER #{current_user}")
     if current_user
       if current_user.decorate.new_notifications?
         shared_notifications_path
