@@ -3,8 +3,6 @@ require 'actionpack/action_caching'
 class Guest::HomeController < ApplicationController
   before_filter :admin_redirection, :shopkeeper_redirection
 
-  caches_action :show
-
   def show
     @shops = Shop.can_buy.order_by(position: :asc).all
   end

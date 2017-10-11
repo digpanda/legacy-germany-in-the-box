@@ -5,9 +5,6 @@ class Guest::PackageSetsController < ApplicationController
     restrict_to :customer
   end
 
-  # TODO : should we split up the index in different categories to make it cachable ?
-  caches_action :categories, :show
-
   before_action :set_package_set, :set_category, :set_brand
 
   before_action :breadcrumb_package_set, only: [:show]
