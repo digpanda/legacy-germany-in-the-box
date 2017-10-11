@@ -1,0 +1,5 @@
+class ChartService < BaseService
+
+  #
+
+end

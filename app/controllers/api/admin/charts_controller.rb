@@ -8,6 +8,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
 
   private
 
+    # NOTE : need to make a service for this.
     def total_users_hash
       {
         type: 'line',

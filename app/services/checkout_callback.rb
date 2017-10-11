@@ -102,7 +102,7 @@ class CheckoutCallback < BaseService
     referrer = order.referrer
     referrer_provision = order.referrer_provision
 
-    if referrer&.user&.mobile
+    if referrer&.user&.mobile && referrer_provision
       # PROVISION-#{referrer_provision.id}
       Notifier::Customer.new(referrer.user, unique_id: "WECHAT-WEBHOOK-PROVISION-#{referrer_provision.id}-OUT-TRADE-NO-#{params['out_trade_no']}").referrer_provision_was_raised(order_payment, referrer, referrer_provision)
     end
