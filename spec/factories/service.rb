@@ -10,6 +10,10 @@ FactoryGirl.define do
     brand       { FactoryGirl.create(:brand) }
     position    0
 
+    trait :referrers_only do
+      referrers_only true
+    end
+    
   end
 
 end
