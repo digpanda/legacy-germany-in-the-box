@@ -17,7 +17,7 @@ class Notifier
           title: dispatcher.title,
           desc: dispatcher.desc,
           url: link_url,
-        ).deliver_later # (wait: 1.minutes) <-- if we want to delay the discpatch
+        ).deliver_now # (wait: 1.minutes) <-- if we want to delay the discpatch
       end
 
       private
