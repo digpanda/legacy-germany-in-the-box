@@ -9,7 +9,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
   private
 
     def total_users_hash
-      Rails.cache.fetch('total_users_hash', :expires_in => 1.minutes) do
+      Rails.cache.fetch('total_users_hash', :expires_in => 1.hours) do
 
       # user creation per month
       new_users_per_month = User.all.group_by do |user|
