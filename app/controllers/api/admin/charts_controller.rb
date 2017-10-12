@@ -31,7 +31,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
       SlackDispatcher.new.message("#{total_users_per_month}")
 
       # chart generation
-      chart = Chart.new(title: '# of Users', type: :bar, vertical_label: 'Demography')
+      chart = Chart.new(title: '# of Users (UNSTABLE VERSION)', type: :bar, vertical_label: 'Demography')
 
       draw = chart.draw(color: :light, label: 'New users')
       new_users_per_month.each do |metric|
