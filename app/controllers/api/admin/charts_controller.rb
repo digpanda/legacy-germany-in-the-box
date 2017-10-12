@@ -9,7 +9,38 @@ class Api::Admin::ChartsController < Api::ApplicationController
   private
 
     def total_users_hash
-      sample
+      # user creation per month
+      new_users_per_month = User.all.group_by do |user|
+        user.c_at.strftime('%Y-%M')
+      end.reduce({}) do |acc, group|
+        acc.merge({"#{group.first}": group.last.count})
+      end
+
+      # total users per month
+      counter = 0
+      total_users_per_month = User.all.group_by do |user|
+        user.c_at.strftime('%Y-%M')
+      end.reduce({}) do |acc, group|
+        counter += group.last.count
+        acc.merge({"#{group.first}": counter})
+      end
+
+      # chart generation
+      chart = Chart.new(title: '# of Users', type: :bar)
+
+      draw = chart.draw(color: :light, label: 'New users')
+      new_users_per_month.each do |metric|
+        draw.data(position: metric.first, value: metric.last)
+      end
+      draw.store
+
+      draw = chart.draw(color: :blue, label: 'Total users', type: :line)
+      total_users_per_month.each do |metric|
+        draw.data(position: metric.first, value: metric.last)
+      end
+      draw.store
+
+      chart.render
     end
 
     def sample

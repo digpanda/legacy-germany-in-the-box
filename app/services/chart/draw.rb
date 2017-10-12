@@ -38,6 +38,8 @@ class Chart < BaseService
         '#3cba9f'
       when :red
         '#c45850'
+      when :light
+        '#ffffff'
       else
         '#000000'
       end
@@ -53,8 +55,10 @@ class Chart < BaseService
         'rgba(60,186,159, 0.50)'
       when :red
         'rgba(255, 99, 132, 0.50)'
+      when :light
+        'rgba(0,0,0, 0.10)'
       else
-        'rgb(0,0,0, 0.50)'
+        'rgba(0,0,0, 0.50)'
       end
     end
 
