@@ -11,7 +11,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
     def total_users_hash
       # user creation per month
       new_users_per_month = User.all.group_by do |user|
-        user.c_at.strftime('%Y-%M')
+        user.c_at.strftime('%Y-%m')
       end.reduce({}) do |acc, group|
         acc.merge({"#{group.first}": group.last.count})
       end
@@ -22,7 +22,6 @@ class Api::Admin::ChartsController < Api::ApplicationController
         user.c_at.strftime('%Y-%M')
       end.reduce({}) do |acc, group|
         counter += group.last.count
-        SlackDispatcher.new.message("COUNTER : #{counter} / ADDING : #{group.last.count}")
         acc.merge({"#{group.first}": counter})
       end
 
