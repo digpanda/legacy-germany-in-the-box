@@ -13,7 +13,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
       # Rails.cache.fetch('total_users_hash', :expires_in => 1.hours) do
 
       # user creation per month
-      new_users_per_month = User.all.group_by do |user|
+      new_users_per_month = User.all.order(c_at: :asc).group_by do |user|
         user.c_at.strftime('%Y-%m')
       end.reduce({}) do |acc, group|
         acc.merge({"#{group.first}": group.last.count})
@@ -21,7 +21,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
 
       # total users per month
       counter = 0
-      total_users_per_month = User.all.group_by do |user|
+      total_users_per_month = User.all.order(c_at: :asc).group_by do |user|
         user.c_at.strftime('%Y-%m')
       end.reduce({}) do |acc, group|
         counter += group.last.count
