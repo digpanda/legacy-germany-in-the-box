@@ -3,7 +3,6 @@ require 'open-uri'
 class Connect::SessionsController < Devise::SessionsController
 
   def new
-    SlackDispatcher.new.message("CONNECT NEW REACHED")
   end
 
   def create
