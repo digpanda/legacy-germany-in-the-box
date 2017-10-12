@@ -15,6 +15,7 @@ class Guest::InquiriesController < ApplicationController
       end
 
       if inquiry.errors.empty?
+        Notifier::Admin.new.new_inquiry(inquiry)
         flash[:success] = 'Your inquiry was successfully sent.'
         redirect_to guest_services_path
         return

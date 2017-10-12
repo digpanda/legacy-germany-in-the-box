@@ -21,6 +21,16 @@ class Notifier
       ).perform
     end
 
+    def new_inquiry(inquiry)
+      dispatch(
+        email: 'info@digpanda.com',
+        mailer: AdminMailer,
+        title: "Inquiry #{inquiry.id}",
+        desc: 'There is a new inquiry which was sent to us. Please check it out.',
+        url: admin_inquiry_path(inquiry)
+      ).perform
+    end
+
     def unvalid_link_detected(link)
       dispatch(
         email: 'info@digpanda.com',
