@@ -47,7 +47,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
       end
 
       devlog.info("Raw params : #{transmit_data}")
-      # slack.message("Raw params : #{transmit_data}")
+      slack.message("Raw params : #{transmit_data}")
 
       if event == 'SCAN'
         handle_qrcode_callback!
