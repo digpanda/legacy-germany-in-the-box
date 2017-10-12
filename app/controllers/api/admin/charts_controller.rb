@@ -8,6 +8,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
 
   private
 
+    # NOTE : this should be refactored and put into a service / different methods
     def total_users_hash
       Rails.cache.fetch('total_users_hash', :expires_in => 1.hours) do
 
