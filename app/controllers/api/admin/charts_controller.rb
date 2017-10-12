@@ -19,7 +19,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
       # total users per month
       counter = 0
       total_users_per_month = User.all.group_by do |user|
-        user.c_at.strftime('%Y-%M')
+        user.c_at.strftime('%Y-%m')
       end.reduce({}) do |acc, group|
         counter += group.last.count
         acc.merge({"#{group.first}": counter})
