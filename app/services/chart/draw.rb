@@ -2,7 +2,7 @@ class Chart < BaseService
   class Draw
     attr_reader :chart, :color, :label, :fill, :positions, :values, :type
 
-    def initialize(chart, color:, label:, fill: false, type:nil)
+    def initialize(chart, color:, label:, fill: false, type: nil)
       @chart = chart
       @color = color
       @label = label
@@ -10,7 +10,7 @@ class Chart < BaseService
       @values = []
       @positions = {}
       # we can specify types for each line / drawing in a mixed chart
-      @type = chart.type unless type
+      @type = type || chart.type
     end
 
     def store
