@@ -10,7 +10,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
 
     # NOTE : this should be refactored and put into a service / different methods
     def total_users_hash
-      Rails.cache.fetch('total_users_hash', :expires_in => 1.hours) do
+      # Rails.cache.fetch('total_users_hash', :expires_in => 1.hours) do
 
       # user creation per month
       new_users_per_month = User.all.group_by do |user|
@@ -27,6 +27,8 @@ class Api::Admin::ChartsController < Api::ApplicationController
         counter += group.last.count
         acc.merge({"#{group.first}": counter})
       end
+
+      SlackDispatcher.new.message("#{total_users_per_month}")
 
       # chart generation
       chart = Chart.new(title: '# of Users', type: :bar, vertical_label: 'Demography')
@@ -45,7 +47,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
 
       chart.render
 
-      end
+      # end
     end
 
     def sample
