@@ -23,6 +23,7 @@ class WechatUserSolver < BaseService
       refresh_openid!
       return_with(:success, customer: customer)
     else
+      SlackDispatcher.new.message("PROBLEMATIC CREATION : #{customer.inspect}")
       return_with(:error, "Could not create customer (#{customer.errors.full_messages.join(',')}).")
     end
   end
