@@ -27,6 +27,7 @@ class Notifier
         mailer: AdminMailer,
         title: "Inquiry #{inquiry.id}",
         desc: 'There is a new inquiry which was sent to us. Please check it out.',
+        scope: :admin_inquiries,
         url: admin_inquiry_path(inquiry)
       ).perform
     end
