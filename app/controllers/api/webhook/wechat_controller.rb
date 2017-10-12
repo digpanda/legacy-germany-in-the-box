@@ -65,9 +65,11 @@ class Api::Webhook::WechatController < Api::ApplicationController
         end
         return
       elsif event == 'subscribe'
+        SlackDispatcher.new.message("SUBSCRIPTION TO CHANNEL")
         render text: 'success'
         return
       else
+        SlackDispatcher.new.message("EVENT SUCCESS")
         render text: 'success'
         return
       end
