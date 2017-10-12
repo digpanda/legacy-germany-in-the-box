@@ -7,6 +7,7 @@ class WechatApiConnectSolver < BaseService
 
   def resolve
     if connect_user.success?
+      SlackDispatcher.new.message("WECHATAPICONNECTSOLVER : #{connect_user.inspect}")
       return_with(:success, customer: connect_user.data[:customer])
     else
       return_with(:error, error: connect_user.error)
