@@ -35,7 +35,7 @@ class Chart < BaseService
   def positions
     entries.reduce([]) do |acc, entry|
       acc << entry[:positions].keys
-    end.sort{|a,b| a <=> b }.flatten.uniq
+    end.flatten.sort{|a,b| a <=> b }.uniq
   end
 
   def datasets
