@@ -20,8 +20,8 @@ class WechatApiConnectSolver < BaseService
   # which will return a customer freshly created or an old one
   def connect_user
     @connect_user ||= begin
+      SlackDispatcher.new.message("USER TOKEN GATEWAY : #{access_token_gateway.inspect}")
       return return_with(:error, 'Access token is wrong') if access_token_gateway['errcode']
-      SlackDispatcher.new.message("USER INFO GATEWAY : #{user_info_gateway.inspect}")
       return return_with(:error, 'User info is wrong') if user_info_gateway['errcode']
 
       unless wechat_user_solver.success?
