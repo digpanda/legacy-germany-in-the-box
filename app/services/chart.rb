@@ -4,12 +4,13 @@ class Chart < BaseService
   # .line(color: :blue, label: 'Label').data(position: 'Week 1', value: 90).store
   # chart.render
 
-  attr_reader :title, :type, :entries
+  attr_reader :title, :type, :entries, :vertical_label
 
-  def initialize(title:, type: :line)
+  def initialize(title:, type: :line, vertical_label: nil)
     @title = title
     @type = type
     @entries = []
+    @vertical_label = vertical_label
   end
 
   def draw(*args)
@@ -27,7 +28,26 @@ class Chart < BaseService
           title: {
             display: true,
             text: title
-          }
+          },
+
+
+          scales: {
+            xAxes: [{
+              type: 'time',
+              distribution: 'series',
+              ticks: {
+                source: 'labels'
+              }
+              }],
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: vertical_label
+                }
+                }]
+              }
+
+
         }
     }
   end

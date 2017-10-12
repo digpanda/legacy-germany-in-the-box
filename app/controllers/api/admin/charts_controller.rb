@@ -28,7 +28,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
       end
 
       # chart generation
-      chart = Chart.new(title: '# of Users', type: :bar)
+      chart = Chart.new(title: '# of Users', type: :bar, vertical_label: 'Demography')
 
       draw = chart.draw(color: :light, label: 'New users')
       new_users_per_month.each do |metric|
