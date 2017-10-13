@@ -349,6 +349,10 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       Category.all.sample
     end
 
+    def random_customer
+      User.where(role: :customer).all.sample
+    end
+
     def setup_customer(customer)
       create_user_address(customer)
     end
@@ -358,6 +362,12 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       referrer = Referrer.create(user: user)
       coupon = Coupon.create_referrer_coupon(referrer)
       setup_order(coupon: coupon)
+      # bind some random users
+      5.times do
+        puts "Binding a random customer to a referrer ..."
+        # using the service to go the normal cycle
+        ReferrerBinding.new(referrer).bind(random_customer)
+      end
     end
 
     # - generate random sku

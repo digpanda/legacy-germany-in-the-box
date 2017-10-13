@@ -43,7 +43,8 @@ class SlackDispatcher < BaseService
 
     def worker(message)
       if Rails.env.development? || Rails.env.test?
-        SlackWorker.new.perform(message)
+        # SlackWorker.new.perform(message)
+        # NO DISPATCH AT ALL, CAN BE ACTIVATED AGAIN
       else
         SlackWorker.perform_async(message)
       end

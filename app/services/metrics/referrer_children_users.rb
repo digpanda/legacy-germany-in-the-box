@@ -3,7 +3,7 @@ class Metrics < BaseService
 
     def settings
       {
-        title: '# of Payments',
+        title: '# of Children Users',
         type: :line,
         vertical_label: 'Volume'
       }
