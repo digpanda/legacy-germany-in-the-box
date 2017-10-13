@@ -8,7 +8,6 @@ namespace :admin do
   resources :duty_categories do
   end
 
-  match 'charts/total_users' => 'charts#total_users', :via => :get
   resources :charts do
   end
 

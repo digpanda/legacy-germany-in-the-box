@@ -1,13 +1,32 @@
 class Api::Admin::ChartsController < Api::ApplicationController
   authorize_resource class: false
 
-  def total_users
-    render status: :ok,
-          json: { success: true, data: Metrics.new(:total_users).render }.to_json
+  # NOTE : `chart` is matching with the current metric we want such as total_users or total_orders
+  # which is defined in the URL
+  # To setup new charts and metrics, go into `/services/metrics` and create new subclasses for it
+  def show
+    if valid_chart?
+      render status: :ok,
+            json: { success: true, data: Metrics.new(chart).render }.to_json
+    else
+      render json: { success: false, error: 'Chart not found.' }
+    end
   end
 
   private
 
+    # NOTE : please add the new charts from Metrics in this array
+    # otherwise it won't pass
+    def valid_chart?
+      [:total_orders, :total_users].include? chart
+    end
+
+    def chart
+      params[:id].to_sym
+    end
+
+    # NOTE : this is currently not in use
+    # but it's a good working sample of the Chart class
     def sample
       chart = Chart.new(title: 'Title', type: :bar)
       draw = chart.draw(color: :green, label: 'Label 1')
