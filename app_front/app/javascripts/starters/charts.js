@@ -22,12 +22,13 @@ var ChartModel = require("javascripts/models/chart");
      // with their matching action
      $('.js-chart').each(function(index, value) {
        let action = $(this).data('action');
-       Charts.renderChart(action, $(this));
+       let metadata = $(this).data('metadata');
+       Charts.renderChart(action, metadata, $(this));
      });
    },
 
-   renderChart: function(action, target) {
-     ChartModel.get(action, function(res) {
+   renderChart: function(action, metadata, target) {
+     ChartModel.get(action, metadata, function(res) {
       var myChart = new Chart(target, res.data);
      });
    }

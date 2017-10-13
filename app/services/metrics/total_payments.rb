@@ -1,8 +1,5 @@
 class Metrics < BaseService
-  class TotalPayments < Metrics
-
-    def initialize
-    end
+  class TotalPayments < Base
 
     def settings
       {

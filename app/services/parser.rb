@@ -5,7 +5,13 @@ class Parser
     end
 
     def get_json(url)
-      JSON.parse get(url)
+      to_hash get(url)
+    rescue Exception => exception
+      {}
+    end
+
+    def to_hash(string)
+      JSON.parse string
     rescue Exception => exception
       {}
     end
@@ -18,7 +24,7 @@ class Parser
       req = Net::HTTP::Post.new(uri.request_uri, header)
       req.body = body.to_json
       res = https.request(req)
-      JSON.parse(res.body)
+      to_hash res.body
     rescue Exception => exception
       {}
     end

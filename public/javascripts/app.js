@@ -2203,7 +2203,7 @@ var Chart = {
   /**
    * Get the total number of products within the cart
    */
-  get: function get(action, callback) {
+  get: function get(action, metadata, callback) {
 
     console.log("/api/admin/charts/" + action);
     // NOTE : condition race made it impossible to build
@@ -2213,7 +2213,7 @@ var Chart = {
     $.ajax({
       method: "GET",
       url: "/api/admin/charts/" + action,
-      data: {}
+      data: { metadata: metadata || {} }
 
     }).done(function (res) {
 
@@ -2912,12 +2912,13 @@ var Charts = {
     // with their matching action
     $('.js-chart').each(function (index, value) {
       var action = $(this).data('action');
-      Charts.renderChart(action, $(this));
+      var metadata = $(this).data('metadata');
+      Charts.renderChart(action, metadata, $(this));
     });
   },
 
-  renderChart: function renderChart(action, target) {
-    ChartModel.get(action, function (res) {
+  renderChart: function renderChart(action, metadata, target) {
+    ChartModel.get(action, metadata, function (res) {
       var myChart = new Chart(target, res.data);
     });
   }

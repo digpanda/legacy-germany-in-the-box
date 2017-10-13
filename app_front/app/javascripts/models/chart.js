@@ -6,7 +6,7 @@ var Chart = {
   /**
    * Get the total number of products within the cart
    */
-  get: function(action, callback) {
+  get: function(action, metadata, callback) {
 
     console.log(`/api/admin/charts/${action}`)
     // NOTE : condition race made it impossible to build
@@ -16,7 +16,7 @@ var Chart = {
     $.ajax({
       method: "GET",
       url: `/api/admin/charts/${action}`,
-      data: {}
+      data: { metadata: (metadata || {}) }
 
     }).done(function(res) {
 

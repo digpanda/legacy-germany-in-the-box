@@ -7,7 +7,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
   def show
     if valid_chart?
       render status: :ok,
-            json: { success: true, data: Metrics.new(chart).render }.to_json
+            json: { success: true, data: Metrics.new(chart, metadata).render }.to_json
     else
       render json: { success: false, error: 'Chart not found.' }
     end
@@ -18,7 +18,17 @@ class Api::Admin::ChartsController < Api::ApplicationController
     # NOTE : please add the new charts from Metrics in this array
     # otherwise it won't pass
     def valid_chart?
-      [:total_orders, :total_users, :total_payments, :total_referrers].include? chart
+      [
+        :total_orders,
+        :total_users,
+        :total_payments,
+        :total_referrers,
+        :referrer_children_users,
+      ].include? chart
+    end
+
+    def metadata
+      params[:metadata]
     end
 
     def chart

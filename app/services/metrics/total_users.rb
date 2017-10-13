@@ -1,9 +1,6 @@
 class Metrics < BaseService
-  class TotalUsers < Metrics
+  class TotalUsers < Base
 
-    def initialize
-    end
-    
     def settings
       {
         title: '# of Users',

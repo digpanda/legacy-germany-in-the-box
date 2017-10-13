@@ -1,15 +1,16 @@
 class Metrics < BaseService
   CACHE_EXPIRATION = 1.hours.freeze
 
-  attr_reader :metric
+  attr_reader :metric, :metadata
 
-  def initialize(metric)
+  def initialize(metric, metadata = {})
     @metric = metric
+    @metadata = metadata
   end
 
   def render
     #Rails.cache.fetch("cache-metric-#{metric}", :expires_in => CACHE_EXPIRATION) do
-      to_call.new.render if defined?(to_call)
+      to_call.new(metadata).render if defined?(to_call)
     #end
   end
 

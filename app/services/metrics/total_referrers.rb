@@ -1,8 +1,5 @@
 class Metrics < BaseService
-  class TotalReferrers < Metrics
-
-    def initialize
-    end
+  class TotalReferrers < Base
 
     def settings
       {

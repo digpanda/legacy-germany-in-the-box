@@ -2,6 +2,9 @@
   <div class="col-md-10">
     <h2>Referrer <%= @referrer.user.decorate.full_name %> (<%= @referrer.reference_id %>)</h2>
     List of all everything related to the referrer
+
+    <%= render partial: "admin/referrers/show/chart", locals: { referrer: @referrer } %>
+
     <hr>
   </div>
   <div class="col-md-2 details__action">
