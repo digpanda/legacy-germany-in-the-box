@@ -18,7 +18,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
     # NOTE : please add the new charts from Metrics in this array
     # otherwise it won't pass
     def valid_chart?
-      [:total_orders, :total_users, :total_payments].include? chart
+      [:total_orders, :total_users, :total_payments, :total_referrers].include? chart
     end
 
     def chart
