@@ -8,8 +8,8 @@ class Metrics < BaseService
   end
 
   def render
-    Rails.cache.fetch("cache-metric-#{metric}" :expires_in => CACHE_EXPIRATION) do
-      to_call.new.render if defined?(to_call)
+    Rails.cache.fetch("cache-metric-#{metric}", :expires_in => CACHE_EXPIRATION) do
+      to_call.render if defined?(to_call)
     end
   end
 
@@ -30,8 +30,8 @@ class Metrics < BaseService
       draw.store
     end
 
-    # NOTE : those variable are set in each subclass in the initializer
+    # NOTE : settings is set in each subclass in the initializer
     def chart
-      @chart ||= Chart.new(title: title, type: type, vertical_label: vertical_label)
+      @chart ||= Chart.new(settings)
     end
 end
