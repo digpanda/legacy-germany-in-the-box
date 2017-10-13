@@ -32,13 +32,13 @@ class Chart < BaseService
 
 
           scales: {
-            xAxes: [{
-              type: 'time',
-              distribution: 'series',
-              ticks: {
-                source: 'labels'
-              }
-              }],
+            # xAxes: [{
+            #   type: 'time',
+            #   distribution: 'series',
+            #   ticks: {
+            #     source: 'labels'
+            #   }
+            #   }],
               yAxes: [{
                 scaleLabel: {
                   display: true,
