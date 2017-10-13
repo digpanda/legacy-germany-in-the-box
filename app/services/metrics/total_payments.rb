@@ -14,7 +14,8 @@ class Metrics < BaseService
 
     def render
       draw(:new_payments_per_month, label: 'Confirmed payments', color: :light)
-      #draw(:volume_paid_per_month, label: 'Volume paid', color: :blue)
+      draw(:volume_paid_per_month, label: 'Volume paid', color: :blue, type: :line)
+
       chart.render
     end
 
