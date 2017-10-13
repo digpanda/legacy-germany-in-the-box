@@ -10,42 +10,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
 
     # NOTE : this should be refactored and put into a service / different methods
     def total_users_hash
-      Rails.cache.fetch('total_users_hash', :expires_in => 1.hours) do
-
-      # user creation per month
-      new_users_per_month = User.all.order(c_at: :asc).group_by do |user|
-        user.c_at.strftime('%Y-%m')
-      end.reduce({}) do |acc, group|
-        acc.merge({"#{group.first}": group.last.count})
-      end
-
-      # total users per month
-      counter = 0
-      total_users_per_month = User.all.order(c_at: :asc).group_by do |user|
-        user.c_at.strftime('%Y-%m')
-      end.reduce({}) do |acc, group|
-        counter += group.last.count
-        acc.merge({"#{group.first}": counter})
-      end
-
-      # chart generation
-      chart = Chart.new(title: '# of Users (BETA DATA)', type: :bar, vertical_label: 'Demography')
-
-      draw = chart.draw(color: :light, label: 'New users')
-      new_users_per_month.each do |metric|
-        draw.data(position: metric.first, value: metric.last)
-      end
-      draw.store
-
-      draw = chart.draw(color: :blue, label: 'Total users', type: :line)
-      total_users_per_month.each do |metric|
-        draw.data(position: metric.first, value: metric.last)
-      end
-      draw.store
-
-      chart.render
-
-      end
+      Metrics.new(:total_users).render
     end
 
     def sample
