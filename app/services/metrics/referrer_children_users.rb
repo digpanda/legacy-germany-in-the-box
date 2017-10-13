@@ -24,7 +24,9 @@ class Metrics < BaseService
       def children_per_week
         @children_per_week ||= begin
           referrer.children_users.order(parent_referred_at: :asc).group_by do |user|
-            user.c_at.strftime('Week %Y-%W')
+            # TODO : this has to be checked, i'm not sure %W is a correct `week`
+            # i've no internet right now
+            user.c_at.strftime('Week %W')
           end.reduce({}) do |acc, group|
             acc.merge({"#{group.first}": group.last.count})
           end
