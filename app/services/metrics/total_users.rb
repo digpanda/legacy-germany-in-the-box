@@ -7,19 +7,17 @@ class Metrics < BaseService
     end
 
     def render
-
       draw(:new_users_per_month, label: 'New users', color: :light)
       draw(:total_users_per_month, label: 'Total users', color: :blue, type: :line)
 
       chart.render
-
     end
 
     private
 
       def draw(metric, *args)
-        chart.draw(*args)
-        metric.each do |metric|
+        draw = chart.draw(*args)
+        self.send(metric).each do |metric|
           draw.data(position: metric.first, value: metric.last)
         end
         draw.store
@@ -29,6 +27,9 @@ class Metrics < BaseService
         @chart ||= Chart.new(title: TITLE, type: :bar, vertical_label: VERTICAL_LABEL)
       end
 
+      # NOTE : metrics must have a format such as {'Entry 1' => 1, 'Entry 2' => 2}
+      # this norm will be automatically understood and drawn by the system.
+  
       def new_users_per_month
         @new_users_per_month ||= begin
           User.all.order(c_at: :asc).group_by do |user|

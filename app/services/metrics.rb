@@ -14,6 +14,6 @@ class Metrics < BaseService
   end
 
   def to_call
-    "Metrics::#{metric.camelize}".constantize
+    "Metrics::#{metric.to_s.camelize}".constantize
   end
 end

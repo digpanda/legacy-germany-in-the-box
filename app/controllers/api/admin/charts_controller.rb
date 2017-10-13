@@ -3,15 +3,10 @@ class Api::Admin::ChartsController < Api::ApplicationController
 
   def total_users
     render status: :ok,
-          json: { success: true, data: total_users_hash }.to_json
+          json: { success: true, data: Metrics.new(:total_users).render }.to_json
   end
 
   private
-
-    # NOTE : this should be refactored and put into a service / different methods
-    def total_users_hash
-      Metrics.new(:total_users).render
-    end
 
     def sample
       chart = Chart.new(title: 'Title', type: :bar)
