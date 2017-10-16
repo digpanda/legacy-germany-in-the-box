@@ -8,6 +8,7 @@ class Parser
       JSON.parse get(url)
       # to_hash get(url)
     rescue Exception => exception
+      SlackDispatcher.new.message("GET JSON EXCEPTION #{exception}")
       {}
     end
 
