@@ -4,13 +4,14 @@ class Chart < BaseService
   # .line(color: :blue, label: 'Label').data(position: 'Week 1', value: 90).store
   # chart.render
 
-  attr_reader :title, :type, :entries, :vertical_label
+  attr_reader :title, :type, :entries, :vertical_label, :numbers
 
-  def initialize(title:, type: :line, vertical_label: nil)
+  def initialize(title:, type: :line, vertical_label: nil, numbers: false)
     @title = title
     @type = type
     @entries = []
     @vertical_label = vertical_label
+    @numbers = numbers
   end
 
   def draw(*args)
@@ -21,6 +22,7 @@ class Chart < BaseService
     {
       type: type,
         data: {
+          numbers: numbers, # number show up on the lines
           labels: positions, # it's y axis ['10', '20']
           datasets: datasets # each line
         },

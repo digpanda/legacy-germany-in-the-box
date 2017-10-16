@@ -1,6 +1,6 @@
 class Chart < BaseService
   class Draw
-    attr_reader :chart, :color, :label, :fill, :positions, :values, :type
+    attr_reader :chart, :color, :label, :fill, :positions, :values, :type, :numbers
 
     def initialize(chart, color:, label:, fill: false, type: nil)
       @chart = chart

@@ -5,7 +5,8 @@ class Metrics < BaseService
       {
         title: '# of Children Users',
         type: :bar,
-        vertical_label: 'Volume'
+        vertical_label: 'Volume',
+        numbers: true
       }
     end
 
