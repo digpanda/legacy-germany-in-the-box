@@ -12,7 +12,7 @@ class Metrics < BaseService
 
     def render
       draw(:children_per_week, label: 'Children per week', color: :light)
-      #draw(:total_children_per_week, label: 'Total children', type: :line, color: :blue)
+      draw(:total_children_per_week, label: 'Total children', type: :line, color: :blue)
 
       chart.render
     end

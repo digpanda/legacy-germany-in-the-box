@@ -2940,7 +2940,7 @@ var Charts = {
             if (!meta.hidden) {
               meta.data.forEach(function (element, index) {
                 // Draw the text in black, with the specified font
-                ctx.fillStyle = dataset.borderColor;
+                ctx.fillStyle = dataset.backgroundColor;
 
                 var fontSize = 14;
                 var fontStyle = 'bold';
