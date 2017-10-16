@@ -1,6 +1,10 @@
 class WechatApiConnectSolver < BaseService
   attr_reader :code
 
+  SOURCE = 'https://api.weixin.qq.com'.freeze
+  # SOURCE = 'https://api.wechat.com'.freeze
+
+
   def initialize(code)
     @code = code
   end
@@ -74,10 +78,10 @@ class WechatApiConnectSolver < BaseService
     end
 
     def oauth2_access_token_url
-      "https://api.wechat.com/sns/oauth2/access_token?appid=#{Rails.application.config.wechat[:username_mobile]}&secret=#{Rails.application.config.wechat[:password_mobile]}&code=#{code}&grant_type=authorization_code"
+      "#{SOURCE}/sns/oauth2/access_token?appid=#{Rails.application.config.wechat[:username_mobile]}&secret=#{Rails.application.config.wechat[:password_mobile]}&code=#{code}&grant_type=authorization_code"
     end
 
     def userinfo_access_token_url
-      "https://api.wechat.com/sns/userinfo?access_token=#{access_token}&openid=#{openid}"
+      "#{SOURCE}/sns/userinfo?access_token=#{access_token}&openid=#{openid}"
     end
 end
