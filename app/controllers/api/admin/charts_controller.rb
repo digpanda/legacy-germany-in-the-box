@@ -19,6 +19,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
     # otherwise it won't pass
     def valid_chart?
       [
+        :total_inquiries,
         :total_orders,
         :total_users,
         :total_payments,
