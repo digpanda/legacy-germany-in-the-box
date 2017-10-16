@@ -9,7 +9,7 @@ class Metrics < BaseService
   end
 
   def render
-    Rails.cache.fetch("cache-metric-#{metric}", :expires_in => CACHE_EXPIRATION) do
+    Rails.cache.fetch("cache-metric-#{metric}-#{metadata}", :expires_in => CACHE_EXPIRATION) do
       to_call.new(metadata).render if defined?(to_call)
     end
   end
