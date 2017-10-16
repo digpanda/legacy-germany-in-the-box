@@ -1,6 +1,9 @@
 class WechatApiMessenger < BaseService
   attr_reader :openid, :message
 
+  SOURCE = 'https://api.weixin.qq.com'.freeze
+  # SOURCE = 'https://api.wechat.com'.freeze
+
   def initialize(openid:)
     @openid = openid
   end
@@ -21,7 +24,7 @@ class WechatApiMessenger < BaseService
     end
 
     def url
-      "https://api.wechat.com/cgi-bin/message/custom/send?access_token=#{access_token}"
+      "#{SOURCE}/cgi-bin/message/custom/send?access_token=#{access_token}"
     end
 
     def body
