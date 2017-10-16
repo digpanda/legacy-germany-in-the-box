@@ -141,11 +141,11 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     def event
-      transmit_data['Event'].downcase
+      transmit_data['Event']&.downcase
     end
 
     def event_key
-      transmit_data['EventKey'].downcase
+      transmit_data['EventKey']&.downcase
     end
 
     def openid
