@@ -1,4 +1,4 @@
-<% if @users.size > 0 %>
+<% if users.size > 0 %>
 <div class="main-table">
   <table>
     <thead>
@@ -37,7 +37,7 @@
       </th>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% users.each do |user| %>
         <tr>
           <td>
             <%= user.email %>

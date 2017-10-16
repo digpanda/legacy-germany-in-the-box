@@ -18,6 +18,11 @@
   <%= render partial: "admin/coupons/table", :locals => { :coupons => @referrer.coupons } %>
 </div>
 
+<div class="row details__block">
+  <h3>Users linked</h3>
+  <hr>
+  <%= render partial: "admin/users/table", :locals => { :users => @referrer.children_users } %>
+</div>
 
 <div class="row details__block">
   <h3>Orders linked</h3>
