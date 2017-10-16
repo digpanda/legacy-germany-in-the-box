@@ -4,13 +4,14 @@ class Metrics < BaseService
     def settings
       {
         title: '# of Children Users',
-        type: :line,
+        type: :bar,
         vertical_label: 'Volume'
       }
     end
 
     def render
-      draw(:children_per_week, label: 'Children per week', color: :blue)
+      draw(:children_per_week, label: 'Children per week', color: :light)
+      draw(:total_children_per_week, label: 'Total children', color: :blue)
 
       chart.render
     end
@@ -33,5 +34,16 @@ class Metrics < BaseService
         end
       end
 
+      def total_children_per_week
+        @total_children_per_week ||= begin
+          counter = 0
+          referrer.children_users.order(parent_referred_at: :asc).group_by do |user|
+            user.c_at.strftime('Week %W')
+          end.reduce({}) do |acc, group|
+            counter += group.last.count
+            acc.merge({"#{group.first}": counter})
+          end
+        end
+      end
   end
 end
