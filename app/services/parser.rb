@@ -5,7 +5,8 @@ class Parser
     end
 
     def get_json(url)
-      to_hash get(url)
+      JSON.parse get(url)
+      # to_hash get(url)
     rescue Exception => exception
       {}
     end
