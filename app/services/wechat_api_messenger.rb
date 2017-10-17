@@ -1,5 +1,5 @@
 class WechatApiMessenger < BaseService
-  attr_reader :openid, :message, :type
+  attr_reader :openid, :content, :type
 
   SOURCE = 'https://api.weixin.qq.com'.freeze
   # SOURCE = 'https://api.wechat.com'.freeze
