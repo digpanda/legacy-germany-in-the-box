@@ -22,8 +22,6 @@ var CustomerCheckoutPaymentMethod = {
 
       let orderId = $(this).data('orderId');
       let params = {'special_instructions': $(this).val()};
-      console.log(params);
-
       Order.update(orderId, params, function(res) {
         // nothing
       });

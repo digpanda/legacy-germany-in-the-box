@@ -54,8 +54,4 @@ class Customer::OrdersController < ApplicationController
         return
       end
     end
-
-    def order_params
-      params.require(:order).permit(:special_instructions)
-    end
 end

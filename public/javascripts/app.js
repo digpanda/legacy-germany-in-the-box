@@ -833,8 +833,6 @@ var CustomerCheckoutPaymentMethod = {
 
       var orderId = $(this).data('orderId');
       var params = { 'special_instructions': $(this).val() };
-      console.log(params);
-
       Order.update(orderId, params, function (res) {
         // nothing
       });
