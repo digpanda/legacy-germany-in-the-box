@@ -49,18 +49,18 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
       if message?
         Notifier::Admin.new.new_wechat_message(content)
-        slack.message "Sending message #{content} through email"
-        render text: 'success'
-        return
-      end
+        slack.message "[Wechat] Service message `#{content}`"
+      else
 
-      case event
-      when 'scan'
-        handle_qrcode_callback
-      when 'click'
-        handle_menu_callback
-      when 'subscribe'
-        handle_subscribe_callback
+        case event
+        when 'scan'
+          handle_qrcode_callback
+        when 'click'
+          handle_menu_callback
+        when 'subscribe'
+          handle_subscribe_callback
+        end
+
       end
 
       # case message
