@@ -47,6 +47,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
       devlog.info("Raw params : #{transmit_data}")
       slack.message("Raw params : #{transmit_data}")
 
+      slack.message ("MESSAGE ? #{message?}")
       if message?
         Notifier::Admin.new.new_wechat_message(content)
         slack.message "Sending message #{message} through email"
