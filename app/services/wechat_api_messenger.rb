@@ -54,7 +54,7 @@ class WechatApiMessenger < BaseService
     end
 
     def media_id
-      wechat_api_media[:media_id]
+      wechat_api_media.data[:media_id]
     end
 
     def media_path
