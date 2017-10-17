@@ -48,8 +48,8 @@ class Api::Webhook::WechatController < Api::ApplicationController
       slack.message("Raw params : #{transmit_data}")
 
       if message?
-        Notifier::Admin.new.new_wechat_message(content)
-        slack.message "[Wechat] Service message `#{content}`"
+        Notifier::Admin.new.new_wechat_message(openid, content)
+        slack.message "[Wechat] Service message from `#{openid}` : `#{content}`"
       else
 
         case event
