@@ -47,6 +47,12 @@ class Api::Webhook::WechatController < Api::ApplicationController
       devlog.info("Raw params : #{transmit_data}")
       slack.message("Raw params : #{transmit_data}")
 
+      if message?
+        Notifier::Admin.new.new_wechat_message(content)
+        render text: 'success'
+        return
+      end
+
       case event
       when 'scan'
         handle_qrcode_callback
@@ -138,6 +144,14 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
     def extra_data
       @extra_data ||= JSON.parse(event_key)
+    end
+
+    def message?
+      transmit_data['MsgType'] == 'tet'
+    end
+
+    def content
+      transmit_data['Content']
     end
 
     def event

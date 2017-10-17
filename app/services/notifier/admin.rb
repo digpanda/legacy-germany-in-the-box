@@ -21,6 +21,15 @@ class Notifier
       ).perform
     end
 
+    def new_wechat_message(message)
+      dispatch(
+        email: 'info@digpanda.com',
+        mailer: AdminMailer,
+        title: "Wechat Message",
+        desc: "We just received a new message from the Wechat Service : #{message}",
+      ).perform
+    end
+
     def new_inquiry(inquiry)
       dispatch(
         email: 'info@digpanda.com',
