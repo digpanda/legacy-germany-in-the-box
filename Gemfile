@@ -19,6 +19,8 @@ gem 'mongoid_search', github: 'Loschcode/mongoid_search', branch: 'master' # pat
 
 gem 'keen'
 
+gem 'rest-client'
+
 gem 'mongoid-slug'
 
 gem 'actionpack-page_caching'

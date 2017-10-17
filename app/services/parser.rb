@@ -1,3 +1,5 @@
+require 'rest-client'
+
 class Parser
   class << self
     def get(url)
@@ -7,13 +9,19 @@ class Parser
     def get_json(url)
       to_hash get(url)
     rescue Exception => exception
-      {}
+      {error: exception}
     end
 
     def to_hash(string)
       JSON.parse string
     rescue Exception => exception
-      {}
+      {error: exception}
+    end
+
+    def post_media(url, file)
+      to_hash RestClient.post(url, upload: { file: File.new(file, 'rb'), multipart: true })
+    rescue Exception => exception
+      {error: exception}
     end
 
     def post_json(url, body)
@@ -26,7 +34,7 @@ class Parser
       res = https.request(req)
       to_hash res.body
     rescue Exception => exception
-      {}
+      {error: exception}
     end
   end
 end

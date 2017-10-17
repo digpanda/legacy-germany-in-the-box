@@ -50,6 +50,12 @@ class Api::Webhook::WechatController < Api::ApplicationController
       if message?
         Notifier::Admin.new.new_wechat_message(openid, content)
         slack.message "[Wechat] Service message from `#{openid}` : `#{content}`"
+
+        if content == 'image'
+          wechat_api_messenger_image.send "test"
+          SlackDispatcher.new.message("TEST MESSENGER IMAGE")
+        end
+
       else
 
         case event
@@ -72,7 +78,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     def handle_subscribe_callback
-      wechat_api_messenger.send """
+      wechat_api_messenger_text.send """
       欢迎您访问来因盒\n
       🎊德国精品总览: 来因盒首页，各类电商精品和海外服务汇总\n
       👔海外综合服务: 本地专业团队为您提供海外房产、金融投资、保险、医疗服务\n
@@ -84,16 +90,16 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
     def handle_menu_callback
       if event_key == 'coupon'
-        wechat_api_messenger.send '2017a'
+        wechat_api_messenger_text.send '2017a'
       elsif event_key == 'support'
-        wechat_api_messenger.send """
+        wechat_api_messenger_text.send """
         欢迎您通过微信和我们交流。\n
         请点击左下角小键盘直接留言，工作时间会在一小时内回复， 非工作时间会定期检查留言并回复。\n
         📧客服邮箱: customer@germanyinthebox.com\n
         📞客服电话: 49-(0)89-21934711, 49-(0)89-21934727\n
         """
       elsif event_key == 'usermanual'
-        wechat_api_messenger.send  """
+        wechat_api_messenger_text.send  """
         ---购买下单注意事项---\n
         1. 将产品添加到购物车后点击手机屏幕右上方进入购物车下单\n
         2.\t请填写收件人的收件地址，手机号，身份证号码(中国海关通关要求)\n
@@ -139,8 +145,12 @@ class Api::Webhook::WechatController < Api::ApplicationController
       @wechat_user_solver ||= WechatUserSolver.new(provider: :wechat, openid: openid).resolve
     end
 
-    def wechat_api_messenger
-      @wechat_api_messenger ||= WechatApiMessenger.new(openid: openid)
+    def wechat_api_messenger_text
+      @wechat_api_messenger_text ||= WechatApiMessenger.new(openid: openid, type: :text)
+    end
+
+    def wechat_api_messenger_image
+      @wechat_api_messenger_image ||= WechatApiMessenger.new(openid: openid, type: :image)
     end
 
     def extra_data

@@ -704,6 +704,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (= 4.2.1)
   redis-rails
+  rest-client
   rmagick
   rqrcode
   rspec-rails (~> 3.0)

@@ -1,17 +1,20 @@
 class WechatApiMessenger < BaseService
-  attr_reader :openid, :message
+  attr_reader :openid, :message, :type
 
   SOURCE = 'https://api.weixin.qq.com'.freeze
   # SOURCE = 'https://api.wechat.com'.freeze
 
-  def initialize(openid:)
+  # type can be :text, :image
+  def initialize(openid:, type: :text)
     @openid = openid
+    @type = type
   end
 
-  def send(message)
+  def send(content)
     # we set it here because it's way more convenient at a structure level
-    # but we should turn that into a subclass if we send more than simple messages
-    @message = message
+    # but we should turn that into a subclass if we send more than simple contents
+    @content = content
+    # now we make the different API calls
     return return_with(:error, access_token_gateway.error) unless access_token_gateway.success?
     return return_with(:error, gateway['errmsg']) if gateway['errcode']
     return_with(:success, gateway: gateway)
@@ -28,14 +31,38 @@ class WechatApiMessenger < BaseService
     end
 
     def body
+      case type
+      when :text
       {
         'touser': openid,
         'msgtype': 'text',
         'text':
         {
-          'content': message
+          'content': content
         }
       }
+      when :image
+        {
+          "touser": openid,
+          "msgtype": 'image',
+          "image":
+          {
+            "media_id": media_id
+          }
+        }
+      end
+    end
+
+    def media_id
+      wechat_api_media[:media_id]
+    end
+
+    def media_path
+      "#{Rails.root}/public/images/services-cover.jpg"
+    end
+
+    def wechat_api_media
+      @wechat_api_media ||= WechatApiMedia.new(type: type, path: media_path).resolve
     end
 
     def access_token_gateway
