@@ -808,7 +808,7 @@ module.exports = CustomerGatewayCreate;
 });
 
 require.register("javascripts/controllers/customer/checkout/payment_method.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * CustomerCheckoutPaymentMethod class
@@ -821,7 +821,24 @@ var CustomerCheckoutPaymentMethod = {
   init: function init() {
 
     this.handleMethodSelection();
+    this.handleSpecialInstructions();
     var CustomerCartShow = require("javascripts/controllers/customer/cart/show");
+  },
+
+  handleSpecialInstructions: function handleSpecialInstructions() {
+
+    var Order = require("javascripts/models/order");
+
+    $('#special_instructions').on('keyup', function (e) {
+
+      var orderId = $(this).data('orderId');
+      var params = { 'special_instructions': $(this).val() };
+      console.log(params);
+
+      Order.update(orderId, params, function (res) {
+        // nothing
+      });
+    });
   },
 
   /**
@@ -2346,6 +2363,42 @@ var NavigationModel = {
 };
 
 module.exports = NavigationModel;
+
+});
+
+require.register("javascripts/models/order.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * Order Class
+ */
+var Order = {
+
+  /**
+   * Check if user is auth or not via API call
+   */
+  update: function update(orderId, params, callback) {
+
+    $.ajax({
+      method: "PATCH",
+      url: "/api/customer/orders/" + orderId,
+      data: { order: params }
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      if (typeof err == "undefined") {
+        return;
+      }
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+};
+
+module.exports = Order;
 
 });
 

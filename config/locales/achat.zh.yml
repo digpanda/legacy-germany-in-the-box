@@ -458,6 +458,7 @@ zh-CN:
     name: 姓名
     pid: 身份证号
   edit_order:
+    special_instructions_title: 买家留言
     terminated: 买家已签收
     cancelled: 取消
     shipped: 商家已发货

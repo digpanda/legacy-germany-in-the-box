@@ -9,7 +9,29 @@ var CustomerCheckoutPaymentMethod = {
    init: function() {
 
     this.handleMethodSelection();
+    this.handleSpecialInstructions();
     var CustomerCartShow = require("javascripts/controllers/customer/cart/show");
+
+  },
+
+  handleSpecialInstructions: function() {
+
+    var Order = require("javascripts/models/order");
+
+    $('#special_instructions').on('keyup', function(e) {
+
+      let orderId = $(this).data('orderId');
+      let params = {'special_instructions': $(this).val()};
+      console.log(params);
+
+      Order.update(orderId, params, function(res) {
+        // nothing
+      });
+
+    });
+
+
+
 
   },
 
