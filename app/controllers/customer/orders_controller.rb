@@ -41,6 +41,11 @@ class Customer::OrdersController < ApplicationController
     redirect_to customer_cart_path
   end
 
+  def update
+    order.update(order_params)
+    redirect_to navigation.back(1)
+  end
+
   private
 
     def set_order
@@ -53,5 +58,9 @@ class Customer::OrdersController < ApplicationController
         redirect_to navigation.back(1)
         return
       end
+    end
+
+    def order_params
+      params.require(:order).permit(:special_instructions)
     end
 end

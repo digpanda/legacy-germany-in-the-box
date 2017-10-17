@@ -5,7 +5,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <h4>Customer details</h4>
       <% if @order.user %>
         Email : <%= @order.user.email %><br />
@@ -17,6 +17,16 @@
         No customer attached
       <% end %>
     </div>
+
+    <div class="col-md-6">
+      <h4>Special instructions</h4>
+      <% if @order.special_instructions %>
+        <%= @order.special_instructions %>
+      <% else %>
+        -
+      <% end %>
+    </div>
+
   </div>
 
   <div class="row">

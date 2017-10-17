@@ -1,0 +1,27 @@
+<%= form_for [:customer, order] do |form| %>
+
+<hr class="+anti-margin" />
+
+<div class="row">
+
+  <div class="col-xs-12 col-md-12">
+
+    <h2>Custom instructions about your order ?</h2>
+
+    <!-- Custom instructions -->
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <%= form.text_field :special_instructions, :class => 'form-control', :required => false %>
+        <div class="help-block with-errors"></div>
+      </div>
+    </div>
+
+    <%= form.submit :class => 'big-button --blue', :value =>  I18n.t('edit_account.save') %>
+
+    <hr class="+anti-margin" />
+
+  </div>
+
+</div>
+
+<% end %>

@@ -13,7 +13,8 @@ class Order
   BOUGHT_OR_UNVERIFIED = [:payment_unverified, :paid, :shipped, :terminated]
 
   field :status,                    type: Symbol, default: :new
-  field :desc,                      type: String
+  field :desc,                      type: String # NOTE : this does not seem to be used anymore within the system, and for a while
+  field :special_instructions, type: String
   field :logistic_partner, type: Symbol, default: :manual
   field :order_items_count,         type: Fixnum, default: 0
   field :bill_id, type: String
