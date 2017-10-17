@@ -149,7 +149,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     def message?
-      transmit_data['MsgType'] == 'tet'
+      transmit_data['MsgType'] == 'text'
     end
 
     def content
