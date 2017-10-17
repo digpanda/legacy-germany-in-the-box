@@ -49,6 +49,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
       if message?
         Notifier::Admin.new.new_wechat_message(content)
+        slack.message "Sending message #{message} through email"
         render text: 'success'
         return
       end
