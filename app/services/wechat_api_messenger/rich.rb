@@ -1,10 +1,9 @@
 class WechatApiMessenger < BaseService
   class Rich < Base
-
     attr_reader :articles
 
-    def initialize
-      super
+    # specific initialize (not like text and image)
+    def initialize(messenger)
       @articles = []
     end
 
@@ -27,6 +26,7 @@ class WechatApiMessenger < BaseService
           url: url,
           picurl: picture_url
         }
+        self
       end
 
   end
