@@ -9,7 +9,7 @@
     <!-- Special instructions -->
     <div class="row">
       <div class="col-md-12 form-group">
-        <%= text_field_tag :special_instructions, order.special_instructions, :placeholder => '对本次交易的说明', :class => 'form-control', :required => false, data: { order_id: "#{order.id}" } %>
+        <%= text_field_tag :special_instructions, order.special_instructions, :placeholder => '选填：对本次交易的说明（建议填写已和卖家协商一致的内容）', :class => 'form-control', :required => false, data: { order_id: "#{order.id}" } %>
         <div class="help-block with-errors"></div>
       </div>
     </div>
