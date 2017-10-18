@@ -7,6 +7,16 @@ class WechatApiMessenger < BaseService
       @articles = []
     end
 
+    def add(title:, description:, url:, picture_url:)
+      @articles << {
+        title: title,
+        description: description,
+        url: url,
+        picurl: picture_url
+      }
+      self
+    end
+    
     private
 
       def body
@@ -18,16 +28,5 @@ class WechatApiMessenger < BaseService
            }
         }
       end
-
-      def add(title:, description:, url:, picture_url:)
-        @articles << {
-          title: title,
-          description: description,
-          url: url,
-          picurl: picture_url
-        }
-        self
-      end
-
   end
 end
