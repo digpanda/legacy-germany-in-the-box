@@ -69,6 +69,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
         end
 
         if content == 'rich'
+          SlackDispatcher.new.message("RICH LAUNCHED")
           wechat_api_messenger.rich.add(
             title: 'Title 1',
             description: 'Description 1',
