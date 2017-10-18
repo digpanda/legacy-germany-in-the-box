@@ -12,8 +12,8 @@ class WechatApiMessenger < BaseService
     def send
       return return_with(:error, access_token_gateway.error) unless access_token_gateway.success?
       SlackDispatcher.new.message("BODY : #{body}")
-      return return_with(:error, gateway['errmsg']) if gateway['errcode']
       SlackDispatcher.new.message("GATEWAY : #{gateway}")
+      return return_with(:error, gateway['errmsg']) if gateway['errcode']
       return_with(:success, gateway: gateway)
     end
 
