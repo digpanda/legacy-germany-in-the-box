@@ -4,6 +4,7 @@ class WechatApiMessenger < BaseService
 
     # specific initialize (not like text and image)
     def initialize(messenger)
+      @openid = messenger.openid
       @articles = []
     end
 
