@@ -14,7 +14,7 @@ class WechatApiMessenger < BaseService
   end
 
   def rich
-    @image ||= WechatApiMessenger::Text.new(self)
+    @image ||= WechatApiMessenger::Rich.new(self)
   end
 
 end
