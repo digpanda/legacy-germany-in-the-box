@@ -6,17 +6,6 @@
 <%= render partial: "guest/services/brand_filters", locals: { current_brand: @brand, brand_filters: @brand_filters} %>
 <div class="+small-spacer"></div>
 
-<!-- Services -->
-<!-- The positioning is impossible to do before we get the actual array -->
-<div class="row">
-  <% @services.sort_by(&:position).each_with_index do |service, index| %>
-    <% cache service do %>
-      <%= render "guest/services/index/block", options: { reversed: reversed?(index) }, service: service %>
-    <% end %>
-  <% end %>
-</div>
-<div class="+small-spacer"></div>
-
 <!-- Referrer Exclusive Services -->
 <% if @referrer_services && @referrer_services.count > 0 && current_user&.tester? %>
 <hr />
@@ -29,3 +18,14 @@
   <% end %>
 </div>
 <% end %>
+
+<!-- Services -->
+<!-- The positioning is impossible to do before we get the actual array -->
+<div class="row">
+  <% @services.sort_by(&:position).each_with_index do |service, index| %>
+    <% cache service do %>
+      <%= render "guest/services/index/block", options: { reversed: reversed?(index) }, service: service %>
+    <% end %>
+  <% end %>
+</div>
+<div class="+small-spacer"></div>
