@@ -78,8 +78,13 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     def handle_subscribe_callback
+      if user
+        welcome = "欢迎#{user.decorate.who}访问来因盒！"
+      else
+        welcome = '欢迎您访问来因盒'
+      end
       wechat_api_messenger_text.send """
-      欢迎您访问来因盒\n
+      #{welcome}\n
       🎊德国精品总览: 来因盒首页，各类电商精品和海外服务汇总\n
       👔海外综合服务: 本地专业团队为您提供海外房产、金融投资、保险、医疗服务\n
       🚚定制批量购买: 大单采购请和新品渠道开发需求请通过这里与我们联系\n
@@ -126,8 +131,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
       referrer = Referrer.where(reference_id: extra_data['referrer']['reference_id']).first
       slack.message "Referrer is `#{referrer.id}`", url: admin_referrer_url(referrer)
 
-      if wechat_user_solver.success? && referrer
-        user = wechat_user_solver.data[:customer]
+      if user && referrer
         slack.message "Customer is `#{user.id}`", url: admin_user_url(user)
       else
         slack.message "Customer was not resolved : #{wechat_user_solver.error}"
@@ -155,6 +159,12 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
     def extra_data
       @extra_data ||= JSON.parse(event_key)
+    end
+
+    def user
+      if wechat_user_solver.success?
+        wechat_user_solver.data[:customer]
+      end
     end
 
     def message?
