@@ -23,7 +23,7 @@ class WechatApiMessenger < BaseService
       end
 
       def wechat_api_media
-        @wechat_api_media ||= WechatApiMedia.new(type: type, path: media_path).resolve
+        @wechat_api_media ||= WechatApiMedia.new(type: :image, path: media_path).resolve
       end
   end
 end
