@@ -51,14 +51,14 @@ class Api::Webhook::WechatController < Api::ApplicationController
       # this is sent multiple times by the webhook, we protect multiple answers
       # we encrypt it beforehand for better processing / search / confidentiality
       if WebhookCache.cached?(cache_key)
-        devlog.info("Data were already processed.")
-        slack.message("Data were already processed.")
-        render text: 'success'
-        return
+        devlog.info('Data were already processed.')
+        slack.message('Data were already processed.')
+        return end_process
       else
         WebhookCache.create!(key: cache_key, section: :wechat)
       end
 
+      # message handling
       if message?
         Notifier::Admin.new.new_wechat_message(user&.decorate&.who, content)
         slack.message "[Wechat] Service message from `#{user&.decorate&.who}` : `#{content}`"
@@ -67,23 +67,23 @@ class Api::Webhook::WechatController < Api::ApplicationController
           wechat_api_messenger.image("test").send
         end
 
-      else
-
-        case event
-        when 'scan'
-          handle_qrcode_callback
-        when 'click'
-          handle_menu_callback
-        when 'subscribe'
-          handle_subscribe_callback
-        end
-
+        return end_process
       end
 
-      # case message
-      # trigger email to admin
-      # end
+      # event handling
+      case event
+      when 'scan'
+        handle_qrcode_callback
+      when 'click'
+        handle_menu_callback
+      when 'subscribe'
+        handle_subscribe_callback
+      end
 
+      return end_process
+    end
+
+    def end_process
       devlog.info 'End of process.'
       render text: 'success'
     end
