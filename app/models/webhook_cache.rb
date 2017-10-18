@@ -2,9 +2,11 @@ class WebhookCache
   include MongoidBase
 
   strip_attributes
-  field :key, type: String, presence: true, uniqueness: true
+  field :key, type: String
   field :section, type: Symbol
 
   scope :cached?, -> (key) { where(key: key).count > 0 }
+
+  validates :key, presence: true, uniqueness: true
 
 end

@@ -60,7 +60,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
       end
 
       if message?
-        Notifier::Admin.new.new_wechat_message(openid, content)
+        Notifier::Admin.new.new_wechat_message(user&.decorate&.who, content)
         slack.message "[Wechat] Service message from `#{user&.decorate&.who}` : `#{content}`"
 
         if content == 'image'
