@@ -1,4 +1,5 @@
 require 'cgi'
+require 'digest/sha1'
 
 # Get notifications from Wechat when the referrer Qrcode has been scanned
 class Api::Webhook::WechatController < Api::ApplicationController
@@ -46,6 +47,17 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
       devlog.info("Raw params : #{transmit_data}")
       slack.message("Raw params : #{transmit_data}")
+
+      # this is sent multiple times by the webhook, we protect multiple answers
+      # we encrypt it beforehand for better processing / search / confidentiality
+      if WebhookCache.cached?(cache_key)
+        devlog.info("Data were already processed.")
+        slack.message("Data were already processed.")
+        render text: 'success'
+        return
+      else
+        WebhookCache.create!(key: cache_key, section: :wechat)
+      end
 
       if message?
         Notifier::Admin.new.new_wechat_message(openid, content)
@@ -180,6 +192,10 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
     def openid
       transmit_data['FromUserName']
+    end
+
+    def cache_key
+      @cache_key ||= Digest::SHA1.hexdigest("#{transmit_data}")
     end
 
     def valid_json?(json)
