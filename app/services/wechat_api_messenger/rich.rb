@@ -16,7 +16,7 @@ class WechatApiMessenger < BaseService
       }
       self
     end
-    
+
     private
 
       def body
