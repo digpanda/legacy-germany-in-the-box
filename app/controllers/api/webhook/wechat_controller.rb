@@ -68,6 +68,10 @@ class Api::Webhook::WechatController < Api::ApplicationController
           wechat_api_messenger.image(path: '/images/wechat/group.jpg').send
         end
 
+        if content == 'referrer'
+          wechat_api_messenger.image(url: guest_referrer_qrcode_url(Referrer.first)).send
+        end
+
         if content == 'rich'
           wechat_api_messenger.rich.add(
             title: 'Title 1',
