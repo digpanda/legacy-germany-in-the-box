@@ -19,6 +19,7 @@ class WechatApiMedia < BaseService
     end
 
     def media_id
+      SlackDispatcher.new.message("MEDIA #{media_gateway}")
       media_gateway['media_id']
     end
 
