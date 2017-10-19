@@ -22,6 +22,7 @@ class WechatApiMessenger < BaseService
         if content[:path]
           "#{Rails.root}/public#{content[:path]}"
         elsif content[:url]
+          SlackDispatcher.new.message("URL DISPATCH MEDIA : #{content[:url]}")
           content[:url]
         end
       end
