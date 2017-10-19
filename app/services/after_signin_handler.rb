@@ -163,7 +163,6 @@ class AfterSigninHandler
     def remove_all_orders
       user.orders.each do |order|
         order.order_items.delete_all
-        order.order_tracking&.delete
         order.delete
       end
     end
@@ -173,7 +172,6 @@ class AfterSigninHandler
         # TODO : detection of paid orders should be way improved
         unless order.order_payments.first
           if order.order_items.count == 0
-            order.order_tracking&.delete
             order.delete
           end
         end

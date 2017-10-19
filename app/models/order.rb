@@ -70,7 +70,7 @@ class Order
   has_many :notes,                  inverse_of: :order,    dependent: :restrict
   has_one :referrer_provision,    inverse_of: :order,    dependent: :restrict
 
-  has_one :order_tracking, inverse_of: :order, dependent: :restrict
+  has_one :order_tracking, inverse_of: :order, dependent: :delete
 
   scope :nonempty,    ->  {  where(:order_items_count.gt => 0) }
   scope :unpaid,      ->  { self.in(status: [:new]) }
