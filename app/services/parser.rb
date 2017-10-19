@@ -1,4 +1,5 @@
 require 'rest-client'
+require 'open-uri'
 
 class Parser
   class << self
@@ -19,9 +20,13 @@ class Parser
     end
 
     def post_media(url, file)
-      to_hash RestClient.post(url, upload: { file: File.new(file, 'rb'), multipart: true })
+      to_hash RestClient.post(url, upload: { file: open_file(file), multipart: true })
     rescue Exception => exception
       {error: exception}
+    end
+
+    def open_file(file)
+      open(file) { |f| f.read }
     end
 
     def post_json(url, body)

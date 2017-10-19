@@ -18,11 +18,12 @@ class WechatApiMessenger < BaseService
         wechat_api_media.data[:media_id]
       end
 
+      # for now there's no differenciation
+      # at this level but we keep the split anyhow
       def media_path
         if content[:path]
           "#{Rails.root}/public#{content[:path]}"
         elsif content[:url]
-          SlackDispatcher.new.message("URL DISPATCH MEDIA : #{content[:url]}")
           content[:url]
         end
       end

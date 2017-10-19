@@ -1,9 +1,9 @@
 class WechatApiMedia < BaseService
-  attr_reader :type, :path
+  attr_reader :type, :target
 
-  def initialize(type: :image, path:)
+  def initialize(type: :image, target:)
     @type = type
-    @path = path
+    @target = target
   end
 
   def resolve
@@ -23,7 +23,7 @@ class WechatApiMedia < BaseService
     end
 
     def media_gateway
-      @media_gateway ||= Parser.post_media url, path
+      @media_gateway ||= Parser.post_media url, target
     end
 
     def url
