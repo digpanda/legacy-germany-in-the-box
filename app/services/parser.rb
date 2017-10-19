@@ -21,14 +21,14 @@ class Parser
 
     def post_media(url, file)
       # to_hash RestClient.post(url, upload: { file: File.new(file, 'rb'), multipart: true })
-      to_hash RestClient.post(url, upload: { file: File.new(open_file(file), 'rb'), multipart: true })
+      to_hash RestClient.post(url, upload: { file: open(file), multipart: true })
     rescue Exception => exception
       {error: exception}
     end
 
-    def open_file(file)
-      open(file) { |f| f.read }
-    end
+    # def open_file(file)
+    #   # open(file) { |f| f.read }
+    # end
 
     def post_json(url, body)
       header = { 'Content-Type': 'text/json' }
