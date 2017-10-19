@@ -20,7 +20,7 @@ class WechatApiMessenger < BaseService
 
       # for now there's no differenciation
       # at this level but we keep the split anyhow
-      def media_path
+      def target
         if content[:path]
           "#{Rails.root}/public#{content[:path]}"
         elsif content[:url]
@@ -29,7 +29,7 @@ class WechatApiMessenger < BaseService
       end
 
       def wechat_api_media
-        @wechat_api_media ||= WechatApiMedia.new(type: :image, path: media_path).resolve
+        @wechat_api_media ||= WechatApiMedia.new(type: :image, target: target).resolve
       end
   end
 end
