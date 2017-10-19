@@ -1,4 +1,5 @@
 require 'cgi'
+require 'digest/sha1'
 
 # Get notifications from Wechat when the referrer Qrcode has been scanned
 class Api::Webhook::WechatController < Api::ApplicationController
@@ -47,32 +48,58 @@ class Api::Webhook::WechatController < Api::ApplicationController
       devlog.info("Raw params : #{transmit_data}")
       slack.message("Raw params : #{transmit_data}")
 
-      if message?
-        Notifier::Admin.new.new_wechat_message(openid, content)
-        slack.message "[Wechat] Service message from `#{openid}` : `#{content}`"
-
-        if content == 'image'
-          wechat_api_messenger_image.send "test"
-          SlackDispatcher.new.message("TEST MESSENGER IMAGE")
-        end
-
+      # this is sent multiple times by the webhook, we protect multiple answers
+      # we encrypt it beforehand for better processing / search / confidentiality
+      if WebhookCache.cached?(cache_key)
+        devlog.info('Data were already processed.')
+        slack.message('Data were already processed.')
+        return end_process
       else
-
-        case event
-        when 'scan'
-          handle_qrcode_callback
-        when 'click'
-          handle_menu_callback
-        when 'subscribe'
-          handle_subscribe_callback
-        end
-
+        WebhookCache.create!(key: cache_key, section: :wechat)
       end
 
-      # case message
-      # trigger email to admin
-      # end
+      # message handling
+      if message?
+        Notifier::Admin.new.new_wechat_message(user&.decorate&.who, content)
+        slack.message "[Wechat] Service message from `#{user&.decorate&.who}` : `#{content}`"
 
+        # test area for messages
+        if content == 'image'
+          wechat_api_messenger.image("test").send
+        end
+
+        if content == 'rich'
+          SlackDispatcher.new.message("RICH LAUNCHED")
+          wechat_api_messenger.rich.add(
+            title: 'Title 1',
+            description: 'Description 1',
+            url: 'http://mp.weixin.qq.com/s/Nm4NoP77dToKzXcQ1f0KVA',
+            picture_url: 'https://www.germanyinbox.com/uploads/image/file/590064997302fc286f632711/8008001.jpg?e=1507641552&token=sjmi6rq8r6Z7oO84m9WQ3grXZJNaDmBlHC5eDWsu:zWT5_RgeYala8La0z00dYwVuaUY='
+          ).add(
+            title: 'Title 2',
+            description: 'Description 2',
+            url: 'https://mp.weixin.qq.com/s/ROTaqLJnvluHaWml0ud-3A',
+            picture_url: 'https://www.germanyinbox.com/uploads/image/file/590064997302fc286f632711/8008001.jpg?e=1507641552&token=sjmi6rq8r6Z7oO84m9WQ3grXZJNaDmBlHC5eDWsu:zWT5_RgeYala8La0z00dYwVuaUY='
+          ).send
+        end
+
+        return end_process
+      end
+
+      # event handling
+      case event
+      when 'scan'
+        handle_qrcode_callback
+      when 'click'
+        handle_menu_callback
+      when 'subscribe'
+        handle_subscribe_callback
+      end
+
+      return end_process
+    end
+
+    def end_process
       devlog.info 'End of process.'
       render text: 'success'
     end
@@ -83,28 +110,30 @@ class Api::Webhook::WechatController < Api::ApplicationController
       else
         welcome = '欢迎您访问来因盒'
       end
-      wechat_api_messenger_text.send """
+      wechat_api_messenger.text("""
       #{welcome}\n
       🎊德国精品总览: 来因盒首页，各类电商精品和海外服务汇总\n
       👔海外综合服务: 本地专业团队为您提供海外房产、金融投资、保险、医疗服务\n
       🚚定制批量购买: 大单采购请和新品渠道开发需求请通过这里与我们联系\n
       ✅商业合作洽谈: 与来因盒平台进行商业合作请通过这里与我们联系\n
       👑德国精品故事: 一些欧洲、德国品牌为什么值得买\n
-      """
+      """).send
     end
 
     def handle_menu_callback
       if event_key == 'coupon'
-        wechat_api_messenger_text.send '2017a'
+        wechat_api_messenger.text('2017a').send
+      elsif event_key == 'wechatgroup'
+        wechat_api_messenger.image('/images/wechat/group.jpg').send
       elsif event_key == 'support'
-        wechat_api_messenger_text.send """
+        wechat_api_messenger.text("""
         欢迎您通过微信和我们交流。\n
         请点击左下角小键盘直接留言，工作时间会在一小时内回复， 非工作时间会定期检查留言并回复。\n
         📧客服邮箱: customer@germanyinthebox.com\n
         📞客服电话: 49-(0)89-21934711, 49-(0)89-21934727\n
-        """
+        """).send
       elsif event_key == 'usermanual'
-        wechat_api_messenger_text.send  """
+        wechat_api_messenger.text("""
         ---购买下单注意事项---\n
         1. 将产品添加到购物车后点击手机屏幕右上方进入购物车下单\n
         2.\t请填写收件人的收件地址，手机号，身份证号码(中国海关通关要求)\n
@@ -117,7 +146,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
         目前来因盒德国礼包的价格均为产品包邮，包税寄到您中国家里的价格\n\n
         ---海关关税---\n
         来因盒里的所有商品都从德国直接发货至国内，经阳光清关完税， 安全可靠。当前推广期内来因盒来替您缴付所有产品的关税。
-        """
+        """).send
       end
     end
 
@@ -149,12 +178,8 @@ class Api::Webhook::WechatController < Api::ApplicationController
       @wechat_user_solver ||= WechatUserSolver.new(provider: :wechat, openid: openid).resolve
     end
 
-    def wechat_api_messenger_text
-      @wechat_api_messenger_text ||= WechatApiMessenger.new(openid: openid, type: :text)
-    end
-
-    def wechat_api_messenger_image
-      @wechat_api_messenger_image ||= WechatApiMessenger.new(openid: openid, type: :image)
+    def wechat_api_messenger
+      @wechat_api_messenger_text ||= WechatApiMessenger.new(openid: openid)
     end
 
     def extra_data
@@ -185,6 +210,10 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
     def openid
       transmit_data['FromUserName']
+    end
+
+    def cache_key
+      @cache_key ||= Digest::SHA1.hexdigest("#{transmit_data}")
     end
 
     def valid_json?(json)
