@@ -19,7 +19,7 @@ class WechatApiMessenger < BaseService
       end
 
       def media_path
-        "#{Rails.root}/public/images/services-cover.jpg"
+        "#{Rails.root}/public#{content}"
       end
 
       def wechat_api_media

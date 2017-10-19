@@ -25,6 +25,7 @@ class Api::Admin::ChartsController < Api::ApplicationController
         :total_payments,
         :total_referrers,
         :referrer_children_users,
+        :all_shipping_rates,
       ].include? chart
     end
 

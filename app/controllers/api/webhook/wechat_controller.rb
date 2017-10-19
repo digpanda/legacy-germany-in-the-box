@@ -123,6 +123,8 @@ class Api::Webhook::WechatController < Api::ApplicationController
     def handle_menu_callback
       if event_key == 'coupon'
         wechat_api_messenger.text('2017a').send
+      elsif event_key == 'wechatgroup'
+        wechat_api_messenger.image('/images/wechat/group.jpg').send
       elsif event_key == 'support'
         wechat_api_messenger.text("""
         欢迎您通过微信和我们交流。\n
