@@ -15,6 +15,7 @@ class WechatApiMessenger < BaseService
       end
 
       def media_id
+        SlackDispatcher.new.message("MEDIA DISPATCHER #{wechat_api_media}")
         wechat_api_media.data[:media_id]
       end
 
