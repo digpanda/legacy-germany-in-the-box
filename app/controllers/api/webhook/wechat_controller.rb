@@ -65,11 +65,10 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
         # test area for messages
         if content == 'image'
-          wechat_api_messenger.image('/images/wechat/group.jpg').send
+          wechat_api_messenger.image(path: '/images/wechat/group.jpg').send
         end
 
         if content == 'rich'
-          SlackDispatcher.new.message("RICH LAUNCHED")
           wechat_api_messenger.rich.add(
             title: 'Title 1',
             description: 'Description 1',
@@ -123,8 +122,12 @@ class Api::Webhook::WechatController < Api::ApplicationController
     def handle_menu_callback
       if event_key == 'coupon'
         wechat_api_messenger.text('2017a').send
+      elsif event_key == '二维码'
+        if user&.referrer
+          wechat_api_messenger.image(url: guest_referrer_qrcode_url(user.referrer)).send
+        end
       elsif event_key == 'wechatgroup'
-        wechat_api_messenger.image('/images/wechat/group.jpg').send
+        wechat_api_messenger.image(path: '/images/wechat/group.jpg').send
       elsif event_key == 'support'
         wechat_api_messenger.text("""
         欢迎您通过微信和我们交流。\n

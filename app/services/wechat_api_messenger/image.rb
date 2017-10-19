@@ -19,7 +19,11 @@ class WechatApiMessenger < BaseService
       end
 
       def media_path
-        "#{Rails.root}/public#{content}"
+        if content[:path]
+          "#{Rails.root}/public#{content[:path]}"
+        elsif content[:url]
+          content[:url]
+        end
       end
 
       def wechat_api_media
