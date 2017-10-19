@@ -65,7 +65,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
         # test area for messages
         if content == 'image'
-          wechat_api_messenger.image("test").send
+          wechat_api_messenger.image('/images/wechat/group.jpg').send
         end
 
         if content == 'rich'
