@@ -13,12 +13,10 @@ class WechatApiMessenger < BaseService
   # we need a new token each time it's called.
 
   def image(content)
-    SlackDispatcher.new.message("SENDING IMAGE NOW")
     WechatApiMessenger::Image.new(self, content)
   end
 
   def text(content)
-    SlackDispatcher.new.message("SENDING TEXT NOW")
     WechatApiMessenger::Text.new(self, content)
   end
 
