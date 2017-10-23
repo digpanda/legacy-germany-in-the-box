@@ -69,6 +69,15 @@ class Api::Webhook::WechatController < Api::ApplicationController
             # NOTE : yes, they don't check MIME Type, no clue why.
             wechat_api_messenger.image(url: "#{guest_referrer_qrcode_url(user.referrer)}.jpg").send
           end
+        elsif content == 'offers'
+          wechat_api_messenger.text("""
+          欢迎参加来因盒通关任务奖励🏆\n
+          1.注册邮箱获取50元优惠券，请输入1\n
+          2.向朋友推荐来因盒，每3位朋友完成注册获取80元优惠券，请输入2\n
+          3.自己或每位推荐的朋友首次下单，获取100元优惠券，请输入3\n
+          4.完成以上三个任务奖励，成为来因盒VIP会员，获取更多福利请输入4\n
+          5.升级成为来因盒形象大使，代购 | Referrer计划，请输入5\n 
+          """).send
         end
 
         # test area for messages
@@ -125,11 +134,12 @@ class Api::Webhook::WechatController < Api::ApplicationController
       #{welcome}\n
       🎊德国精品: 来因盒首页，各类电商精品和海外服务汇总\n
       👔海外综合: 本地专业团队为您提供海外房产、金融投资、保险、医疗服务\n
-      🙋聊客服下单: 直接跟客服聊天帮你下单\n\n\n
+      聊客服下单: 直接跟客服聊天帮你下单\n
       ---购买下单注意事项---\n
       请填写收件人的收件地址，手机号(用于发货通知和快递员送货)，身份证号码(中国海关通关要求)\n
       微信内访问来因盒，首选微信支付一步完成。 支付宝需要拷贝粘贴支付宝链接到手机浏览器里完成支付\n
       所有商品阳光清关，包邮包税\n\n\n
+      --------------------\n
       👑什么值得买: 一些欧洲、德国品牌为什么值得买\n\n\n
       🚚批发定制: 批发或定制产品采购请添加微信客服与我们联系\n
       ✅商业合作: 与来因盒平台进行商业合作请通过这里与我们联系\n
@@ -137,9 +147,9 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     def handle_menu_callback
-      if event_key == 'coupon'
+      if event_key == 'offers'
         wechat_api_messenger.text('2017a').send
-      elsif event_key == 'wechatgroup'
+      elsif event_key == 'groupchat'
         wechat_api_messenger.image(path: '/images/wechat/group.jpg').send
       elsif event_key == 'chatsale'
         wechat_api_messenger.text("""
@@ -149,7 +159,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
         wechat_api_messenger.image(path: '/images/wechat/wechat_support_qr.jpg').send
       elsif event_key == 'support'
         wechat_api_messenger.text("""
-        欢迎您通过微信客服聊天直接下单或者询问相关事宜。\n
+        欢迎您通过微信客服联系下单及其他业务事宜。\n
         请扫来因盒微信号下面二维码或添加来因盒微信号:germanbox 也可以点击左下角小键盘直接留言。\n
         📧客服邮箱: customer@germanyinthebox.com\n
         📞客服电话: 49-(0)89-21934711, 49-(0)89-21934727\n
