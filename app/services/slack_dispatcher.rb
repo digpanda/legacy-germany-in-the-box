@@ -36,6 +36,14 @@ class SlackDispatcher < BaseService
 
   private
 
+  WEBHOOK_URL = 'https://hooks.slack.com/services/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'.freeze
+  CHANNEL = '#notifs'.freeze
+  USERNAME = 'Lorenzo Schaffnero'.freeze
+
+  def slack
+    @slack ||= Slack::Notifier.new WEBHOOK_URL, channel: CHANNEL, username: USERNAME
+  end
+
     def push(message)
       worker "[#{counter}] #{message}"
       @counter += 1
@@ -47,7 +55,8 @@ class SlackDispatcher < BaseService
         # NO DISPATCH AT ALL, CAN BE ACTIVATED AGAIN
       else
         # ROLLBACK TO OLD WORKER (WAS FASTER)
-        SlackWorker.new.delay.perform(message)
+        slack.delay.ping message
+        # SlackWorker.new.delay.perform(message)
         #SlackWorker.perform_async(message)
       end
     end

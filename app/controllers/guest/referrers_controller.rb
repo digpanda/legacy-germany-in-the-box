@@ -6,7 +6,7 @@ class Guest::ReferrersController < ApplicationController
   before_action :set_referrer
 
   def qrcode
-    send_data Flyer.new.process_qrcode(qrcode_path).image.to_blob, stream: 'false', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
+    send_data Flyer.new.process_qrcode(qrcode_path).image.to_blob, stream: 'true', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
   end
 
   private
