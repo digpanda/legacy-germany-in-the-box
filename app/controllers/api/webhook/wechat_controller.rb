@@ -63,28 +63,36 @@ class Api::Webhook::WechatController < Api::ApplicationController
         Notifier::Admin.new.new_wechat_message(user&.decorate&.who, content)
         slack.message "[Wechat] Service message from `#{user&.decorate&.who}` : `#{content}`"
 
+        if content == '二维码'
+          if user&.referrer
+            # wechat forces us to use '.jpg' extension otherwise it considers the file as invalid format
+            # NOTE : yes, they don't check MIME Type, no clue why.
+            wechat_api_messenger.image(url: "#{guest_referrer_qrcode_url(user.referrer)}.jpg").send
+          end
+        end
+
         # test area for messages
-        if content == 'image'
-          wechat_api_messenger.image(path: '/images/wechat/group.jpg').send
-        end
+        # if content == 'image'
+        #   wechat_api_messenger.image(path: '/images/wechat/group.jpg').send
+        # end
+        #
+        # if content == 'referrer'
+        #   wechat_api_messenger.image(url: "#{guest_referrer_qrcode_url(Referrer.first)}.jpg").send
+        # end
 
-        if content == 'referrer'
-          wechat_api_messenger.image(url: "#{guest_referrer_qrcode_url(Referrer.first)}.jpg").send
-        end
-
-        if content == 'rich'
-          wechat_api_messenger.rich.add(
-            title: 'Title 1',
-            description: 'Description 1',
-            url: 'http://mp.weixin.qq.com/s/Nm4NoP77dToKzXcQ1f0KVA',
-            picture_url: 'https://www.germanyinbox.com/uploads/image/file/590064997302fc286f632711/8008001.jpg?e=1507641552&token=sjmi6rq8r6Z7oO84m9WQ3grXZJNaDmBlHC5eDWsu:zWT5_RgeYala8La0z00dYwVuaUY='
-          ).add(
-            title: 'Title 2',
-            description: 'Description 2',
-            url: 'https://mp.weixin.qq.com/s/ROTaqLJnvluHaWml0ud-3A',
-            picture_url: 'https://www.germanyinbox.com/uploads/image/file/590064997302fc286f632711/8008001.jpg?e=1507641552&token=sjmi6rq8r6Z7oO84m9WQ3grXZJNaDmBlHC5eDWsu:zWT5_RgeYala8La0z00dYwVuaUY='
-          ).send
-        end
+        # if content == 'rich'
+        #   wechat_api_messenger.rich.add(
+        #     title: 'Title 1',
+        #     description: 'Description 1',
+        #     url: 'http://mp.weixin.qq.com/s/Nm4NoP77dToKzXcQ1f0KVA',
+        #     picture_url: 'https://www.germanyinbox.com/uploads/image/file/590064997302fc286f632711/8008001.jpg?e=1507641552&token=sjmi6rq8r6Z7oO84m9WQ3grXZJNaDmBlHC5eDWsu:zWT5_RgeYala8La0z00dYwVuaUY='
+        #   ).add(
+        #     title: 'Title 2',
+        #     description: 'Description 2',
+        #     url: 'https://mp.weixin.qq.com/s/ROTaqLJnvluHaWml0ud-3A',
+        #     picture_url: 'https://www.germanyinbox.com/uploads/image/file/590064997302fc286f632711/8008001.jpg?e=1507641552&token=sjmi6rq8r6Z7oO84m9WQ3grXZJNaDmBlHC5eDWsu:zWT5_RgeYala8La0z00dYwVuaUY='
+        #   ).send
+        # end
 
         return end_process
       end
@@ -126,12 +134,6 @@ class Api::Webhook::WechatController < Api::ApplicationController
     def handle_menu_callback
       if event_key == 'coupon'
         wechat_api_messenger.text('2017a').send
-      elsif event_key == '二维码'
-        if user&.referrer
-          # wechat forces us to use '.jpg' extension otherwise it considers the file as invalid format
-          # NOTE : yes, they don't check MIME Type, no clue why.
-          wechat_api_messenger.image(url: "#{guest_referrer_qrcode_url(user.referrer)}.jpg").send
-        end
       elsif event_key == 'wechatgroup'
         wechat_api_messenger.image(path: '/images/wechat/group.jpg').send
       elsif event_key == 'support'
