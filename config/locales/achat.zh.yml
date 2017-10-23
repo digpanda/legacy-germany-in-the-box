@@ -1,8 +1,8 @@
 zh-CN:
   note:
-    wechatpay_wechat_user: WECHAT USER ON WECHATPAY
-    wechatpay_no_wechat_mobile_user: MOBILE USER ON WECHATPAY
-    alipay_wechat_user: WECHAT USER ON ALIPAY
+    wechatpay_wechat_user: 微信内访问来因盒，首选微信支付，一步完成哦
+    wechatpay_no_wechat_mobile_user: 手机浏览器内使用微信支付，请保存二维码到相册后使用微信扫一扫
+    alipay_wechat_user: 微信内访问来因盒，支付宝需要拷贝粘贴支付宝链接到手机浏览器里完成支付
   services:
     referrer_services: 导游专区
     email_placeholder: 您的邮箱或微信号
