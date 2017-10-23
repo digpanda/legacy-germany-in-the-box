@@ -15,7 +15,11 @@ class UrlToPath < BaseService
 
   # the filename is the encrypted complete URL
   def filename
-    @filename ||= "#{Digest::SHA1.hexdigest("#{url}")}.jpg"
+    @filename ||= "#{Digest::SHA1.hexdigest("#{url}")}#{extension}"
+  end
+
+  def extension
+    @extension ||= File.extname(url)
   end
 
   def full_path

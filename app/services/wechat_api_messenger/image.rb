@@ -27,10 +27,7 @@ class WechatApiMessenger < BaseService
           # wechat does not accept temporary files or URLs so we made a homemade library
           # to save the image into a directory and output it directly
           # this library will output the path directly
-          SlackDispatcher.new.message("ORIGINAL URL IS #{content[:url]}")
-          path = UrlToPath.new(content[:url]).perform
-          SlackDispatcher.new.message("PATH IS #{path}")
-          path
+          UrlToPath.new(content[:url]).perform
         end
       end
 
