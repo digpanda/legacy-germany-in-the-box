@@ -36,8 +36,6 @@ class Api::Webhook::WechatController < Api::ApplicationController
     # </xml>
     def handle
       return if hook_activation?
-      # slack.message '[Webhook] Wechat Webhook was called.'
-
       devlog.info 'Wechat started to communicate with us ...'
 
       unless valid_xml?
@@ -48,19 +46,10 @@ class Api::Webhook::WechatController < Api::ApplicationController
       devlog.info("Raw params : #{transmit_data}")
       slack.message("Raw params : #{transmit_data}")
 
-      # this is sent multiple times by the webhook, we protect multiple answers
-      # we encrypt it beforehand for better processing / search / confidentiality
-      if WebhookCache.cached?(cache_key)
-        devlog.info('Data were already processed.')
-        slack.message('Data were already processed.')
-        return end_process
-      else
-        WebhookCache.create!(key: cache_key, section: :wechat)
-      end
+      return end_process if already_cached?
 
       # message handling
       if message?
-        Notifier::Admin.new.new_wechat_message(user&.decorate&.who, content)
         slack.message "[Wechat] Service message from `#{user&.decorate&.who}` : `#{content}`"
 
         if content == '二维码'
@@ -76,32 +65,11 @@ class Api::Webhook::WechatController < Api::ApplicationController
           2.向朋友推荐来因盒，每3位朋友完成注册获取80元优惠券，请输入2\n
           3.自己或每位推荐的朋友首次下单，获取100元优惠券，请输入3\n
           4.完成以上三个任务奖励，成为来因盒VIP会员，获取更多福利请输入4\n
-          5.升级成为来因盒形象大使，代购 | Referrer计划，请输入5\n 
+          5.升级成为来因盒形象大使，代购 | Referrer计划，请输入5\n
           """).send
+        else
+          Notifier::Admin.new.new_wechat_message(user&.decorate&.who, content)
         end
-
-        # test area for messages
-        # if content == 'image'
-        #   wechat_api_messenger.image(path: '/images/wechat/group.jpg').send
-        # end
-        #
-        # if content == 'referrer'
-        #   wechat_api_messenger.image(url: "#{guest_referrer_qrcode_url(Referrer.first)}.jpg").send
-        # end
-
-        # if content == 'rich'
-        #   wechat_api_messenger.rich.add(
-        #     title: 'Title 1',
-        #     description: 'Description 1',
-        #     url: 'http://mp.weixin.qq.com/s/Nm4NoP77dToKzXcQ1f0KVA',
-        #     picture_url: 'https://www.germanyinbox.com/uploads/image/file/590064997302fc286f632711/8008001.jpg?e=1507641552&token=sjmi6rq8r6Z7oO84m9WQ3grXZJNaDmBlHC5eDWsu:zWT5_RgeYala8La0z00dYwVuaUY='
-        #   ).add(
-        #     title: 'Title 2',
-        #     description: 'Description 2',
-        #     url: 'https://mp.weixin.qq.com/s/ROTaqLJnvluHaWml0ud-3A',
-        #     picture_url: 'https://www.germanyinbox.com/uploads/image/file/590064997302fc286f632711/8008001.jpg?e=1507641552&token=sjmi6rq8r6Z7oO84m9WQ3grXZJNaDmBlHC5eDWsu:zWT5_RgeYala8La0z00dYwVuaUY='
-        #   ).send
-        # end
 
         return end_process
       end
@@ -117,6 +85,19 @@ class Api::Webhook::WechatController < Api::ApplicationController
       end
 
       return end_process
+    end
+
+    def already_cached?
+      # this is sent multiple times by the webhook, we protect multiple answers
+      # we encrypt it beforehand for better processing / search / confidentiality
+      if WebhookCache.cached?(cache_key)
+        devlog.info('Data were already processed.')
+        slack.message('Data were already processed.')
+        true
+      else
+        WebhookCache.create!(key: cache_key, section: :wechat)
+        false
+      end
     end
 
     def end_process
