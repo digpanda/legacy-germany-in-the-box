@@ -25,7 +25,15 @@ class Parser
       # "#{Rails.root}/public/images/no_image_available.jpg"
       # Parser.post_media("local.dev:3000/guest/links", "http://local.dev:3000/images/logo.png")
       # Parser.post_media("local.dev:3000/guest/links", "#{Rails.root}/public/images/no_image_available.jpg")
-      rest_result = RestClient.post(url, upload: { file: open(file), multipart: true })
+      #
+      # TESTS FOR WRITING AND READING A FILE MANUALLY BEFORE TO TRANSFER IT
+      media_content = open(file).read
+      FileUtils.mkdir_p "#{Rails.root}/public/images/tmp/"
+      end_file = File.open("#{Rails.root}/public/images/tmp/some_file", "wb")
+      end_file.write(media_content)
+      # END OF TESTS
+
+      rest_result = RestClient.post(url, upload: { file: open("#{Rails.root}/public/images/tmp/some_file"), multipart: true })
       SlackDispatcher.new.message("REST RESULT #{rest_result}")
       to_hash rest_result
     rescue Exception => exception
