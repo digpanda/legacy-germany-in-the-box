@@ -9,16 +9,19 @@ class WechatApiMessenger < BaseService
     @openid = openid
   end
 
+  # NOTE : we don't memoize those methods because
+  # we need a new token each time it's called.
+
   def image(content)
-    @image ||= WechatApiMessenger::Image.new(self, content)
+    WechatApiMessenger::Image.new(self, content)
   end
 
   def text(content)
-    @image ||= WechatApiMessenger::Text.new(self, content)
+    WechatApiMessenger::Text.new(self, content)
   end
 
   def rich
-    @image ||= WechatApiMessenger::Rich.new(self)
+    WechatApiMessenger::Rich.new(self)
   end
 
 end
