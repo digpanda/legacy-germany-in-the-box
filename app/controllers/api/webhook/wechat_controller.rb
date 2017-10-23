@@ -128,7 +128,9 @@ class Api::Webhook::WechatController < Api::ApplicationController
         wechat_api_messenger.text('2017a').send
       elsif event_key == '二维码'
         if user&.referrer
-          wechat_api_messenger.image(url: guest_referrer_qrcode_url(user.referrer)).send
+          # wechat forces us to use '.jpg' extension otherwise it considers the file as invalid format
+          # NOTE : yes, they don't check MIME Type, no clue why.
+          wechat_api_messenger.image(url: "#{guest_referrer_qrcode_url(user.referrer)}.jpg").send
         end
       elsif event_key == 'wechatgroup'
         wechat_api_messenger.image(path: '/images/wechat/group.jpg').send

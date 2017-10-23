@@ -9,6 +9,8 @@ class UrlToPath < BaseService
     @url = url
   end
 
+  # TODO : avoid overwriting, but output direct path when already existing.
+
   def directory_path
     "#{Rails.root}/public/tmp/"
   end
