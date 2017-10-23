@@ -13,12 +13,7 @@ class Guest::LinksController < ApplicationController
   def show
     redirect_to link.raw_url
   end
-
-  def create
-    # it's only to test Parser.post_media("local.dev:3000/guest/links", "http://local.dev:3000/images/logo.png")
-    binding.pry
-  end
-
+  
   # NOTE
   # this enforce the login even if the user is already logged-in within wechat
   # (it has been problematic for some reason when we tried to remove it.)
