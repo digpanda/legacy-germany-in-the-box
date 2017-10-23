@@ -69,8 +69,7 @@ class Api::Webhook::WechatController < Api::ApplicationController
         end
 
         if content == 'referrer'
-          SlackDispatcher.new.message("URL IS #{guest_referrer_qrcode_url(Referrer.first)}.jpg")
-          wechat_api_messenger.image(url: guest_referrer_qrcode_url(Referrer.first)).send
+          wechat_api_messenger.image(url: "#{guest_referrer_qrcode_url(Referrer.first)}.jpg").send
         end
 
         if content == 'rich'

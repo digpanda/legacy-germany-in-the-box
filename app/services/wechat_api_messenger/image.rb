@@ -15,7 +15,6 @@ class WechatApiMessenger < BaseService
       end
 
       def media_id
-        SlackDispatcher.new.message("MEDIA DISPATCHER #{wechat_api_media}")
         wechat_api_media.data[:media_id]
       end
 
@@ -25,7 +24,10 @@ class WechatApiMessenger < BaseService
         if content[:path]
           "#{Rails.root}/public#{content[:path]}"
         elsif content[:url]
-          content[:url]
+          # wechat does not accept temporary files or URLs so we made a homemade library
+          # to save the image into a directory and output it directly
+          # this library will output the path directly
+          UrlToPath.new(content[:url]).perform
         end
       end
 
