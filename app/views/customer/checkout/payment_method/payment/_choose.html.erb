@@ -6,7 +6,20 @@
       <a id="wechatpay" href="<%= gateway_customer_checkout_path(payment_method: :wechatpay) %>">
         <img src="/images/logos/raw-wechatpay-logo.png" width="150px">
       </a>
+
+        <div class="+mobile">
+          <br />
+          <% if identity_solver.wechat_browser? %>
+            <!-- Wechat warning for wechatpay -->
+            <%= I18n.t('note.wechatpay_wechat_user') %>
+          <% else %>
+            <!-- No wechat mobile warning for wechatpay -->
+              <%= I18n.t('note.wechatpay_no_wechat_mobile_user') %>
+          <% end %>
+        </div>
+
       <% end %>
+
     </div>
   </div>
 
@@ -16,6 +29,15 @@
       <a id="alipay" href="<%= gateway_customer_checkout_path(payment_method: :alipay) %>">
         <img src="/images/logos/raw-alipay-logo.png" width="150px">
       </a>
+
+      <div class="+mobile">
+        <br />
+        <% if identity_solver.wechat_browser? %>
+          <!-- Wechat warning for alipay -->
+          <%= I18n.t('note.alipay_wechat_user') %>
+        <% end %>
+      </div>
+
       <% end %>
     </div>
   </div>

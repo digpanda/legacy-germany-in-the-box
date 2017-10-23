@@ -1,4 +1,8 @@
 de:
+  note:
+    wechatpay_wechat_user: WECHAT USER ON WECHATPAY
+    wechatpay_no_wechat_mobile_user: MOBILE USER ON WECHATPAY
+    alipay_wechat_user: WECHAT USER ON ALIPAY
   services:
     referrer_services: Referrer Services
     email_placeholder: Email

@@ -1,4 +1,8 @@
 zh-CN:
+  note:
+    wechatpay_wechat_user: WECHAT USER ON WECHATPAY
+    wechatpay_no_wechat_mobile_user: MOBILE USER ON WECHATPAY
+    alipay_wechat_user: WECHAT USER ON ALIPAY
   services:
     referrer_services: 导游专区
     email_placeholder: 您的邮箱或微信号

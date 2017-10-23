@@ -3,7 +3,6 @@
   <div class="col-xs-12 col-md-12">
 
     <h2><%= I18n.t('top_menu.my_payment') %></h2>
-    <p>微信服务号商城访问的用户请选择微信支付体验更佳，如果需要在微信内使用支付宝请拷贝粘贴支付宝链接到手机浏览器内完成支付。</p>
     <hr class="+anti-margin" />
 
     <%= render partial: "customer/checkout/payment_method/payment/choose", locals: { shop: shop } %>
