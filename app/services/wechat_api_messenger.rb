@@ -1,3 +1,7 @@
+require 'wechat_api_messenger/image'
+require 'wechat_api_messenger/text'
+require 'wechat_api_messenger/rich'
+
 class WechatApiMessenger < BaseService
   attr_reader :openid
 

@@ -16,8 +16,7 @@ describe WechatApiMessenger do
         BaseService.new.return_with(:success, media_id: 'fake-media-id')
       )
 
-      expect { WechatApiMessenger.new(openid: 'openid').image('image').send }.not_to raise_error
-
+      expect { WechatApiMessenger.new(openid: 'openid').image(path: 'image').send }.not_to raise_error
     end
 
   end
