@@ -23,7 +23,7 @@ class Customer::CartController < ApplicationController
     #   if add.success?
     #     cart_manager.store(order)
     #   end
-    end
+    # end
 
   end
 
