@@ -57,33 +57,10 @@ class Guest::PackageSetsController < ApplicationController
     end
   end
 
-  # we use the package set and convert it into an order
-  def update
-    # we first compose the whole order
-    package_set.package_skus.each do |package_sku|
-      # we also lock each order item we generate
-      order_maker.add(package_sku.sku, package_sku.product, package_sku.quantity,
-                      price: package_sku.price,
-                      taxes: package_sku.taxes_per_unit,
-                      shipping: package_set.shipping_cost, # total shipping cost of the order
-                      locked: true,
-                      package_set: package_sku.package_set)
-    end
-    # we first empty the cart manager to make it fresh
-    # cart_manager.empty! <-- to avoid multiple package order
-    cart_manager.store(order)
-    redirect_to customer_cart_path
-  end
-
   private
 
     def valid_filters?
       category || brand || params[:category_id] == 'all'
-    end
-
-    # to be abstracted somewhere else
-    def order_maker
-      @order_maker ||= OrderMaker.new(order)
     end
 
     def order
