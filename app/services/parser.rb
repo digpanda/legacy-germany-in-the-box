@@ -23,6 +23,8 @@ class Parser
       # to_hash RestClient.post(url, upload: { file: File.new(file, 'rb'), multipart: true })
       # http://local.dev:3000/images/logo.png
       # "#{Rails.root}/public/images/no_image_available.jpg"
+      # Parser.post_media("local.dev:3000/guest/links", "http://local.dev:3000/images/logo.png")
+      # Parser.post_media("local.dev:3000/guest/links", "#{Rails.root}/public/images/no_image_available.jpg")
       rest_result = RestClient.post(url, upload: { file: open(file), multipart: true })
       SlackDispatcher.new.message("REST RESULT #{rest_result}")
       to_hash rest_result

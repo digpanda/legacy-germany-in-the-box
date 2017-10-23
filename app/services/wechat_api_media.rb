@@ -24,7 +24,8 @@ class WechatApiMedia < BaseService
     end
 
     def media_gateway
-      @media_gateway ||= Parser.post_media url, target
+      SlackDispatcher.new.message("SENDING LOGO TO SEE WHAT HAPPENS")
+      @media_gateway ||= Parser.post_media(url, "http://local.dev:3000/images/logo.png") #Parser.post_media url, target
     end
 
     def url
