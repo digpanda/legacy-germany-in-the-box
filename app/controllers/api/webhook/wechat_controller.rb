@@ -148,12 +148,12 @@ class Api::Webhook::WechatController < Api::ApplicationController
         """).send
         wechat_api_messenger.image(path: '/images/wechat/wechat_support_qr.jpg').send
       elsif event_key == 'support'
-        wechat_api_messenger.text("""
-        欢迎您通过微信客服聊天直接下单或者询问相关事宜。\n
-        请扫来因盒微信号下面二维码或添加来因盒微信号:germanbox 也可以点击左下角小键盘直接留言。\n
-        📧客服邮箱: customer@germanyinthebox.com\n
-        📞客服电话: 49-(0)89-21934711, 49-(0)89-21934727\n
-        """).send
+        # wechat_api_messenger.text("""
+        # 欢迎您通过微信客服聊天直接下单或者询问相关事宜。\n
+        # 请扫来因盒微信号下面二维码或添加来因盒微信号:germanbox 也可以点击左下角小键盘直接留言。\n
+        # 📧客服邮箱: customer@germanyinthebox.com\n
+        # 📞客服电话: 49-(0)89-21934711, 49-(0)89-21934727\n
+        # """).send
         wechat_api_messenger.image(path: '/images/wechat/wechat_support_qr.jpg').send
       end
     end
