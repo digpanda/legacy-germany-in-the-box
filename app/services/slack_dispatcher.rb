@@ -46,7 +46,9 @@ class SlackDispatcher < BaseService
         # SlackWorker.new.perform(message)
         # NO DISPATCH AT ALL, CAN BE ACTIVATED AGAIN
       else
-        SlackWorker.perform_async(message)
+        # ROLLBACK TO OLD WORKER (WAS FASTER)
+        SlackWorker.new.delay.perform(message)
+        #SlackWorker.perform_async(message)
       end
     end
 
