@@ -1008,7 +1008,7 @@ module.exports = GuestFeedback;
 });
 
 require.register("javascripts/controllers/guest/home/weixin.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
 /**
  * GuestHomeWeixin Class
@@ -1020,7 +1020,7 @@ var GuestHomeWeixin = {
    */
   init: function init() {
 
-    window.location.href = 'weixin://wechat.com/';
+    window.location.assign("weixin://wechat.com/");
   }
 
 };
