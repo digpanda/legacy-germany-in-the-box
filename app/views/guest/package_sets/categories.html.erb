@@ -22,7 +22,5 @@
 <div class="+spacer"></div>
 
 <!-- Service button -->
-<% if current_user&.tester? %>
-  <%= render "guest/package_sets/categories/services" %>
-  <div class="+spacer"></div>
-<% end %>
+<%= render "guest/package_sets/categories/services" %>
+<div class="+spacer"></div>
