@@ -16,6 +16,10 @@ class WechatBot
         Click.new(user, event_key).handle
       when 'subscribe'
         Subscribe.new(user).handle
+      else
+        # in case it's not understood by the system
+        # we return a success anyway
+        return_with(:success)
       end
     rescue WechatBot::Error => exception
       return_with(:error, error: exception.message)
