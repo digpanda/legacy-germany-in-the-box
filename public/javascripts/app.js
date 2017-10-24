@@ -1007,6 +1007,29 @@ module.exports = GuestFeedback;
 
 });
 
+require.register("javascripts/controllers/guest/home/weixin.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * GuestHomeWeixin Class
+ */
+var GuestHomeWeixin = {
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    window.location.assign('weixin://wechat.com/');
+    window.location.href = 'weixin://wechat.com/';
+  }
+
+};
+
+module.exports = GuestHomeWeixin;
+
+});
+
 require.register("javascripts/controllers/guest/package_sets.js", function(exports, require, module) {
 'use strict';
 

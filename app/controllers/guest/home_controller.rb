@@ -12,7 +12,7 @@ class Guest::HomeController < ApplicationController
   end
 
   def weixin
-    redirect_to 'weixin://wechat.com/'
+    # the redirect is made from JavaScript
   end
 
   private
