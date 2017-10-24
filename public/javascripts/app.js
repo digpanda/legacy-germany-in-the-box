@@ -1020,7 +1020,6 @@ var GuestHomeWeixin = {
    */
   init: function init() {
 
-    window.location.assign('weixin://wechat.com/');
     window.location.href = 'weixin://wechat.com/';
   }
 
