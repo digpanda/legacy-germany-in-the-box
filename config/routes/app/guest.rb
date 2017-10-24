@@ -3,6 +3,7 @@ namespace :guest do
 
   resource :home, controller: 'home' do
     get :test
+    get :weixin
   end
 
   resource :pages do
@@ -19,7 +20,6 @@ namespace :guest do
     get :customer_about
     get :fees
     get :home
-    get :weixin
     get :publicity
   end
 
