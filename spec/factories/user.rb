@@ -38,7 +38,8 @@ FactoryGirl.define do
     trait :from_wechat do
       before(:create) do |user|
         user.provider = :wechat
-        user.uid = '0123456789'
+        user.wechat_unionid = '0123456789'
+        user.wechat_openid = '0123456789'
         user.email = '0123456789@wechat.com'
       end
     end

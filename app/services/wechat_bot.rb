@@ -1,0 +1,2 @@
+class WechatBot
+end

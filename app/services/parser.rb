@@ -3,6 +3,14 @@ require 'open-uri'
 
 class Parser
   class << self
+
+    def valid_json?(json)
+      JSON.parse(json)
+      true
+    rescue Exception
+      false
+    end
+    
     def get(url)
       Net::HTTP.get(URI.parse(url))
     end

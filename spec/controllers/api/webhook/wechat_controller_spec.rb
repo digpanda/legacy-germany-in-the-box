@@ -8,8 +8,11 @@ describe Api::Webhook::WechatController, type: :controller do
     let(:user) { FactoryGirl.create(:customer) }
 
     before(:each) do
-      # we fake the whole WeChatUserSolver and API call
+      # we fake the whole APIs calls
       allow_any_instance_of(WechatUserSolver).to receive(:resolve).and_return(service_success(customer: user))
+      allow_any_instance_of(WechatApiMessenger::Image).to receive(:send).and_return(service_success)
+      allow_any_instance_of(WechatApiMessenger::Rich).to receive(:send).and_return(service_success)
+      allow_any_instance_of(WechatApiMessenger::Text).to receive(:send).and_return(service_success)
     end
 
     scenario 'confirm a qrcode scan and bind the user with the referrer' do
