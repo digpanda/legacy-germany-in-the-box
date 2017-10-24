@@ -26,6 +26,18 @@ class UserDecorator < Draper::Decorator
     end
   end
 
+  def readable_who
+    if full_name.present?
+      full_name
+    elsif nickname.present?
+      nickname
+    elsif email.present?
+      email
+    else
+      "您"
+    end
+  end
+
   def full_name
     if "#{fname}#{lname}".chinese?
       "#{lname}#{fname}"

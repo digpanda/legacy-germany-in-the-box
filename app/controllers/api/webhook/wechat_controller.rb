@@ -49,39 +49,15 @@ class Api::Webhook::WechatController < Api::ApplicationController
       return end_process if already_cached?
 
       # message handling
-      if message?
-        slack.message "[Wechat] Service message from `#{user&.decorate&.who}` : `#{content}`"
-
-        if content == '二维码'
-          if user&.referrer
-            # wechat forces us to use '.jpg' extension otherwise it considers the file as invalid format
-            # NOTE : yes, they don't check MIME Type, no clue why.
-            wechat_api_messenger.image(url: "#{guest_referrer_qrcode_url(user.referrer)}.jpg").send
-          end
-        elsif content == 'offers'
-          wechat_api_messenger.text("""
-欢迎参加来因盒通关任务奖励🏆\n
-1.注册邮箱获取50元优惠券，请输入1\n
-2.向朋友推荐来因盒，每3位朋友完成注册获取80元优惠券，请输入2\n
-3.自己或每位推荐的朋友首次下单，获取100元优惠券，请输入3\n
-4.完成以上三个任务奖励，成为来因盒VIP会员，获取更多福利请输入4\n
-5.升级成为来因盒形象大使请输入5\n
-""").send
-        else
-          Notifier::Admin.new.new_wechat_message(user&.decorate&.who, content)
-        end
-
+      if text?
+        handle_message_callback
         return end_process
       end
 
       # event handling
-      case event
-      when 'scan'
-        handle_qrcode_callback
-      when 'click'
-        handle_menu_callback
-      when 'subscribe'
-        handle_subscribe_callback
+      if event?
+        handle_event_callback
+        return end_process
       end
 
       return end_process
@@ -105,14 +81,56 @@ class Api::Webhook::WechatController < Api::ApplicationController
       render text: 'success'
     end
 
-    def handle_subscribe_callback
-      if user
-        welcome = "欢迎#{user.decorate.who}访问来因盒！"
-      else
-        welcome = '欢迎您访问来因盒'
+    def handle_event_callback
+      case event
+      when 'scan'
+        handle_qrcode_callback
+      when 'click'
+        handle_menu_callback
+      when 'subscribe'
+        handle_subscribe_callback
       end
+    end
+
+    def handle_message_callback
+      slack.message "[Wechat] Service message from `#{user&.decorate&.who}` : `#{content}`"
+
+      case content
+      when 'ping'
+        wechat_api_messenger.text('pong').send
+      when '二维码'
+        if user&.referrer
+          # wechat forces us to use '.jpg' extension otherwise it considers the file as invalid format
+          # NOTE : yes, they don't check MIME Type, no clue why.
+          wechat_api_messenger.image(url: "#{guest_referrer_qrcode_url(user.referrer)}.jpg").send
+        end
+      when 'offers'
+
+        wechat_api_messenger.text("""
+      欢迎参加来因盒通关任务奖励🏆\n
+      1.注册邮箱获取50元优惠券，请输入1\n
+      2.向朋友推荐来因盒，每3位朋友完成注册获取80元优惠券，请输入2\n
+      3.自己或每位推荐的朋友首次下单，获取100元优惠券，请输入3\n
+      4.完成以上三个任务奖励，成为来因盒VIP会员，获取更多福利请输入4\n
+      5.升级成为来因盒形象大使请输入5\n
+      """).send
+
+      else
+        Notifier::Admin.new.new_wechat_message(user&.decorate&.who, content)
+      end
+    end
+
+    def welcome_message
+      if user
+        "欢迎#{user.decorate.readable_who}访问来因盒！"
+      else
+        '欢迎您访问来因盒'
+      end
+    end
+
+    def handle_subscribe_callback
       wechat_api_messenger.text("""
-      #{welcome}\n
+      #{welcome_message}\n
 🎊德国精品: 来因盒首页，各类电商精品和海外服务汇总\n
 👔海外综合: 本地专业团队为您提供海外房产、金融投资、保险、医疗服务\n
 聊客服下单: 直接跟客服聊天帮你下单\n
@@ -128,17 +146,18 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     def handle_menu_callback
-      if event_key == 'offers'
+      case event_key
+      when 'offers'
         wechat_api_messenger.text('2017a').send
-      elsif event_key == 'groupchat'
+      when 'groupchat'
         wechat_api_messenger.image(path: '/images/wechat/group.jpg').send
-      elsif event_key == 'chatsale'
+      when 'chatsale'
         wechat_api_messenger.text("""
 欢迎您通过微信客服聊天直接下单或者询问相关事宜。\n
 请扫来因盒微信号下面二维码或添加来因盒微信号:germanbox 也可以点击左下角小键盘直接留言。\n
 """).send
         wechat_api_messenger.image(path: '/images/wechat/wechat_support_qr.jpg').send
-      elsif event_key == 'support'
+      when 'support'
         wechat_api_messenger.text("""
 欢迎您通过微信客服联系下单及其他业务事宜。\n
 请扫来因盒微信号下面二维码或添加来因盒微信号:germanbox 也可以点击左下角小键盘直接留言。\n
@@ -146,6 +165,8 @@ class Api::Webhook::WechatController < Api::ApplicationController
 📞客服电话: 49-(0)89-21934711, 49-(0)89-21934727\n
 """).send
         wechat_api_messenger.image(path: '/images/wechat/wechat_support_qr.jpg').send
+      when 'ping'
+        wechat_api_messenger.text('pong').send
       end
     end
 
@@ -191,8 +212,12 @@ class Api::Webhook::WechatController < Api::ApplicationController
       end
     end
 
-    def message?
+    def text?
       transmit_data['MsgType'] == 'text'
+    end
+
+    def event?
+      transmit_data['MsgType'] == 'event'
     end
 
     def content
