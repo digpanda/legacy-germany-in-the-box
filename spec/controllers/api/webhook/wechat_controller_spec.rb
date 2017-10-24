@@ -5,7 +5,7 @@ describe Api::Webhook::WechatController, type: :controller do
   describe '#create' do
 
     let(:referrer) { FactoryGirl.create(:customer, :with_referrer).referrer }
-    let(:user) { FactoryGirl.create(:customer) }
+    let(:user) { FactoryGirl.create(:customer, :from_wechat) }
 
     before(:each) do
       # we fake the whole APIs calls
@@ -21,6 +21,13 @@ describe Api::Webhook::WechatController, type: :controller do
       expect(response.body).to eq('success')
       # expect(response.body).to eq('success') # for now the system answers with that
       expect(user.parent_referrer).to eq(referrer) # binding successful ?
+
+    end
+
+    scenario 'receive a qrcode scan but cannot parse the meta data' do
+
+      post :create, wechat_valid_qrcode_scan_wrong_params(referrer).to_xml(root: :xml, skip_types: true)
+      expect_json(success: false)
 
     end
 
@@ -58,7 +65,8 @@ def event_params
     'FromUserName' => 'FAKE_VALID_FROMUSERNAME',
     'CreateTime'   => '1501489767',
     'MsgType'      => 'event',
-    'Content'        => 'ping', # will send a pong
+    'Event'        => 'click',
+    'EventKey'        => 'ping', # will send a pong
   }
 end
 
@@ -72,6 +80,18 @@ def wechat_valid_qrcode_scan_params(referrer)
     'MsgType'      => 'event',
     'Event'        => 'SCAN',
     'EventKey'     => "{\"referrer\":{\"reference_id\":\"#{referrer.reference_id}\"} }",
+    'Ticket'       => 'gQH18DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyUDNiRDF4R29ibC0xMDAwMDAwN04AAgR_jHhZAwQAAAAA'
+  }
+end
+
+def wechat_valid_qrcode_scan_wrong_params(referrer)
+  {
+    'ToUserName'   => 'FAKE_VALID_USERNAME',
+    'FromUserName' => 'FAKE_VALID_FROMUSERNAME',
+    'CreateTime'   => '1501489767',
+    'MsgType'      => 'event',
+    'Event'        => 'SCAN',
+    'EventKey'     => "\"referrer\":{\"reference_id\":\"#{referrer.reference_id}\"} }",
     'Ticket'       => 'gQH18DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyUDNiRDF4R29ibC0xMDAwMDAwN04AAgR_jHhZAwQAAAAA'
   }
 end

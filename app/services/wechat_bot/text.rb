@@ -32,6 +32,8 @@ class WechatBot
       else
         Notifier::Admin.new.new_wechat_message(user&.decorate&.who, content)
       end
+
+      return_with(:success)
     end
 
   end

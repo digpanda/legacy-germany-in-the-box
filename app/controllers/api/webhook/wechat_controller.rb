@@ -54,14 +54,20 @@ class Api::Webhook::WechatController < Api::ApplicationController
 
       # message handling
       if text?
-        handle_message_callback
-        return end_process
+        if text_callback.success?
+          return end_process
+        else
+          return throw_api_error(:bad_format, { error: text_callback.error }, :bad_request)
+        end
       end
 
       # event handling
       if event?
-        handle_event_callback
-        return end_process
+        if event_callback.success?
+          return end_process
+        else
+          return throw_api_error(:bad_format, { error: event_callback.error }, :bad_request)
+        end
       end
 
       return end_process
@@ -89,11 +95,11 @@ class Api::Webhook::WechatController < Api::ApplicationController
       @cache_key ||= Digest::SHA1.hexdigest("#{transmit_data}")
     end
 
-    def handle_event_callback
+    def event_callback
       WechatBot::Event.new(user, event, event_key).dispatch
     end
 
-    def handle_message_callback
+    def text_callback
       WechatBot::Text.new(user, content).dispatch
     end
 
