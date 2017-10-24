@@ -2,7 +2,7 @@
 # this is called
 class WechatBot
   class Event < Base
-    class Click < Base
+    class Subscribe < Base
       attr_reader :user
 
       def initialize(user)
