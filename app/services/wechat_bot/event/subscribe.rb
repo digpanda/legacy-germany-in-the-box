@@ -12,7 +12,7 @@ class WechatBot
       # when the user subscribe it'll trigger this method
       def handle
         messenger.text("""
-        #{welcome}\n
+        欢迎#{user.decorate.readable_who}访问来因盒！\n
   🎊德国精品: 来因盒首页，各类电商精品和海外服务汇总\n
   👔海外综合: 本地专业团队为您提供海外房产、金融投资、保险、医疗服务\n
   聊客服下单: 直接跟客服聊天帮你下单\n
@@ -26,16 +26,6 @@ class WechatBot
   ✅商业合作: 与来因盒平台进行商业合作请通过这里与我们联系\n
   """).send
       end
-
-      private
-
-        def welcome
-          if user
-            "欢迎#{user.decorate.readable_who}访问来因盒！"
-          else
-            '欢迎您访问来因盒'
-          end
-        end
     end
   end
 end

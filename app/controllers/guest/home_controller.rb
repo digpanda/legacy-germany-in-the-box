@@ -11,6 +11,10 @@ class Guest::HomeController < ApplicationController
     render text: "ok"
   end
 
+  def weixin
+    redirect_to 'weixin://wechat.com/'
+  end
+
   private
 
     def admin_redirection

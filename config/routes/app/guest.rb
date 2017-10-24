@@ -19,6 +19,7 @@ namespace :guest do
     get :customer_about
     get :fees
     get :home
+    get :weixin
     get :publicity
   end
 
