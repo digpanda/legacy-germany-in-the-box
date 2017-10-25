@@ -29,11 +29,11 @@ class WechatApiSemantic < BaseService
 
     def body
       {
-        "query": query
-        "city": city,
-        "category": category,
-        "appid": appid,
-        "uid": uid
+        query: query,
+        city: city,
+        category: category,
+        appid: appid,
+        uid: uid
       }
     end
 
