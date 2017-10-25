@@ -21,6 +21,10 @@ class SlackDispatcher < BaseService
     push "More : #{url}" if url
   end
 
+  def service_message(user, content)
+    message "[Wechat] Message from `#{user&.decorate&.who}` : `#{content}`", url: admin_user_url(user)
+  end
+
   def paid_transaction(order_payment)
     order = order_payment.order
     message "*#{order.billing_address.decorate.full_name}* just paid *#{order.total_paid_in_euro} / #{order.total_price_with_extra_costs.in_euro.display}*", url: admin_order_url(order)

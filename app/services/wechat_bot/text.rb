@@ -12,7 +12,7 @@ class WechatBot
     def dispatch
       # we dispatch it to a specific slack channel
       # dedicated to the customer support
-      slack_support.message "[Wechat] Message from `#{user&.decorate&.who}` : `#{content}`"
+      slack_support.service_message(user, content)
 
       case content
       when 'ping'
