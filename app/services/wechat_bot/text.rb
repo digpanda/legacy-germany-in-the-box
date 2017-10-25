@@ -27,7 +27,7 @@ class WechatBot
           messenger.image! url: "#{guest_referrer_qrcode_url(user.referrer)}.jpg"
         end
       when 'offers'
-        messenger.text(data(:offers)).send
+        messenger.text! data(:offers)
       else
         Notifier::Admin.new.new_wechat_message(user, content)
       end
