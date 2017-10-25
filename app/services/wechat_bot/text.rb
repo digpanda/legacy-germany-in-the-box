@@ -18,7 +18,7 @@ class WechatBot
       when 'ping'
         messenger.text(data(:ping)).send
       when 'semantic'
-        SlackDispatcher.new.message("WECHAT API SEMANTIC WILL BE CALLED NOW")
+        # working clean : semantic
         WechatApiSemantic.new(user, "查一下明天从北京到上海的南航机票").resolve
       when '二维码'
         if user&.referrer

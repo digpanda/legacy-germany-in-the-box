@@ -1,6 +1,7 @@
 class WechatApiSemantic < BaseService
   attr_reader :user, :query
 
+  # query sample : 查一下明天从北京到上海的南航机票
   def initialize(user, query)
     @user = user
     @query = query
@@ -8,7 +9,6 @@ class WechatApiSemantic < BaseService
 
   def resolve
     return return_with(:error, access_token_gateway.error) unless access_token_gateway.success?
-    SlackDispatcher.new.message("SEMANTIC GATEWAY : #{semantic_gateway}")
     return return_with(:error, semantic_gateway['errmsg']) unless success?
     SlackDispatcher.new.message("SEMANTIC RESULT : #{semantic_gateway}")
     return_with(:success, semantic: semantic_gateway)
