@@ -4,14 +4,19 @@ require 'slack-notifier'
 class SlackDispatcher < BaseService
   include Rails.application.routes.url_helpers
 
-  attr_reader :counter
+  WEBHOOK_URL = 'https://hooks.slack.com/services/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'.freeze
+  DEFAULT_CHANNEL = '#notifs'.freeze
+  USERNAME = 'Lorenzo Schaffnero'.freeze
 
-  def initialize
+  attr_reader :counter, :custom_channel
+
+  def initialize(custom_channel: nil)
     @counter = 0
+    @custom_channel = custom_channel
     worker "--- *#{Rails.env.capitalize} Mode* #{Time.now.utc}"
   end
 
-  def message(message, url: nil)
+  def message(message, url: nil, channel: nil)
     push "#{message}"
     push "More : #{url}" if url
   end
@@ -36,13 +41,13 @@ class SlackDispatcher < BaseService
 
   private
 
-  WEBHOOK_URL = 'https://hooks.slack.com/services/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'.freeze
-  CHANNEL = '#notifs'.freeze
-  USERNAME = 'Lorenzo Schaffnero'.freeze
+    def slack
+      @slack ||= Slack::Notifier.new WEBHOOK_URL, channel: end_channel, username: USERNAME
+    end
 
-  def slack
-    @slack ||= Slack::Notifier.new WEBHOOK_URL, channel: CHANNEL, username: USERNAME
-  end
+    def end_channel
+      custom_channel || DEFAULT_CHANNEL
+    end
 
     def push(message)
       worker "[#{counter}] #{message}"

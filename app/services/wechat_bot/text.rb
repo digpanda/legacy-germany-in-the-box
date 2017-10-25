@@ -1,7 +1,8 @@
 class WechatBot
   class Text < Base
-
     attr_reader :user, :content
+
+    CUSTOMER_SUPPORT_CHANNEL = '#customer_support'
 
     def initialize(user, content)
       @user = user
@@ -9,7 +10,9 @@ class WechatBot
     end
 
     def dispatch
-      slack.message "[Wechat] Service message from `#{user&.decorate&.who}` : `#{content}`"
+      # we dispatch it to a specific slack channel
+      # dedicated to the customer support
+      slack_support.message "[Wechat] Message from `#{user&.decorate&.who}` : `#{content}`"
 
       case content
       when 'ping'
@@ -35,6 +38,12 @@ class WechatBot
 
       return_with(:success)
     end
+
+    private
+
+      def slack_support
+        @slack_support ||= SlackDispatcher.new(custom_channel: CUSTOMER_SUPPORT_CHANNEL)
+      end
 
   end
 end
