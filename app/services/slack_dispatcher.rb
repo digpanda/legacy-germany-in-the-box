@@ -46,7 +46,7 @@ class SlackDispatcher < BaseService
   private
 
     def slack
-      @slack ||= Slack::Notifier.new WEBHOOK_URL, channel: end_channel, username: USERNAME
+      @slack ||= Slack::Notifier.new WEBHOOK_URL, username: USERNAME, channel: end_channel
     end
 
     def end_channel
