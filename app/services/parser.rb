@@ -10,7 +10,7 @@ class Parser
     rescue Exception
       false
     end
-    
+
     def get(url)
       Net::HTTP.get(URI.parse(url))
     end
@@ -56,5 +56,17 @@ class Parser
     rescue Exception => exception
       {error: exception}
     end
+
+    def render_template(file:, params:{})
+      content = File.read file
+      content.gsub(/{{\w+}}/, data_template(params))
+    end
+
+    def data_template(params)
+      params.each_with_object({}) do |(key,value), hash|
+        hash["{{#{key}}}"] = REXML::Text.new(value.to_s)
+      end
+    end
+
   end
 end
