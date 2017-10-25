@@ -14,17 +14,17 @@ class WechatBot
       def handle
         case event_key
         when 'offers'
-          messenger.text('2017a').send
+          messenger.text! '2017a'
         when 'groupchat'
-          messenger.image(path: '/images/wechat/group.jpg').send
+          messenger.image! path: '/images/wechat/group.jpg'
         when 'chatsale'
-          messenger.text(data(:chatsale)).send
-          messenger.image(path: '/images/wechat/wechat_support_qr.jpg').send
+          messenger.text! data(:chatsale)
+          messenger.image! path: '/images/wechat/wechat_support_qr.jpg'
         when 'support'
-          messenger.text(data(:support)).send
-          messenger.image(path: '/images/wechat/wechat_support_qr.jpg').send
+          messenger.text! data(:support)
+          messenger.image! path: '/images/wechat/wechat_support_qr.jpg'
         when 'ping'
-          messenger.text(data(:ping)).send
+          messenger.text! data(:ping)
         end
 
         return_with(:success)

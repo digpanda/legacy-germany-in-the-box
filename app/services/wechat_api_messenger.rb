@@ -24,4 +24,14 @@ class WechatApiMessenger < BaseService
     WechatApiMessenger::Rich.new(self)
   end
 
+  # NOTE : Prima Donna Methods
+  # shortcut to spawn directly the request
+
+  def image!(content)
+    image(content).send
+  end
+
+  def text!(content)
+    text(content).send
+  end
 end

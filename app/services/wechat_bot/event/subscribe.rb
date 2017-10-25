@@ -11,7 +11,7 @@ class WechatBot
 
       # when the user subscribe it'll trigger this method
       def handle
-        messenger.text(data(:subscribe, identity: user.decorate.readable_who)).send
+        messenger.text! data(:subscribe, identity: user.decorate.readable_who)
       end
     end
   end
