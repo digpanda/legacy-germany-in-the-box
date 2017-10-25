@@ -33,7 +33,7 @@ class WechatBot
       5.升级成为来因盒形象大使请输入5\n
       """).send
       else
-        Notifier::Admin.new.new_wechat_message(user&.decorate&.who, content)
+        Notifier::Admin.new.new_wechat_message(user, content)
       end
 
       return_with(:success)

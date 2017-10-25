@@ -22,7 +22,7 @@ class SlackDispatcher < BaseService
   end
 
   def service_message(user, content)
-    message "[Wechat Message] #{user&.decorate&.who} : `#{content}`", url: admin_user_url(user)
+    message "[Wechat] #{user&.decorate&.who} : `#{content}`", url: admin_user_url(user)
   end
 
   def paid_transaction(order_payment)
