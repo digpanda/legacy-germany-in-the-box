@@ -3,16 +3,18 @@
 class WechatBot
   class Text < Base
     class Memory < Base
-      attr_reader :user, :content
+      attr_reader :user, :exchange
 
-      def initialize(user, content)
+      def initialize(user, exchange)
         @user = user
-        @content = content
+        @exchange = exchange
       end
 
       # we insert a breakpoint in the database
       def insert(breakpoint)
-        MemoryBreakpoint.create!(user: user, breakpoint: breakpoint, valid_until: 1.hour.from_now)
+        unless breakpoints.include? breakpoint
+          MemoryBreakpoint.create!(user: user, breakpoint: breakpoint, valid_until: 1.hour.from_now.utc)
+        end
       end
 
       # for each breakpoints defined in memory
@@ -36,7 +38,7 @@ class WechatBot
         # the five tasks challenge is a challenge which makes interactions between
         # the customer and wechat bot
         def five_tasks_challenge
-          case content
+          case exchange
           when '1'
             messenger.text 'you just typed 1 after the breakpoint, it works !'
             true
@@ -48,9 +50,9 @@ class WechatBot
           end
         end
 
-      def breakpoints
-        user.memory_breakpoints.still_valid(&:breakpoint)
-      end
+        def breakpoints
+          user.memory_breakpoints.still_valid(&:breakpoint)
+        end
 
     end
   end

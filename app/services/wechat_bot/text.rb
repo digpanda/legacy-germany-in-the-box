@@ -27,6 +27,18 @@ class WechatBot
         messenger.text! data(:offers)
         memory.insert(:five_tasks_challenge)
       else
+        # TODO : TEST MEMORY
+        u = User.first
+        m = WechatBot::Text::Memory.new(u, 'test') # 'test' doesn't matter so much
+        m.insert(:yo_breakpoint) # ok
+        u.memory_breakpoints.still_valid.count # supposed to have 1 otherwise change query
+        m.insert(:yo_breakpoint) # supposed to be nil
+        # END OF TEST
+        #
+        # THOUGHT :
+        # RecursiveMemory.new("content").perform
+        # -> answer with the correct answer or nil
+
         # this is the entry to complex exchange between user and bot
         # it check into the database if there's a breakpoint inserted
         # if so it processes it accordingly.

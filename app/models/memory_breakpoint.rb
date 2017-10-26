@@ -10,6 +10,6 @@ class MemoryBreakpoint
 
   belongs_to :user
 
-  scope :still_valid, -> { where(:valid_until.lt => Time.now) }
+  scope :still_valid, -> { where(:valid_until.lt => Time.now.utc) }
 
 end

@@ -1,0 +1,5 @@
+responses:
+  method: "matcher"
+    submethod: "submatcher"
+    other: "submatcher 2"
+    other: "" # will just return yes
