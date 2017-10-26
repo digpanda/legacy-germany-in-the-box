@@ -1,4 +1,4 @@
-responses:
+schemes:
   method: "matcher"
     submethod: "submatcher"
     other: "submatcher 2"

@@ -10,11 +10,27 @@ class WechatBot
         @exchange = exchange
       end
 
+      def perform
+
+        # TODO :
+        # - we insert one `exchange`
+        # - we check if this `exchange` isn't already on one of our selector in MemoryBreakpoint (no idea why yet)
+        # - if it's on a correct selector we alter the memorybreakpoint accordingly
+        # - we execute the method in a recursive way
+
+      end
+
       # we insert a breakpoint in the database
       def insert(breakpoint)
         unless breakpoints.include? breakpoint
           MemoryBreakpoint.create!(user: user, breakpoint: breakpoint, valid_until: 1.hour.from_now.utc)
         end
+      end
+
+      # ERB.new().result <-- understand instance variable, very good
+      def responses
+        file = File.read File.join(File.dirname(__FILE__), "schemes.yml")
+        YAML.load(file).deep_symbolize_keys!
       end
 
       # for each breakpoints defined in memory
@@ -23,7 +39,6 @@ class WechatBot
       # if there's nothing matching at the end it returns false
       def process_breakpoints
         breakpoints.each do |breakpoint|
-          binding.pry
           if defined?(breakpoint)
            if self.send(breakpoint)
              return true
@@ -51,7 +66,7 @@ class WechatBot
         end
 
         def breakpoints
-          user.memory_breakpoints.still_valid(&:breakpoint)
+          user.memory_breakpoints.still_valid.map(&:breakpoint).map(&:deep_symbolize_keys)
         end
 
     end

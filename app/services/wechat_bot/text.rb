@@ -24,17 +24,15 @@ class WechatBot
           messenger.image! url: "#{guest_referrer_qrcode_url(user.referrer)}.jpg"
         end
       when 'offers'
+        # TODO : THIS WOULD BE PUT IN MEMORY
         messenger.text! data(:offers)
         memory.insert(:five_tasks_challenge)
       else
         # TODO : TEST MEMORY
         u = User.first
-        m = WechatBot::Text::Memory.new(u, 'test') # 'test' doesn't matter so much
-        m.insert(:yo_breakpoint) # ok
-        u.memory_breakpoints.still_valid.count # supposed to have 1 otherwise change query
-        m.insert(:yo_breakpoint) # supposed to be nil
+        m = WechatBot::Text::Memory.new(u, 'test').perform
         # END OF TEST
-        #
+
         # THOUGHT :
         # RecursiveMemory.new("content").perform
         # -> answer with the correct answer or nil
