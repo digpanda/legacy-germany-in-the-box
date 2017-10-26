@@ -33,13 +33,13 @@ class RewardsManager < BaseService
     private
 
       def reward_was_processed
-        reward.update!(ended_at: Time.now, readable_reward: readable_to_save)
+        reward.update!(ended_at: Time.now, read: readable_to_save)
         dispatch_notification
         return_with(:success, reward: reward)
       end
 
       def dispatch_notification
-        # TODO : dispatch a general notification on the reward which was just given.
+        Notifier::Customer.new(reward.user).reward_was_given(reward)
       end
   end
 end

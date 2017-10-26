@@ -14,13 +14,17 @@ class RewardsManager < BaseService
 
   # we will call a dynamic subclass if defined
   # it will process the reward system
+  # if the subclass does not exist it does not process anything
   def end
-    task_class.new(reward).end if defined?(task_class)
+    task_class.new(reward).end if task_class
   end
 
   # read the reward for each case
+  # NOTE : not sure we will use this.
+  # it was originally thought in case the reward can be changing through time after receiving it
+  # but it seems it's not the case anymore as we print out the reward itself as a text.
   def read
-    reward.readable_reward
+    reward.read
   end
 
   private
@@ -30,6 +34,6 @@ class RewardsManager < BaseService
     end
 
     def task_class
-      "RewardsManager::#{task.to_s.camelize}".constantize
+      "RewardsManager::#{task.to_s.camelize}".constantize rescue nil
     end
 end

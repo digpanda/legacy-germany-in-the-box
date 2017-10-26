@@ -12,7 +12,7 @@ class Reward
   field :started_at, type: Time
   field :ended_at, type: Time
 
-  field :readable_reward, type: String
+  field :read, type: String
 
   belongs_to :user
 

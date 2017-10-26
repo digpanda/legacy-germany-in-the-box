@@ -21,6 +21,13 @@ class Notifier
       ).perform
     end
 
+    def reward_was_given(reward)
+      dispatch(
+        title: "New reward acquiered",
+        desc: "#{reward.read}",
+      ).perform # NOTE : add dispatcher for wechat bot
+    end
+
     def order_is_being_processed(order)
       dispatch(
         title: '你的订单已出货',
