@@ -1,30 +1,141 @@
-Code <%= form.text_field :code %>
-<br />
+<%= form_for [:admin, coupon] do |form| %>
 
-Discount <%= form.text_field :discount %><%= form.select(:unit, {'%' => :percent, 'EUR' => :value}) %>
-<br />
-<br />
-Minimum order <%= form.text_field :minimum_order %> EUR
-<br />
+<div class="row details__block">
 
-Unique <%= form.select(:unique, boolean_select) %>
-<br />
-<br />
+  <!-- Code -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Code
+      </label>
+    </div>
 
-Description <%= form.text_field :desc %>
-<br />
-<br />
+      <div class="col-md-10 form-group">
+        <%= form.text_field :code, :class => 'form-control' %>
+        <div class="help-block with-errors"></div>
+        <em>If left empty, it will generate a code by itself.</em>
+      </div>
+  </div>
 
-Shop <%= form.select :shop, options_from_collection_for_select(Shop.all, :id, :shopname, form.object.shop&.id), :include_blank => true %>
-<br />
-<br />
+  <!-- Discount -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Discount
+      </label>
+    </div>
 
-Reference User <%= form.select :referrer, options_from_collection_for_select(Referrer.all, :id, :reference_id, form.object.referrer&.id), :include_blank => true %>
-<br />
-<em>Note : this is binded to the provision system. It does not restrict the coupon to any customer.</em>
-<br />
-<br />
+      <div class="col-md-10 form-group">
+        <%= form.text_field :discount %><%= form.select(:unit, {'%' => :percent, 'EUR' => :value}) %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
 
-Exclude China <%= form.select(:exclude_china, boolean_select) %>
-<br />
-<br />
+  <!-- Minimum Order -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Minimum Order
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :minimum_order %> EUR
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Promotion Text -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Unique
+      </label>
+    </div>
+
+    <div class="col-md-10 form-group">
+      <%= form.select(:unique, boolean_select) %>
+      <div class="help-block with-errors"></div>
+    </div>
+
+  </div>
+
+  <!-- Description -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Description
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :desc, :class => 'form-control' %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Code -->
+  <div class="row">
+    <div class="col-md-2">
+        <label>
+          Shop
+        </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.select :shop, options_from_collection_for_select(Shop.all, :id, :shopname, form.object.shop&.id), :include_blank => true %>
+        <div class="help-block with-errors"></div>
+        <em>Used to restrict to a specific shop</em>
+      </div>
+  </div>
+
+  <!-- User -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        User
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= customer_select(form) %>
+        <div class="help-block with-errors"></div>
+        <em>User to restrict to a specific user.</em>
+      </div>
+  </div>
+
+  <!-- Referrer -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Referrer
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.select :referrer, options_from_collection_for_select(Referrer.all, :id, :reference_id, form.object.referrer&.id), :include_blank => true %>
+        <div class="help-block with-errors"></div>
+        <em>This is binded to the provision system. It does not restrict the coupon to any customer. It will give the provision to the selected referrer.</em>
+      </div>
+  </div>
+
+
+  <!-- Exclude China -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Exclude China
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.select(:exclude_china, boolean_select) %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+</div>
+
+<%= form.submit :class => 'big-button --blue', :value =>  "Save" %>
+
+<% end %>

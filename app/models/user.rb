@@ -73,13 +73,15 @@ class User
 
   has_many :inquiries, inverse_of: :user, dependent: :restrict
   has_many :rewards, inverse_of: :user, dependent: :restrict
-  
+
   embeds_many :addresses,                              inverse_of: :user
   has_many :notifications
   has_many :notes,                                  inverse_of: :user,   dependent: :restrict
 
   has_one  :shop,         inverse_of: :shopkeeper,   dependent: :restrict
   has_one  :cart
+
+  has_many :coupons, inverse_of: :user
 
   genderize (:gender)
   mount_uploader :pic, AvatarUploader

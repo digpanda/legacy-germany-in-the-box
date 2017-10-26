@@ -3,12 +3,7 @@
     <h3>Edit coupon <%= @coupon.code %></h3>
     <hr>
 
-    <%= form_for [:admin, @coupon] do |form| %>
-
-      <%= render partial: "admin/coupons/form", :locals => { :form => form } %>
-
-      <%= form.submit "Edit coupon", {:class => "btn btn-primary"} %>
-    <% end %>
+    <%= render partial: "admin/coupons/form", :locals => { coupon: @coupon } %>
 
   </div>
 </div>

@@ -23,11 +23,21 @@ class Coupon
 
   belongs_to :referrer, class_name: 'Referrer', inverse_of: :coupons
   belongs_to :shop, inverse_of: :coupons
+  belongs_to :user, inverse_of: :coupons
 
-  validates :code, presence: true, uniqueness: true
+  validates :code, uniqueness: true
   validates :discount, presence: true
   validates :unit, presence: true, inclusion: { in: [:percent, :value] }
   validates :unique, presence: true
+
+  # save before save to ensure code even if empty
+  before_save :ensure_code
+
+  def ensure_code
+    if code.empty?
+      self.code = Coupon.available_code
+    end
+  end
 
   # i've over-done it with this quite simple validation
   # to make an example of validator

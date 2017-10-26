@@ -14,8 +14,9 @@ class RewardsManager < BaseService
       "Reward is a coupon #{coupon.code} because you are a good buddy."
     end
 
+    # setup email coupon reward to use
     def coupon
-      @coupon ||= Coupon.create!(code: Coupon.available_code, discount: 10.0, unit: :percent, unique: true)
+      @coupon ||= Coupon.create!(discount: 10.0, unit: :percent, unique: true)
     end
 
   end
