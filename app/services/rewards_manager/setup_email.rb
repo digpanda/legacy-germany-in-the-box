@@ -16,7 +16,7 @@ class RewardsManager < BaseService
 
     # setup email coupon reward to use
     def coupon
-      @coupon ||= Coupon.create!(discount: 10.0, unit: :percent, unique: true)
+      @coupon ||= Coupon.create!(user: reward.user, discount: 10.0, unit: :percent, unique: true)
     end
 
   end

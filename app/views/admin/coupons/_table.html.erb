@@ -18,6 +18,12 @@
       Orders
     </th>
     <th>
+      Shop
+    </th>
+    <th>
+      User
+    </th>
+    <th>
       Reference
     </th>
     <th>
@@ -57,7 +63,25 @@
         <%= coupon.orders.count %>
       </td>
       <td>
-        <%= coupon.referrer&.reference_id %> (<%= coupon.referrer&.user&.decorate&.full_name %>)
+        <% if coupon.shop %>
+          <%= coupon.shop.shopname %>
+        <% else %>
+          -
+        <% end %>
+      </td>
+      <td>
+        <% if coupon.user %>
+          <%= coupon.user.decorate.who %>
+        <% else %>
+          -
+        <% end %>
+      </td>
+      <td>
+        <% if coupon.referrer %>
+          <%= coupon.referrer&.reference_id %> (<%= coupon.referrer&.user&.decorate&.full_name %>)
+        <% else %>
+          -
+        <% end %>
       </td>
       <td>
         <%= coupon.last_applied_at %>
