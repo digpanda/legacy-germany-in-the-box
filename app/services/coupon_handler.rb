@@ -17,6 +17,7 @@ class CouponHandler < BaseService
       return return_with(:error, I18n.t('coupon.no_minimum_price', minimum: coupon.minimum_order.in_euro.to_yuan(exchange_rate: coupon.order.exchange_rate).display))
     end
     return return_with(:error, "You can't apply this coupon from China.") unless valid_ip?
+    return return_with(:error, "You can't apply this coupon on this user.") unless valid_user?
     return return_with(:error, "You can't apply this coupon on this shop.") unless valid_shop?
     return return_with(:error, I18n.t('coupon.cannot_apply')) unless valid_order?
     return return_with(:error, I18n.t('coupon.not_valid_anymore')) unless valid_coupon?
@@ -107,6 +108,10 @@ class CouponHandler < BaseService
     # if we want to exclude chinese IPs
     def valid_ip?
       (coupon.exclude_china && !identity_solver.chinese_ip?) || !coupon.exclude_china
+    end
+
+    def valid_user?
+      coupon.user_id == order.user.id || !coupon.user
     end
 
     def valid_shop?
