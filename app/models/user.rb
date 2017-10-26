@@ -77,6 +77,7 @@ class User
   embeds_many :addresses,                              inverse_of: :user
   has_many :notifications
   has_many :notes,                                  inverse_of: :user,   dependent: :restrict
+  has_many :memory_breakpoints
 
   has_one  :shop,         inverse_of: :shopkeeper,   dependent: :restrict
   has_one  :cart

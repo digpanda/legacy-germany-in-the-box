@@ -5,7 +5,7 @@ class Reward
   strip_attributes
 
   # research system
-  search_in :id, :slug, :started_at, :achieved_at, user: :id
+  search_in :id, :slug, :started_at, :ended_at, user: :id
 
   field :task, type: Symbol
 

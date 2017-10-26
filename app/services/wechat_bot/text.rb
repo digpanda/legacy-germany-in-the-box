@@ -10,9 +10,6 @@ class WechatBot
     end
 
     def dispatch
-      # we dispatch it to a specific slack channel
-      # dedicated to the customer support
-      slack_support.service_message(user, content)
 
       case content
       when 'ping'
@@ -28,7 +25,15 @@ class WechatBot
         end
       when 'offers'
         messenger.text! data(:offers)
+        memory.insert(:five_tasks_challenge)
       else
+        # this is the entry to complex exchange between user and bot
+        # it check into the database if there's a breakpoint inserted
+        # if so it processes it accordingly.
+        return if memory.process_breakpoints
+        # we dispatch it to a specific slack channel
+        # dedicated to the customer support
+        slack_support.service_message(user, content)
         Notifier::Admin.new.new_wechat_message(user, content)
       end
 
@@ -36,6 +41,10 @@ class WechatBot
     end
 
     private
+
+      def memory
+        @memory ||= WechatBot::Text::Memory.new(user, content)
+      end
 
       def slack_support
         @slack_support ||= SlackDispatcher.new(custom_channel: CUSTOMER_SUPPORT_CHANNEL)
