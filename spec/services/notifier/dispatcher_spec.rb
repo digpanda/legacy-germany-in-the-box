@@ -53,7 +53,7 @@ describe Notifier::Dispatcher, type: :mailer do
         title: 'Fake title',
         desc: 'Fake description', # this will be used
         url: 'http://test.com'
-      ).perform(dispatch: [:sms])
+      ).perform(:sms)
 
       expect(dispatch_sms.success?).to eq(true) # sent successfully
       expect(Notification.count).to eq(1)
@@ -69,7 +69,7 @@ describe Notifier::Dispatcher, type: :mailer do
         title: 'Fake title',
         desc: 'Fake description', # this will be used
         url: 'http://test.com'
-      ).perform(dispatch: [:sms])
+      ).perform(:sms)
 
       expect(dispatch_sms.success?).to eq(false) # not sent
     end
@@ -80,7 +80,7 @@ describe Notifier::Dispatcher, type: :mailer do
         title: 'Fake title',
         desc: 'Fake description', # this will be used
         url: 'http://test.com'
-      ).perform(dispatch: [:sms, :email])
+      ).perform(:sms, :email)
 
       expect(dispatch_sms.success?).to eq(true) # sent successfully
       expect(Notification.count).to eq(1)

@@ -1,4 +1,4 @@
-class RewardsManager < BaseService
+class RewardManager < BaseService
   attr_reader :user, :task
 
   def initialize(user, task:)
@@ -34,6 +34,6 @@ class RewardsManager < BaseService
     end
 
     def task_class
-      "RewardsManager::#{task.to_s.camelize}".constantize rescue nil
+      "RewardManager::#{task.to_s.camelize}".constantize rescue nil
     end
 end

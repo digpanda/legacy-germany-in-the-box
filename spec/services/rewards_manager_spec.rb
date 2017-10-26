@@ -1,4 +1,4 @@
-describe RewardsManager  do
+describe RewardManager  do
 
   context '#start' do
 

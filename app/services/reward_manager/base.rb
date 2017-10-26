@@ -1,4 +1,4 @@
-class RewardsManager < BaseService
+class RewardManager < BaseService
   class Base < BaseService
     attr_reader :reward
 

@@ -1,4 +1,4 @@
-class RewardsManager < BaseService
+class RewardManager < BaseService
   class SetupEmail < Base
 
     # if the user entered a correct email the reward is confirmed

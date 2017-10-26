@@ -1,4 +1,4 @@
-class RewardsManager < BaseService
+class RewardManager < BaseService
   class SampleTask < Base
 
     # this task is to demonstrate how to setup a reward through this system

@@ -18,10 +18,12 @@ class Notifier
       @metadata = metadata
     end
 
-    def perform(dispatch: [:email])
+    def perform(*dispatch)
+      dispatch << :email if dispatch.empty?
       db! if user
       email! if dispatch.include? :email
       sms! if dispatch.include? :sms
+      wechat! if dispatch.include? :wechat
       return_with(:success)
     rescue Notifier::Error => exception
       return_with(:error, exception.message)
@@ -37,6 +39,10 @@ class Notifier
 
     def sms!
       Sms.new(self).perform
+    end
+
+    def wechat!
+      Wechat.new(self).perform
     end
   end
 end

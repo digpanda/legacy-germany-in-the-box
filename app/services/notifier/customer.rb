@@ -14,6 +14,13 @@ class Notifier
       ).perform
     end
 
+    def test
+      dispatch(
+        title: 'this is a test',
+        desc: 'this was supposed to be sent on wechat'
+      ).perform(:wechat)
+    end
+
     def order_was_paid(order)
       dispatch(
         title: "来因盒通知：付款成功，已通知商家准备发货 （订单号：#{order.id})",
@@ -39,7 +46,7 @@ class Notifier
       dispatch(
         title: '一位客户',
         desc: "顾客#{order_payment.order.shipping_address.decorate.full_name}在您的推荐下在来因盒平台下了一个#{order_payment.order.total_price.in_euro.display}的订单。您现在的总佣金为#{referrer.total_earned.in_euro.display} (订单佣金 +#{referrer_provision.provision.in_euro.display})"
-      ).perform(dispatch: [:sms])
+      ).perform(:sms)
     end
 
     def order_has_been_shipped(order)
@@ -47,7 +54,7 @@ class Notifier
         mobile: "#{order.shipping_address.mobile}",
         title: '发货通知',
         desc: "亲爱的顾客，您的订单#{order.id}已安排发货。快递单号为：#{order.order_tracking&.delivery_id}，您可以访问快递100网站查询快递状态 http://www.kuaidi100.com"
-      ).perform(dispatch: [:sms])
+      ).perform(:sms)
     end
 
     def published_link(link)
@@ -56,7 +63,7 @@ class Notifier
         scope: :referrer_links,
         metadata: { link_id: link.id },
         unique_id: "#{link.id}"
-      ).perform(dispatch: [])
+      ).perform(:db) # only database
     end
   end
 end
