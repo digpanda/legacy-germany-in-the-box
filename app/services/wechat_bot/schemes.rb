@@ -1,5 +1,5 @@
+# we make sure all is loaded to get the constants and subclasses
 Dir["#{File.dirname(__FILE__)}/schemes/**/*.rb"].each {|file| load file}
-
 # we manage the memory of the bot and trigger different events depending  on what the customer transmit
 # so far it's used only with Wechat Bot but could be astracted elsewhere later on by changing it a little bit.
 class WechatBot
@@ -12,23 +12,33 @@ class WechatBot
     end
 
     # TODO : don't forget to comment everything here, it's way too complex
-    
+
     def perform
+      # first way (will be refactored to match the other way afterwards)
       if requests[request]
-        requests[request].response
+
+        # now we add entries in the database by splitting the next requests into keys
+        binding.pry
+        return requests[request].response
+
       end
-      # if requests.map(&:keys).include? request
-      #   # it's a match
-      # end
+
+      # now we check the databases entries and check the exact same way
+
+      # - "word" => Action::Blabla in database each entry like this
+      # - recovering by searching where(key: "") (order by c_at reversed in case of conflict)
+      # - manage the "" case which is automatically triggered
+      # - one match per research only then quit.
+      # - expiration customizable from the subclass itself (for things like "enter your email" shouldn't be more than 5 minutes for instance)
     end
 
     def subclasses(target)
-      target.constants.map(&target.method(:const_get)).grep(Class).select { |c| c.to_s.include? "::#{target.to_s.split('::').last}" } #c.to_s =~ /^(.*::Schemes::[^::]+)$/ }
+      SubclassLoader.new(target).perform
     end
 
-    # git all the child request (messages / actions)
+    # get all the child request (messages / actions)
     def requests
-      @requests ||=
+      @requests ||= begin
         subclasses(self.class).reduce({}) do |acc, subclass|
           acc["#{subclass.new.request}"] = subclass
           acc
