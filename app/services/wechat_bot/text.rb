@@ -26,21 +26,12 @@ class WechatBot
       when 'offers'
         # TODO : THIS WOULD BE PUT IN MEMORY
         messenger.text! data(:offers)
-        memory.insert(:five_tasks_challenge)
       else
         # TODO : TEST MEMORY
         u = User.first
-        m = WechatBot::Text::Memory.new(u, 'test').perform
+        m = WechatBot::Schemes.new(u, 'test2').perform
         # END OF TEST
 
-        # THOUGHT :
-        # RecursiveMemory.new("content").perform
-        # -> answer with the correct answer or nil
-
-        # this is the entry to complex exchange between user and bot
-        # it check into the database if there's a breakpoint inserted
-        # if so it processes it accordingly.
-        return if memory.process_breakpoints
         # we dispatch it to a specific slack channel
         # dedicated to the customer support
         slack_support.service_message(user, content)
