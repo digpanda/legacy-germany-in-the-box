@@ -29,7 +29,8 @@ class WechatBot
       else
         # TODO : TEST MEMORY
         u = User.first
-        m = WechatBot::Schemes.new(u, 'test2').perform
+        m = WechatBot::Schemes.new(u, "i typed offers").perform
+        m2 = WechatBot::Schemes.new(u, "please ask my email").perform
         # END OF TEST
 
         # we dispatch it to a specific slack channel

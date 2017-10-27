@@ -3,8 +3,8 @@ class MemoryBreakpoint
 
   strip_attributes
 
-  field :breakpoint, type: Array # ["keyword1", "keyword2"]
-  field :trace, type: Array # the array to go inside scheme until the correct keyword
+  field :request_key, type: String
+  field :class_trace, type: String # trace to the class
 
   # this will be erased progressively with a cron job
   field :valid_until, type: Time
@@ -12,5 +12,8 @@ class MemoryBreakpoint
   belongs_to :user
 
   scope :still_valid, -> { where(:valid_until.gt => Time.now.utc) }
+
+  validates :request_key, presence: true
+  validates :class_trace, presence: true
 
 end

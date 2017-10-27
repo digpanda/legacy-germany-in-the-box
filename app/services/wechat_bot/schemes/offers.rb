@@ -11,8 +11,7 @@ class WechatBot
       end
 
       def response
-        # whatever you want, could be empty
-        binding.pry
+        puts "YEAH BOI HE TYPED OFFERS AND THINGS HAPPENED"
       end
 
     end
