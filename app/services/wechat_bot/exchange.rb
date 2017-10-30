@@ -50,6 +50,7 @@ class WechatBot
       fetch_subclasses(mainclass).each do |subrequest|
         request_key = subrequest.first
         class_trace = mainclass # subrequest.last
+        SlackDispatcher.new.message("MIGHT BE A BUG HERE : REQUEST KEY : #{request_key} / #{class_trace}")
         insert_breakpoint(request_key, class_trace)
       end
     end
