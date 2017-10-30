@@ -22,6 +22,7 @@ class WechatBot
           return response
         end
       end
+      false
     end
 
     private
@@ -73,7 +74,8 @@ class WechatBot
     end
 
     def insert_breakpoint(request_key, class_trace)
-      MemoryBreakpoint.first_or_create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 1.days.from_now)
+      MemoryBreakpoint.where(request_key: request_key, class_trace: class_trace).delete_all # we force delete the old entries
+      MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 1.days.from_now)
     end
 
     def stored_breakpoints
