@@ -13,7 +13,7 @@ class MemoryBreakpoint
 
   scope :still_valid, -> { where(:valid_until.gt => Time.now.utc) }
 
-  validates :request_key, presence: true
+  # validates :request_key, presence: true <-- could be empty.
   validates :class_trace, presence: true
 
 end
