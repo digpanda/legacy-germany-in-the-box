@@ -78,11 +78,11 @@ class WechatBot
       to_process.new(user, request)
     end
 
+    # we force delete all the whole entries matching the subclass
+    # to prevent the same event to fire multiple times
     def insert_breakpoint(request_key, class_trace)
-      SlackDispatcher.new.message("WILL INSERT NOW `#{request_key}` / #{class_trace}")
-      MemoryBreakpoint.where(request_key: request_key, class_trace: class_trace).delete_all # we force delete the old entries
-      c = MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 1.days.from_now)
-      SlackDispatcher.new.message("#{c.persisted?} persisted")
+      MemoryBreakpoint.where(user: user, class_trace: class_trace).delete_all
+      MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 1.days.from_now)
     end
 
     def stored_breakpoints
