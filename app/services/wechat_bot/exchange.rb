@@ -68,7 +68,10 @@ class WechatBot
     # get all the child request (messages / actions)
     def fetch_subclasses(origin_class)
       subclasses(origin_class).reduce({}) do |acc, subclass|
-        acc["#{instance(subclass).request}"] = subclass
+        # we never catch #request within a subclass if it returns false directly
+        unless instance(subclass).request == false
+          acc["#{instance(subclass).request}"] = subclass
+        end
         acc
       end
     end
