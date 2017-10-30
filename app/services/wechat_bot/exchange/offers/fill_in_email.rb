@@ -7,6 +7,7 @@ class WechatBot
         end
 
         def response
+          SlackDispatcher.new.message("FILL IN EMAIL ASKED")
           messenger.text! 'Please enter your email'
         end
       end

@@ -20,6 +20,7 @@ class WechatBot
         response = process_request(memory_breakpoint.class_trace.constantize)
         if response != false
           memory_breakpoint.delete
+          SlackDispatcher.new.message("RESPONSE RETURNED : #{response}")
           return response
         end
       end
