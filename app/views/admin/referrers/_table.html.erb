@@ -27,6 +27,9 @@
         Total Earned
       </th>
       <th>
+        Total Growth
+      </th>
+      <th>
         Group
       </th>
       <th>
@@ -65,6 +68,9 @@
           </td>
           <td>
             <%= referrer.total_earned.in_euro.display %>
+          </td>
+          <td>
+            <%= referrer.total_growth.in_euro.display %>
           </td>
           <td>
             <%= referrer&.referrer_group&.name %>

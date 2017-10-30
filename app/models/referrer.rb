@@ -69,4 +69,11 @@ class Referrer
   def total_earned
     provisions.sum(:provision)
   end
+
+  def total_growth
+    provisions.reduce(0) do |acc, provision|
+      acc + provision.order.end_price
+    end
+  end
+
 end
