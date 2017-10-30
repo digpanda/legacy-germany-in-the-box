@@ -15,6 +15,7 @@ class WechatBot
       # we check from the `Exchange` class and analyze all its subclasses
       return unless process_request(self.class) == false
       # we will do the same from memory breakpoint now
+      SlackDispatcher.new.message("CURRENT STORED BREAKPOINTS : #{stored_breakpoints.count}")
       stored_breakpoints.each do |memory_breakpoint|
         response = process_request(memory_breakpoint.class_trace.constantize)
         if response != false
@@ -50,7 +51,6 @@ class WechatBot
       fetch_subclasses(mainclass).each do |subrequest|
         request_key = subrequest.first
         class_trace = mainclass # subrequest.last
-        SlackDispatcher.new.message("MIGHT BE A BUG HERE : REQUEST KEY : #{request_key} / #{class_trace}")
         insert_breakpoint(request_key, class_trace)
       end
     end
