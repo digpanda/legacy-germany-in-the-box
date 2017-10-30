@@ -8,6 +8,7 @@ class WechatBot
           end
 
           def response
+            SlackDispatcher.new.message("PROCESSING THE EMAIL NOW")
             # TODO : make the actual reward process system on top of that.
             if user.update(email: @request)
               messenger.text! 'Thank you very much. Your profile is now up to date.'
