@@ -13,7 +13,7 @@ class WechatBot
             if user.update(email: email)
               messenger.text! 'Thank you very much. Your profile is now up to date.'
             else
-              messenger.text! "The format is invalid (#{user.errors.join(', ')})"
+              messenger.text! "This email is not valid."
               # will allow the system to repeat it
               false
             end
