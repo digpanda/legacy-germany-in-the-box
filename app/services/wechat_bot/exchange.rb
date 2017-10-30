@@ -34,14 +34,17 @@ class WechatBot
     # if one subclass matches we run it completely and return its #response
     # if the #response is stricly a false boolean we continue to roll
     def process_request(mainclass)
+      SlackDispatcher.new.message("MAINCLASS IS #{mainclass}")
       # we check all the start point Exchange (at the top of `/Exchange/`)
       requests = fetch_subclasses(mainclass)
       matching_request = requests[request] || requests['']
       # if any request matches with one entry point we process it
       if matching_request
+        SlackDispatcher.new.message("MATCHING REQUEST #{matching_request}")
         # we basically insert the subclasses of this matching scheme if they exist
         # and we process the #response
         insert_subclasses(matching_request)
+        SlackDispatcher.new.message("WILL RETURN SOMETHING")
         return instance(matching_request).response
       end
       false
