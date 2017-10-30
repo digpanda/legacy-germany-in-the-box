@@ -33,12 +33,13 @@ class WechatBot
     def process_request(mainclass)
       # we check all the start point Exchange (at the top of `/Exchange/`)
       requests = fetch_subclasses(mainclass)
+      matching_request = requests[request] || requests['']
       # if any request matches with one entry point we process it
-      if requests[request]
+      if matching_request
         # we basically insert the subclasses of this matching scheme if they exist
         # and we process the #response
-        insert_subclasses(requests[request])
-        return instance(requests[request]).response
+        insert_subclasses(matching_request)
+        return instance(matching_request).response
       end
       false
     end
