@@ -1,5 +1,5 @@
 class WechatBot
-  class Schemes < Base
+  class Exchanges < Base
     class Offers
       class FillEmail
 

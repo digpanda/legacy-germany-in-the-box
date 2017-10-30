@@ -1,9 +1,9 @@
 # we make sure all is loaded to get the constants and subclasses
-Dir["#{File.dirname(__FILE__)}/schemes/**/*.rb"].each {|file| load file}
+Dir["#{File.dirname(__FILE__)}/Exchanges/**/*.rb"].each {|file| load file}
 # we manage the memory of the bot and trigger different events depending  on what the customer transmit
 # so far it's used only with Wechat Bot but could be astracted elsewhere later on by changing it a little bit.
 class WechatBot
-  class Schemes < Base
+  class Exchanges < Base
     attr_reader :user, :request
 
     def initialize(user, request)
@@ -11,32 +11,32 @@ class WechatBot
       @request = request
     end
 
+    def stored_breakpoints
+      @stored_breakpoints || MemoryBreakpoint.where(user: user).still_valid.any_of({request_key: request}, {request_key: ""}).order_by(c_at: :desc)
+    end
+
     # TODO : don't forget to comment everything here, it's way too complex
 
     def perform
 
-      # we check from the `Schemes` class and analyze all its subclasses
+      # we check from the `Exchanges` class and analyze all its subclasses
       return unless process_request(self.class) == false
 
       # we will do the same from memory breakpoint now
-      # TODO : MANAGE THE "" entries too (it's always matching)
-      memory_breakpoints = MemoryBreakpoint.where(user: user).still_valid.where(request_key: request).order_by(c_at: :desc)
-
-      memory_breakpoints.each do |memory_breakpoint|
-        binding.pry
-        # TODO : SOMEWHERE in the system we need to destroy the memory breakpoints when used too.
-        return unless process_request(memory_breakpoint.class_trace.constantize) == false
+      stored_breakpoints.each do |memory_breakpoint|
+        response = process_request(memory_breakpoint.class_trace.constantize)
+        if response != false
+          memory_breakpoint.delete
+          return response
+        end
       end
-
-      # now we check the databases entries and check the exact same way
-
-      # - manage the "" case which is automatically triggered
-      # - one match per research only then quit.
-      # - expiration customizable from the subclass itself (for things like "enter your email" shouldn't be more than 5 minutes for instance)
     end
 
+    # take a class and try to solve the request with all its subclasses
+    # if one subclass matches we run it completely and return its #response
+    # if the #response is stricly a false boolean we continue to roll
     def process_request(mainclass)
-      # we check all the start point schemes (at the top of `/schemes/`)
+      # we check all the start point Exchanges (at the top of `/Exchanges/`)
       requests = fetch_subclasses(mainclass)
       # if any request matches with one entry point we process it
       if requests[request]
@@ -54,11 +54,8 @@ class WechatBot
     def insert_subclasses(mainclass)
       fetch_subclasses(mainclass).each do |subrequest|
         request_key = subrequest.first
-        class_trace = mainclass #subrequest.last
-        # TODO : if the entry already exists on every point (key and trace) -> don't register it OR remove the last one (more logical but more complex)
-        # TODO : valid_until will be managed from within the class, we can store it in database but we will work on that later
-        binding.pry
-        MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 1.days.from_now)
+        class_trace = mainclass # subrequest.last
+        MemoryBreakpoint.first_or_create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 1.days.from_now)
       end
     end
 
