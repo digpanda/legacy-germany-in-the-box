@@ -1,13 +1,8 @@
 class WechatBot
   class Exchange < Base
-    class Base
-      attr_reader :user, :request
-
-      def initialize(user, request)
-        @user = user
-        @request = request
-      end
-
+    class Base < Exchange
+      # NOTE : we inherit exchange because it's actually very convenient
+      # it contains everything like slack, messenger, data, etc.
       def request
       end
 

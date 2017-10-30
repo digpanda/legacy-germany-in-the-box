@@ -1,13 +1,13 @@
 class WechatBot
   class Exchange < Base
-    class Offers < Base
+    class Ping < Base
       # test system to see if the whole structure works fine
       def request
-        'offers'
+        'ping'
       end
 
       def response
-        messenger.text! data(:offers)
+        messenger.text! data(:ping)
       end
     end
   end
