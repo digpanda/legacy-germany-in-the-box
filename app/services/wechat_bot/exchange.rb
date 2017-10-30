@@ -54,7 +54,9 @@ class WechatBot
     # and possible next matching keys
     def insert_subclasses(mainclass)
       fetch_subclasses(mainclass).each do |subrequest|
+        SlackDispatcher.new.message("SUBREQUEST IS #{subrequest}")
         request_key = subrequest.first
+        SlackDispatcher.new.message("REQUEST KEY FOR SUBCLASS OF MAINCLASS `#{mainclass}` IS #{request_key}")
         class_trace = mainclass # subrequest.last
         insert_breakpoint(request_key, class_trace)
       end
@@ -84,6 +86,7 @@ class WechatBot
     end
 
     def insert_breakpoint(request_key, class_trace)
+      SlackDispatcher.new.message("WILL INSERT NOW")
       MemoryBreakpoint.where(request_key: request_key, class_trace: class_trace).delete_all # we force delete the old entries
       MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 1.days.from_now)
     end
