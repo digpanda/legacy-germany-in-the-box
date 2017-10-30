@@ -1,7 +1,7 @@
 class WechatBot
-  class Exchanges < Base
-    class Offers
-      class FillEmail
+  class Exchange < Base
+    class Offers < Base
+      class FillEmail < Base
 
       def request
         "please ask my email"

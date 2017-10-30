@@ -1,11 +1,7 @@
 class WechatBot
-  class Exchanges < Base
-    class Offers
+  class Exchange < Base
+    class Offers < Base
       # TODO : valid_until will be managed from within the class, we can store it in database but we will work on that later
-      
-      # NOTE : this will be changed and we will inject user and action when we are done with the recursive thing
-      def initialize
-      end
 
       def request
         "i typed offers"
