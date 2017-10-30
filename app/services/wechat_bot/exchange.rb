@@ -12,16 +12,13 @@ class WechatBot
     end
 
     def perform
-      SlackDispatcher.new.message("WE START WITH THE ROOT CLASS")
       # we check from the `Exchange` class and analyze all its subclasses
       return true unless process_request(self.class) == false
       # we will do the same from memory breakpoint now
-      SlackDispatcher.new.message("CURRENT STORED BREAKPOINTS : #{stored_breakpoints.count}")
       stored_breakpoints.each do |memory_breakpoint|
         response = process_request(memory_breakpoint.class_trace.constantize)
         if response != false
           memory_breakpoint.delete
-          SlackDispatcher.new.message("RESPONSE RETURNED : #{response}")
           return response
         end
       end
@@ -34,17 +31,14 @@ class WechatBot
     # if one subclass matches we run it completely and return its #response
     # if the #response is stricly a false boolean we continue to roll
     def process_request(mainclass)
-      SlackDispatcher.new.message("MAINCLASS IS #{mainclass}")
       # we check all the start point Exchange (at the top of `/Exchange/`)
       requests = fetch_subclasses(mainclass)
       matching_request = requests[request] || requests['']
       # if any request matches with one entry point we process it
       if matching_request
-        SlackDispatcher.new.message("MATCHING REQUEST #{matching_request}")
         # we basically insert the subclasses of this matching scheme if they exist
         # and we process the #response
         insert_subclasses(matching_request)
-        SlackDispatcher.new.message("WILL RETURN SOMETHING")
         return instance(matching_request).response
       end
       false
@@ -54,9 +48,7 @@ class WechatBot
     # and possible next matching keys
     def insert_subclasses(mainclass)
       fetch_subclasses(mainclass).each do |subrequest|
-        SlackDispatcher.new.message("SUBREQUEST IS #{subrequest}")
         request_key = subrequest.first
-        SlackDispatcher.new.message("REQUEST KEY FOR SUBCLASS OF MAINCLASS `#{mainclass}` IS #{request_key}")
         class_trace = mainclass # subrequest.last
         insert_breakpoint(request_key, class_trace)
       end
@@ -86,7 +78,7 @@ class WechatBot
     end
 
     def insert_breakpoint(request_key, class_trace)
-      SlackDispatcher.new.message("WILL INSERT NOW")
+      SlackDispatcher.new.message("WILL INSERT NOW `#{request_key}` / #{class_trace}")
       MemoryBreakpoint.where(request_key: request_key, class_trace: class_trace).delete_all # we force delete the old entries
       MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 1.days.from_now)
     end
