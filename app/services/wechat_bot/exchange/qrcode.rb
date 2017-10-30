@@ -1,13 +1,12 @@
 class WechatBot
   class Exchange < Base
     class Qrcode < Base
-      # semantic is a test text to make sure the semantic API works alright
       def request
         '二维码'
       end
 
       # this is not the best way at a performance level because it accepts #request and then cancel it via a false if the user is not referrer
-      # best is to control this from the request itself. The result is the same tho.
+      # best is to control this from the #request itself and return nil. The result is the same tho.
       # WE KEPT THIS AS A GOOD EXAMPLE
       def response
         if user&.referrer
