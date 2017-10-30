@@ -15,6 +15,7 @@ class WechatBot
       # we check from the `Exchange` class and analyze all its subclasses
       return true unless process_request(self.class) == false
       # we will do the same from memory breakpoint now
+      SlackDispatcher.new.message("MATCHING BREAKPOINT FOR REQUEST `#{request}` : `#{stored_breakpoints}`")
       stored_breakpoints.each do |memory_breakpoint|
         response = process_request(memory_breakpoint.class_trace.constantize)
         if response != false
@@ -84,7 +85,7 @@ class WechatBot
     end
 
     def stored_breakpoints
-      @stored_breakpoints || MemoryBreakpoint.where(user: user).still_valid.any_of({request_key: request}, {request_key: ""}).order_by(c_at: :desc)
+      @stored_breakpoints ||= MemoryBreakpoint.where(user: user).still_valid.any_of({request_key: request}, {request_key: ""}).order_by(c_at: :desc)
     end
 
   end
