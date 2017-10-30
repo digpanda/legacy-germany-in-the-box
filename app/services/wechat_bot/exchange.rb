@@ -12,6 +12,7 @@ class WechatBot
     end
 
     def perform
+      SlackDispatcher.new.message("WE START WITH THE ROOT CLASS")
       # we check from the `Exchange` class and analyze all its subclasses
       return unless process_request(self.class) == false
       # we will do the same from memory breakpoint now
