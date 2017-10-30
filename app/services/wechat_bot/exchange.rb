@@ -81,7 +81,8 @@ class WechatBot
     def insert_breakpoint(request_key, class_trace)
       SlackDispatcher.new.message("WILL INSERT NOW `#{request_key}` / #{class_trace}")
       MemoryBreakpoint.where(request_key: request_key, class_trace: class_trace).delete_all # we force delete the old entries
-      MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 1.days.from_now)
+      c = MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 1.days.from_now)
+      SlackDispatcher.new.message("#{c.persisted?} persisted")
     end
 
     def stored_breakpoints
