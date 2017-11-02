@@ -10,6 +10,7 @@ class WechatBot
     end
 
     def dispatch
+      SlackDispatcher.new.message("DISPATCHING SERVICE")
       # if the exchange is recognized and successful
       # we don't need to dispatch the rest
       unless exchange.perform
@@ -18,7 +19,7 @@ class WechatBot
         slack_support.service_message(user, content)
         notify_admin
       end
-      
+
       return_with(:success)
     end
 
