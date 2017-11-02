@@ -43,8 +43,10 @@ module Helpers
         page.first('.addresses__address-use a').trigger('click')
         on_payment_method_page?
         page.first('a[id=alipay]').trigger('click')
-        expect(page).to have_content(WAIT_FOR_THE_PAGE) # wait for the page to show up
-        expect(page.current_url).to have_content('alipaydev.com')
+
+        expect(page).to have_current_path(/alipaydev\.com/, url: true)
+        # expect(page).to have_content(WAIT_FOR_THE_PAGE) # wait for the page to show up
+        # expect(page.current_url).to have_content('alipaydev.com')
         mock_payment!(mode, OrderPayment.first)
       end
 
