@@ -16,8 +16,6 @@ class WechatBot
     end
 
     def perform
-
-      SlackDispatcher.new.message("A REQUEST HAS BEEN SENT")
       # we check from the `Exchange` class and analyze all its subclasses
       return true unless process_request(BASE_CLASS) == false
       # we will do the same from memory breakpoint now
