@@ -8,10 +8,9 @@ class WechatBot
           end
 
           def response
-            SlackDispatcher.new.message("PROCESSING THE EMAIL NOW")
-            # TODO : make the actual reward process system on top of that.
             if user.update(email: email)
               messenger.text! 'Thank you very much. Your profile is now up to date.'
+              read_reward
             else
               messenger.text! "This email is not valid."
               # will allow the system to repeat it
@@ -25,6 +24,17 @@ class WechatBot
               # it's just what the guy typed
               @request
             end
+
+            def reward_manager
+              @reward_manager ||= RewardManager.new(user, task: :fill_in_email)
+            end
+
+            # we end the reward and read it to the customer
+            def read_reward
+              reward_manager.end
+              messenger.text! "#{reward_manager.read}"
+            end
+
         end
       end
     end

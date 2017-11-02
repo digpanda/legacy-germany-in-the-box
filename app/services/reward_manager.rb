@@ -9,7 +9,7 @@ class RewardManager < BaseService
   # we simple start or recover the reward
   # if it's already started, it won't affect the data
   def start
-    reward
+    reward.to_end?
   end
 
   # we will call a dynamic subclass if defined
@@ -20,7 +20,6 @@ class RewardManager < BaseService
   end
 
   # read the reward for each case
-  # NOTE : not sure we will use this.
   # it was originally thought in case the reward can be changing through time after receiving it
   # but it seems it's not the case anymore as we print out the reward itself as a text.
   def read

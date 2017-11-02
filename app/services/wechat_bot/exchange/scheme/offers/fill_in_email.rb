@@ -10,8 +10,15 @@ class WechatBot
         end
 
         def response
-          SlackDispatcher.new.message("FILL IN EMAIL ASKED")
-          messenger.text! 'Please enter your email'
+          if reward_manager.start
+            messenger.text! 'Please enter your email'
+          else
+            messenger.text! 'You already completed this challenge.'
+          end
+        end
+
+        def reward_manager
+          @reward_manager ||= RewardManager.new(user, task: :fill_in_email)
         end
       end
     end

@@ -1,5 +1,5 @@
 class RewardManager < BaseService
-  class SetupEmail < Base
+  class FillInEmail < Base
 
     # if the user entered a correct email the reward is confirmed
     def process_reward
