@@ -3,7 +3,12 @@ describe WechatBot::Exchange do
   before(:each) do
 
     allow_any_instance_of(WechatBot::Base).to receive(:messenger).and_return(
-      OpenStruct.new(text!: true)
+      # fake class to stub messenger
+      Class.new do
+        def text!(arg)
+          true
+        end
+      end.new
     )
 
   end
