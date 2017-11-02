@@ -7,7 +7,8 @@ describe RewardManager  do
 
     it 'starts a reward' do
 
-      reward = subject.start
+      subject.start
+      reward = subject.reward
       expect(user.rewards.count).to eq(1)
       expect(reward.started_at).to be_kind_of(Time)
 
@@ -29,6 +30,7 @@ describe RewardManager  do
       subject(:subject) { described_class.new(user, task: :sample_task) }
 
       it 'starts and end a reward immediatly' do
+
         expect(subject.end.success?).to eq(true)
         expect(user.rewards.count).to eq(1)
         expect(user.rewards.first.ended_at).to be_kind_of(Time)
@@ -38,7 +40,9 @@ describe RewardManager  do
       end
 
       it 'starts and end a reward afterwards' do
-        reward = subject.start
+        subject.start
+        reward = subject.reward
+        
         expect(user.rewards.count).to eq(1)
         subject.end
         expect(user.rewards.count).to eq(1)
