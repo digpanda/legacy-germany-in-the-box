@@ -40,6 +40,9 @@ describe WechatBot::Exchange do
 
       # now we try again, it should pass because the memory is still on place
       described_class.new(customer, 'valid-email@gmail.com').perform
+      expect(perform).to eq(true)
+      # because the update we attempted we need to make sure it's stored
+      customer.reload
       expect(customer.email).to eq('valid-email@gmail.com')
       expect(customer.rewards.count).to eq(1)
 
