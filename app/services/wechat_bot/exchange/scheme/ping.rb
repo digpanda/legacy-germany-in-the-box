@@ -1,6 +1,6 @@
 class WechatBot
   class Exchange < WechatBot::Base
-    class Ping < Exchange::Base
+    class Ping < Scheme
       # test system to see if the whole structure works fine
       def request
         'ping'

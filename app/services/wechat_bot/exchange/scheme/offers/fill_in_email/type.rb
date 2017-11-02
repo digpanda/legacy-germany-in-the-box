@@ -1,8 +1,8 @@
 class WechatBot
   class Exchange < WechatBot::Base
-    class Offers < Exchange::Base
-      class FillInEmail < Exchange::Base
-        class Type < Exchange::Base
+    class Offers < Scheme
+      class FillInEmail < Scheme
+        class Type < Scheme
           def request
             ''
           end

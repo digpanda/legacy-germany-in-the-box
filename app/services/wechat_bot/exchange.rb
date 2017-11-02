@@ -6,6 +6,10 @@ class WechatBot
   class Exchange < WechatBot::Base
     attr_reader :user, :request
 
+    # this is the starting point to
+    # load the requests / responses
+    BASE_CLASS = Scheme
+
     def initialize(user, request)
       @user = user
       @request = request
@@ -13,7 +17,7 @@ class WechatBot
 
     def perform
       # we check from the `Exchange` class and analyze all its subclasses
-      return true unless process_request(self.class) == false
+      return true unless process_request(BASE_CLASS) == false
       # we will do the same from memory breakpoint now
       stored_breakpoints.each do |memory_breakpoint|
         response = process_request(memory_breakpoint.class_trace.constantize)
@@ -92,6 +96,8 @@ class WechatBot
       target_subclass::VALID_UNTIL || 5.hours.from_now
     end
 
+    # get all the matching requests breakpoints with the request
+    # NOTE : right now it's a very simple system but it could be improved via REGEX
     def stored_breakpoints
       @stored_breakpoints ||= MemoryBreakpoint.where(user: user).still_valid.any_of({request_key: request}, {request_key: ""}, {request_key: nil}).order_by(c_at: :desc)
     end

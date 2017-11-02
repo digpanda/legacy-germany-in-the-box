@@ -1,6 +1,6 @@
 class WechatBot
   class Exchange < WechatBot::Base
-    class Qrcode < Exchange::Base
+    class Qrcode < Scheme
       def request
         '二维码'
       end

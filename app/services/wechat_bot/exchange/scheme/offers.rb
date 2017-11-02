@@ -1,6 +1,6 @@
 class WechatBot
   class Exchange < WechatBot::Base
-    class Offers < Exchange::Base
+    class Offers < Scheme
       # test system to see if the whole structure works fine
       def request
         'offers'

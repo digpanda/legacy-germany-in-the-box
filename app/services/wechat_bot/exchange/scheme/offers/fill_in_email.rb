@@ -1,7 +1,7 @@
 class WechatBot
   class Exchange < WechatBot::Base
-    class Offers < Exchange::Base
-      class FillInEmail < Exchange::Base
+    class Offers < Scheme
+      class FillInEmail < Scheme
 
         VALID_UNTIL = 1.hours.from_now.freeze
 
