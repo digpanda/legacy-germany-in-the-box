@@ -1,6 +1,10 @@
 class WechatBot
   class Exchange < WechatBot::Base
     class Scheme < WechatBot::Exchange
+
+      # it's the default valid
+      VALID_UNTIL = 5.hours.from_now.freeze
+
       # NOTE : we inherit exchange because it's actually very convenient
       # it contains everything like slack, messenger, data, etc.
       # and add the base #request #response

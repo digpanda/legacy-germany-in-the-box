@@ -87,13 +87,7 @@ class WechatBot
     def insert_breakpoint(request_key, class_trace, target_subclass)
       # target_subclass get the validity
       MemoryBreakpoint.where(user: user, class_trace: class_trace).delete_all
-      MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: breakpoint_validity(target_subclass))
-    end
-
-    # this define the validity of each breakpoint
-    # you can change it in any subclasses
-    def breakpoint_validity(target_subclass)
-      target_subclass::VALID_UNTIL || 5.hours.from_now
+      MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: target_subclass::VALID_UNTIL)
     end
 
     # get all the matching requests breakpoints with the request

@@ -34,7 +34,7 @@ class Coupon
   before_save :ensure_code
 
   def ensure_code
-    if code.empty?
+    unless code.present?
       self.code = Coupon.available_code
     end
   end

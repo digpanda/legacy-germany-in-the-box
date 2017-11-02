@@ -1,13 +1,15 @@
 class WechatBot
   class Exchange < WechatBot::Base
-    class Ping < Scheme
-      # test system to see if the whole structure works fine
-      def request
-        'ping'
-      end
+    class Scheme < WechatBot::Exchange
+      class Ping < Scheme
+        # test system to see if the whole structure works fine
+        def request
+          'ping'
+        end
 
-      def response
-        messenger.text! data(:ping)
+        def response
+          messenger.text! data(:ping)
+        end
       end
     end
   end
