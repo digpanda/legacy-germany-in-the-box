@@ -16,7 +16,7 @@ class WechatBot
     end
 
     def perform
-      # we check from the `Exchange` class and analyze all its subclasses
+      # we check from the `Scheme` class and analyze all its subclasses
       return true unless process_request(BASE_CLASS) == false
       # we will do the same from memory breakpoint now
       stored_breakpoints.each do |memory_breakpoint|
