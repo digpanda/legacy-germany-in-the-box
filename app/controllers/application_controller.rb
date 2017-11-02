@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
 
   before_action :force_wechat_login
   before_action :solve_silent_login, :solve_origin, :solve_landing
+  before_action :bind_friend
 
   # if a user comes from wechat browser and is not logged-in yet
   # we force-login him to the correct domain
@@ -46,6 +47,19 @@ class ApplicationController < ActionController::Base
       js_config = WeixinApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve
       return false unless js_config.success?
       js_config.data
+    end
+  end
+
+  # if there is a URL containing a code
+  # we try to bind automatically the user to the friend
+  # NOTE : for now it's short enough to stay here.
+  def bind_friend
+    if params[:friend] && current_user
+      user = User.where(id: params[:friend]).first
+      if user && current_user.friends.where(id: params[:friend]).count == 0
+        current_user.friends << user
+        current_user.save
+      end
     end
   end
 

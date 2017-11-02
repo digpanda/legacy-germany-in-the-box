@@ -66,6 +66,7 @@ class User
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   has_and_belongs_to_many :favorites, class_name: 'Product'
+  has_and_belongs_to_many :friends, class_name: 'User'
 
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
 
