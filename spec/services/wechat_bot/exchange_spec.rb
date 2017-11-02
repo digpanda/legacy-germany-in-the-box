@@ -2,12 +2,8 @@ describe WechatBot::Exchange do
 
   before(:each) do
 
-    allow_any_instance_of(WechatApiMessenger).to receive(:access_token_gateway).and_return(
-      BaseService.new.return_with(:success, access_token: 'random-token')
-    )
-
-    allow_any_instance_of(WechatApiMessenger).to receive(:gateway).and_return(
-      'random' => 'random'
+    allow_any_instance_of(WechatBot::Base).to receive(:messenger).and_return(
+      OpenStruct.new(text!: true)
     )
 
   end
@@ -17,17 +13,14 @@ describe WechatBot::Exchange do
     let(:customer) { FactoryGirl.create(:customer, :from_wechat) }
 
     it 'sends a ping' do
-
       perform = described_class.new(customer, 'ping').perform
       expect(perform).to eq(true)
-
     end
 
     # we actually test the offers area with email typing
     # which is complex enough to fully crash the global exchange system
     # if buggy.
     it 'sends a set of recursive interactions' do
-
       described_class.new(customer, 'offers').perform
       described_class.new(customer, '1').perform
 
@@ -39,13 +32,13 @@ describe WechatBot::Exchange do
       expect(customer.email).not_to eq('wrong-email')
 
       # now we try again, it should pass because the memory is still on place
-      described_class.new(customer, 'valid-email@gmail.com').perform
+      perform = described_class.new(customer, 'valid-email@gmail.com').perform
       expect(perform).to eq(true)
+
       # because the update we attempted we need to make sure it's stored
       customer.reload
       expect(customer.email).to eq('valid-email@gmail.com')
       expect(customer.rewards.count).to eq(1)
-
     end
   end
 
