@@ -2,6 +2,9 @@ class WechatBot
   class Exchange < WechatBot::Base
     class Offers < Exchange::Base
       class FillInEmail < Exchange::Base
+
+        VALID_UNTIL = 1.hours.from_now.freeze
+
         def request
           '1'
         end

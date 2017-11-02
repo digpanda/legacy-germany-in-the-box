@@ -15,7 +15,6 @@ class WechatBot
       # we check from the `Exchange` class and analyze all its subclasses
       return true unless process_request(self.class) == false
       # we will do the same from memory breakpoint now
-      SlackDispatcher.new.message("MATCHING BREAKPOINT FOR REQUEST `#{request}` : `#{stored_breakpoints.count}`")
       stored_breakpoints.each do |memory_breakpoint|
         response = process_request(memory_breakpoint.class_trace.constantize)
         if response != false
@@ -49,9 +48,10 @@ class WechatBot
     # and possible next matching keys
     def insert_subclasses(mainclass)
       fetch_subclasses(mainclass).each do |subrequest|
+        target_subclass = subrequest.last
         request_key = subrequest.first
-        class_trace = mainclass # subrequest.last
-        insert_breakpoint(request_key, class_trace)
+        class_trace = mainclass
+        insert_breakpoint(request_key, class_trace, target_subclass)
       end
     end
 
@@ -80,9 +80,16 @@ class WechatBot
 
     # we force delete all the whole entries matching the subclass
     # to prevent the same event to fire multiple times
-    def insert_breakpoint(request_key, class_trace)
+    def insert_breakpoint(request_key, class_trace, target_subclass)
+      # target_subclass get the validity
       MemoryBreakpoint.where(user: user, class_trace: class_trace).delete_all
-      MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 1.days.from_now)
+      MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: breakpoint_validity(target_subclass))
+    end
+
+    # this define the validity of each breakpoint
+    # you can change it in any subclasses
+    def breakpoint_validity(target_subclass)
+      target_subclass::VALID_UNTIL || 5.hours.from_now
     end
 
     def stored_breakpoints

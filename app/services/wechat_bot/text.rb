@@ -19,6 +19,9 @@ class WechatBot
         notify_admin
       end
 
+      # TEST
+      e = WechatBot::Exchange.new(User.first, 'offers').perform
+
       return_with(:success)
     end
 
