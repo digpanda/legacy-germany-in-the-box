@@ -12,7 +12,14 @@ class WechatBot
 
           def response
             if reward_manager.start
-              messenger.text! 'Please enter your email'
+              # we try to end the challenge
+              # it will go through a validation
+              # if it's possible
+              if reward_manager.end
+                messenger.text! 'Your email is already valid. Congratulation !'
+              else
+                messenger.text! 'Please enter your email'
+              end
             else
               messenger.text! 'You already completed this challenge.'
             end
