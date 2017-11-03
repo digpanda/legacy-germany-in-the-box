@@ -17,7 +17,11 @@ class RewardManager < BaseService
     # setup email coupon reward to use
     # around 50 CNY with a minimum order of 50 CNY
     def coupon
-      @coupon ||= Coupon.create!(user: reward.user, discount: 6.5, minimum_order: 6.5, unit: :value, unique: true)
+      @coupon ||= Coupon.create!(user: reward.user, discount: money, minimum_order: money, unit: :value, unique: true)
+    end
+
+    def money
+      50.in_yuan.to_euro.amount
     end
 
   end
