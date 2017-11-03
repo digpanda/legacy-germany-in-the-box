@@ -54,9 +54,7 @@ class ApplicationController < ActionController::Base
   # we try to bind automatically the user to the friend
   # NOTE : for now it's short enough to stay here.
   def bind_friend
-    SlackDispatcher.new.message("BINDING FRIEND TRIGGER TRY")
     if params[:friend] && current_user
-      SlackDispatcher.new.message("BINDING : #{params[:friend]}")
       user = User.where(id: params[:friend]).first
       if user && current_user.friends.where(id: params[:friend]).count == 0
         current_user.friends << user
