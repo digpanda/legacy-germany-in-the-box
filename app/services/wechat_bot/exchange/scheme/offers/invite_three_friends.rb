@@ -11,7 +11,9 @@ class WechatBot
           end
 
           def response
-            SlackDispatcher.new.message("TOTAL FRIENDS #{total_friends}")
+            reward_manager.delete
+            messenger.text! 'delete'
+            return
             if reward_manager.start
               # we try to end the challenge
               # it will go through a validation
