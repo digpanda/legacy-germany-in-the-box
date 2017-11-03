@@ -11,7 +11,7 @@ class RewardManager < BaseService
         if process_reward.success?
           return reward_was_processed
         else
-          return processed_reward
+          return process_reward
         end
       end
       return_with(:error, "Reward was already given.")
