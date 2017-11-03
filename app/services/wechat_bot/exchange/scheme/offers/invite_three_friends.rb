@@ -11,9 +11,6 @@ class WechatBot
           end
 
           def response
-            reward_manager.reward.delete
-            messenger.text! 'delete'
-            return
             if reward_manager.start
               # we try to end the challenge
               # it will go through a validation
