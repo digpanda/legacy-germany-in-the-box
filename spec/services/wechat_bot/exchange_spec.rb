@@ -16,6 +16,7 @@ describe WechatBot::Exchange do
   context '#perform' do
 
     let(:customer) { FactoryGirl.create(:customer, :from_wechat) }
+    let(:friends) { FactoryGirl.create_list(:customer, 5) }
 
     context 'simple exchanges' do
 
@@ -66,6 +67,27 @@ describe WechatBot::Exchange do
         # the reward was auto attributed while checking the challenge
         customer.reload
         expect(customer.rewards.count).to eq(1)
+        expect(customer.rewards.first.to_end?).to eq(false)
+
+      end
+
+      it 'goes through the invite three friends challenge successfully' do
+
+        described_class.new(customer, 'offers').perform
+        described_class.new(customer, '2').perform
+        # should display a message saying "invite your friends"
+        expect(customer.rewards.count).to eq(1)
+        expect(customer.rewards.first.to_end?).to eq(true)
+
+        # we add the friends virtually
+        customer.friends = friends
+        customer.save(validate: false)
+
+        # we roll the offer again and see whats up
+        described_class.new(customer, 'offers').perform
+        described_class.new(customer, '2').perform
+
+        # challenge finished
         expect(customer.rewards.first.to_end?).to eq(false)
 
       end
