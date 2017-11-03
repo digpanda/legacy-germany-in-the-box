@@ -18,6 +18,7 @@ class WechatBot
     def perform
       # we check from the `Scheme` class and analyze all its subclasses
       return true unless process_request(BASE_CLASS) == false
+
       # we will do the same from memory breakpoint now
       stored_breakpoints.each do |memory_breakpoint|
         response = process_request(memory_breakpoint.class_trace.constantize)
@@ -86,8 +87,8 @@ class WechatBot
     # to prevent the same event to fire multiple times
     def insert_breakpoint(request_key, class_trace, target_subclass)
       # target_subclass get the validity
-      MemoryBreakpoint.where(user: user, class_trace: class_trace).delete_all
-      MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: target_subclass::VALID_UNTIL)
+      MemoryBreakpoint.where(user: user, class_trace: class_trace, target_subclass: target_subclass).delete_all
+      MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, target_subclass: target_subclass, valid_until: target_subclass::VALID_UNTIL)
     end
 
     # get all the matching requests breakpoints with the request
