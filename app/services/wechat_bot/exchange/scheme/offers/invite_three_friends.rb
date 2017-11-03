@@ -11,7 +11,7 @@ class WechatBot
           end
 
           def response
-            reward_manager.delete
+            reward_manager.reward.delete
             messenger.text! 'delete'
             return
             if reward_manager.start
