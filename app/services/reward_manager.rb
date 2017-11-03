@@ -9,7 +9,11 @@ class RewardManager < BaseService
   # we simple start or recover the reward
   # if it's already started, it won't affect the data
   def start
-    reward.to_end?
+    if reward.to_end?
+      return_with(:success)
+    else
+      return_with(:error, "Reward was already given.")
+    end
   end
 
   # we will call a dynamic subclass if defined

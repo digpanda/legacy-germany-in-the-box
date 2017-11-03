@@ -8,7 +8,11 @@ class RewardManager < BaseService
 
     def end
       if reward.to_end?
-        return reward_was_processed if process_reward.success?
+        if process_reward.success?
+          return reward_was_processed
+        else
+          return processed_reward
+        end
       end
       return_with(:error, "Reward was already given.")
     end

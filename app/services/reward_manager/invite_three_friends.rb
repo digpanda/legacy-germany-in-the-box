@@ -3,14 +3,11 @@ class RewardManager < BaseService
 
     # if the user entered a correct email the reward is confirmed
     def process_reward
-      SlackDispatcher.new.message("PROCESSING REWARD #{reward.user.friends.count}")
       if reward.user.friends.count >= 3
         coupon
-        SlackDispatcher.new.message("SUCCESS")
         return return_with(:success)
       end
-      SlackDispatcher.new.message("ERROR")
-      return_with(:error)
+      return_with(:error, "You did not invite 3 friends.")
     end
 
     def readable_to_save

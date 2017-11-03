@@ -11,11 +11,12 @@ class WechatBot
           end
 
           def response
-            if reward_manager.start
+            if reward_manager.start.success?
               # we try to end the challenge
               # it will go through a validation
               # if it's possible
-              if reward_manager.end
+              SlackDispatcher.new.message("REWARD MANAGER : #{reward_manager.end}")
+              if reward_manager.end.success?
                 messenger.text! 'You already invited 3 friends. Congratulation !'
               else
                 messenger.text! "You got #{total_friends} friends. Please share this link with your friends : #{link_to_share}"

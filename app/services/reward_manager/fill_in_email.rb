@@ -7,7 +7,7 @@ class RewardManager < BaseService
         coupon
         return return_with(:success)
       end
-      return_with(:error)
+      return_with(:error, "This email is not valid.")
     end
 
     def readable_to_save
