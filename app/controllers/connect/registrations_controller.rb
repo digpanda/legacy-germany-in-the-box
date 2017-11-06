@@ -67,7 +67,7 @@ class Connect::RegistrationsController < Devise::RegistrationsController
 
     def after_inactive_sign_up_path_for(resource)
       flash[:info] = I18n.t('top_menu.email_confirmation_msg')
-      popular_products_path
+      respond_with resource, location: after_sign_up_path_for(resource)
     end
 
     def configure_devise_permitted_parameters
