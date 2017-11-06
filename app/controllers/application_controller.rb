@@ -52,13 +52,24 @@ class ApplicationController < ActionController::Base
 
   # if there is a URL containing a code
   # we try to bind automatically the user to the friend
-  # NOTE : for now it's short enough to stay here.
+  # NOTE : we have a card to place it somewhere else soon.
   def bind_friend
     if params[:friend] && current_user
       user = User.where(id: params[:friend]).first
       if user && current_user.friends.where(id: params[:friend]).count == 0
         current_user.friends << user
         current_user.save
+      end
+    end
+  end
+
+  # if there is a URL containing a code
+  # we try to bind automatically the user to the friend
+  # NOTE : we have a card to place it somewhere else soon.
+  def assign_label
+    if params[:label] && current_user
+      unless current_user.label
+        current_user.update(label: label)
       end
     end
   end
