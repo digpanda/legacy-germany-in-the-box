@@ -47,6 +47,13 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_valid_email do
+      before(:create) do |user|
+        user.email = 'valid-email@gmail.com'
+        user.confirmed_at = Time.now
+      end
+    end
+
     trait :without_name do
       before(:create) do |user|
         user.fname = nil

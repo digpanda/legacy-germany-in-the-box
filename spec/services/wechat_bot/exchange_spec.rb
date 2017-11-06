@@ -62,8 +62,7 @@ describe WechatBot::Exchange do
 
       it 'tries the email challenge but it is already successful' do
 
-        customer.email = 'already-valid@gmail.com'
-        customer.save!(validate: false)
+        customer = FactoryGirl.create(:customer, :from_wechat, :with_valid_email)
 
         described_class.new(customer, 'offers').perform
         perform = described_class.new(customer, '1').perform
