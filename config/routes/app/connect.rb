@@ -12,7 +12,8 @@ devise_for :users, path: 'connect/', controllers: {
   # we have to repeat the namespace
   # because devise does not understand it
   registrations: 'connect/registrations',
+  confirmations: 'connect/confirmations'
   sessions: 'connect/sessions',
   passwords: 'connect/passwords',
-  omniauth_callbacks: 'connect/omniauth_callbacks'
+  omniauth_callbacks: 'connect/omniauth_callbacks',
 }

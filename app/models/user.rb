@@ -50,7 +50,7 @@ class User
   field :status, type: Boolean, default: true
   field :uid,       type: String
   field :label, type: String
-  
+
   field :banished, type: Boolean, default: false
   field :version_allowed, type: Symbol, default: :stable
 
@@ -64,7 +64,7 @@ class User
   field :wechat_unionid, type: String
   field :wechat_openid,  type: String
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   has_and_belongs_to_many :favorites, class_name: 'Product'
   has_and_belongs_to_many :friends, class_name: 'User'
