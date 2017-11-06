@@ -256,7 +256,41 @@ body,.wrapper{background-color:#f2f6f7}.wrapper h1{color:#58595b}.wrapper h1{}.w
           <tbody><tr>
             <td class="column" style='font-size: 14px;line-height: 21px;padding: 0;text-align: left;vertical-align: top;color: #808285;font-family: "Open Sans",sans-serif;' width="600">
 
-              <%= yield %>
+              <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
+                <div style="line-height:10px;font-size:1px">&nbsp;</div>
+              </div>
+
+              <div style="Margin-left: 20px;Margin-right: 20px;">
+                <div style="line-height:5px;font-size:1px">&nbsp;</div>
+              </div>
+
+              <div style="Margin-left: 20px;Margin-right: 20px;">
+                <h1 style="Margin-top: 0;Margin-bottom: 20px;font-style: normal;font-weight: normal;font-size: 26px;line-height: 34px;color: #58595b;font-family: Bitter,Georgia,serif;text-align: center;"><%= @title %></h1>
+              </div>
+
+              <div style="Margin-left: 20px;Margin-right: 20px;">
+                <div class="divider" style="display: block;font-size: 2px;line-height: 2px;width: 40px;background-color: #b3cad0;Margin-left: 260px;Margin-right: 260px;Margin-bottom: 20px;">&nbsp;</div>
+              </div>
+
+              <div style="Margin-left: 20px;Margin-right: 20px;">
+                <%= EmailsHelper.email_line("请点击以下链接确认您的账号邮箱") %>  <br>
+              </div>
+
+              <div style="Margin-left: 20px;Margin-right: 20px;">
+                <div style="line-height:10px;font-size:1px">&nbsp;</div>
+              </div>
+              <div style="Margin-left: 20px;Margin-right: 20px;">
+                <div style="line-height:10px;font-size:1px">&nbsp;</div>
+              </div>
+
+              <div style="Margin-left: 20px;Margin-right: 20px;">
+                <%= EmailsHelper.email_action("确认您的账号", confirmation_url(@resource, confirmation_token: @token)) %>
+              </div>
+
+              <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
+                <div style="line-height:15px;font-size:1px">&nbsp;</div>
+              </div>
+
 
               </td>
             </tr>
@@ -281,9 +315,7 @@ body,.wrapper{background-color:#f2f6f7}.wrapper h1{color:#58595b}.wrapper h1{}.w
                       <div>
                         <div>
                           <p>
-                            This email was sent for the shopkeepers of Germany In The Box <br>
-                            customer@germanyinthebox.com <br>
-                            www.germanyinthebox.com <br>
+                          www.germanyinthebox.com <br>
                           </p>
                         </div>
                         </div>
