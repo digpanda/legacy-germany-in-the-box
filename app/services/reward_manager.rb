@@ -6,6 +6,15 @@ class RewardManager < BaseService
     @task = task
   end
 
+  # this will not trigger the Reward model entry creation
+  # it's used to check if the reward is already in database
+  # NOTE : we use that when confirming email for instancei
+  # f the user did not start this challenge
+  # we don't need to give him a coupon.
+  def started?
+    reward_exists?
+  end
+
   # we simple start or recover the reward
   # if it's already started, it won't affect the data
   def start
@@ -33,6 +42,10 @@ class RewardManager < BaseService
   # we can access the reward from the model directly from the manager
   def reward
     @reward ||= Reward.where(user: user, task: task).first_or_create!(started_at: Time.now)
+  end
+
+  def reward_exists?
+    Reward.where(user: user, task: task).count > 0
   end
 
   private

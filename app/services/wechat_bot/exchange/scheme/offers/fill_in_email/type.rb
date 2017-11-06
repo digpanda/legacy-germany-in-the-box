@@ -31,13 +31,6 @@ class WechatBot
             def reward_manager
               @reward_manager ||= RewardManager.new(user, task: :fill_in_email)
             end
-
-            # we end the reward and read it to the customer
-            def read_reward
-              reward_manager.end
-              messenger.text! "#{reward_manager.read}"
-            end
-
           end
         end
       end
