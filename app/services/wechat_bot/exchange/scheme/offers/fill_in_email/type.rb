@@ -5,7 +5,7 @@ class WechatBot
         class FillInEmail < Scheme
           class Type < Scheme
 
-            VALID_UNTIL = 30.minutes.from_now.freeze
+            VALID_UNTIL = -> { 30.minutes.from_now }
 
             def request
               ''
