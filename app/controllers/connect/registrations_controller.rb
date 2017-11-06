@@ -24,34 +24,27 @@ class Connect::RegistrationsController < Devise::RegistrationsController
 
     if resource.persisted?
 
-      if resource.active_for_authentication?
+      flash[:success] = I18n.t('notice.success_subscription')
 
-        flash[:success] = I18n.t('notice.success_subscription')
+      # some stuff will be going on
+      sign_up(resource_name, resource)
 
-        sign_up(resource_name, resource)
-
-        if resource.freshly_created?
-          AfterSignupHandler.new(request, resource).solve
-        end
-
-        sign_in(:user, User.find(resource.id)) # auto sign in
-
-        if resource.customer?
-          Notifier::Customer.new(resource).welcome
-        elsif resource.shopkeeper?
-          Notifier::Shopkeeper.new(resource).welcome
-        end
-
-        respond_with resource, location: after_sign_up_path_for(resource)
-        return
-
-      else
-        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-        expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      if resource.freshly_created?
+        AfterSignupHandler.new(request, resource).solve
       end
 
-      session.delete(:signup_advice_counter)
+      # we auto sign-in the user
+      sign_in(:user, resource)
+
+      if resource.customer?
+        Notifier::Customer.new(resource).welcome
+      elsif resource.shopkeeper?
+        Notifier::Shopkeeper.new(resource).welcome
+      end
+
+      respond_with resource, location: after_sign_up_path_for(resource)
+      return
+
     else
       clean_up_passwords resource
       set_minimum_password_length
@@ -59,15 +52,15 @@ class Connect::RegistrationsController < Devise::RegistrationsController
       session[:signup_advice_counter] = 1
       flash[:error] = resource.errors.full_messages.join(', ')
       render :new
-
     end
   end
 
   protected
 
+    # NOTE : it should not be triggered, but in case
+    # it is we just redirect to normal after sign up method
     def after_inactive_sign_up_path_for(resource)
-      flash[:info] = I18n.t('top_menu.email_confirmation_msg')
-      respond_with resource, location: after_sign_up_path_for(resource)
+      after_sign_up_path_for(resource)
     end
 
     def configure_devise_permitted_parameters

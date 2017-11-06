@@ -64,7 +64,14 @@ class User
   field :wechat_unionid, type: String
   field :wechat_openid,  type: String
 
-  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :trackable,
+         :validatable,
+         :omniauthable,
+         :confirmable, allow_unconfirmed_access_for: nil
 
   has_and_belongs_to_many :favorites, class_name: 'Product'
   has_and_belongs_to_many :friends, class_name: 'User'
