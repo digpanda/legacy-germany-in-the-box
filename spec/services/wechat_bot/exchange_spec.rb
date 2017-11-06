@@ -49,9 +49,14 @@ describe WechatBot::Exchange do
         expect(perform).to eq(true)
 
         # because the update we attempted we need to make sure it's stored
-        customer.reload
-        expect(customer.email).to eq('valid-email@gmail.com')
-        expect(customer.rewards.count).to eq(1)
+        # NOTE : we cannot check that anymore since the email won't be "official" changed
+        # until the user click on the matching link.
+        # customer.reload
+        # expect(customer.email).to eq('valid-email@gmail.com')
+
+        # NOTE : we can't go further because it triggers emailing and confirmations from devise
+        # if so far it works, then we should test devise area elsewhere to make sure the process
+        # is 100% reliable.
 
       end
 
