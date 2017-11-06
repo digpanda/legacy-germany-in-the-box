@@ -164,6 +164,7 @@ class AfterSigninHandler
           current_user.friends << user
           current_user.save
         end
+        session[:friend] = nil
       end
     end
 
@@ -171,9 +172,10 @@ class AfterSigninHandler
     # we try to run the mechanism to assign it to this account
     def handle_label
       if session[:label]
-        unless current_user.label
-          current_user.update(label: session[:label])
+        unless user.label
+          user.update(label: session[:label])
         end
+        session[:label] = nil
       end
     end
 
