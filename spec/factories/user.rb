@@ -13,6 +13,9 @@ FactoryGirl.define do
     birth                  { Helpers::Global.random_date }
     addresses             { FactoryGirl.build_list(:customer_address, 2, primary: true) }
 
+    confirmed_at { Time.now }
+    confirmation_sent_at { Time.now }
+
     factory :shopkeeper, class: User do
       nickname               { "Shopkeeper#{Helpers::Global.next_number(:shopkeeper)}" }
       role                   :shopkeeper

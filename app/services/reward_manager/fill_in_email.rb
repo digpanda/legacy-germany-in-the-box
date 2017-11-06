@@ -3,7 +3,7 @@ class RewardManager < BaseService
 
     # if the user entered a correct email the reward is confirmed
     def process_reward
-      if reward.user.valid_email?
+      if reward.user.valid_email? && reward.user.confirmed?
         coupon
         return return_with(:success)
       end
