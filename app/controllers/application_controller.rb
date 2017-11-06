@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
+  before_action :assign_friend, :assign_label
   before_action :force_wechat_login
   before_action :solve_silent_login, :solve_origin, :solve_landing
-  before_action :bind_friend, :assign_label
 
   # if a user comes from wechat browser and is not logged-in yet
   # we force-login him to the correct domain
@@ -52,26 +52,14 @@ class ApplicationController < ActionController::Base
 
   # if there is a URL containing a code
   # we try to bind automatically the user to the friend
-  # NOTE : we have a card to place it somewhere else soon.
-  def bind_friend
-    if params[:friend] && current_user
-      user = User.where(id: params[:friend]).first
-      if user && current_user.friends.where(id: params[:friend]).count == 0
-        current_user.friends << user
-        current_user.save
-      end
-    end
+  def assign_friend
+    session[:friend] = params[:friend] if params[:friend]
   end
 
   # if there is a URL containing a code
-  # we try to bind automatically the user to the friend
-  # NOTE : we have a card to place it somewhere else soon.
+  # we try to store it before sign-in
   def assign_label
-    if params[:label] && current_user
-      unless current_user.label
-        current_user.update(label: params[:label])
-      end
-    end
+    session[:label] = params[:label] if params[:label]
   end
 
   def current_page

@@ -68,6 +68,12 @@ class AfterSigninHandler
       handle_precreated
       handle_past_orders
       handle_event
+
+      # we assign what was in session
+      # if it exists
+      handle_friend
+      handle_label
+
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
       return navigation.force! if navigation.force?
 
@@ -147,6 +153,28 @@ class AfterSigninHandler
     def handle_past_orders
       remove_all_empty_orders
       remove_timeout_orders
+    end
+
+    # if a param[:friend] was previously stored
+    # we try to run the mechanism to assign it to this account
+    def handle_friend
+      if session[:friend]
+        user = User.where(id: friend[:friend]).first
+        if user && user.friends.where(id: friend[:friend]).count == 0
+          current_user.friends << user
+          current_user.save
+        end
+      end
+    end
+
+    # if a param[:label] was previously stored
+    # we try to run the mechanism to assign it to this account
+    def handle_label
+      if session[:label]
+        unless current_user.label
+          current_user.update(label: session[:label])
+        end
+      end
     end
 
     def remove_timeout_orders
