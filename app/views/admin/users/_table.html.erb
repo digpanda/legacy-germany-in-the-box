@@ -12,7 +12,10 @@
         Role
       </th>
       <th>
-        Version
+        Version Allowed
+      </th>
+      <th>
+        Label
       </th>
       <th>
         Is Referrer
@@ -50,6 +53,9 @@
           </td>
           <td>
             <%= user.version_allowed %>
+          </td>
+          <td>
+            <%= editable_field(user, admin_user_path(user), :label, :text_field) %>
           </td>
           <td>
             <%= boolean_icon(user.referrer?) %>

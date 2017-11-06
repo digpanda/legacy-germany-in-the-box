@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   before_action :force_wechat_login
   before_action :solve_silent_login, :solve_origin, :solve_landing
-  before_action :bind_friend
+  before_action :bind_friend, :assign_label
 
   # if a user comes from wechat browser and is not logged-in yet
   # we force-login him to the correct domain
@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
   def assign_label
     if params[:label] && current_user
       unless current_user.label
-        current_user.update(label: label)
+        current_user.update(label: params[:label])
       end
     end
   end

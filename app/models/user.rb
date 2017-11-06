@@ -49,7 +49,8 @@ class User
   field :provider,  type: Symbol, default: :web
   field :status, type: Boolean, default: true
   field :uid,       type: String
-
+  field :label, type: String
+  
   field :banished, type: Boolean, default: false
   field :version_allowed, type: Symbol, default: :stable
 
