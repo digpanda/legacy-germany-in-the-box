@@ -27,6 +27,9 @@
         Total Earned
       </th>
       <th>
+        Current Balance
+      </th>
+      <th>
         Total Growth
       </th>
       <th>
@@ -68,6 +71,11 @@
           </td>
           <td>
             <%= referrer.total_earned.in_euro.display %>
+          </td>
+          <td>
+            <span class="+blue +bold">
+            <%= referrer.current_balance.in_euro.display %>
+            </span>
           </td>
           <td>
             <%= referrer.total_growth.in_euro.display %>
