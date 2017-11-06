@@ -126,9 +126,10 @@ class AfterSigninHandler
     end
 
     def handle_referrer_binding
-      if request.params[:reference_id]
-        referrer = Referrer.where(reference_id: request.params[:reference_id]).first
+      if session[:reference_id]
+        referrer = Referrer.where(reference_id: session[:reference_id]).first
         ReferrerBinding.new(referrer).bind(user) if referrer
+        session[:reference_id] = nil
       end
     end
 
@@ -159,10 +160,10 @@ class AfterSigninHandler
     # we try to run the mechanism to assign it to this account
     def handle_friend
       if session[:friend]
-        user = User.where(id: friend[:friend]).first
-        if user && user.friends.where(id: friend[:friend]).count == 0
-          current_user.friends << user
-          current_user.save
+        friend = User.where(id: session[:friend]).first
+        if friend && user.friends.where(id: friend[:friend]).count == 0
+          user.friends << friend
+          user.save
         end
         session[:friend] = nil
       end

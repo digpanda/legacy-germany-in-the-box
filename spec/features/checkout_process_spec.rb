@@ -3,7 +3,7 @@ feature 'checkout process', js: true do
   let(:customer) { FactoryGirl.create(:customer) }
 
   before(:each) do
-    login!(customer)
+    process_login(customer)
   end
 
   context 'with mkpost logistic partner' do

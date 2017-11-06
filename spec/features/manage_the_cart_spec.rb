@@ -22,7 +22,7 @@ feature 'manage the cart', js: true do
   context 'as customer' do
 
     let(:customer) { FactoryGirl.create(:customer) }
-    before(:each) { login!(customer) }
+    before(:each) { process_login(customer) }
 
     scenario 'go to the empty cart manager' do
 

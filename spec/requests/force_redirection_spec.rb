@@ -14,7 +14,7 @@ describe 'force redirection', type: :request  do
         # - Laurent, 19/09/2017
         # visit customer_orders_path
         # expect(current_path).to eq(new_user_session_path)
-        # login!(customer)
+        # process_login(customer)
         # expect(page).to have_current_path(customer_orders_path)
 
       end
@@ -33,7 +33,7 @@ describe 'force redirection', type: :request  do
 
         visit admin_categories_path
         expect(current_path).to eq(new_user_session_path)
-        login!(admin)
+        process_login(admin)
         expect(page).to have_current_path(admin_categories_path)
 
       end
@@ -48,7 +48,7 @@ describe 'force redirection', type: :request  do
 
         visit admin_categories_path
         expect(page).to have_current_path(new_user_session_path)
-        login!(shopkeeper)
+        process_login(shopkeeper)
         expect(page).not_to have_current_path(admin_categories_path)
 
       end

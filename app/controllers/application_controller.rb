@@ -14,7 +14,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :assign_friend, :assign_label
+  before_action :assign_friend, :assign_label, :assign_referrer
+  
   before_action :force_wechat_login
   before_action :solve_silent_login, :solve_origin, :solve_landing
 
@@ -60,6 +61,12 @@ class ApplicationController < ActionController::Base
   # we try to store it before sign-in
   def assign_label
     session[:label] = params[:label] if params[:label]
+  end
+
+  # if there is a URL containing a code
+  # we try to store it before sign-in
+  def assign_referrer
+    session[:reference_id] = params[:reference_id] if params[:reference_id]
   end
 
   def current_page

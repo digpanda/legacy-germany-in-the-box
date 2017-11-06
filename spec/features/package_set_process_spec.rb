@@ -3,7 +3,7 @@ feature 'package set process', js: true do
   let(:customer) { FactoryGirl.create(:customer) }
 
   before(:each) do
-    login!(customer)
+    process_login(customer)
   end
 
   # NOTE : for now we don't have any protection regarding the order limit
