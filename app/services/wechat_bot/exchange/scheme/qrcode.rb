@@ -5,6 +5,8 @@ class WechatBot
         def request
           if user&.referrer
             '二维码'
+          else
+            false
           end
         end
 

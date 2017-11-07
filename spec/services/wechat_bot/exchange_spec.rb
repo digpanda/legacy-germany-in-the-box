@@ -38,8 +38,9 @@ describe WechatBot::Exchange do
         described_class.new(customer, '1').perform
 
         perform = described_class.new(customer, 'wrong-email').perform
-        # it didn not achieve so it goes down and try other possibilities (none are available here)
-        expect(perform).to eq(false)
+        # it didn not achieve but it does send true, because the iteration was successfully achieved
+        # it won't erase the breakpoint also
+        expect(perform).to eq(true)
         # because the update we attempted we need to do that
         customer.reload
         expect(customer.email).not_to eq('wrong-email')
