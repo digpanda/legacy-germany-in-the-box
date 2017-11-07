@@ -22,7 +22,13 @@ class WechatBot
       # we will do the same from memory breakpoint now
       stored_breakpoints.each do |memory_breakpoint|
         response = process_request(memory_breakpoint.class_trace.constantize)
-        if response != false
+        if response == false
+          # the logic here is even if the response is false (boolean)
+          # we lock the system as if it succeeded
+          # to avoid firing other events, while giving the chance
+          # to the same sequence to repeat itself on request
+          return true
+        else
           memory_breakpoint.delete
           return response
         end

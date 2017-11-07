@@ -1,13 +1,19 @@
-THIS DOES NOT SEEM TO BE USED WITHIN OUR SYSTEM
+<div class="row col-md-4 col-md-push-4 col-md-pull-4 col-xs-10 col-xs-push-1 col-xs-pull-1 +white-box">
+
+<h2></h2>
+
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f| %>
   <%= devise_error_messages! %>
   <div class="field">
     <%= f.label :email %>
     <br/>
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
   </div>
+  <br />
   <div class="actions">
-    <%= f.submit I18n.t('button.resend_confirmation') %>
+    <%= f.submit I18n.t('button.resend_confirmation'), class: 'text-button --green' %>
   </div>
 <% end %>
-<%= render "connect/shared/links" %>
+
+
+</div>

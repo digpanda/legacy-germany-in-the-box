@@ -11,6 +11,13 @@ class WechatBot
           end
 
           def response
+
+            # TESTS
+            reward_manager.reward.delete
+            messenger.text! "auto-delete for testing"
+            reward_manager = RewardManager.new(user, task: :fill_in_email)
+            # END OF TESTS
+
             if reward_manager.start.success?
               # we try to end the challenge
               # it will go through a validation

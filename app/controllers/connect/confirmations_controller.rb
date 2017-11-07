@@ -1,7 +1,6 @@
 class Connect::ConfirmationsController < Devise::ConfirmationsController
-  private
+
   # def after_confirmation_path_for(resource_name, resource)
-  #   super
   # end
 
   # NOTE : we hook the confirmation token area
@@ -27,6 +26,6 @@ class Connect::ConfirmationsController < Devise::ConfirmationsController
   private
 
     def reward_manager
-      @reward_manager ||= RewardManager.new(user, task: :fill_in_email)
+      @reward_manager ||= RewardManager.new(resource, task: :fill_in_email)
     end
 end
