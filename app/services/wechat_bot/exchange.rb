@@ -12,7 +12,7 @@ class WechatBot
 
     def initialize(user, request)
       @user = user
-      @request = request
+      @request = request.downcase.strip
     end
 
     def perform
