@@ -8,6 +8,7 @@ class WechatBot
 
     # this is the starting point to
     # load the requests / responses
+    # it can be changed to any namespace / class
     BASE_CLASS = Scheme
 
     def initialize(user, request)
@@ -82,7 +83,7 @@ class WechatBot
       end
     end
 
-    # we can customize the parameters given to each classes
+    # we can customize the parameters given to each class
     # this line will be used when instanciating the subclasses
     # for request or response
     def instance(to_process)
@@ -91,8 +92,8 @@ class WechatBot
 
     # we force delete all the whole entries matching the subclass
     # to prevent the same event to fire multiple times
+    # target_subclass ensure the validity of the targetted breakpoint
     def insert_breakpoint(request_key, class_trace, target_subclass)
-      # target_subclass get the validity
       MemoryBreakpoint.where(user: user, class_trace: class_trace, target_subclass: target_subclass).delete_all
       MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, target_subclass: target_subclass, valid_until: target_subclass::VALID_UNTIL.call)
     end
