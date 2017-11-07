@@ -8,7 +8,7 @@ class User
   strip_attributes
 
   # research system
-  search_in :id, :email, :role, :last_sign_in_at, :nickname, :full_name, referrer: :nickname
+  search_in :id, :email, :role, :last_sign_in_at, :nickname, :full_name, :label, referrer: :nickname
 
   ## Database authenticatable
   field :email,               type: String, default: ''
