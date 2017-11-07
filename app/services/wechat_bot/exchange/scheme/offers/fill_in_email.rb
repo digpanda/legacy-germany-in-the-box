@@ -16,7 +16,7 @@ class WechatBot
               # it will go through a validation
               # if it's possible
               if reward_manager.end.success?
-                messenger.text! 'Your email is already valid, you will receive your reward soon. Congratulation !'
+                messenger.text! 'Your email is already valid. Congratulation !'
               else
                 messenger.text! 'Please enter your email'
               end
