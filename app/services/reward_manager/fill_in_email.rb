@@ -7,11 +7,11 @@ class RewardManager < BaseService
         coupon
         return return_with(:success)
       end
-      return_with(:error, "This email is not valid.")
+      return_with(:error, I18n.t('reward.error.email_not_valid'))
     end
 
     def readable_to_save
-      "Reward is a coupon #{coupon.code} because you are a good buddy."
+      I18n.t('reward.fill_in_email', coupon_code: coupon.code)
     end
 
     # setup email coupon reward to use

@@ -7,11 +7,11 @@ class RewardManager < BaseService
         coupon
         return return_with(:success)
       end
-      return_with(:error, "You did not invite 3 friends.")
+      return_with(:error, I18n.t('reward.error.you_did_not_invite'))
     end
 
     def readable_to_save
-      "Reward is a coupon #{coupon.code} because got many friends."
+      I18n.t('reward.invite_three_friends', coupon_code: coupon.code)
     end
 
     # setup email coupon reward to use

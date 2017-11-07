@@ -1,4 +1,10 @@
 zh-CN:
+  reward:
+    fill_in_email: "Reward is a coupon %{coupon_code} because you are a good buddy."
+    invite_three_friends: "Reward is a coupon #{coupon.code} because got many friends."
+    error:
+      email_not_valid: This email is not valid.
+      you_did_not_invite: You did not invite 3 friends.
   bot:
     exchange:
       offers:
