@@ -4,13 +4,15 @@ class WechatBot
       class Offers < Scheme
         class FillInEmail < Scheme
 
-          VALID_UNTIL = -> { 1.hours.from_now.freeze }
+          VALID_UNTIL = -> { 1.hours.from_now }
 
           def request
             '1'
           end
 
           def response
+            reward_manager.reward.delete
+            messenger.text! 'DELETE DONE'
             if reward_manager.start.success?
               # we try to end the challenge
               # it will go through a validation
