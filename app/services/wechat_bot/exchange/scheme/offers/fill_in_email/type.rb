@@ -13,10 +13,9 @@ class WechatBot
 
             def response
               if user.update(email: email)
-
-                messenger.text! 'Thank you very much. Your profile is now up to date. Please check your inbox and confirm your email to receive your reward.'
+                messenger.text! I18n.t('bot.exchange.offers.fill_in_email.type.email_was_updated')
               else
-                messenger.text! "This email is not valid."
+                messenger.text! I18n.t('bot.exchange.offers.fill_in_email.type.email_is_not_valid')
                 false
               end
             end

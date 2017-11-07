@@ -9,7 +9,7 @@ class WechatBot
 
           def response
             user.rewards.delete_all
-            messenger.text! "Your rewards were erased."
+            messenger.text! 'Your rewards were erased.'
           end
         end
       end

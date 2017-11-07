@@ -16,12 +16,12 @@ class WechatBot
               # it will go through a validation
               # if it's possible
               if reward_manager.end.success?
-                messenger.text! 'Your email is already valid. Congratulation !'
+                messenger.text! I18n.t('bot.exchange.offers.fill_in_email.email_is_already_valid')
               else
-                messenger.text! 'Please enter your email'
+                messenger.text! I18n.t('bot.exchange.offers.fill_in_email.please_enter_your_email')
               end
             else
-              messenger.text! 'You already completed this challenge.'
+              messenger.text! I18n.t('bot.exchange.offers.fill_in_email.you_already_completed_this_challenge')
             end
           end
 

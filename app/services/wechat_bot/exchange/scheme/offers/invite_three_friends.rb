@@ -16,12 +16,12 @@ class WechatBot
               # it will go through a validation
               # if it's possible
               if reward_manager.end.success?
-                messenger.text! 'You already invited 3 friends. Congratulation !'
+                messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.you_already_invited_friends')
               else
-                messenger.text! "You got #{total_friends} friends. Please share this link with your friends : #{link_to_share}"
+                messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.please_share', total_friends: total_friends, link_to_share: link_to_share)
               end
             else
-              messenger.text! 'You already completed this challenge.'
+              messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.you_already_completed_this_challenge')
             end
           end
 

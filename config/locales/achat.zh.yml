@@ -1,4 +1,18 @@
 zh-CN:
+  bot:
+    exchange:
+      offers:
+        invite_three_friends:
+          you_already_invited_friends: You already invited three friends.
+          please_share: "You got %{total_friends} friends. Please share this link with your friends : %{link_to_share}"
+          you_already_completed_this_challenge: You already completed this challenge.
+        fill_in_email:
+          email_is_already_valid: Your email is already valid. Congratulation !
+          please_enter_your_email: Please enter your email.
+          you_already_completed_this_challenge: You already completed this challenge.
+          type:
+            email_was_updated: Thank you very much. Your profile is now up to date. Please check your inbox and confirm your email to receive your reward.
+            email_is_not_valid: This email is not valid.
   note:
     wechatpay_wechat_user: 微信内访问来因盒，首选微信支付，一步完成哦
     wechatpay_no_wechat_mobile_user: 手机浏览器内使用微信支付，请保存二维码到相册后使用微信扫一扫
