@@ -1,4 +1,24 @@
 de:
+  reward:
+    fill_in_email: "Reward is a coupon %{coupon_code} because you are a good buddy."
+    invite_three_friends: "Reward is a coupon #{coupon.code} because got many friends."
+    error:
+      email_not_valid: This email is not valid.
+      you_did_not_invite: You did not invite 3 friends.
+  bot:
+    exchange:
+      offers:
+        invite_three_friends:
+          you_already_invited_friends: You already invited three friends.
+          please_share: "You got %{total_friends} friends. Please share this link with your friends : %{link_to_share}"
+          you_already_completed_this_challenge: You already completed this challenge.
+        fill_in_email:
+          email_is_already_valid: Your email is already valid. Congratulation !
+          please_enter_your_email: Please enter your email.
+          you_already_completed_this_challenge: You already completed this challenge.
+          type:
+            email_was_updated: Thank you very much. Your profile is now up to date. Please check your inbox and confirm your email to receive your reward.
+            email_is_not_valid: This email is not valid.
   note:
     wechatpay_wechat_user: WECHAT USER ON WECHATPAY
     wechatpay_no_wechat_mobile_user: MOBILE USER ON WECHATPAY
