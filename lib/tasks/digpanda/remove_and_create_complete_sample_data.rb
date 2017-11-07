@@ -283,8 +283,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       puts 'We create a shop address'
 
       address = Address.new(
-        number: rand(1..20),
-        street: Faker::Address.street_name,
+        full_address: Faker::Address.street_name,
         type: type,
         fname: shop.shopkeeper.fname,
         lname: shop.shopkeeper.lname,
