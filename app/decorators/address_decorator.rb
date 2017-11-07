@@ -15,15 +15,6 @@ class AddressDecorator < Draper::Decorator
     end
   end
 
-  def street_and_number
-    case country_code
-    when 'CN' # originally zh-CN
-      "#{number} #{street}"
-    else
-      "#{street} #{number}"
-    end
-  end
-
   def full_name
     if "#{fname}#{lname}".chinese?
       "#{lname}#{fname}"
@@ -33,11 +24,12 @@ class AddressDecorator < Draper::Decorator
   end
 
   def imprint_address
-    "#{street} #{number} <br /> #{zip} #{city} <br /> #{country}"
+    "#{full_address} <br /> #{country}"
   end
 
   # NOTE : street number aren't used anymore, it's one block in the system.
-  def full_address
-    "#{province}#{city}#{district}#{street}#{number}#{additional}, #{zip}, #{country}"
-  end
+  # def full_address
+  #   "#{province}#{city}#{district}#{street}#{number}#{additional}, #{zip}, #{country}"
+  # end
+
 end

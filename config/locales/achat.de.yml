@@ -457,7 +457,7 @@ de:
     zip: PLZ
     primary: primär
     set_primary: primär
-    full_addresse: Addresse
+    full_address: Addresse
     add_address: hinzufügen
     change_address_title: Adresse ändern
     save_address: Speichern

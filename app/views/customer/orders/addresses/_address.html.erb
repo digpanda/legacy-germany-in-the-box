@@ -17,9 +17,8 @@
     <div class="row">
       <div class="col-xs-8">
         <div class="addresses__address-details">
-          <div class="addresses__address-street"><%= address.number %><%= address.street %></div>
-          <div class="addresses__address-city"><%= address.zip %> <%= address.city %> <%= address.district %></div>
-          <div class="addresses__address-country"><% address.province %> <%= address.country %></div>
+          <div class="addresses__address-street"><%= address.full_address %></div>
+          <div class="addresses__address-country"> <%= address.country %></div>
           <div class="addresses__address-phone"><%= address.mobile %></div>
         </div>
       </div>

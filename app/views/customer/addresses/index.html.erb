@@ -19,19 +19,7 @@
           <%= I18n.t('edit_address.country') %>
         </th>
         <th>
-          <%= I18n.t('edit_address.province') %>
-        </th>
-        <th>
-          <%= I18n.t('edit_address.city') %>
-        </th>
-        <th>
-          <%= I18n.t('edit_address.district') %>
-        </th>
-        <th>
-          <%= I18n.t('edit_address.zip') %>
-        </th>
-        <th>
-          <%= I18n.t('edit_address.street') %>
+          <%= I18n.t('edit_address.full_address') %>
         </th>
         <th>
           <%= I18n.t('edit_order.operations') %>
@@ -57,19 +45,7 @@
             <%= address.country %>
           </td>
           <td>
-            <%= address.province %>
-          </td>
-          <td>
-            <%= address.city %>
-          </td>
-          <td>
-            <%= address.district %>
-          </td>
-          <td>
-            <%= address.zip %>
-          </td>
-          <td>
-            <%= address.street %>
+            <%= address.full_address %>
           </td>
           <td>
             <%= link_to '', edit_customer_address_path(address), :class => 'tooltipster fa fa-pencil buttons buttons__edit', :title => "Edit" %>

@@ -8,14 +8,7 @@
     Customer: <%= @order.billing_address.decorate.full_name %><br />
     <br />
     Address:<br />
-    <%= @order.billing_address.district %>
-    <%= @order.billing_address.street %>
-    <%= @order.billing_address.number %>
-    <%= @order.billing_address.additional %>
-    <br />
-    <%= @order.billing_address.zip %>
-    <%= @order.billing_address.city %>,
-    <%= @order.billing_address.province %>,
+    <%= @order.billing_address.full_address %><br />
     <%= @order.billing_address.country %>
 
   <% end %>

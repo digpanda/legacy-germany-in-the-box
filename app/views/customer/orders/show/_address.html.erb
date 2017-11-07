@@ -2,25 +2,10 @@
 <div class="address-box">
   <ul>
     <li>
-      <%= "#{I18n.t('edit_address.street')} : #{ address.street } #{ address.number }" %>
-    </li>
-    <li>
-      <%= "#{I18n.t('edit_address.additional')} : #{ address.additional }" %>
-    </li>
-    <li>
-      <%= "#{I18n.t('edit_address.district')} : #{ address.district }" %>
-    </li>
-    <li>
-      <%= "#{I18n.t('edit_address.city')} : #{ address.city }" %>
-    </li>
-    <li>
-      <%= "#{I18n.t('edit_address.province')} : #{ address.province }" %>
+      <%= "#{I18n.t('edit_address.full_address')} : #{ address.full_address }" %>
     </li>
     <li>
       <%= "#{I18n.t('edit_address.country')} : #{ address.country_local_name }" %>
-    </li>
-    <li>
-      <%= "#{I18n.t('edit_address.zip')} : #{ address.zip }" %>
     </li>
   </ul>
 </div>

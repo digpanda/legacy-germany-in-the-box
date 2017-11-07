@@ -6,13 +6,16 @@ class Address
 
   strip_attributes
 
-  field :additional,    type: String
-  field :number,        type: String
-  field :street,        type: String
-  field :district,      type: String
-  field :city,          type: String
-  field :province,      type: String
-  field :zip,           type: String
+  # field :additional,    type: String
+  # field :number,        type: String
+  # field :street,        type: String
+  # field :district,      type: String
+  # field :city,          type: String
+  # field :province,      type: String
+  # field :zip,           type: String
+
+  field :full_address
+
   field :country,       type: ISO3166::Country
   field :type,          type: Symbol, default: :both
   field :company,       type: String
@@ -43,12 +46,12 @@ class Address
   validates :fname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, if: -> { user&.customer? }
   validates :lname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, if: -> { user&.customer? }
 
-  validates :street, presence: true
-  validates :city, presence: true
-  validates :zip, presence: true
+  # validates :street, presence: true
+  # validates :city, presence: true
+  # validates :zip, presence: true
   validates :country, presence: true
   validates :company, presence: true, if: -> { shop.present? }
-  validates :province, presence: true
+  # validates :province, presence: true
   validates :type, presence: true , inclusion: { in: [:billing, :shipping, :both] }
 
   before_save :ensure_valid_mobile
