@@ -15,15 +15,16 @@ module Helpers
         fill_in 'address[mobile]', with: '13802049742'
         fill_in 'address[pid]', with: '11000019790225207X'
 
-        loop until page.all(:css, '#address_province option')[1]
-        page.all(:css, '#address_province option')[1].select_option
-        loop until page.all(:css, '#address_city option')[1]
-        page.all(:css, '#address_city option')[1].select_option
-        loop until page.all(:css, '#address_district option')[1]
-        page.all(:css, '#address_district option')[1].select_option
+        # loop until page.all(:css, '#address_province option')[1]
+        # page.all(:css, '#address_province option')[1].select_option
+        # loop until page.all(:css, '#address_city option')[1]
+        # page.all(:css, '#address_city option')[1].select_option
+        # loop until page.all(:css, '#address_district option')[1]
+        # page.all(:css, '#address_district option')[1].select_option
 
-        fill_in 'address[street]', with: STREET
-        fill_in 'address[zip]', with: '300222'
+        fill_in 'address[full_address]', with: STREET
+        
+        # fill_in 'address[zip]', with: '300222'
 
         page.first('#address_primary').trigger('click')
         page.first('input[type=submit]').trigger('click')
