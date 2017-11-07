@@ -36,7 +36,7 @@ module Helpers
       end
 
       def on_order_address_page?
-        expect(page).to have_css('form#new_address')
+        expect(page).to have_content('请从以下地址中选择')
       end
 
       def on_missing_info_page?

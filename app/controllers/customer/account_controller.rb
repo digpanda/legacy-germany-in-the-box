@@ -13,6 +13,16 @@ class Customer::AccountController < ApplicationController
   # within the system (e.g checkout process) be careful with this.
   def update
     if valid_password? && ensure_password! && user.update(user_params)
+      # update email nonetheless without waiting for confirmation
+      # NOTE : this was coded regarding a bug on missing informations
+      # it should be optimized.
+      if user_params[:email] != user.email
+        user.confirmed_at = nil
+        user.skip_reconfirmation!
+        user.email = user_params[:email]
+        user.save(validate: false)
+      end
+
       flash[:success] = I18n.t('notice.account_updated')
       sign_in(user, bypass: true)
     else
