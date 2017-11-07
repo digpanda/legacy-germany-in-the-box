@@ -266,15 +266,9 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       address = Address.new(
       fname:       '薇',
       lname:       '李',
-      additional:  '309室',
-      street:      '华江里',
-      number:      '21',
-      zip:         '300222',
-      city:        '天津',
+      full_address: '天津天津和平区华江里21309室, 300222',
       country:     'CN',
       mobile:      '13802049778',
-      province:    '天津',
-      district:    '和平区',
       pid:         '11000019790225207X'
       )
 
@@ -291,9 +285,6 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       address = Address.new(
         number: rand(1..20),
         street: Faker::Address.street_name,
-        city: Faker::Address.city,
-        province: Faker::Address.state,
-        zip: Faker::Address.zip_code,
         type: type,
         fname: shop.shopkeeper.fname,
         lname: shop.shopkeeper.lname,
