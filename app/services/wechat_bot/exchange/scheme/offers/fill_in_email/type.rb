@@ -13,10 +13,10 @@ class WechatBot
 
             def response
               if user.update(email: email)
+
                 messenger.text! 'Thank you very much. Your profile is now up to date. Please check your inbox and confirm your email to receive your reward.'
               else
                 messenger.text! "This email is not valid."
-                # will allow the system to repeat it
                 false
               end
             end

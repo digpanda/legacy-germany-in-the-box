@@ -16,7 +16,8 @@ class Connect::ConfirmationsController < Devise::ConfirmationsController
       if reward_manager.started?
         reward_manager.end
       end
-      set_flash_message!(:notice, :confirmed)
+      
+      flash[:success] = I18.n('devise.confirmations.confirmed')
       respond_with_navigational(resource){ redirect_to after_confirmation_path_for(resource_name, resource) }
     else
       respond_with_navigational(resource.errors, status: :unprocessable_entity){ render :new }
