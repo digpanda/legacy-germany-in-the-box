@@ -32,7 +32,7 @@ class Notifier
       dispatch(
         title: "New reward acquiered",
         desc: "#{reward.read}",
-      ).perform # NOTE : add dispatcher for wechat bot
+      ).perform(:wechat, :email)
     end
 
     def order_is_being_processed(order)
