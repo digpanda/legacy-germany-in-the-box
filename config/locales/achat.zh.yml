@@ -3,7 +3,7 @@ zh-CN:
     fill_in_email: "邮箱验证任务奖励是购物优惠券: %{coupon_code}"
     invite_three_friends: "朋友注册邀请的任务奖励是购物优惠券 #{coupon.code} "
     error:
-      email_not_valid: 邮箱地址不正确
+      email_not_valid: 邮箱地址不正确。返回任务奖励初始选项请输入prize
       you_did_not_invite: 您尚未完成3位朋友的注册邀请任务奖励。
   bot:
     exchange:
@@ -18,7 +18,7 @@ zh-CN:
           you_already_completed_this_challenge: 您已成功完成了这个任务奖励。
           type:
             email_was_updated: 请访问您的邮箱，点击邮箱验证链接，完成后获取任务奖励。
-            email_is_not_valid: 邮箱地址不正确。
+            email_is_not_valid: 邮箱地址不正确。返回任务奖励初始选项请输入prize
   note:
     wechatpay_wechat_user: 微信内访问来因盒，首选微信支付，一步完成哦
     wechatpay_no_wechat_mobile_user: 手机浏览器内使用微信支付，请保存二维码到相册后使用微信扫一扫
