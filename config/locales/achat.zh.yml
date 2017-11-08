@@ -10,6 +10,10 @@ zh-CN:
   bot:
     exchange:
       offers:
+        make_first_order:
+          you_already_made_an_order: You already made an order, congratulations !
+          please_make_order: You or one of you friends must complete an order to receive this reward.
+          you_already_completed_this_challenge: 您已成功完成了这个任务奖励.
         invite_three_friends:
           you_already_invited_friends: 您已经完成朋友注册邀请任务奖励。
           please_share: "请转发注册链接，邀请%{total_friends}位朋友: %{link_to_share}"
