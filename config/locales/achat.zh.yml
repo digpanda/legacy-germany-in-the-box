@@ -1,5 +1,6 @@
 zh-CN:
   reward:
+    make_first_order: "Congratulation you or one of your friends made your first order, your coupon code is %{coupon_code}"
     fill_in_email: "邮箱验证任务奖励是购物优惠券: %{coupon_code}"
     invite_three_friends: "朋友注册邀请的任务奖励是购物优惠券 #{coupon.code} "
     error:

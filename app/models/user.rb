@@ -189,6 +189,7 @@ class User
   end
 
   def valid_email?
+    return false unless email
     !email.include?('@wechat.com')
   end
 
