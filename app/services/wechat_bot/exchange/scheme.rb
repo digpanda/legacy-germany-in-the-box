@@ -3,8 +3,11 @@ class WechatBot
     class Scheme < WechatBot::Exchange
       extend Options
 
-      # it's the default valid
+      # validity expiration system
       valid_until -> { 1.weeks.from_now }
+      # after there's a match and the response is triggered
+      # we can either cascade the requests or just quit it there (:break, :continue)
+      after_match :break
 
       # NOTE : we inherit exchange because it's actually very convenient
       # it contains everything like slack, messenger, data, etc.
