@@ -2,6 +2,8 @@ class WechatBot
   class Exchange < WechatBot::Base
     class Scheme < WechatBot::Exchange
       class Qrcode < Scheme
+        extend Options
+        
         def request
           if user&.referrer
             '二维码'

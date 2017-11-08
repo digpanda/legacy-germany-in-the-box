@@ -18,8 +18,8 @@ class WechatBot
         def exec_after_match
           @@after_match
         end
-      end
 
+      end
     end
   end
 end

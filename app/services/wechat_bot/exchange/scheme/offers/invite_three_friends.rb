@@ -3,6 +3,7 @@ class WechatBot
     class Scheme < WechatBot::Exchange
       class Offers < Scheme
         class InviteThreeFriends < Scheme
+          extend Options
 
           valid_until -> { 1.weeks.from_now }
 

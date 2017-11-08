@@ -2,6 +2,8 @@ class WechatBot
   class Exchange < WechatBot::Base
     class Scheme < WechatBot::Exchange
       class Console < Scheme
+        extend Options
+        
         def request
           'console'
         end

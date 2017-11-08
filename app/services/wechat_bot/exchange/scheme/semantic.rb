@@ -2,6 +2,8 @@ class WechatBot
   class Exchange < WechatBot::Base
     class Scheme < WechatBot::Exchange
       class Semantic < Scheme
+        extend Options
+        
         # semantic is a test text to make sure the semantic API works alright
         def request
           'semantic'

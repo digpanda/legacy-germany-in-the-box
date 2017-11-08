@@ -4,6 +4,7 @@ class WechatBot
       class Offers < Scheme
         class FillInEmail < Scheme
           class Type < Scheme
+            extend Options
 
             valid_until -> { 1.weeks.from_now }
 
