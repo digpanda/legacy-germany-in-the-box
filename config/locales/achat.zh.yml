@@ -6,6 +6,7 @@ zh-CN:
     error:
       email_not_valid: 邮箱地址不正确。返回任务奖励初始选项请输入prize
       you_did_not_invite: 您尚未完成3位朋友的注册邀请任务奖励。
+      you_did_not_make_an_order: You did not make a first order so far
   bot:
     exchange:
       offers:

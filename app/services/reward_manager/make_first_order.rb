@@ -1,14 +1,13 @@
 class RewardManager < BaseService
   class MakeFirstOrder < Base
 
-    # if the user entered a correct email the reward is confirmed
+    # if the user or one of his friends made a complete order
+    # we validate the reward
     def process_reward
-      # IF HIM OR HIS FRIENDS MADE A PAID ORDER
-      if reward.user.friends.count >= 3
-        coupon
+      if made_complete_order?
         return return_with(:success)
       end
-      return_with(:error, I18n.t('reward.error.you_did_not_invite'))
+      return_with(:error, I18n.t('reward.error.you_did_not_make_an_order'))
     end
 
     def readable_to_save
@@ -23,6 +22,16 @@ class RewardManager < BaseService
 
     def money
       100.in_yuan.to_euro.amount
+    end
+
+    def made_complete_order?
+      return true if reward.user.orders.bought.count > 0
+      reward.user.friends.each do |friend|
+        if friend.orders.bought.count > 0
+          return true
+        end
+      end
+      false
     end
 
   end
