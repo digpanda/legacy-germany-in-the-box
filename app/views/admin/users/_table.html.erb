@@ -15,6 +15,9 @@
         Version Allowed
       </th>
       <th>
+        Group
+      </th>
+      <th>
         Label
       </th>
       <th>
@@ -53,6 +56,9 @@
           </td>
           <td>
             <%= user.version_allowed %>
+          </td>
+          <td>
+            <%= editable_field(user, admin_user_path(user), :group, :select, [user_groups, {:selected => user.group}]) %>
           </td>
           <td>
             <%= editable_field(user, admin_user_path(user), :label, :text_field) %>

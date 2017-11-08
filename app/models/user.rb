@@ -8,7 +8,7 @@ class User
   strip_attributes
 
   # research system
-  search_in :id, :email, :role, :last_sign_in_at, :nickname, :full_name, :label, referrer: :nickname
+  search_in :id, :email, :role, :last_sign_in_at, :nickname, :full_name, :label, :group, referrer: :nickname
 
   ## Database authenticatable
   field :email,               type: String, default: ''
@@ -50,6 +50,7 @@ class User
   field :status, type: Boolean, default: true
   field :uid,       type: String
   field :label, type: String
+  field :group, type: Symbol, default: :default # [:default, :student, :reseller]
 
   field :banished, type: Boolean, default: false
   field :version_allowed, type: Symbol, default: :stable

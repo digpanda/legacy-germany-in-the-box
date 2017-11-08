@@ -5,6 +5,14 @@ module ArrayHelper
     end
   end
 
+  def user_groups
+    {
+      'Default' => :default,
+      'Student' => :student,
+      'Reseller' => :reseller
+    }
+  end
+
   def inquiry_status
     {
       'New' => :new,
