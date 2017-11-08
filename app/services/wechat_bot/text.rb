@@ -19,6 +19,8 @@ class WechatBot
         notify_admin
       end
 
+      m = WechatBot::Exchange.new(User.first, "console")
+
       return_with(:success)
     end
 

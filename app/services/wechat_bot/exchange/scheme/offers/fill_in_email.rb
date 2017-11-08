@@ -4,7 +4,7 @@ class WechatBot
       class Offers < Scheme
         class FillInEmail < Scheme
 
-          VALID_UNTIL = -> { 1.hours.from_now }
+          valid_until -> { 1.weeks.from_now }
 
           def request
             '1'

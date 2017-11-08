@@ -1,9 +1,10 @@
 class WechatBot
   class Exchange < WechatBot::Base
     class Scheme < WechatBot::Exchange
+      extend Options
 
       # it's the default valid
-      VALID_UNTIL = -> { 5.hours.from_now }
+      valid_until -> { 1.weeks.from_now }
 
       # NOTE : we inherit exchange because it's actually very convenient
       # it contains everything like slack, messenger, data, etc.
@@ -22,6 +23,7 @@ class WechatBot
       # so if there's a problem with the resource model (usually user) you must reject the match in #request
       def response
       end
+
     end
   end
 end
