@@ -7,9 +7,20 @@
   .wrapper a:hover {
     text-decoration: none !important;
   }
+
   .btn a:hover,
   .footer__links a:hover {
     opacity: 0.8;
+  }
+
+  .sublink {
+    color: #99b0b8;
+    font-size: 12px;
+  }
+
+  .sublink a, a:active, a:hover, a:visited {
+    color: #99b0b8 !important;
+    font-size: 12px !important;
   }
   .wrapper .footer__share-button:hover {
     color: #ffffff !important;
@@ -279,6 +290,7 @@ body,.wrapper{background-color:#f2f6f7}.wrapper h1{color:#58595b}.wrapper h1{}.w
               <div style="Margin-left: 20px;Margin-right: 20px;">
                 <div style="line-height:10px;font-size:1px">&nbsp;</div>
               </div>
+
               <div style="Margin-left: 20px;Margin-right: 20px;">
                 <div style="line-height:10px;font-size:1px">&nbsp;</div>
               </div>
@@ -291,6 +303,11 @@ body,.wrapper{background-color:#f2f6f7}.wrapper h1{color:#58595b}.wrapper h1{}.w
                 <div style="line-height:15px;font-size:1px">&nbsp;</div>
               </div>
 
+              <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
+                <span class="sublink">
+                没有找到链接？请戳这里 <a href="<%= confirmation_url(@resource, confirmation_token: @token) %>"><%= confirmation_url(@resource, confirmation_token: @token) %></a>
+                </span>
+              </div>
 
               </td>
             </tr>
