@@ -45,6 +45,7 @@ class CheckoutCallback < BaseService
 
     manage_stocks!(order_payment.order)
     dispatch_notifications!(order_payment)
+    make_first_order_challenge_completion
 
     return_with(:success, order_payment: order_payment)
   end
@@ -141,6 +142,23 @@ class CheckoutCallback < BaseService
         end
       else
         slack.failed_transaction(order_payment)
+      end
+    end
+
+    # make first order challenge reward
+    # we have to check the reward to give for this user and all his friends
+    # if the challenge was eventually started beforehand
+    def make_first_order_challenge_completion
+      try_to_give_reward(user)
+      user.friends.each do |friend|
+        try_to_give_reward(friend)
+      end
+    end
+
+    def try_to_give_reward(target_user)
+      reward_manager = RewardManager.new(target_user, task: :make_first_order)
+      if reward_manager.started?
+        reward_manager.end
       end
     end
 
