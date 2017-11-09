@@ -1,6 +1,6 @@
 # when someone scans a qrcode related to our service channel
 # it will go down here
-class WechatBot
+module WechatBot
   class Event < Base
     class Scan < Base
       attr_reader :user, :event_key

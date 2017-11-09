@@ -1,4 +1,4 @@
-class WechatBot
+module WechatBot
   class Exchange < WechatBot::Base
     class Scheme < WechatBot::Exchange
       class Offers < Scheme

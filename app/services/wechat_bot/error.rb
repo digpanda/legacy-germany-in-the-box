@@ -1,4 +1,4 @@
-class WechatBot
+module WechatBot
   class Error < StandardError
     attr_reader :message
 

@@ -1,6 +1,6 @@
 # when someone just subscribes to our service channel
 # this is called
-class WechatBot
+module WechatBot
   class Event < Base
     class Subscribe < Base
       attr_reader :user

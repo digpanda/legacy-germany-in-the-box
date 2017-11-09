@@ -1,4 +1,4 @@
-class WechatBot
+module WechatBot
   class Base < BaseService
     include Rails.application.routes.url_helpers
 

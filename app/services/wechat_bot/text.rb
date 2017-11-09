@@ -1,4 +1,4 @@
-class WechatBot
+module WechatBot
   class Text < Base
     attr_reader :user, :content
 

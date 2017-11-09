@@ -1,2 +1,2 @@
-class WechatBot
+module WechatBot
 end

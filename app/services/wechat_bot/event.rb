@@ -1,4 +1,4 @@
-class WechatBot
+module WechatBot
   class Event < Base
     attr_reader :user, :event, :event_key
 

@@ -1,6 +1,6 @@
 # when someone triggers the menu on wechat service
 # it will go down here to send a callback
-class WechatBot
+module WechatBot
   class Event < Base
     class Click < Base
       attr_reader :user, :event_key
