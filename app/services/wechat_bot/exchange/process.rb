@@ -11,8 +11,8 @@ module WechatBot
         return true unless process_request(BASE_NAMESPACE) == false
 
         # we will do the same from memory breakpoint now
-        stored_breakpoints.each do |memory_breakpoint|
-          response = process_request(memory_breakpoint.class_trace.constantize)
+        breakpoints.fetch.each do |breakpoint|
+          response = process_request(breakpoint.class_trace.constantize)
           if response == false
             # the logic here is even if the response is false (boolean)
             # we lock the system as if it succeeded
@@ -20,7 +20,7 @@ module WechatBot
             # to the same sequence to repeat itself on request
             return true
           else
-            memory_breakpoint.delete
+            breakpoint.delete
             return response
           end
         end
@@ -50,10 +50,10 @@ module WechatBot
       # and possible next matching keys
       def insert_subclasses(mainclass)
         fetch_subclasses(mainclass).each do |subrequest|
-          target_subclass = subrequest.last
           request_key = subrequest.first
+          subclass_trace = subrequest.last
           class_trace = mainclass
-          insert_breakpoint(request_key, class_trace, target_subclass)
+          breakpoints.insert(request_key, class_trace, subclass_trace)
         end
       end
 
@@ -80,20 +80,9 @@ module WechatBot
         to_process.new(user, request)
       end
 
-      # we force delete all the whole entries matching the subclass
-      # to prevent the same event to fire multiple times
-      # target_subclass ensure the validity of the targetted breakpoint
-      def insert_breakpoint(request_key, class_trace, target_subclass)
-        MemoryBreakpoint.where(user: user, class_trace: class_trace, target_subclass: target_subclass).delete_all
-        MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, target_subclass: target_subclass, valid_until: target_subclass.exec_valid_until)
+      def breakpoints
+        @breakpoints ||= Breakpoints.new(user, request)
       end
-
-      # get all the matching requests breakpoints with the request
-      # NOTE : right now it's a very simple system but it could be improved via REGEX
-      def stored_breakpoints
-        @stored_breakpoints ||= MemoryBreakpoint.where(user: user).still_valid.any_of({request_key: request}, {request_key: ""}, {request_key: nil}).order_by(c_at: :desc)
-      end
-
     end
   end
 end
