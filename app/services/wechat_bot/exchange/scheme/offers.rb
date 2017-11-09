@@ -2,7 +2,8 @@ module WechatBot
   module Exchange
     module Scheme
       class Offers < Base
-        extend Options
+
+        valid_until -> { 7.days.from_now }
 
         # test system to see if the whole structure works fine
         def request

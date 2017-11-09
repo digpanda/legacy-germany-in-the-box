@@ -3,7 +3,6 @@ module WechatBot
     module Scheme
       class Offers < Base
         class FillInEmail < Base
-          extend Options
 
           valid_until -> { 1.weeks.from_now }
 

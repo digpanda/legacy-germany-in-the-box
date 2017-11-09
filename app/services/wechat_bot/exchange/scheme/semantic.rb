@@ -2,7 +2,8 @@ module WechatBot
   module Exchange
     module Scheme
       class Semantic < Base
-        extend Options
+
+        valid_until -> { 7.days.from_now }
 
         # semantic is a test text to make sure the semantic API works alright
         def request

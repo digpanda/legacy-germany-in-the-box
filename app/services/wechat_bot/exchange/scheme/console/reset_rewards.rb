@@ -3,6 +3,9 @@ module WechatBot
     module Scheme
       class Console < Base
         class ResetRewards < Base
+          
+          valid_until -> { 7.days.from_now }
+
           def request
             'reset rewards'
           end

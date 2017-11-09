@@ -1,9 +1,10 @@
 module WechatBot
   module Exchange
     class Base
-      include Helpers
-      extend Options
-      
+      extend Exchange::Options
+      include Exchange::Helpers
+      include Rails.application.routes.url_helpers
+
       attr_reader :user, :request
 
       def initialize(user, request)

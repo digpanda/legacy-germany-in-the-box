@@ -2,7 +2,8 @@ module WechatBot
   module Exchange
     module Scheme
       class Qrcode < Base
-        extend Options
+
+        valid_until -> { 7.days.from_now }
 
         def request
           if user&.referrer

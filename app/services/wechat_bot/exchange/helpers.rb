@@ -1,7 +1,6 @@
 module WechatBot
   module Exchange
     module Helpers
-      include Rails.application.routes.url_helpers
 
       def slack
         @slack ||= SlackDispatcher.new
