@@ -1,7 +1,8 @@
 module WechatBot
   class Exchange < WechatBot::Base
-    class Scheme < WechatBot::Exchange
+    class Scheme
       extend Options
+      attr_reader :user, :request
 
       # validity expiration system
       valid_until -> { 1.weeks.from_now }
@@ -9,10 +10,11 @@ module WechatBot
       # we can either cascade the requests or just quit it there (:break, :continue)
       after_match :break
 
-      # NOTE : we inherit exchange because it's actually very convenient
-      # it contains everything like slack, messenger, data, etc.
-      # and add the base #request #response
-      #
+      def initialize(user, request)
+        @user = user
+        @request = request
+      end
+
       # IMPORTANT
       # within any subclass, when you call @request it will be the actual text
       # the user sent, #request will be what is expected ; you can compare and play with it
