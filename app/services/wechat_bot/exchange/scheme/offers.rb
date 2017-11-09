@@ -1,9 +1,9 @@
 module WechatBot
-  class Exchange < WechatBot::Base
-    class Scheme < WechatBot::Exchange
-      class Offers < Scheme
+  module Exchange
+    module Scheme
+      class Offers < Base
         extend Options
-        
+
         # test system to see if the whole structure works fine
         def request
           'offers'

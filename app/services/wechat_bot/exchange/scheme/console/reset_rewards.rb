@@ -1,8 +1,8 @@
 module WechatBot
-  class Exchange < WechatBot::Base
-    class Scheme < WechatBot::Exchange
-      class Console < Scheme
-        class ResetRewards < Scheme
+  module Exchange
+    module Scheme
+      class Console < Base
+        class ResetRewards < Base
           def request
             'reset rewards'
           end

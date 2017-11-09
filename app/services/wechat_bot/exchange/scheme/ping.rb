@@ -1,9 +1,10 @@
 module WechatBot
-  class Exchange < WechatBot::Base
-    class Scheme < WechatBot::Exchange
-      class Ping < Scheme
-        extend Options
-        
+  module Exchange
+    module Scheme
+      class Ping < Base
+
+        valid_until -> { 1.days.from_now }
+
         # test system to see if the whole structure works fine
         def request
           'ping'

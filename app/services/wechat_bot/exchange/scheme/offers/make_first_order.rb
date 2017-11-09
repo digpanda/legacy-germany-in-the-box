@@ -1,8 +1,8 @@
 module WechatBot
-  class Exchange < WechatBot::Base
-    class Scheme < WechatBot::Exchange
-      class Offers < Scheme
-        class MakeFirstOrder < Scheme
+  module Exchange
+    module Scheme
+      class Offers < Base
+        class MakeFirstOrder < Base
           extend Options
 
           valid_until -> { 1.weeks.from_now }

@@ -1,9 +1,9 @@
 module WechatBot
-  class Exchange < WechatBot::Base
-    class Scheme < WechatBot::Exchange
-      class Semantic < Scheme
+  module Exchange
+    module Scheme
+      class Semantic < Base
         extend Options
-        
+
         # semantic is a test text to make sure the semantic API works alright
         def request
           'semantic'
