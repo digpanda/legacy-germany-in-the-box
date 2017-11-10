@@ -15,6 +15,24 @@ module WechatBot
 
       private
 
+      # if it matches the base schemes we just stop the process there
+      # if this method returns false it'll continue to search around
+      # the `:continue` is either a specific response from within the scheme
+      # or from the unfound processed match
+      def matches_base?
+        subclasses(BASE_NAMESPACE).each do |subclass|
+          response = process_match(subclass)
+          if response == false
+            return true
+          elsif response != :continue
+            return response
+          end
+        end
+        false
+      end
+
+      # same logic than #matches_base?
+      # but with memory breakpoints
       def matches_breakpoints?
         breakpoints.fetch.each do |breakpoint|
           response = process_match(breakpoint.class_trace.constantize)
@@ -32,21 +50,10 @@ module WechatBot
         false
       end
 
-      def matches_base?
-        subclasses(BASE_NAMESPACE).each do |subclass|
-          response = process_match(subclass)
-          if response == false
-            return true
-          elsif response != :continue
-            return response
-          end
-        end
-        false
-      end
-
-      # take a class and try to solve the request with all its subclasses
-      # if one subclass matches we run it completely and return its #response
-      # if the #response is stricly a false boolean we continue to roll
+      # check the class and see if it is a match
+      # if it is a match we return the class #response
+      # if not we end up with `:continue` which will
+      # result searching through other classes
       def process_match(class_match)
         class_instance = instance(class_match)
         class_request = class_instance.request
