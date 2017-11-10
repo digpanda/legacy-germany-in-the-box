@@ -5,6 +5,9 @@ module WechatBot
       # load the requests / responses
       # it can be changed to any namespace / class
       BASE_NAMESPACE = Scheme
+      # the wildcard used to consider a request as valid
+      # it is used for instance when we ask to enter an email
+      # and anything the user write after is considered a match
       MATCH_WILDCARD = ''
 
       def perform
