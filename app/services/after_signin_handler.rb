@@ -180,6 +180,17 @@ class AfterSigninHandler
       end
     end
 
+    # if a param[:group] was previously stored
+    # we try to run the mechanism to assign it to this account
+    def handle_group
+      if session[:group]
+        unless user.group
+          user.update(group: session[:group])
+        end
+        session[:group] = nil
+      end
+    end
+
     def remove_timeout_orders
       user.cart&.orders&.each do |order|
         if !order.bought? && order.timeout?
