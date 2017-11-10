@@ -23,12 +23,23 @@ module WechatBot
       # the `:continue` is either a specific response from within the scheme
       # or from the unfound processed match
       def matches_base?
+        subclasses(BASE_NAMESPACE).each do |subclass|
+          response = process_match(subclass)
+          # please referrer to #matches_breakpoints?
+          # for explanation of those lines
+          next if response == :continue
+          return true if response == false
 
-        # NOTE : it works if i do it this way.
-        # TODO : try to find a way to abstract it and use it from anywhere.
-        # FROM A METHOD FOR INSTANCE
-        trigger_response = Proc.new do |target_class, breakpoint|
-          response = process_match(target_class)
+          return response
+        end
+        false
+      end
+
+      # same logic than #matches_base?
+      # but with memory breakpoints
+      def matches_breakpoints?
+        breakpoints.fetch.each do |breakpoint|
+          response = process_match(breakpoint.class_trace.constantize)
           # we skip this breakpoint if the response is :continue which happens
           # if no match or manually through the called class
           next if response == :continue
@@ -38,46 +49,11 @@ module WechatBot
           # to the same sequence to repeat itself on request
           return true if response == false
 
-          breakpoint.delete if breakpoint
+          breakpoint.delete
           return response
         end
-
-        subclasses(BASE_NAMESPACE).each do |subclass|
-          trigger_response.call(
-            subclass
-          )
-        end
         false
       end
-
-      # same logic than #matches_base?
-      # but with memory breakpoints
-      def matches_breakpoints?
-        breakpoints.fetch.each do |breakpoint|
-          trigger_response.call(
-            breakpoint.class_trace.constantize,
-            breakpoint
-          )
-        end
-        false
-      end
-
-      # def trigger_response
-      #   return Proc.new do |target_class, breakpoint|
-      #     response = process_match(target_class)
-      #     # we skip this breakpoint if the response is :continue which happens
-      #     # if no match or manually through the called class
-      #     next if response == :continue
-      #     # the logic here is even if the response is false (boolean)
-      #     # we lock the system as if it succeeded
-      #     # to avoid firing other events, while giving the chance
-      #     # to the same sequence to repeat itself on request
-      #     return true if response == false
-      #
-      #     breakpoint.delete if breakpoint
-      #     return response
-      #   end
-      # end
 
       # check the class and see if it is a match
       # if it is a match we return the class #response
