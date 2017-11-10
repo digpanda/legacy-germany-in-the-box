@@ -25,11 +25,12 @@ module WechatBot
       def matches_base?
         subclasses(BASE_NAMESPACE).each do |subclass|
           response = process_match(subclass)
-          if response == false
-            return true
-          elsif response != :continue
-            return response
-          end
+          # please referrer to #matches_breakpoints?
+          # for explanation of those lines
+          next if response == :continue
+          return true if response == false
+
+          return response
         end
         false
       end
@@ -39,16 +40,17 @@ module WechatBot
       def matches_breakpoints?
         breakpoints.fetch.each do |breakpoint|
           response = process_match(breakpoint.class_trace.constantize)
+          # we skip this breakpoint if the response is :continue which happens
+          # if no match or manually through the called class
+          next if response == :continue
           # the logic here is even if the response is false (boolean)
           # we lock the system as if it succeeded
           # to avoid firing other events, while giving the chance
           # to the same sequence to repeat itself on request
-          if response == false
-            return true
-          elsif response != :continue
-            breakpoint.delete
-            return response
-          end
+          return true if response == false
+
+          breakpoint.delete
+          return response
         end
         false
       end
