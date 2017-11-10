@@ -4,8 +4,7 @@ class MemoryBreakpoint
   strip_attributes
 
   field :request_key, type: String
-  field :class_trace, type: String # trace to the class
-  field :subclass_trace, type: String # subclass target
+  field :class_trace, type: String # trace to the matching class
 
   # this will be erased progressively with a cron job
   field :valid_until, type: Time

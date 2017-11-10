@@ -12,10 +12,9 @@ module WechatBot
 
         # we force delete all the whole entries matching the subclass
         # to prevent the same event to fire multiple times
-        # subclass_trace ensure the validity of the targetted breakpoint
-        def insert(request_key, class_trace, subclass_trace)
-          MemoryBreakpoint.where(user: user, class_trace: class_trace, subclass_trace: subclass_trace).delete_all
-          MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, subclass_trace: subclass_trace, valid_until: subclass_trace.exec_valid_until)
+        def insert(request_key, class_trace)
+          MemoryBreakpoint.where(user: user, class_trace: class_trace).delete_all
+          MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: class_trace.exec_valid_until)
         end
 
         # get all the matching requests breakpoints with the request
