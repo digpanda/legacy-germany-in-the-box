@@ -24,7 +24,7 @@ module WechatBot
           # to the same sequence to repeat itself on request
           if response == false
             return true
-          elsif response != :not_processed
+          elsif response != :continue
             breakpoint.delete
             return response
           end
@@ -37,7 +37,7 @@ module WechatBot
           response = process_match(subclass)
           if response == false
             return true
-          elsif response != :not_processed
+          elsif response != :continue
             return response
           end
         end
@@ -56,7 +56,7 @@ module WechatBot
           insert_subclasses(class_match)
           return class_instance.response
         end
-        :not_processed
+        :continue
       end
 
       # we will insert in database all the subclasses of `mainclass`
