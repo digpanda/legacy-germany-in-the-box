@@ -1,7 +1,7 @@
 module WechatBot
   module Exchange
     module Scheme
-      class Console < Base
+      class Consoling < Base
 
         # valid_until -> { 7.days.from_now }
 
