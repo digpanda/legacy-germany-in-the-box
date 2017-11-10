@@ -11,7 +11,7 @@ class User
   search_in :id, :email, :role, :last_sign_in_at, :nickname, :full_name, :label, :group, referrer: :nickname
 
   ## Database authenticatable
-  field :email,               type: String, default: ''
+  field :email,               type: String
   field :encrypted_password,  type: String, default: ''
   field :precreated, type: Boolean, default: false
 
