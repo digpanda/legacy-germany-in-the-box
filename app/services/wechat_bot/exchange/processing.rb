@@ -1,6 +1,6 @@
 module WechatBot
   module Exchange
-    class Process < Base
+    class Processing < Base
       # this is the starting point to
       # load the requests / responses
       # it can be changed to any namespace / class
