@@ -59,7 +59,7 @@ module WechatBot
 
       # will load all the subclasses of `origin_class`
       def subclasses(origin_class)
-        SubclassLoader.new(origin_class).perform
+        Utils::SubclassLoader.new(origin_class).perform
       end
 
       # get all the child request (messages / actions)
