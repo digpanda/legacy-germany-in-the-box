@@ -14,7 +14,8 @@ module WechatBot
         # to prevent the same event to fire multiple times
         def insert(request_key, class_trace)
           MemoryBreakpoint.where(user: user, class_trace: class_trace).delete_all
-          MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: class_trace.exec_valid_until)
+          # class_trace.exec_valid_until
+          MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 7.days.from_now)
         end
 
         # get all the matching requests breakpoints with the request

@@ -3,7 +3,7 @@ module WechatBot
     module Scheme
       class Console < Base
 
-        valid_until -> { 7.days.from_now }
+        # valid_until -> { 7.days.from_now }
 
         def request
           'console'

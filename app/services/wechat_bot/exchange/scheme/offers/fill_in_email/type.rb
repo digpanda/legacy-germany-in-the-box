@@ -5,7 +5,7 @@ module WechatBot
         class FillInEmail < Base
           class Type < Base
 
-            valid_until -> { 1.weeks.from_now }
+            # valid_until -> { 1.weeks.from_now }
 
             def request
               ''

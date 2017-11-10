@@ -4,7 +4,7 @@ module WechatBot
       class Offers < Base
         class InviteThreeFriends < Base
 
-          valid_until -> { 1.weeks.from_now }
+          # valid_until -> { 1.weeks.from_now }
 
           def request
             '2'
