@@ -1,6 +1,6 @@
 module WechatBot
   module Exchange
-    class Processing < Base
+    class Process < Base
       class Breakpoints
         attr_reader :user, :request
 
