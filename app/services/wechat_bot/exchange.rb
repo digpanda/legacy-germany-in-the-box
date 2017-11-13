@@ -2,9 +2,9 @@
 # we start from wechat_bot to avoid load mismatch conflicts
 require 'wechat_bot'
 
-Dir["#{File.dirname(__FILE__)}/**/*.rb"].each do |file|
-  require file
-end
+# Dir["#{File.dirname(__FILE__)}/**/*.rb"].each do |file|
+#   require file
+# end
 
 module WechatBot
   module Exchange
