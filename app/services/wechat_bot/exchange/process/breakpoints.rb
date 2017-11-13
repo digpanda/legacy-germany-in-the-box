@@ -1,4 +1,4 @@
-require 'wechat_bot/process'
+require 'wechat_bot/exchange/process'
 
 module WechatBot
   module Exchange
