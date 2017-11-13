@@ -1,6 +1,5 @@
 # we make sure all is loaded to get the constants and subclasses
-Dir["#{File.dirname(__FILE__)}/**/*.rb"].each do |file|
-  puts "Loading Exchange File : #{file}"
+Dir["#{File.dirname(__FILE__)}/**/*.rb"].reverse.each do |file|
   load file
 end
 # we manage the memory of the bot and trigger different events depending  on what the customer transmit
