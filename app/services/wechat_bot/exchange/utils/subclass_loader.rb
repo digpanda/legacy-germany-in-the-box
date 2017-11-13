@@ -11,6 +11,7 @@ module WechatBot
         end
 
         def perform
+
           valid_subclasses
         end
 

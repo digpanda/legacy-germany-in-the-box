@@ -1,4 +1,4 @@
-require 'wechat_bot'
+# require 'wechat_bot'
 
 # we manage the memory of the bot and trigger different events depending  on what the customer transmit
 # so far it's used only with Wechat Bot but could be astracted elsewhere later on by changing it a little bit.
@@ -21,6 +21,18 @@ module WechatBot
       end
 
       private
+
+      # def proc_exec
+      #   Proc.new do
+      #     response = process_match(subclass)
+      #     # please referrer to #matches_breakpoints?
+      #     # for explanation of those lines
+      #     next if response == :continue
+      #     return true if response == false
+      #
+      #     return response
+      #   end
+      # end
 
       # if it matches the base schemes we just stop the process there
       # if this method returns false it'll continue to search around
