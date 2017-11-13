@@ -1,3 +1,5 @@
+require 'wechat_bot/process'
+
 module WechatBot
   module Exchange
     class Process < Base
