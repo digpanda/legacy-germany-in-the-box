@@ -1,17 +1,16 @@
 module WechatBot
   module Exchange
     module Scheme
-      class Offers < Base
+      class Console < Base
 
         # valid_until -> { 7.days.from_now }
 
-        # test system to see if the whole structure works fine
         def request
-          'offers'
+          'console'
         end
 
         def response
-          messenger.text! data(:offers)
+          messenger.text! "Console activated for #{user.full_name}"
         end
       end
     end
