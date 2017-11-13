@@ -1,7 +1,9 @@
 # we make sure all is loaded to get the constants and subclasses
-Dir["#{File.dirname(__FILE__)}/**/*.rb"].reverse.each do |file|
-  load file
-end
+# Dir["#{File.dirname(__FILE__)}/**/*.rb"].reverse.each do |file|
+#   load file
+# end
+
+require 'wechat_bot'
 # we manage the memory of the bot and trigger different events depending  on what the customer transmit
 # so far it's used only with Wechat Bot but could be astracted elsewhere later on by changing it a little bit.
 module WechatBot
