@@ -24,7 +24,7 @@ module DigPanda
 
     config.debug_mode = false # homemade debug system will dispatch more information if `true`
     config.exceptions_app = self.routes # customized error handling
-    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/decorators/concerns #{config.root}/app/uploaders/concerns)
+    config.autoload_paths += %W(#{config.root}/services #{config.root}/lib #{config.root}/app/decorators/concerns #{config.root}/app/uploaders/concerns)
 
     config.middleware.use Mongoid::QueryCache::Middleware
     config.middleware.use Mobvious::Manager

@@ -13,7 +13,9 @@ Rails.application.configure do
   config.middleware.use(Mongoid::QueryCache::Middleware)
   config.eager_load = true
 
+  # TEMPORARY CHANGE HERE :
   config.consider_all_requests_local = false # true
+  # END CHANGE
 
   config.action_controller.perform_caching = false
   config.action_mailer.raise_delivery_errors = false
