@@ -14,7 +14,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # TEMPORARY CHANGE HERE :
-  # config.consider_all_requests_local = false # true
+  config.consider_all_requests_local = false # true
   # END CHANGE
 
   config.action_controller.perform_caching = false
