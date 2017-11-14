@@ -317,6 +317,9 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         mobile: Faker::PhoneNumber.cell_phone,
         birth: random_date,
       )
+
+      user.skip_confirmation!
+      user
     end
 
     def random_date
@@ -348,7 +351,8 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     end
 
     def setup_guide(user)
-      user.update(email: 'guide@guide.com')
+      user.update!(email: 'guide@guide.com')
+      user.skip_confirmation!
       referrer = Referrer.create(user: user)
       coupon = Coupon.create_referrer_coupon(referrer)
       setup_order(coupon: coupon)

@@ -1,0 +1,23 @@
+<!-- Sorted by brand -->
+<% services.brands_array.each do |brand_id, fetched_services| %>
+  <% brand = Brand.find(brand_id) %>
+
+    <!-- We show the brand solely if there's more than one -->
+    <% if services.brands_array.size > 1 %>
+      <a name="<%= brand.slug %>"></a>
+      <h3><%= brand.name %></h3>
+      <div class="+small-spacer"></div>
+    <% end %>
+
+    <div class="row">
+      <!-- The positioning is impossible to do before we get the actual array -->
+      <% fetched_services.sort_by(&:position).each_with_index do |service, index| %>
+        <% cache service do %>
+          <%= render "guest/services/index/block", options: { reversed: reversed?(index) }, service: service %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="+spacer"></div>
+
+<% end %>

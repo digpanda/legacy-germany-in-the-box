@@ -39,4 +39,20 @@ class Service
   scope :with_brand, -> (brand) { self.where(brand: brand) }
   scope :with_referrer, -> { self.and(:referrers_only => true) }
   scope :without_referrer, -> { self.and(:referrers_only.ne => true) }
+
+
+  # fetch the product and place them sorted by brand
+  class << self
+
+    def brands_array
+      brands_hash ||= {}
+      self.all.each do |service|
+        brands_hash["#{service.brand.id}"] ||= []
+        brands_hash["#{service.brand.id}"] << service
+      end
+      brands_hash
+    end
+
+  end
+
 end

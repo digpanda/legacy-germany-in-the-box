@@ -19,13 +19,5 @@
 </div>
 <% end %>
 
-<!-- Services -->
-<!-- The positioning is impossible to do before we get the actual array -->
-<div class="row">
-  <% @services.sort_by(&:position).each_with_index do |service, index| %>
-    <% cache service do %>
-      <%= render "guest/services/index/block", options: { reversed: reversed?(index) }, service: service %>
-    <% end %>
-  <% end %>
-</div>
-<div class="+small-spacer"></div>
+
+<%= render partial: "guest/services/index/brands_sort", locals: { services: @services } %>

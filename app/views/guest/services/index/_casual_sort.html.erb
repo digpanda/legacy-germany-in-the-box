@@ -1,0 +1,12 @@
+<!-- Services -->
+<!-- The positioning is impossible to do before we get the actual array -->
+<!-- This is normal sort by position, it shows all services one after the other -->
+<!-- NOTE : currently not in use in our system but could be useful to put back -->
+<div class="row">
+  <% services.sort_by(&:position).each_with_index do |service, index| %>
+    <% cache service do %>
+      <%= render "guest/services/index/block", options: { reversed: reversed?(index) }, service: service %>
+    <% end %>
+  <% end %>
+</div>
+<div class="+small-spacer"></div>
