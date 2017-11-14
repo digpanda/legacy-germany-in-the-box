@@ -1,5 +1,5 @@
-module WechatBot
-  module Exchange
+module SmartExchange
+  module Utils
     module Options
 
       def valid_until(block)

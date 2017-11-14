@@ -25,7 +25,7 @@ module WechatBot
     private
 
       def exchange
-        @exchange ||= WechatBot::Exchange::Process.new(user, content)
+        @exchange ||= SmartExchange::Process.new(user, content)
       end
 
       def slack_support

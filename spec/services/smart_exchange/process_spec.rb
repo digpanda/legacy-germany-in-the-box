@@ -1,8 +1,8 @@
-describe WechatBot::Exchange::Process do
+describe SmartExchange::Process do
 
   before(:each) do
 
-    allow_any_instance_of(WechatBot::Exchange::Base).to receive(:messenger).and_return(
+    allow_any_instance_of(SmartExchange::Base).to receive(:messenger).and_return(
       # fake class to stub messenger
       Class.new do
         def text!(arg)
