@@ -4,13 +4,12 @@ module SmartExchange
   module Utils
     class SubclassLoader
       attr_reader :mainclass
-      
+
       def initialize(mainclass)
         @mainclass = mainclass
       end
 
       def perform
-
         valid_subclasses
       end
 

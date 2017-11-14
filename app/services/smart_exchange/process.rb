@@ -19,18 +19,6 @@ module SmartExchange
 
     private
 
-    # def proc_exec
-    #   Proc.new do
-    #     response = process_match(subclass)
-    #     # please referrer to #matches_breakpoints?
-    #     # for explanation of those lines
-    #     next if response == :continue
-    #     return true if response == false
-    #
-    #     return response
-    #   end
-    # end
-
     # if it matches the base schemes we just stop the process there
     # if this method returns false it'll continue to search around
     # the `:continue` is either a specific response from within the scheme
