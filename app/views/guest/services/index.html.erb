@@ -8,10 +8,11 @@
 
 <!-- Referrer Exclusive Services -->
 <% if @referrer_services && @referrer_services.count > 0 %>
-<hr />
 <h3><%= I18n.t('services.referrer_services') %></h3>
 
   <%= render partial: "guest/services/index/casual_sort", locals: { services: @referrer_services } %>
+  
+  <hr />
 
 <% end %>
 
