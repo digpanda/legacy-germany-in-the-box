@@ -351,8 +351,10 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     end
 
     def setup_guide(user)
-      user.update!(email: 'guide@guide.com')
-      user.skip_confirmation!
+      user.email = 'guide@guide.com'
+      user.skip_reconfirmation!
+      user.save
+      
       referrer = Referrer.create(user: user)
       coupon = Coupon.create_referrer_coupon(referrer)
       setup_order(coupon: coupon)
