@@ -38,6 +38,22 @@ RSpec.configure do |config|
       with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
       to_return(status: 200, body: "stubbed response", headers: {})
 
+      WebMock.stub_request(:get, /api.twilio.com:443/).
+      with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+      to_return(status: 200, body: "stubbed response", headers: {})
+
+      # rspec ./spec/controllers/guest/referrers_controller_spec.rb:8 # Guest::ReferrersController#qrcode should respond with numeric status code 200
+      # rspec ./spec/features/checkout_process_spec.rb:22 # checkout process with mkpost logistic partner pays successfully with alipay
+      # rspec ./spec/features/checkout_process_spec.rb:70 # checkout process with manual logistic address built from scratch pay successfully and generate shipping label correctly
+      # rspec ./spec/features/checkout_process_spec.rb:79 # checkout process with manual logistic address already setup fail to pay
+      # rspec ./spec/features/checkout_process_spec.rb:85 # checkout process with manual logistic address already setup apply a coupon pay successfully and generate shipping label correctly with coupon
+      # rspec ./spec/features/package_set_process_spec.rb:13 # package set process get a package set and go to checkout
+      # rspec ./spec/features/package_set_process_spec.rb:21 # package set process get a package set, apply a coupon and go to checkout
+      # rspec ./spec/services/event_dispatcher_spec.rb:8 # EventDispatcher#customer_signed_in register an a sign-in event with geo
+      # rspec ./spec/services/notifier/dispatcher_spec.rb:50 # Notifier::Dispatcher#perform should send a SMS
+      # rspec ./spec/services/notifier/dispatcher_spec.rb:63 # Notifier::Dispatcher#perform should not send a SMS
+      # rspec ./spec/services/notifier/dispatcher_spec.rb:77 # Notifier::Dispatcher#perform should send a SMS and an email
+
     # page.driver.browser.url_blacklist = ["https://openapi.alipaydev.com/", "https://alipaydev.com", "http://alipaydev.com"]
   end
 
