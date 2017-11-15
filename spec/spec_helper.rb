@@ -32,6 +32,15 @@ RSpec.configure do |config|
     # VCR.turn_on!
   end
 
+  config.before(:each, js: true) do
+
+      WebMock.stub_request(:get, /alipaydev.com/).
+      with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+      to_return(status: 200, body: "stubbed response", headers: {})
+
+    # page.driver.browser.url_blacklist = ["https://openapi.alipaydev.com/", "https://alipaydev.com", "http://alipaydev.com"]
+  end
+
   # Add VCR to all tests
   # config.around(:each) do |example|
   #   VCR.turn_on!
@@ -61,7 +70,7 @@ Capybara.default_host = "http://#{host}:#{port}"
 Capybara.server_port = port
 Capybara.server_host = host
 # Capybara.run_server = false
-Capybara.default_max_wait_time = 50
+Capybara.default_max_wait_time = 15
 
 # BEGINNING SELENIUM
 # require "selenium/webdriver"
@@ -89,6 +98,7 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app,
                                     js_errors: false,
                                     debug: false,
+                                    phantomjs_options: ['--load-images=no', '--ignore-ssl-errors=yes', '--local-to-remote-url-access=no'],
                                     # phantomjs_options: ["--debug=yes"],
                                     window_size: [1800, 1000],
                                     port: 51674 + ENV['TEST_ENV_NUMBER'].to_i # `parallel_tests`

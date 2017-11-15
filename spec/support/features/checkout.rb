@@ -23,7 +23,7 @@ module Helpers
         # page.all(:css, '#address_district option')[1].select_option
 
         fill_in 'address[full_address]', with: STREET
-        
+
         # fill_in 'address[zip]', with: '300222'
 
         page.first('#address_primary').trigger('click')
@@ -44,10 +44,8 @@ module Helpers
         page.first('.addresses__address-use a').trigger('click')
         on_payment_method_page?
         page.first('a[id=alipay]').trigger('click')
-
+        # NOTE : this will be faked via WebMock
         expect(page).to have_current_path(/alipaydev\.com/, url: true)
-        # expect(page).to have_content(WAIT_FOR_THE_PAGE) # wait for the page to show up
-        # expect(page.current_url).to have_content('alipaydev.com')
         mock_payment!(mode, OrderPayment.first)
       end
 
