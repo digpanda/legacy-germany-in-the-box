@@ -10,13 +10,9 @@
 <% if @referrer_services && @referrer_services.count > 0 %>
 <hr />
 <h3><%= I18n.t('services.referrer_services') %></h3>
-<div class="row">
-  <% @referrer_services.sort_by(&:position).each_with_index do |service, index| %>
-    <% cache service do %>
-      <%= render "guest/services/index/block", options: { reversed: reversed?(index) }, service: service %>
-    <% end %>
-  <% end %>
-</div>
+
+  <%= render partial: "guest/services/index/casual_sort", locals: { services: @referrer_services } %>
+
 <% end %>
 
 
