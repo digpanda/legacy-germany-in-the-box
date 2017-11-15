@@ -38,10 +38,6 @@ RSpec.configure do |config|
       with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
       to_return(status: 200, body: "stubbed response", headers: {})
 
-      WebMock.stub_request(:get, /api.twilio.com:443/).
-      with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
-      to_return(status: 200, body: "stubbed response", headers: {})
-
       # rspec ./spec/controllers/guest/referrers_controller_spec.rb:8 # Guest::ReferrersController#qrcode should respond with numeric status code 200
       # rspec ./spec/features/checkout_process_spec.rb:22 # checkout process with mkpost logistic partner pays successfully with alipay
       # rspec ./spec/features/checkout_process_spec.rb:70 # checkout process with manual logistic address built from scratch pay successfully and generate shipping label correctly

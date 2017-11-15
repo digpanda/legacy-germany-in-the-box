@@ -1,5 +1,9 @@
 describe Notifier::Dispatcher, type: :mailer do
 
+  before(:each) do
+    allow_any_instance_of(PhoneMessenger).to receive(:send).and_return({})
+  end
+
   context '#perform' do
 
     let(:customer) { FactoryGirl.create(:customer) }
@@ -60,18 +64,27 @@ describe Notifier::Dispatcher, type: :mailer do
       expect(CustomerMailer.deliveries.count).to eq(0) # no email
     end
 
-    it 'should not send a SMS' do
-      customer.mobile = 'invalid'
-      customer.save(validation: false)
+    context 'api throwing error' do
 
-      dispatch_sms = Notifier::Dispatcher.new(
-        user: customer,
-        title: 'Fake title',
-        desc: 'Fake description', # this will be used
-        url: 'http://test.com'
-      ).perform(:sms)
+      before(:each) do
+        allow_any_instance_of(PhoneMessenger).to receive(:send).and_raise(Twilio::REST::RequestError, "Fake wrong mobile")
+      end
 
-      expect(dispatch_sms.success?).to eq(false) # not sent
+      it 'should not send a SMS' do
+
+        customer.mobile = 'invalid'
+        customer.save(validation: false)
+
+        dispatch_sms = Notifier::Dispatcher.new(
+          user: customer,
+          title: 'Fake title',
+          desc: 'Fake description', # this will be used
+          url: 'http://test.com'
+        ).perform(:sms)
+
+        expect(dispatch_sms.success?).to eq(false) # not sent
+      end
+
     end
 
     it 'should send a SMS and an email' do
