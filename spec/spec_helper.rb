@@ -46,9 +46,6 @@ RSpec.configure do |config|
       # rspec ./spec/features/package_set_process_spec.rb:13 # package set process get a package set and go to checkout
       # rspec ./spec/features/package_set_process_spec.rb:21 # package set process get a package set, apply a coupon and go to checkout
       # rspec ./spec/services/event_dispatcher_spec.rb:8 # EventDispatcher#customer_signed_in register an a sign-in event with geo
-      # rspec ./spec/services/notifier/dispatcher_spec.rb:50 # Notifier::Dispatcher#perform should send a SMS
-      # rspec ./spec/services/notifier/dispatcher_spec.rb:63 # Notifier::Dispatcher#perform should not send a SMS
-      # rspec ./spec/services/notifier/dispatcher_spec.rb:77 # Notifier::Dispatcher#perform should send a SMS and an email
 
     # page.driver.browser.url_blacklist = ["https://openapi.alipaydev.com/", "https://alipaydev.com", "http://alipaydev.com"]
   end
