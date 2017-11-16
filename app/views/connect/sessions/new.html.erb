@@ -7,7 +7,7 @@
     <h5>
       <%= I18n.t('sign_in_dialog.title') %>
     </h5>
-    <%= form_tag user_session_path, :method => :post, :class => 'dialog-form', :data => {:toggle => 'validator'}  do %>
+    <%= form_tag user_session_path, :method => :post, :class => 'dialog-form'  do %>
     <div class="form-group">
       <label>
         <%= I18n.t('sign_in_dialog.email') %>
