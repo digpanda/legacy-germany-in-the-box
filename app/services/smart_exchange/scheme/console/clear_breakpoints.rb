@@ -1,17 +1,17 @@
 module SmartExchange
   module Scheme
     class Console < Base
-      class ResetRewards < Base
+      class ClearBreakpoints < Base
 
         # valid_until -> { 7.days.from_now }
 
         def request
-          'reset rewards'
+          'clear breakpoints'
         end
 
         def response
-          user.rewards.delete_all
-          messenger.text! 'Your rewards were erased.'
+          MemoryBreakpoint.delete_all
+          messenger.text! 'All breakpoints were erased.'
         end
       end
     end
