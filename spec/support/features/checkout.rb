@@ -41,11 +41,21 @@ module Helpers
       end
 
       def pay_with_alipay!(mode: :success)
+
+        # WebMock.stub_request(:any, /mapi.alipay.com/).
+        # with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+        # to_return(status: 200, body: 'fake body', headers: {})
+
         page.first('.addresses__address-use a').trigger('click')
         on_payment_method_page?
         page.first('a[id=alipay]').trigger('click')
-        # NOTE : this will be faked via WebMock
-        expect(page).to have_current_path(/alipaydev\.com/, url: true)
+        # NOTE : we use sleep - which is usually evil - because we have to wait the redirection
+        # the order payment will be created after the click.
+        sleep(0.1)
+        # NOTE : we now longer call external services as it is used in acceptance test
+        # please make controller tests in parallel of that
+        # to make it a more complete testing cycle
+        # expect(page).to have_current_path(/alipaydev\.com/, url: true)
         mock_payment!(mode, OrderPayment.first)
       end
 
