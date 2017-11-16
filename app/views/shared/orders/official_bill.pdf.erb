@@ -41,9 +41,11 @@
 <br />
 
 <h3 style="padding-left:0em;margin-left:-0.8em;margin-bottom:0em;">&nbsp;&nbsp;&nbsp;Rechnung</h3>
-<strong>Rechnung Nr.: <%= @order.bill_id %></strong>
+<strong>Rechnung Nr.: <%= @order.bill_id %></strong><br />
+<% if @order.order_tracking %>
+<strong>Sendungs-Nr.: <%= @order.order_tracking.delivery_id %></strong><br />
+<% end %>
 
-<br />
 <br />
 
 <table style="text-align:left;width:100%;border-color:black;border-width:1px;border-style:solid;">

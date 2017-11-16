@@ -45,11 +45,13 @@ describe Customer::ReferrerController, type: :controller do
     it { is_expected.to have_http_status(200) }
   end
 
-  context '#qrcode' do
-    subject { get :qrcode }
-    it { is_expected.to have_http_status(200) }
-  end
+  context 'with memorized qrcode' do
+    context '#qrcode' do
+      subject { get :qrcode }
+      it { is_expected.to have_http_status(200) }
+    end
 
+  end
   context '#claim' do
     subject { -> { patch :claim } }
     it { is_expected.not_to raise_error }
