@@ -6,6 +6,9 @@ namespace :guest do
     get :weixin
   end
 
+  resource :blank, controller: 'blank' do
+  end
+
   resource :pages do
     get :business_model
     get :shipping_cost

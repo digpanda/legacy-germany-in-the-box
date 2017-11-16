@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+  <%= render "layouts/application/meta" %>
+  <%= render "layouts/application/head" %>
+  <%= render "layouts/application/stylesheets" %>
+  <%= render "layouts/application/javascripts" %>
+</head>
+
+<body style="" id="csstyle">
+
+  <link rel="stylesheet" type="text/css" href="/stylesheets/vendor.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/shared.css">
+
+  <!-- Base container -->
+  <div class="container-fluid page-error +centered" style="padding:0;">
+
+    <!-- <div class="+spacer"></div>
+    <img src="/images/logo-white-full.png">
+    <div class="+spacer"></div> -->
+
+    <%= yield %>
+
+  </div>
+
+</body>
+</html>

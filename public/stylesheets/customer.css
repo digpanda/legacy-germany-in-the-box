@@ -1092,7 +1092,7 @@ body {
   .message__error {
     padding: 1em;
     background-color: #d6506c;
-    font-size: 16px;
+    font-size: 20px;
     color: white; }
   .message__success {
     padding: 1em;

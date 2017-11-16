@@ -18,11 +18,14 @@ class Connect::ConfirmationsController < Devise::ConfirmationsController
       end
 
       flash[:success] = I18n.t('devise.confirmations.confirmed')
-      respond_with_navigational(resource){ redirect_to after_confirmation_path_for(resource_name, resource) }
     else
-        flash[:error] = "#{resource.errors.full_messages.join(', ')}"
-      respond_with_navigational(resource.errors, status: :unprocessable_entity){ render :new }
+      flash[:error] = "#{resource.errors.full_messages.join(', ')}"
     end
+    # NOTE : we redirect to a special blank page
+    # we will solely show a message witout layout
+    # whatever happens
+    redirect_to guest_blank_path
+
   end
 
   private

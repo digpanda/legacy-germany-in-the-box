@@ -1,0 +1,17 @@
+<% if flash.keep[:success] %>
+<div class="message message__success">
+  <div class="message__content">
+    <%= flash[:success] %>
+  </div>
+</div>
+<% end %>
+
+<% if flash.keep[:error] %>
+<div class="message message__error">
+  <div class="message__content">
+    <%= flash[:error] %>
+  </div>
+</div>
+<% end %>
+
+<% flash.discard %>
