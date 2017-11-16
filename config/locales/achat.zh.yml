@@ -9,6 +9,7 @@ zh-CN:
       you_did_not_make_an_order: You did not make a first order so far
   bot:
     exchange:
+      default: SAMPLE MESSAGE IF NO MATCH
       offers:
         make_first_order:
           you_already_made_an_order: You already made an order, congratulations !

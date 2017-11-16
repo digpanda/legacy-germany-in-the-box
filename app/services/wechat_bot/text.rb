@@ -17,7 +17,7 @@ module WechatBot
         # dedicated to the customer support
         slack_support.service_message(user, content)
         notify_admin
-        messenger.text! "SAMPLE MESSAGE IF NO MATCH"
+        messenger.text! I18n.t('bot.exchange.default')
       end
 
       return_with(:success)

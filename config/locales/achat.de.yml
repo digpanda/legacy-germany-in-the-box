@@ -7,6 +7,7 @@ de:
       you_did_not_invite: You did not invite 3 friends.
   bot:
     exchange:
+      default: No matching selector found
       offers:
         invite_three_friends:
           you_already_invited_friends: You already invited three friends.
