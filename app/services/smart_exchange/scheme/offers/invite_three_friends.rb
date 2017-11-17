@@ -21,7 +21,7 @@ module SmartExchange
               return :keep
             end
           else
-            messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.you_already_completed_this_challenge')
+            messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.you_already_completed_this_challenge', coupon_code: reward_manager.coupon.code)
           end
         end
 

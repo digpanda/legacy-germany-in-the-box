@@ -20,7 +20,7 @@ module SmartExchange
               messenger.text! I18n.t('bot.exchange.offers.fill_in_email.please_enter_your_email')
             end
           else
-            messenger.text! I18n.t('bot.exchange.offers.fill_in_email.you_already_completed_this_challenge')
+            messenger.text! I18n.t('bot.exchange.offers.fill_in_email.you_already_completed_this_challenge', coupon_code: reward_manager.coupon.code)
           end
         end
 
