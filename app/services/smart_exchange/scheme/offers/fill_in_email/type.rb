@@ -15,7 +15,7 @@ module SmartExchange
               messenger.text! I18n.t('bot.exchange.offers.fill_in_email.type.email_was_updated')
             else
               messenger.text! I18n.t('bot.exchange.offers.fill_in_email.type.email_is_not_valid')
-              false
+              return :keep
             end
           end
 

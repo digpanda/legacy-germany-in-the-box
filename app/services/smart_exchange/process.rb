@@ -48,9 +48,9 @@ module SmartExchange
         # we lock the system as if it succeeded
         # to avoid firing other events, while giving the chance
         # to the same sequence to repeat itself on request
-        return true if response == false
+        return true if response == false # NOTE : maybe this is not working anymore because of the change to keep
 
-        breakpoint.delete
+        breakpoint.delete unless response == :keep
         return response
       end
       false

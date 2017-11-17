@@ -22,6 +22,7 @@ module SmartExchange
               text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_invite_friends')}\r\n" unless invite_three_friends?
               text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_make_first_order')}\r\n" unless make_first_order?
               messenger.text! text unless text.empty?
+              return :keep
             end
           else
             messenger.text! I18n.t('bot.exchange.offers.become_vip_user.you_already_completed_this_challenge')

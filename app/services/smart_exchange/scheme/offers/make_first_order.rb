@@ -18,6 +18,7 @@ module SmartExchange
               messenger.text! I18n.t('bot.exchange.offers.make_first_order.you_already_completed_this_challenge')
             else
               messenger.text! I18n.t('bot.exchange.offers.make_first_order.please_make_order')
+              return :keep
             end
           else
             messenger.text! I18n.t('bot.exchange.offers.make_first_order.you_already_completed_this_challenge')
