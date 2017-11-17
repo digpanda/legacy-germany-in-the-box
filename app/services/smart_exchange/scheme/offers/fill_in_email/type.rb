@@ -15,6 +15,7 @@ module SmartExchange
               messenger.text! I18n.t('bot.exchange.offers.fill_in_email.type.email_was_updated')
               :destroy
             else
+              SlackDispatcher.new.message("#{user.errors.full_messages.join(', ')}")
               messenger.text! I18n.t('bot.exchange.offers.fill_in_email.type.email_is_not_valid')
               :keep
             end
