@@ -30,7 +30,7 @@ class Notifier
 
     def reward_was_given(reward)
       dispatch(
-        title: "New reward acquiered",
+        title: "您的邮箱验证奖励",
         desc: "#{reward.read}",
       ).perform(:wechat, :email)
     end
