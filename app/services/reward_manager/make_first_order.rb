@@ -17,20 +17,20 @@ class RewardManager < BaseService
     # setup email coupon reward to use
     # around 100 CNY with a minimum order of 100 CNY
     def coupon
-      @coupon ||= Coupon.create!(user: reward.user, discount: money, minimum_order: money, unit: :value, unique: true, origin: :reward)
+      @coupon ||= Coupon.create!(user: reward.user, discount: percent, minimum_order: percent, unit: :percent, unique: true, origin: :reward)
     end
 
-    def money
-      100.in_yuan.to_euro.amount
+    def percent
+      15
     end
 
     def made_complete_order?
       return true if reward.user.orders.bought.count > 0
-      reward.user.introduced.each do |user|
-        if user.orders.bought.count > 0
-          return true
-        end
-      end
+      # reward.user.introduced.each do |user|
+      #   if user.orders.bought.count > 0
+      #     return true
+      #   end
+      # end
       false
     end
 

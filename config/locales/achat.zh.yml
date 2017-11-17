@@ -35,6 +35,7 @@ zh-CN:
           please_fill_in_email: Fill in email not completed
           please_invite_friends: Invite three friends not completed
           please_make_first_order: Make first order not completed
+          please_make_three_orders: Please make three orders
 
   note:
     wechatpay_wechat_user: 微信内访问来因盒，首选微信支付，一步完成哦

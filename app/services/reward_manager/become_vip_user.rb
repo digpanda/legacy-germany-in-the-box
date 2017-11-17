@@ -22,9 +22,14 @@ class RewardManager < BaseService
       end
 
       def vipable?
-        fill_in_email? && invite_three_friends? && make_first_order?
+        fill_in_email? && invite_three_friends? && make_first_order? && made_three_orders?
       end
 
+      def made_three_orders?
+        return true if reward.user.orders.bought.count >= 3
+        false
+      end
+      
       def fill_in_email?
          RewardManager.new(reward.user, task: :fill_in_email).ended?
       end

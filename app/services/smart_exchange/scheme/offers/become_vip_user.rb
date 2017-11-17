@@ -20,7 +20,8 @@ module SmartExchange
               text = "#{I18n.t('bot.exchange.offers.become_vip_user.please_complete_tasks')}\r\n"
               text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_fill_in_email')}\r\n" unless fill_in_email?
               text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_invite_friends')}\r\n" unless invite_three_friends?
-              text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_make_first_order')}\r\n" unless make_first_order?
+              # text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_make_first_order')}\r\n" unless make_first_order?
+              text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_make_three_orders')}\r\n" unless make_three_orders?
               messenger.text! text unless text.empty?
               return :keep
             end
@@ -37,8 +38,12 @@ module SmartExchange
           RewardManager.new(user, task: :invite_three_friends).ended?
         end
 
-        def make_first_order?
-          RewardManager.new(user, task: :make_first_order).ended?
+        # def make_first_order?
+        #   RewardManager.new(user, task: :make_first_order).ended?
+        # end
+
+        def make_three_orders?
+          user.orders.bought.count >= 3
         end
 
         def reward_manager
