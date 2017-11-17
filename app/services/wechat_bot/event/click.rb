@@ -14,15 +14,14 @@ module WechatBot
       def handle
         case event_key
         when 'offers'
-          messenger.text! '2017a'
+          SmartExchange::Process.new(user, '优惠券').perform
         when 'groupchat'
           messenger.image! path: '/images/wechat/group.jpg'
         when 'chatsale'
           messenger.text! data(:chatsale)
           messenger.image! path: '/images/wechat/wechat_support_qr.jpg'
         when 'support'
-          messenger.text! data(:support)
-          messenger.image! path: '/images/wechat/wechat_support_qr.jpg'
+          SmartExchange::Process.new(user, '客服').perform
         when 'ping'
           messenger.text! data(:ping)
         end

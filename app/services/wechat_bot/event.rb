@@ -25,5 +25,6 @@ module WechatBot
       return_with(:error, error: exception.message)
     end
 
+
   end
 end
