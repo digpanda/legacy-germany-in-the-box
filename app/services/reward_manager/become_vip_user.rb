@@ -18,7 +18,7 @@ class RewardManager < BaseService
     private
 
       def turn_to_vip
-        user.update(vip: true)
+        reward.user.update(vip: true)
       end
 
       def vipable?
@@ -26,15 +26,15 @@ class RewardManager < BaseService
       end
 
       def fill_in_email?
-         RewardManager.new(user, task: :fill_in_email).ended?
+         RewardManager.new(reward.user, task: :fill_in_email).ended?
       end
 
       def invite_three_friends?
-        RewardManager.new(user, task: :invite_three_friends).ended?
+        RewardManager.new(reward.user, task: :invite_three_friends).ended?
       end
 
       def make_first_order?
-        RewardManager.new(user, task: :make_first_order).ended?
+        RewardManager.new(reward.user, task: :make_first_order).ended?
       end
 
   end
