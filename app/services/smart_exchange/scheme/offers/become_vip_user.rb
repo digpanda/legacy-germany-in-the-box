@@ -6,7 +6,7 @@ module SmartExchange
         # valid_until -> { 1.weeks.from_now }
 
         def request
-          '3'
+          '4'
         end
 
         def response
