@@ -45,19 +45,22 @@ class RewardManager < BaseService
 
   # we can access the reward from the model directly from the manager
   def reward
-    @reward ||= Reward.where(user: user, task: task).first_or_create!(started_at: Time.now)
+    @reward ||= matching_rewards.first_or_create!(started_at: Time.now)
   end
 
   def reward_exists?
-    Reward.where(user: user, task: task).count > 0
+    matching_rewards.count > 0
   end
 
   def reward_ended?
-    reward_exists? && !Reward.where(user: user, task: task).first&.to_end
+    reward_exists? && !matching_rewards.first.to_end?
+  end
+
+  def matching_rewards
+    Reward.where(user: user, task: task)
   end
 
   private
-
 
     def task_class
       "RewardManager::#{task.to_s.camelize}".constantize rescue nil
