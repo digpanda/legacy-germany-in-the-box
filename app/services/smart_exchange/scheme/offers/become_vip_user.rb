@@ -15,7 +15,7 @@ module SmartExchange
             # it will go through a validation
             # if it's possible
             if reward_manager.end.success?
-              messenger.text! 'Congratulations, you completed all the previous challenges, you are now VIP !')
+              messenger.text! 'Congratulations, you completed all the previous challenges, you are now VIP !'
             else
               text = ''
               text += "Fill in email not completed\r\n" unless fill_in_email?

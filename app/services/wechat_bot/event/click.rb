@@ -14,6 +14,7 @@ module WechatBot
       def handle
         case event_key
         when 'offers'
+          # it simulate an exchange with the offers keyword
           SmartExchange::Process.new(user, '优惠券').perform
         when 'groupchat'
           messenger.image! path: '/images/wechat/group.jpg'
@@ -21,6 +22,7 @@ module WechatBot
           messenger.text! data(:chatsale)
           messenger.image! path: '/images/wechat/wechat_support_qr.jpg'
         when 'support'
+          # it simulate an exchange with the support keyword
           SmartExchange::Process.new(user, '客服').perform
         when 'ping'
           messenger.text! data(:ping)
