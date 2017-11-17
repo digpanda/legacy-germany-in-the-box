@@ -6,14 +6,6 @@ class RewardManager < BaseService
     @task = task
   end
 
-  # to recover things such as #coupon methods
-  # from outside the reward manager systme
-  def method_missing(method, *params, &block)
-    if task_instance.respond_to?(method)
-      task_instance.send(method, *params, &block)
-    end
-  end
-
   # this will not trigger the Reward model entry creation
   # it's used to check if the reward is already in database
   # NOTE : we use that when confirming email for instancei
@@ -72,6 +64,14 @@ class RewardManager < BaseService
     Reward.where(user: user, task: task)
   end
 
+  # to recover things such as #coupon methods
+  # from outside the reward manager systme
+  def method_missing(method, *params, &block)
+    if task_instance.respond_to?(method)
+      task_instance.send(method, *params, &block)
+    end
+  end
+  
   private
 
     def task_class
