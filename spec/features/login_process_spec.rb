@@ -2,7 +2,7 @@ feature 'login process', js: true do
 
   let(:customer) { FactoryGirl.create(:customer) }
   let(:referrer) { FactoryGirl.create(:customer, :with_referrer).referrer }
-  let(:friend) { FactoryGirl.create(:customer) }
+  let(:introducer) { FactoryGirl.create(:customer) }
 
   scenario 'login with a label' do
     visit root_path(label: 'test-label')
@@ -22,7 +22,7 @@ feature 'login process', js: true do
     visit root_path(introducer: introducer.id)
     process_login(customer)
     customer.reload
-    expect(customer.introduced.count).to eq(1)
+    expect(customer.introducer).not_to eq(nil)
   end
 
 end

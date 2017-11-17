@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :navigation, :cart_manager, :identity_solver
 
-  before_action :assign_friend, :assign_label, :assign_group, :assign_referrer
+  before_action :assign_introducer, :assign_label, :assign_group, :assign_referrer
 
   before_action :force_wechat_login
   before_action :solve_silent_login, :solve_origin, :solve_landing
@@ -52,9 +52,9 @@ class ApplicationController < ActionController::Base
   end
 
   # if there is a URL containing a code
-  # we try to bind automatically the user to the friend
-  def assign_friend
-    session[:friend] = params[:friend] if params[:friend]
+  # we try to bind automatically the user to the introducer
+  def assign_introducer
+    session[:introducer] = params[:introducer] if params[:introducer]
   end
 
   # if there is a URL containing a code
