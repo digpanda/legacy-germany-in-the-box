@@ -14,9 +14,10 @@ module SmartExchange
             # we try to end the challenge
             # it will go through a validation
             # if it's possible
-            unless reward_manager.end.success?
-            #   messenger.text! I18n.t('bot.exchange.offers.fill_in_email.you_already_completed_this_challenge')
-            # else
+            if reward_manager.end.success?
+              messenger.text! I18n.t('bot.exchange.offers.fill_in_email.you_already_completed_this_challenge', coupon_code: reward_manager.coupon.code)
+              :destroy
+            else
               messenger.text! I18n.t('bot.exchange.offers.fill_in_email.please_enter_your_email')
             end
           else
