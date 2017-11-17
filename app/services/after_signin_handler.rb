@@ -71,7 +71,7 @@ class AfterSigninHandler
 
       # we assign what was in session
       # if it exists
-      handle_friend
+      handle_introducer
       handle_label
 
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
@@ -158,14 +158,14 @@ class AfterSigninHandler
 
     # if a param[:friend] was previously stored
     # we try to run the mechanism to assign it to this account
-    def handle_friend
-      if session[:friend]
-        friend = User.where(id: session[:friend]).first
-        if friend && user.friends.where(id: friend[:friend]).count == 0
-          user.friends << friend
+    def handle_introducer
+      if session[:introducer]
+        introducer = User.where(id: session[:introducer]).first
+        if introducer && user.introducer.nil?
+          user.introducer = introducer
           user.save
         end
-        session[:friend] = nil
+        session[:introducer] = nil
       end
     end
 

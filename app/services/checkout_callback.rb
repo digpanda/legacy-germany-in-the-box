@@ -151,8 +151,8 @@ class CheckoutCallback < BaseService
     def make_first_order_challenge_completion
       if user
         try_to_give_reward(user)
-        user.friends.each do |friend|
-          try_to_give_reward(friend)
+        user.introduced.each do |user|
+          try_to_give_reward(user)
         end
       end
     end

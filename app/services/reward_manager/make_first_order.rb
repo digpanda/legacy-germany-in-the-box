@@ -26,8 +26,8 @@ class RewardManager < BaseService
 
     def made_complete_order?
       return true if reward.user.orders.bought.count > 0
-      reward.user.friends.each do |friend|
-        if friend.orders.bought.count > 0
+      reward.user.introduced.each do |user|
+        if user.orders.bought.count > 0
           return true
         end
       end

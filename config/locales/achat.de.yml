@@ -11,7 +11,7 @@ de:
       offers:
         invite_three_friends:
           you_already_invited_friends: You already invited three friends.
-          please_share: "You got %{total_friends} friends. Please share this link with your friends : %{link_to_share}"
+          please_share: "You got %{total_introduced} friends. Please share this link with your friends : %{link_to_share}"
           you_already_completed_this_challenge: You already completed this challenge.
         fill_in_email:
           email_is_already_valid: Your email is already valid. Congratulation !

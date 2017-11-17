@@ -19,10 +19,10 @@ feature 'login process', js: true do
   end
 
   scenario 'login and assign a friend to the account' do
-    visit root_path(friend: friend.id)
+    visit root_path(introducer: introducer.id)
     process_login(customer)
     customer.reload
-    expect(customer.friends.count).to eq(1)
+    expect(customer.introduced.count).to eq(1)
   end
 
 end

@@ -76,7 +76,9 @@ class User
          :confirmable, allow_unconfirmed_access_for: nil
 
   has_and_belongs_to_many :favorites, class_name: 'Product'
-  has_and_belongs_to_many :friends, class_name: 'User'
+
+  has_many :introduced, class_name: 'User', inverse_of: :introducer
+  belongs_to :introducer, class_name: 'User', inverse_of: :introduced
 
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
 

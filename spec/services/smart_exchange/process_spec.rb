@@ -16,7 +16,7 @@ describe SmartExchange::Process do
   context '#perform' do
 
     let(:customer) { FactoryGirl.create(:customer, :from_wechat) }
-    let(:friends) { FactoryGirl.create_list(:customer, 5) }
+    let(:introduced) { FactoryGirl.create_list(:customer, 5) }
 
     context 'simple exchanges' do
 
@@ -76,17 +76,19 @@ describe SmartExchange::Process do
 
       end
 
-      it 'goes through the invite three friends challenge successfully' do
+      it 'goes through the invite three friends  challenge successfully' do
 
         described_class.new(customer, '优惠券').perform
         described_class.new(customer, '2').perform
-        # should display a message saying "invite your friends"
+        # should display a message saying "invite your introduced"
         expect(customer.rewards.count).to eq(1)
         expect(customer.rewards.first.to_end?).to eq(true)
 
-        # we add the friends virtually
-        customer.friends = friends
-        customer.save(validate: false)
+        # we add the introduced virtually
+        introduced.each do |user|
+          user.introducer = customer
+          user.save(validate: false)
+        end
 
         # we roll the offer again and see whats up
         described_class.new(customer, '优惠券').perform
