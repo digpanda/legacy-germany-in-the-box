@@ -15,6 +15,10 @@ class RewardManager < BaseService
     reward_exists?
   end
 
+  def ended?
+    reward_ended?
+  end
+
   # we simple start or recover the reward
   # if it's already started, it won't affect the data
   def start
@@ -46,6 +50,10 @@ class RewardManager < BaseService
 
   def reward_exists?
     Reward.where(user: user, task: task).count > 0
+  end
+
+  def reward_ended?
+    reward_exists? && !Reward.where(user: user, task: task).first&.to_end
   end
 
   private

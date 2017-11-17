@@ -17,10 +17,6 @@ class RewardManager < BaseService
       return_with(:error, "Reward was already given.")
     end
 
-    def ended?
-      !reward.to_end?
-    end
-
     protected
 
       # process reward should return a `return_with` which check if the user is rewardable.
