@@ -15,7 +15,7 @@ module SmartExchange
             # it will go through a validation
             # if it's possible
             if reward_manager.end.success?
-              messenger.text! I18n.t('bot.exchange.offers.fill_in_email.email_is_already_valid')
+              messenger.text! I18n.t('bot.exchange.offers.fill_in_email.you_already_completed_this_challenge')
             else
               messenger.text! I18n.t('bot.exchange.offers.fill_in_email.please_enter_your_email')
             end

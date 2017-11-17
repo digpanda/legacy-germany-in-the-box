@@ -15,7 +15,7 @@ module SmartExchange
             # it will go through a validation
             # if it's possible
             if reward_manager.end.success?
-              messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.you_already_invited_friends')
+              messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.you_already_completed_this_challenge')
             else
               messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.please_share', total_friends: total_friends, link_to_share: link_to_share)
             end

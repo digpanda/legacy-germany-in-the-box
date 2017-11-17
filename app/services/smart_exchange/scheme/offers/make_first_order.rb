@@ -15,7 +15,7 @@ module SmartExchange
             # it will go through a validation
             # if it's possible
             if reward_manager.end.success?
-              messenger.text! I18n.t('bot.exchange.offers.make_first_order.you_already_made_an_order')
+              messenger.text! I18n.t('bot.exchange.offers.make_first_order.you_already_completed_this_challenge')
             else
               messenger.text! I18n.t('bot.exchange.offers.make_first_order.please_make_order')
             end

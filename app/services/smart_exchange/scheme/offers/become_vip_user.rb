@@ -17,14 +17,28 @@ module SmartExchange
             if reward_manager.end.success?
               messenger.text! 'Congratulations, you completed all the previous challenges, you are now VIP !')
             else
-              messenger.text! "Fill in email not completed" unless fill_in_email?
-              messenger.text! "Invite three friends not completed" unless invite_three_friends?
-              messenger.text! "Make first order not completed" unless make_first_order?
-              messenger.text! "Please finish all those tasks before to try again."
+              text = ''
+              text += "Fill in email not completed\r\n" unless fill_in_email?
+              text += "Invite three friends not completed\r\n" unless invite_three_friends?
+              text += "Make first order not completed\r\n" unless make_first_order?
+              text += "Please finish all those tasks before to try again.\r\n"
+              messenger.text! text unless text.empty?
             end
           else
             messenger.text! I18n.t('bot.exchange.offers.become_vip_user.you_already_completed_this_challenge')
           end
+        end
+
+        def fill_in_email?
+           RewardManager.new(user, task: :fill_in_email).ended?
+        end
+
+        def invite_three_friends?
+          RewardManager.new(user, task: :invite_three_friends).ended?
+        end
+
+        def make_first_order?
+          RewardManager.new(user, task: :make_first_order).ended?
         end
 
         def reward_manager

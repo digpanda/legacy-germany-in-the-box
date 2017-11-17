@@ -52,6 +52,7 @@ class User
   field :label, type: String
   field :group, type: Symbol, default: :default # [:default, :student, :reseller]
 
+  field :vip, type: Boolean, default: false
   field :banished, type: Boolean, default: false
   field :version_allowed, type: Symbol, default: :stable
 
