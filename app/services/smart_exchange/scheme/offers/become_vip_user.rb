@@ -18,9 +18,9 @@ module SmartExchange
               messenger.text! I18n.t('bot.exchange.offers.become_vip_user.you_are_vip')
             else
               text = "#{I18n.t('bot.exchange.offers.become_vip_user.please_complete_tasks')}\r\n"
-              text += "#{I18n.t('box.exchange.offers.become_vip_user.please_fill_in_email')}\r\n" unless fill_in_email?
-              text += "#{I18n.t('box.exchange.offers.become_vip_user.please_invite_friends')}\r\n" unless invite_three_friends?
-              text += "#{I18n.t('box.exchange.offers.become_vip_user.please_make_first_order')}\r\n" unless make_first_order?
+              text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_fill_in_email')}\r\n" unless fill_in_email?
+              text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_invite_friends')}\r\n" unless invite_three_friends?
+              text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_make_first_order')}\r\n" unless make_first_order?
               messenger.text! text unless text.empty?
             end
           else
