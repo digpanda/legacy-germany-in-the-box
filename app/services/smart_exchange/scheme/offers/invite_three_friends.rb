@@ -17,7 +17,7 @@ module SmartExchange
             if reward_manager.end.success?
               messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.you_already_completed_this_challenge')
             else
-              messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.please_share', total_friends: total_friends, link_to_share: link_to_share)
+              messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.please_share', total_friends: total_friends, friends_left: friends_left, link_to_share: link_to_share)
             end
           else
             messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.you_already_completed_this_challenge')
@@ -26,6 +26,10 @@ module SmartExchange
 
         def total_friends
           user.friends.count
+        end
+
+        def friends_left
+          3 - user.friends.count
         end
 
         def link_to_share
