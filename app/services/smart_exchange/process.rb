@@ -52,7 +52,7 @@ module SmartExchange
 
         breakpoint.delete
         return true if response == :destroy
-        
+
         return response
       end
       false
@@ -68,7 +68,7 @@ module SmartExchange
       # we check if it matches
       if class_request == request || class_request == MATCH_WILDCARD
         # we insert all its subclasses
-        insert_subclasses(class_match)
+        insert_subclasses(class_match) unless class_instance.response == :destroy
         return class_instance.response
       end
       :continue
