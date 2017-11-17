@@ -17,7 +17,7 @@ class RewardManager < BaseService
     # setup email coupon reward to use
     # around 80 CNY with a minimum order of 80 CNY
     def coupon
-      @coupon ||= Coupon.create!(user: reward.user, discount: money, minimum_order: percent, unit: :percent, unique: true)
+      @coupon ||= Coupon.create!(user: reward.user, discount: percent, minimum_order: percent, unit: :percent, unique: true, origin: :reward)
     end
 
     def percent

@@ -34,7 +34,7 @@ describe SmartExchange::Process do
 
       it 'goes through the email challenge successfully' do
 
-        described_class.new(customer, 'offers').perform
+        described_class.new(customer, '优惠券').perform
         described_class.new(customer, '1').perform
 
         perform = described_class.new(customer, 'wrong-email').perform
@@ -65,7 +65,7 @@ describe SmartExchange::Process do
 
         customer = FactoryGirl.create(:customer, :from_wechat, :with_valid_email)
 
-        described_class.new(customer, 'offers').perform
+        described_class.new(customer, '优惠券').perform
         perform = described_class.new(customer, '1').perform
         expect(perform).to eq(true)
 
@@ -78,7 +78,7 @@ describe SmartExchange::Process do
 
       it 'goes through the invite three friends challenge successfully' do
 
-        described_class.new(customer, 'offers').perform
+        described_class.new(customer, '优惠券').perform
         described_class.new(customer, '2').perform
         # should display a message saying "invite your friends"
         expect(customer.rewards.count).to eq(1)
@@ -89,7 +89,7 @@ describe SmartExchange::Process do
         customer.save(validate: false)
 
         # we roll the offer again and see whats up
-        described_class.new(customer, 'offers').perform
+        described_class.new(customer, '优惠券').perform
         described_class.new(customer, '2').perform
 
         # challenge finished
