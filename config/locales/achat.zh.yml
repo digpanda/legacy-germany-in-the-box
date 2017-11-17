@@ -1,8 +1,8 @@
 zh-CN:
   reward:
-    make_first_order: "您已经完成第一单任务奖励, 任务奖励是购物优惠券 %{coupon_code}"
-    fill_in_email: "邮箱验证任务奖励是购物优惠券: %{coupon_code}"
-    invite_three_friends: "朋友注册邀请的任务奖励是购物优惠券 #{coupon.code}"
+    make_first_order: "您已经完成第一单任务奖励, 任务奖励是购物奖励 %{coupon_code}"
+    fill_in_email: "邮箱验证任务奖励是购物奖励: %{coupon_code}"
+    invite_three_friends: "朋友注册邀请的任务奖励是购物奖励 #{coupon.code}"
     become_vip_user: You are now VIP
     error:
       email_not_valid: 邮箱地址不正确。返回任务奖励初始选项请输入prize
@@ -11,7 +11,7 @@ zh-CN:
       you_cannot_become_vip: You cannot become VIP
   bot:
     exchange:
-      default: 进入任务奖励对话请输入offers或菜单'找小茵|优惠券'，人工客服请选择'代客下单'或者'联系我们'菜单
+      default: 进入任务奖励对话请输入offers或菜单'找小茵|奖励'，人工客服请选择'代客下单'或者'联系我们'菜单
       offers:
         make_first_order:
           you_already_made_an_order: You already made an order, congratulations !

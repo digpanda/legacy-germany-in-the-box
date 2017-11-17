@@ -14,9 +14,9 @@ module SmartExchange
             # we try to end the challenge
             # it will go through a validation
             # if it's possible
-            if reward_manager.end.success?
-              messenger.text! I18n.t('bot.exchange.offers.become_vip_user.you_are_vip')
-            else
+            unless reward_manager.end.success?
+            #   messenger.text! I18n.t('bot.exchange.offers.become_vip_user.you_are_vip')
+            # else
               text = "#{I18n.t('bot.exchange.offers.become_vip_user.please_complete_tasks')}\r\n"
               text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_fill_in_email')}\r\n" unless fill_in_email?
               text += "#{I18n.t('bot.exchange.offers.become_vip_user.please_invite_friends')}\r\n" unless invite_three_friends?

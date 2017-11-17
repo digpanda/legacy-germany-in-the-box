@@ -15,7 +15,7 @@ module WechatBot
         case event_key
         when 'offers'
           # it simulate an exchange with the offers keyword
-          SmartExchange::Process.new(user, '优惠券').perform
+          SmartExchange::Process.new(user, '奖励').perform
         when 'groupchat'
           messenger.image! path: '/images/wechat/group.jpg'
         when 'chatsale'

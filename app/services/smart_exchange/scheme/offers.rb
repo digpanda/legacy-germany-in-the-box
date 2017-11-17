@@ -5,7 +5,7 @@ module SmartExchange
       # valid_until -> { 7.days.from_now }
 
       def request
-        '优惠券'
+        '奖励'
       end
 
       def response

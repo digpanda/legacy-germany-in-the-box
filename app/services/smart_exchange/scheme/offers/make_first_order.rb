@@ -14,9 +14,9 @@ module SmartExchange
             # we try to end the challenge
             # it will go through a validation
             # if it's possible
-            if reward_manager.end.success?
-              messenger.text! I18n.t('bot.exchange.offers.make_first_order.you_already_completed_this_challenge')
-            else
+            unless reward_manager.end.success?
+            #   messenger.text! I18n.t('bot.exchange.offers.make_first_order.you_already_completed_this_challenge')
+            # else
               messenger.text! I18n.t('bot.exchange.offers.make_first_order.please_make_order')
               return :keep
             end

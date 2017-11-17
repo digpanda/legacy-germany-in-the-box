@@ -14,9 +14,9 @@ module SmartExchange
             # we try to end the challenge
             # it will go through a validation
             # if it's possible
-            if reward_manager.end.success?
-              messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.you_already_completed_this_challenge')
-            else
+            unless reward_manager.end.success?
+            #   messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.you_already_completed_this_challenge')
+            # else
               messenger.text! I18n.t('bot.exchange.offers.invite_three_friends.please_share', balance: balance, total_introduced: total_introduced, introduced_left: introduced_left, link_to_share: link_to_share)
               return :keep
             end
