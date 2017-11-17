@@ -3,10 +3,12 @@ zh-CN:
     make_first_order: "您已经完成第一单任务奖励, 任务奖励是购物优惠券 %{coupon_code}"
     fill_in_email: "邮箱验证任务奖励是购物优惠券: %{coupon_code}"
     invite_three_friends: "朋友注册邀请的任务奖励是购物优惠券 #{coupon.code}"
+    become_vip_user: You are now VIP
     error:
       email_not_valid: 邮箱地址不正确。返回任务奖励初始选项请输入prize
       you_did_not_invite: 您尚未完成3位朋友的注册邀请任务奖励。
       you_did_not_make_an_order: You did not make a first order so far
+      you_cannot_become_vip: You cannot become VIP
   bot:
     exchange:
       default: 进入任务奖励对话请输入offers或菜单'找小茵|优惠券'，人工客服请选择'代客下单'或者'联系我们'菜单
@@ -26,6 +28,10 @@ zh-CN:
           type:
             email_was_updated: 请访问您的邮箱，点击邮箱验证链接，完成后获取任务奖励。
             email_is_not_valid: 邮箱地址不正确。返回任务奖励初始选项请输入prize
+        become_vip_user:
+          you_are_vip: Congratulations, you completed all the previous challenges, you are now VIP !
+          you_already_completed_this_challenge: 恭喜！😄您已成功完成了邮箱验证这个任务奖励。
+
   note:
     wechatpay_wechat_user: 微信内访问来因盒，首选微信支付，一步完成哦
     wechatpay_no_wechat_mobile_user: 手机浏览器内使用微信支付，请保存二维码到相册后使用微信扫一扫
