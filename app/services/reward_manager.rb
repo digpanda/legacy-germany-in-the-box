@@ -41,7 +41,7 @@ class RewardManager < BaseService
   # it will process the reward system
   # if the subclass does not exist it does not process anything
   def end
-    task_instance.end if task_class
+    task_class.new(reward).end if task_class
   end
 
   def task_instance
