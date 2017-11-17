@@ -34,7 +34,7 @@ module SmartExchange
         end
 
         def introduced_left
-          3 - user.introduced.count
+          10 - user.introduced.count
         end
 
         def link_to_share

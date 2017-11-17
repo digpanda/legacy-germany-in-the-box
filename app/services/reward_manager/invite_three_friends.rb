@@ -3,7 +3,7 @@ class RewardManager < BaseService
 
     # if the user entered a correct email the reward is confirmed
     def process_reward
-      if reward.user.introduced.count >= 3
+      if reward.user.introduced.count >= 10
         coupon
         return return_with(:success)
       end
