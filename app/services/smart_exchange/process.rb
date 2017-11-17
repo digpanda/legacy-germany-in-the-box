@@ -68,8 +68,9 @@ module SmartExchange
       # we check if it matches
       if class_request == request || class_request == MATCH_WILDCARD
         # we insert all its subclasses
-        insert_subclasses(class_match) unless class_instance.response == :destroy
-        return class_instance.response
+        final_response = class_instance.response
+        insert_subclasses(class_match) unless final_response == :destroy
+        return final_response
       end
       :continue
     end
