@@ -1,28 +1,28 @@
 zh-CN:
   reward:
-    make_first_order: "Congratulation you or one of your friends made your first order, your coupon code is %{coupon_code}"
+    make_first_order: "您已经完成第一单任务奖励, 任务奖励是购物优惠券 %{coupon_code}"
     fill_in_email: "邮箱验证任务奖励是购物优惠券: %{coupon_code}"
-    invite_three_friends: "朋友注册邀请的任务奖励是购物优惠券 #{coupon.code} "
+    invite_three_friends: "朋友注册邀请的任务奖励是购物优惠券 #{coupon.code}"
     error:
       email_not_valid: 邮箱地址不正确。返回任务奖励初始选项请输入prize
       you_did_not_invite: 您尚未完成3位朋友的注册邀请任务奖励。
       you_did_not_make_an_order: You did not make a first order so far
   bot:
     exchange:
-      default: SAMPLE MESSAGE IF NO MATCH
+      default: 进入任务奖励对话请输入offers或菜单'找小茵|优惠券'，人工客服请选择'代客下单'或者'联系我们'菜单
       offers:
         make_first_order:
           you_already_made_an_order: You already made an order, congratulations !
-          please_make_order: You or one of you friends must complete an order to receive this reward.
-          you_already_completed_this_challenge: 您已成功完成了这个任务奖励.
+          please_make_order: 您或者您邀请的任何一位微信好友完成第一笔下单。
+          you_already_completed_this_challenge: 恭喜！😄您已成功完成了第一单任务奖励。本奖励任务将定期重新开放领取，请关注。
         invite_three_friends:
           you_already_invited_friends: 您已经完成朋友注册邀请任务奖励。
-          please_share: "请转发注册链接，邀请%{total_friends}位朋友: %{link_to_share}"
-          you_already_completed_this_challenge: 您已成功完成了这个任务奖励.
+          please_share: "请在微信对话或朋友圈转发注册链接，邀请%{total_friends}位微信好友: %{link_to_share} 已邀请%{friends_left}位朋友"
+          you_already_completed_this_challenge: 恭喜！😄您已成功完成了邀请微信好友注册这个任务奖励。本奖励任务将定期重新开放领取，请关注。
         fill_in_email:
-          email_is_already_valid: 您的邮箱已验证，谢谢 !
+          email_is_already_valid: 您的邮箱已验证，谢谢!
           please_enter_your_email: 请输入您的邮箱
-          you_already_completed_this_challenge: 您已成功完成了这个任务奖励。
+          you_already_completed_this_challenge: 恭喜！😄您已成功完成了邮箱验证这个任务奖励。
           type:
             email_was_updated: 请访问您的邮箱，点击邮箱验证链接，完成后获取任务奖励。
             email_is_not_valid: 邮箱地址不正确。返回任务奖励初始选项请输入prize
