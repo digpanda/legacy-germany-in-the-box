@@ -13,9 +13,10 @@ module SmartExchange
           def response
             if user.update(email: email)
               messenger.text! I18n.t('bot.exchange.offers.fill_in_email.type.email_was_updated')
+              :destroy
             else
               messenger.text! I18n.t('bot.exchange.offers.fill_in_email.type.email_is_not_valid')
-              return :keep
+              :keep
             end
           end
 

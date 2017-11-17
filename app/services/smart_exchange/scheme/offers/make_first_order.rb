@@ -22,6 +22,7 @@ module SmartExchange
             end
           else
             messenger.text! I18n.t('bot.exchange.offers.make_first_order.you_already_completed_this_challenge', coupon_code: reward_manager.coupon.code)
+            :destroy
           end
         end
 

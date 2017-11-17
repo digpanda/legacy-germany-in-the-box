@@ -27,6 +27,7 @@ module SmartExchange
             end
           else
             messenger.text! I18n.t('bot.exchange.offers.become_vip_user.you_already_completed_this_challenge')
+            :destroy
           end
         end
 
