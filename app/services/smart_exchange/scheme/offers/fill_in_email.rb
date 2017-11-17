@@ -15,13 +15,13 @@ module SmartExchange
             # it will go through a validation
             # if it's possible
             if reward_manager.end.success?
-              messenger.text! I18n.t('bot.exchange.offers.fill_in_email.you_already_completed_this_challenge', coupon_code: reward_manager.coupon.code)
+              messenger.text! I18n.t('bot.exchange.offers.fill_in_email.you_already_completed_this_challenge')
               :destroy
             else
               messenger.text! I18n.t('bot.exchange.offers.fill_in_email.please_enter_your_email')
             end
           else
-            messenger.text! I18n.t('bot.exchange.offers.fill_in_email.you_already_completed_this_challenge', coupon_code: reward_manager.coupon.code)
+            messenger.text! I18n.t('bot.exchange.offers.fill_in_email.you_already_completed_this_challenge')
             :destroy
           end
         end
