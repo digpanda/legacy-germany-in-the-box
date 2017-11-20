@@ -27,15 +27,15 @@ module SmartExchange
         end
 
         def balance
-          15 * user.introduced.count
+          15 * user.introduced.from_wechat.count
         end
 
         def total_introduced
-          user.introduced.count
+          user.introduced.from_wechat.count
         end
 
         def introduced_left
-          10 - user.introduced.count
+          10 - user.introduced.from_wechat.count
         end
 
         def link_to_share

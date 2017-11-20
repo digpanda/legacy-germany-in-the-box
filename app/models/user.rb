@@ -81,6 +81,7 @@ class User
   belongs_to :introducer, class_name: 'User', inverse_of: :introduced
 
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
+  scope :from_wechat, -> { where(provider: :wechat) }
 
   has_many :orders,                                 inverse_of: :user,   dependent: :restrict
 

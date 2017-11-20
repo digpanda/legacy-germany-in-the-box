@@ -151,7 +151,7 @@ class CheckoutCallback < BaseService
     def make_first_order_challenge_completion
       if user
         try_to_give_reward(user)
-        user.introduced.each do |user|
+        user.introduced.from_wechat.each do |user|
           try_to_give_reward(user)
         end
       end
