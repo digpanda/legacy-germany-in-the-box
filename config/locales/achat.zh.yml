@@ -494,7 +494,7 @@ zh-CN:
     tel: 固定电话
     mobile: 移动电话
     name: 姓名
-    pid: 身份证号
+    pid: 收件人身份证号
   edit_order:
     special_instructions_title: 买家留言
     terminated: 买家已签收
