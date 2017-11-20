@@ -216,6 +216,7 @@ zh-CN:
     go_back_home_page: 回到首页
     start_process_shipment: 准备发货
   menu:
+    wechat_qrcode_link: 微信扫码访问公众号获取优惠奖励
     package_sets: 德国精品
     services: 海外服务
     my_favorites: 我的收藏

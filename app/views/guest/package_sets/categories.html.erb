@@ -10,6 +10,10 @@
 <%= render partial: "guest/services/brand_filters", locals: { current_brand: @brand, brand_filters: @services_brand_filters} %>
 <div class="+small-spacer"></div>
 
+<!-- Brand filters for Services -->
+<%= render partial: "guest/package_sets/wechat_qrcode" %>
+<div class="+small-spacer"></div>
+
 <!-- Categories listing -->
 <% @categories.each_with_index do |category, index| %>
   <%= cache category do %>
