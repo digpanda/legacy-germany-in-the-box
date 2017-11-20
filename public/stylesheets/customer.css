@@ -2,6 +2,8 @@
   position: absolute;
   left: -145px;
   width: 400px; }
+  #csstyle .\+wechat-qrcode a:hover {
+    pointer: cursor; }
   #csstyle .\+wechat-qrcode img {
     position: absolute;
     right: -8px;
