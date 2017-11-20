@@ -5,7 +5,7 @@ module SmartExchange
 
         # we will reset the email to a fake wechat one
         def request
-          'clear breakpoints'
+          'reset email'
         end
 
         def response
