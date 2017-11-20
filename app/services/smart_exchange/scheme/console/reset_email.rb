@@ -10,7 +10,10 @@ module SmartExchange
 
         def response
           user.email = "#{user.wechat_unionid}@wechat.com"
+          user.skip_confirmation!
           user.save(validate: false)
+          user.reload
+          messenger.text! "Your unvalid email is now : #{user.email}"
         end
       end
     end
