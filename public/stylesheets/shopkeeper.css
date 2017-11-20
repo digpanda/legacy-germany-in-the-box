@@ -1,3 +1,17 @@
+#csstyle .\+wechat-qrcode {
+  position: absolute;
+  left: -145px;
+  width: 400px; }
+  #csstyle .\+wechat-qrcode img {
+    position: absolute;
+    right: -8px;
+    max-width: 50px;
+    opacity: 0.4;
+    filter: alpha(opacity=40); }
+  #csstyle .\+wechat-qrcode span {
+    color: #919191;
+    border-bottom: 1px #919191 solid; }
+
 #csstyle .\+table-new {
   background-color: #fffff0; }
 
