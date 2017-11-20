@@ -40,6 +40,13 @@ module SmartExchange
     # but with memory breakpoints
     def matches_breakpoints?
       breakpoints.fetch.each do |breakpoint|
+        # if this class does not exist we remove the breakpoint
+        # and next the loop
+        unless valid_class?(breakpoint.class_trace)
+          breakpoint.delete
+          next
+        end
+        # we can safely instantiate the class here
         response = process_match(breakpoint.class_trace.constantize)
         # we skip this breakpoint if the response is :continue which happens
         # if no match or manually through the called class
@@ -95,6 +102,13 @@ module SmartExchange
     # for request or response
     def instance(to_process)
       to_process.new(user, request)
+    end
+
+    def valid_class?(class_name)
+      class_name.constantize
+      true
+    rescue NameError
+      false
     end
 
     def breakpoints

@@ -27,6 +27,23 @@ describe SmartExchange::Process do
 
     end
 
+    context 'breakpoints exchange' do
+
+      it 'tries to call a class which does not exist anymore' do
+
+
+        user = FactoryGirl.create(:customer)
+        request_key = 'fake-request'
+        class_trace = 'Unvalid::Class::Here'
+        MemoryBreakpoint.create!(user: user, request_key: request_key, class_trace: class_trace, valid_until: 7.days.from_now)
+
+        # the real goal here is not to crash the app by trying to instanciate this unvalid class
+        perform = described_class.new(user, 'fake-request').perform
+        expect(perform).to eq(false)
+      end
+
+    end
+
     # we actually test the offers area with email typing
     # which is complex enough to fully crash the global exchange system
     # if buggy.
