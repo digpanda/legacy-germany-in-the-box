@@ -203,6 +203,8 @@ de:
     go_back_home_page: Zurück zur Hauptseite
     start_process_shipment: Starten das Versenden
   menu:
+  menu:
+    wechat_qrcode_link: Wechat Service QRCode
     package_sets: Premium Set
     services: Services
     my_favorites: Meine Favoriten
