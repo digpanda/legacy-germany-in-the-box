@@ -16,7 +16,7 @@ describe SmartExchange::Process do
   context '#perform' do
 
     let(:customer) { FactoryGirl.create(:customer, :from_wechat) }
-    let(:introduced) { FactoryGirl.create_list(:customer, 10) }
+    let(:introduced) { FactoryGirl.create_list(:customer, 10, :from_wechat) }
 
     context 'simple exchanges' do
 

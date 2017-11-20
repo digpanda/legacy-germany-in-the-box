@@ -25,8 +25,11 @@ class RewardManager < BaseService
     end
 
     def made_complete_order?
-      return true if reward.user.orders.bought.count > 0
-      false
+      if reward.user.orders.bought.count > 0
+        true
+      else
+        false
+      end
     end
 
   end

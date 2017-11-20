@@ -43,7 +43,7 @@ FactoryGirl.define do
         user.provider = :wechat
         user.wechat_unionid = '0123456789'
         user.wechat_openid = '0123456789'
-        user.email = '0123456789@wechat.com'
+        user.email = "#{SecureRandom.hex}@wechat.com"
       end
     end
 
