@@ -50,7 +50,7 @@ class User
   field :status, type: Boolean, default: true
   field :uid,       type: String
   field :label, type: String
-  field :group, type: Symbol, default: :default # [:default, :student, :reseller]
+  field :group, type: Symbol, default: :default # [:default, :student, :junior_reseller, :senior_reseller, :master_reseller]
 
   field :vip, type: Boolean, default: false
   field :banished, type: Boolean, default: false
@@ -100,6 +100,7 @@ class User
   genderize (:gender)
   mount_uploader :pic, AvatarUploader
 
+  validates :group,         presence: false, inclusion: { in: [:default, :student, :junior_reseller, :senior_reseller, :master_reseller] }
   validates :role,          presence: true, inclusion: { in: [:customer, :shopkeeper, :admin] }
   validates :email,         presence: true, length: { maximum: Rails.configuration.gitb[:max_tiny_text_length] }
   validates :status,        presence: true

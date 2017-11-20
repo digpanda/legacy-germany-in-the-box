@@ -9,7 +9,9 @@ module ArrayHelper
     {
       'Default' => :default,
       'Student' => :student,
-      'Reseller' => :reseller
+      'Junior Reseller' => :junior_reseller,
+      'Senior Reseller' => :senior_reseller,
+      'Master Reseller' => :master_reseller,
     }
   end
 

@@ -73,6 +73,7 @@ class AfterSigninHandler
       # if it exists
       handle_introducer
       handle_label
+      handle_group
 
       return without_code missing_info_customer_account_path(kept_params) if user.missing_info?
       return navigation.force! if navigation.force?
@@ -184,8 +185,8 @@ class AfterSigninHandler
     # we try to run the mechanism to assign it to this account
     def handle_group
       if session[:group]
-        unless user.group
-          user.update(group: session[:group])
+        unless user.group != :default || user.referrer
+          user.update(group: decrypt_group(session[:group]))
         end
         session[:group] = nil
       end
@@ -232,5 +233,22 @@ class AfterSigninHandler
 
     def session
       request.session
+    end
+
+    def decrypt_group(group)
+      case group.to_i
+      when 0
+        :default
+      when 1
+        :student
+      when 2
+        :junior_reseller
+      when 3
+        :senior_reseller
+      when 4
+        :master_reseller
+      else
+        group
+      end
     end
 end
