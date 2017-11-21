@@ -43,7 +43,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     # at the end we create tourist guides
     # they will take random skus to compose fake orders
-    Setting.instance.update(default_coupon_discount: 10.00)
+    Setting.instance.update(default_coupon_discount: 5.00)
     1.times { setup_guide create_user(:customer) }
 
     add_orders_to_customers
@@ -354,7 +354,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       user.email = 'guide@guide.com'
       user.skip_reconfirmation!
       user.save
-      
+
       referrer = Referrer.create(user: user)
       coupon = Coupon.create_referrer_coupon(referrer)
       setup_order(coupon: coupon)

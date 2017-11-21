@@ -65,7 +65,7 @@
           </td>
           <td>
             <% if referrer.has_coupon? %>
-                <span class="+green +bold"><%= referrer.coupons.first.code %> </span>
+                <span class="+green +bold"><%= referrer.main_coupon.code %> </span>
             <% end %>
             <a href="<%= guest_referrer_qrcode_path(referrer) %>">QR</a>
           </td>

@@ -27,10 +27,19 @@
       Reference
     </th>
     <th>
+      Group
+    </th>
+    <th>
+      Origin
+    </th>
+    <th>
       Last Applied At
     </th>
     <th>
       Last Used At
+    </th>
+    <th>
+      Expired At
     </th>
     <th>
       Created At
@@ -84,10 +93,19 @@
         <% end %>
       </td>
       <td>
+        <%= coupon.group %>
+      </td>
+      <td>
+        <%= coupon.origin %>
+      </td>
+      <td>
         <%= coupon.last_applied_at %>
       </td>
       <td>
         <%= coupon.last_used_at %>
+      </td>
+      <td>
+        <%= coupon.expired_at %>
       </td>
       <td>
         <%= coupon.c_at %>

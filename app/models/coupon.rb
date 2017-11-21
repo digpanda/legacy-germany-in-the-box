@@ -10,7 +10,9 @@ class Coupon
 
   field :code, type: String
   field :discount, type: Float
+
   field :desc, type: String
+
   field :unit, type: Symbol
   field :minimum_order, type: Float, default: 0
   field :unique, type: Boolean
@@ -19,6 +21,13 @@ class Coupon
   field :cancelled_at, type: Time, default: false
   field :exclude_china, type: Boolean, default: false
   field :origin, type: Symbol, default: :default
+
+  # not to mix up with origin, this is the type of coupon, which is the used for it when it's categorized
+  field :group, type: Symbol, default: :default
+
+  field :expired_at, type: Time
+
+  scope :not_expired, -> { any_of({:expired_at.gt => Time.now.utc}, {expired_at: nil}) }
 
   has_many :orders
 
@@ -59,6 +68,8 @@ class Coupon
                         minimum_order: 0,
                         unique: false,
                         desc: 'Referrer Coupon',
+                        origin: :make_referrer,
+                        group: :referrers,
                         referrer: referrer,
                         exclude_china: false
                     )

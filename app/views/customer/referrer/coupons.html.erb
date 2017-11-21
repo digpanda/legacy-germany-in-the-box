@@ -5,8 +5,8 @@
     <%= render partial: 'customer/referrer/subheader', :locals => { back: customer_referrer_path } %>
 
     <div class="+centered">
-      <% current_user.referrer.coupons.each do |coupon| %>
-        <img src="<%= guest_coupon_flyer_path(coupon) %>" style="max-height: 500px;">
+      <% if current_user.referrer.main_coupon %>
+        <img src="<%= guest_coupon_flyer_path(current_user.referrer.main_coupon) %>" style="max-height: 500px;">
       <% end %>
     </div>
 

@@ -45,7 +45,7 @@ class Referrer
   end
 
   def has_coupon?
-    self.coupons.count > 0
+    self.coupons.not_expired.count > 0
   end
 
   def ensure_reference_id
@@ -74,6 +74,10 @@ class Referrer
     provisions.reduce(0) do |acc, provision|
       acc + provision.order.end_price
     end
+  end
+
+  def main_coupon
+    coupons.not_expired.first
   end
 
 end
