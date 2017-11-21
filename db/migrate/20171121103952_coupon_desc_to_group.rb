@@ -4,6 +4,7 @@ class CouponDescToGroup < Mongoid::Migration
     Coupon.all.each do |coupon|
       if coupon.desc == 'Referrer Coupon'
         coupon.group = :referrers
+        coupon.origin = :make_referrer
         puts "Coupon #{coupon.id} has now `referrers` assigned as group"
         if coupon.discount == 10.00
           coupon.expired_at = Time.now
