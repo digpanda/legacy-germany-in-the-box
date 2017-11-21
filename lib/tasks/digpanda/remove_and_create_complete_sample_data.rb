@@ -356,7 +356,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       user.save
 
       referrer = Referrer.create(user: user)
-      coupon = Coupon.create_referrer_coupon(referrer)
+      coupon = PrebuiltCoupon.referrer_coupon(referrer)
       setup_order(coupon: coupon)
       # bind some random users
       5.times do

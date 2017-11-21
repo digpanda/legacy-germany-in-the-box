@@ -28,7 +28,7 @@ class Admin::ReferrersController < ApplicationController
   end
 
   def coupon
-    coupon = Coupon.create_referrer_coupon(referrer)
+    coupon = PrebuiltCoupon.referrer_coupon(referrer)
     if coupon
       flash[:success] = 'The coupon was created.'
     else

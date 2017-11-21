@@ -44,6 +44,6 @@ class ReferrerMaker < BaseService
 
     def generate_coupon!
       # we create the first coupon if needed (after the token because it can change data)
-      Coupon.create_referrer_coupon(customer.referrer) if customer.referrer.coupons.empty?
+      PrebuiltCoupon.referrer_coupon(customer.referrer)
     end
 end
