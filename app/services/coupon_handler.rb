@@ -14,7 +14,7 @@ class CouponHandler < BaseService
   # try to apply the coupon to this specific order
   def apply
     unless reached_minimum_order?
-      return return_with(:error, I18n.t('coupon.no_minimum_price', minimum: coupon.minimum_order.in_euro.to_yuan(exchange_rate: coupon.order.exchange_rate).display))
+      return return_with(:error, I18n.t('coupon.no_minimum_price', minimum: coupon.minimum_order.in_euro.to_yuan(exchange_rate: order.exchange_rate).display))
     end
     return return_with(:error, "You can't apply this coupon from China.") unless valid_ip?
     return return_with(:error, "You can't apply this coupon on this user.") unless valid_user?
@@ -124,7 +124,7 @@ class CouponHandler < BaseService
 
     # if the coupon is unique it shouldn't have been used already
     def valid_coupon?
-      (coupon.unique == false || available?) && (coupon.expired_at == nil || coupon.expired_at > Time.now)
+      (coupon.unique == false || available?) # && (coupon.expired_at == nil || coupon.expired_at > Time.now)
     end
 
     def available?
