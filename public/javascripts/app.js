@@ -1428,6 +1428,32 @@ module.exports = ProductsShow;
 
 });
 
+require.register("javascripts/controllers/guest/services/show.js", function(exports, require, module) {
+'use strict';
+
+var Form = require('javascripts/lib/form');
+
+/**
+* GuestServicesShow Class
+*/
+var GuestServicesShow = {
+
+  /**
+  * Initializer
+  */
+  init: function init() {
+
+    // We make bootstrap-validator work even
+    // if the service form is hidden in a lightbox
+    Form.forceValidatorOnHiddenFields();
+  }
+
+};
+
+module.exports = GuestServicesShow;
+
+});
+
 require.register("javascripts/controllers/shopkeeper/products/skus.js", function(exports, require, module) {
 'use strict';
 
@@ -1776,6 +1802,27 @@ require.register("javascripts/lib/foreign/datepicker-zh-CN.js", function(exports
 
   return datepicker.regional['zh-CN'];
 });
+
+});
+
+require.register("javascripts/lib/form.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Form Class
+ */
+var Form = {
+
+  /**
+   * CamelCase to underscored case
+   */
+  forceValidatorOnHiddenFields: function forceValidatorOnHiddenFields() {
+    $.fn.validator.Constructor.INPUT_SELECTOR = ':input:not([type="submit"], button):enabled';
+  }
+
+};
+
+module.exports = Form;
 
 });
 
