@@ -95,8 +95,9 @@
     </div>
 
       <div class="col-md-10 form-group">
-        <%= form.select :referrer_id, parent_referrers, selected: inquiry.referrer&.id, include_blank: true %>
+        <%= form.select :referrer_id, parent_referrers, { selected: inquiry.referrer&.id, include_blank: true }, { class: 'form-control' } %>
         <div class="help-block with-errors"></div>
+        <span class="+blue"><em>Typed by customer : <%= inquiry.raw_referrer %></em></span>
       </div>
 
 
@@ -111,7 +112,7 @@
     </div>
 
       <div class="col-md-10 form-group">
-        <%= form.select :status, inquiry_status, selected: inquiry.status %>
+        <%= form.select :status, inquiry_status, { selected: inquiry.status }, { class: 'form-control' } %>
         <div class="help-block with-errors"></div>
       </div>
   </div>
