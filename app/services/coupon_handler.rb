@@ -124,7 +124,7 @@ class CouponHandler < BaseService
 
     # if the coupon is unique it shouldn't have been used already
     def valid_coupon?
-      (coupon.unique == false || available?) # && (coupon.expired_at == nil || coupon.expired_at > Time.now)
+      (coupon.unique == false || available?) && (coupon.expired_at == nil || coupon.expired_at > Time.now)
     end
 
     def available?
