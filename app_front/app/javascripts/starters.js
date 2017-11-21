@@ -9,7 +9,6 @@ var Starters = [
   'bootstrap',
   'charts',
   'datepicker',
-  'distpicker',
   'editable_fields',
   'footer',
   'input_validation',

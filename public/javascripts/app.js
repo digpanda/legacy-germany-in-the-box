@@ -2791,7 +2791,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['anti_cache', 'auto_resize', 'back_to_top', 'bootstrap', 'charts', 'datepicker', 'distpicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
+var Starters = ['anti_cache', 'auto_resize', 'back_to_top', 'bootstrap', 'charts', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
 
 module.exports = Starters;
 
@@ -3091,30 +3091,6 @@ var Datepicker = {
 };
 
 module.exports = Datepicker;
-
-});
-
-require.register("javascripts/starters/distpicker.js", function(exports, require, module) {
-"use strict";
-
-/**
- * Distpicker Class
- */
-var Distpicker = {
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-
-    if ($('#distpicker').length > 0) {
-      $("#distpicker").distpicker();
-    }
-  }
-
-};
-
-module.exports = Distpicker;
 
 });
 
