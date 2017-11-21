@@ -6,10 +6,8 @@ class CouponDescToGroup < Mongoid::Migration
         coupon.group = :referrers
         coupon.origin = :make_referrer
         puts "Coupon #{coupon.id} has now `referrers` assigned as group"
-        if coupon.discount == 10.00
-          coupon.expired_at = Time.now
-          puts "Coupon was 10% and is now expired"
-        end
+        coupon.expired_at = 1.days.ago
+        puts "We auto-expire the current coupon"
         coupon.save(validate: false)
       end
 
