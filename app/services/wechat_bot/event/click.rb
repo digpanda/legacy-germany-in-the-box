@@ -7,7 +7,7 @@ module WechatBot
 
       def initialize(user, event_key)
         @user = user
-        @event_key = event_key
+        @event_key = event_key.downcase # we downcase the event for clicks only
       end
 
       # menu click handling here

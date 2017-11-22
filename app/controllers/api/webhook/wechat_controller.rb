@@ -132,11 +132,11 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     def event
-      transmit_data['Event']&.downcase
+      transmit_data['Event']
     end
 
     def event_key
-      transmit_data['EventKey']&.downcase
+      transmit_data['EventKey']
     end
 
     def transmit_data
