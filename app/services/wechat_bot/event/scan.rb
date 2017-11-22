@@ -16,6 +16,8 @@ module WechatBot
           raise WechatBot::Error, 'Wrong extra data transmitted'
         end
 
+        # db.referrers.find({"reference_id": "okv2022017"}).sort({ "_id": 1}).skip(0).limit(30)
+
         # we are in front of a referrer request
         referrer = Referrer.where(reference_id: reference_id).first
         SlackDispatcher.new.message("REFERENCE ID IS #{reference_id}")
@@ -42,6 +44,7 @@ module WechatBot
       private
 
         def reference_id
+          SlackDispatcher.new.message("EXTRA DATA #{extra_data}")
           # remove absolutely all invisible characters
           extra_data['referrer']['reference_id'].gsub(/[^[:print:]]/,'.').squish
         end
