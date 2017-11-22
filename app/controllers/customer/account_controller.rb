@@ -16,7 +16,7 @@ class Customer::AccountController < ApplicationController
       # update email nonetheless without waiting for confirmation
       # NOTE : this was coded regarding a bug on missing informations
       # it should be optimized.
-      if user_params[:email] != user.email
+      if email_to_update?
         user.confirmed_at = nil
         user.skip_reconfirmation!
         user.email = user_params[:email]
@@ -49,6 +49,10 @@ class Customer::AccountController < ApplicationController
   end
 
   private
+
+    def email_to_update?
+      (user_params[:email] != user.email) && (user_params[:email].present?)
+    end
 
     def set_user
       @user = current_user
