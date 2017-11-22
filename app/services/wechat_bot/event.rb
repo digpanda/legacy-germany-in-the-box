@@ -5,6 +5,7 @@ module WechatBot
     def initialize(user, event, event_key)
       @user = user
       @event = event
+      SlackDispatcher.new.message("EVENT KEY : #{event_key}")
       @event_key = event_key
     end
 

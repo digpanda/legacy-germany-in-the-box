@@ -22,7 +22,6 @@ module WechatBot
         referrer = Referrer.where(reference_id: reference_id).first
         SlackDispatcher.new.message("REFERENCE ID IS #{reference_id}")
         SlackDispatcher.new.message("REFERRER FOUND FROM IT IS: #{referrer}")
-        SlackDispatcher.new.message("SELECTOR #{Referrer.where(reference_id: reference_id).selector}")
         slack.message "Referrer is `#{referrer.id}`", url: admin_referrer_url(referrer)
 
         if user && referrer
@@ -44,7 +43,6 @@ module WechatBot
       private
 
         def reference_id
-          SlackDispatcher.new.message("EXTRA DATA #{extra_data}")
           # remove absolutely all invisible characters
           extra_data['referrer']['reference_id'].gsub(/[^[:print:]]/,'.').squish
         end
