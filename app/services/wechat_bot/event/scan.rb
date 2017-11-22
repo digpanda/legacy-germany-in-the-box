@@ -42,7 +42,8 @@ module WechatBot
       private
 
         def reference_id
-          extra_data['referrer']['reference_id']
+          # remove absolutely all invisible characters
+          extra_data['referrer']['reference_id'].gsub(/[^[:print:]]/,'.').squish
         end
 
         def extra_data
