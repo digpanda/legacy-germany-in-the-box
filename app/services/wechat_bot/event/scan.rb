@@ -7,7 +7,7 @@ module WechatBot
 
       def initialize(user, event_key)
         @user = user
-        @event_key = event_key
+        @event_key = event_key # we don't downcase any event key here so it doesn't alter the extradata
       end
 
       # we bind the user to the referrer when he scans the QRCode
@@ -20,8 +20,6 @@ module WechatBot
 
         # we are in front of a referrer request
         referrer = Referrer.where(reference_id: reference_id).first
-        SlackDispatcher.new.message("REFERENCE ID IS #{reference_id}")
-        SlackDispatcher.new.message("REFERRER FOUND FROM IT IS: #{referrer}")
         slack.message "Referrer is `#{referrer.id}`", url: admin_referrer_url(referrer)
 
         if user && referrer
