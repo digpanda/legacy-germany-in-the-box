@@ -29,7 +29,7 @@ class Guest::InquiriesController < ApplicationController
   private
 
     def inquiry_params
-      params.require(:inquiry).permit(:service_id, :email, :mobile, :scheduled_for, :comment)
+      params.require(:inquiry).permit(:service_id, :email, :mobile, :scheduled_for, :comment, :raw_referrer)
     end
 
     def set_inquiry
