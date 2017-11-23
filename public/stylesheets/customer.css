@@ -1982,7 +1982,8 @@ body {
   .categories-block__brands h4 {
     text-align: left;
     color: #bdc3c7;
-    margin: 0em; }
+    margin-bottom: 0em;
+    margin-top: 0.8em; }
   .categories-block__brands a {
     text-align: left;
     padding: 0.2em;
