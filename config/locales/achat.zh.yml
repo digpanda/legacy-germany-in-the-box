@@ -40,12 +40,12 @@ zh-CN:
   services:
     referrer_services: 导游专区
     email_placeholder: 您的邮箱或微信号
-    referrer: 推荐人
+    referrer: 德国本地联络人
     email: 邮箱|微信号
     mobile: 手机号
     scheduled: 预约时间
     comment: 留言
-    ask_for_inquiry: 立即咨询 预约
+    ask_for_inquiry: 请联系我 | 留言 
     send_now: 发送留言
     contact_us: 或者 立即电话联系预约 49-(0)89-21934711, 49-(0)89-21934727
   tracking_state:
@@ -60,7 +60,7 @@ zh-CN:
   brands:
     hot_brands: 热销产品
   service:
-    please_scan_qrcode: Please scan QRCode
+    please_scan_qrcode: 您也可以立即和我们在线客服联系，了解更多相关信息。请扫码访问来因盒服务号。
   referrer:
     service: 海外服务
     service_rate_label: 起
