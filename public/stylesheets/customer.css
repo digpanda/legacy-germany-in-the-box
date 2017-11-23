@@ -1,7 +1,12 @@
 #csstyle .\+wechat-qrcode {
   position: absolute;
-  left: -145px;
-  width: 400px; }
+  left: 45px; }
+  #csstyle .\+wechat-qrcode div:first-child {
+    position: absolute; }
+  #csstyle .\+wechat-qrcode div:last-child {
+    position: absolute;
+    left: 15px;
+    width: 200px; }
   #csstyle .\+wechat-qrcode a:hover {
     pointer: cursor; }
   #csstyle .\+wechat-qrcode img {
