@@ -4,16 +4,15 @@
 
 <!-- Service Brand Filters -->
 <%= render partial: "guest/services/brand_filters", locals: { current_brand: @brand, brand_filters: @brand_filters} %>
+
 <div class="+small-spacer"></div>
+<hr />
 
 <!-- Referrer Exclusive Services -->
 <% if @referrer_services && @referrer_services.count > 0 %>
-<h3><%= I18n.t('services.referrer_services') %></h3>
-
+  <h3><%= I18n.t('services.referrer_services') %></h3>
   <%= render partial: "guest/services/index/casual_sort", locals: { services: @referrer_services } %>
-  
   <hr />
-
 <% end %>
 
 
