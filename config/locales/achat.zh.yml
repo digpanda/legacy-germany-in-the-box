@@ -59,6 +59,8 @@ zh-CN:
     returned: returned
   brands:
     hot_brands: 热销产品
+  service:
+    please_scan_qrcode: Please scan QRCode
   referrer:
     service: 海外服务
     service_rate_label: 起

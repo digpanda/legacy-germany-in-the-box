@@ -3,6 +3,8 @@
     <div class="service-infos__actions">
 
       <hr />
+      <div class="+small-spacer"></div>
+
 
       <!-- Inquiry modal -->
       <div class="remodal" data-remodal-options="hashTracking: false" data-remodal-id="service-inquiry">
@@ -20,6 +22,14 @@
       <div class="row">
         <div class="+centered">
           <%= link_to I18n.t('services.ask_for_inquiry'), '#modal', class: 'main-button__solid --large', data: {'remodal-target': 'service-inquiry' } %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="+centered">
+          <div class="+spacer"></div>
+          <p><%= I18n.t('service.please_scan_qrcode') %></p>
+          <img src="/images/stickers/wechat.jpg" width="600px" />
         </div>
       </div>
 
