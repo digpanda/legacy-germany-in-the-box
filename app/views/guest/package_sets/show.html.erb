@@ -23,6 +23,6 @@
   </div>
 
   <!-- Brand description -->
-  <%= render partial: "guest/package_sets/show/brand_description", locals: { package_set: @package_set } %>
+  <%= render partial: "guest/package_sets/show/brand_description", locals: { brand: @package_set.package_skus.first&.product&.brand } %>
 
 <% end %>
