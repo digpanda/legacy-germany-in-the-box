@@ -37,6 +37,8 @@ zh-CN:
     wechatpay_wechat_user: 微信内访问来因盒，首选微信支付，一步完成哦
     wechatpay_no_wechat_mobile_user: 手机浏览器内使用微信支付，请保存二维码到相册后使用微信扫一扫
     alipay_wechat_user: 微信内访问来因盒，支付宝需要拷贝粘贴支付宝链接到手机浏览器里完成支付
+  inquiry:
+    raw_referrer: Tourist Guide
   services:
     referrer_services: 导游专区
     email_placeholder: 您的邮箱或微信号
@@ -45,7 +47,7 @@ zh-CN:
     mobile: 手机号
     scheduled: 预约时间
     comment: 留言
-    ask_for_inquiry: 请联系我 | 留言 
+    ask_for_inquiry: 请联系我 | 留言
     send_now: 发送留言
     contact_us: 或者 立即电话联系预约 49-(0)89-21934711, 49-(0)89-21934727
   tracking_state:
