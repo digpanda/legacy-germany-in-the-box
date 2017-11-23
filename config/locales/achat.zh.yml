@@ -23,7 +23,7 @@ zh-CN:
           please_enter_your_email: 😊请输入您的电子邮箱地址
           you_already_completed_this_challenge: 恭喜！😄您已成功完成了邮箱验证奖励。已经获得邮件通知奖励50元购物代金券码
           type:
-            email_was_updated: 请访问您的邮箱，点击邮箱验证链接，完成后获取奖励。
+            email_was_updated: 已发送邮箱验证链接请访问您的邮箱确认，完成后自动收到奖励。因顾客的电子邮箱服务不同会立即收到我们验证邮件或延迟十几分钟到数小时，如未找到也请检查垃圾邮箱。
             email_is_not_valid: 😉邮箱地址不正确，%{error}， 请重新输入。 返回奖励对话请输入 奖励 (菜单➡找小茵|奖励)
         become_vip_user:
           you_are_vip: 恭喜！😄您已成功成为来因盒VIP，客服会与您联系关于VIP返利计划详情💖
@@ -206,7 +206,7 @@ zh-CN:
     to_activate_this_section: 才能继续
   results_for: 的结果
   button:
-    see_all_products: 浏览所有产品
+    see_all_products: 浏览所有品类产品
     show_product: 产品详情
     read_more: 点击查看
     checkout: 下单
