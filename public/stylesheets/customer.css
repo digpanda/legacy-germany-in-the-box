@@ -1981,21 +1981,13 @@ body {
     text-align: left; }
   .categories-block__brands a {
     padding: 0.2em;
-    border: 1px solid #83be58;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-    color: #83be58;
+    border-bottom: 1px solid #3498db;
+    color: #3498db;
     line-height: 2em; }
   .categories-block__brands.\--selected {
     padding: 0.2em;
-    border: 1px solid #3498db;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
     color: #3498db;
+    font-weight: bold;
     line-height: 2em; }
   .categories-block__wrapper {
     width: 95%; }
