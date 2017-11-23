@@ -1,7 +1,6 @@
 #csstyle .\+wechat-qrcode {
   position: absolute;
   right: 150px;
-  height: 50px;
   padding-top: 1em;
   padding-bottom: 1em; }
   #csstyle .\+wechat-qrcode div:first-child {
@@ -9,7 +8,7 @@
   #csstyle .\+wechat-qrcode div:last-child {
     position: absolute;
     left: 15px;
-    width: 200px; }
+    width: 150px; }
   #csstyle .\+wechat-qrcode a:hover {
     pointer: cursor; }
   #csstyle .\+wechat-qrcode img {
