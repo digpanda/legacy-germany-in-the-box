@@ -1,14 +1,14 @@
 <!-- Global package set cover -->
 <%= render "guest/package_sets/cover" %>
 
+<!-- Wechat QRCode Support -->
+<%= render partial: "guest/package_sets/wechat_qrcode" %>
+
 <!-- Brand filters for Package Sets -->
 <%= render partial: "guest/package_sets/brand_filters", locals: { current_brand: @brand, current_category: @category, brand_filters: @brand_filters} %>
 
 <!-- Brand filters for Services -->
 <%= render partial: "guest/services/brand_filters", locals: { current_brand: @brand, brand_filters: @services_brand_filters} %>
-
-<!-- Brand filters for Services -->
-<%= render partial: "guest/package_sets/wechat_qrcode" %>
 
 <div class="+small-spacer"></div>
 <hr />
