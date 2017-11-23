@@ -661,7 +661,7 @@
     background-color: #732c51; }
   .big-button.\--grey {
     color: #464646;
-    background-color: #e1e1e1; }
+    background-color: #eee; }
     .big-button.\--grey:link {
       color: #464646; }
     .big-button.\--grey:hover {
@@ -1671,7 +1671,7 @@
   border-radius: 4px;
   overflow-x: auto;
   margin-bottom: 1em;
-  border: 1px solid #e1e1e1; }
+  border: 1px solid #eee; }
   .main-table table {
     background-color: white;
     -webkit-border-radius: 4px;
