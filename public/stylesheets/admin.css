@@ -1795,6 +1795,10 @@ hr {
   margin-top: 10px;
   margin-bottom: 10px; }
 
+.remodal {
+  padding-left: 0em;
+  padding-right: 0em; }
+
 .js-editable-field input {
   background-color: white;
   border: 1px dashed #3498db; }
