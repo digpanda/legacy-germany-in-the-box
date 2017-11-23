@@ -12,6 +12,8 @@
 <%= render partial: "guest/package_sets/wechat_qrcode" %>
 <div class="+small-spacer"></div>
 
+<hr />
+
 <!-- Categories listing -->
 <% @categories.each_with_index do |category, index| %>
   <%= cache category do %>
