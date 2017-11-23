@@ -1981,7 +1981,8 @@ body {
     text-decoration: line-through; }
   .categories-block__brands h4 {
     text-align: left;
-    color: #bdc3c7; }
+    color: #bdc3c7;
+    margin: 0em; }
   .categories-block__brands a {
     text-align: left;
     padding: 0.2em;
