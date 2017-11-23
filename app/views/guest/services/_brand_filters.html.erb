@@ -1,12 +1,14 @@
-<p class="categories-block__brands +centered">
-  <span class="+strong">海外服务 :</span>
+<div class="categories-block__brands +centered">
 
-<% brand_filters.each do |brand| %>
-  <% if brand == current_brand %>
-  <span class="+strong +green"><%= brand.name %></span> |
-  <% else %>
-    <a href="<%= guest_services_path(brand_id: brand.slug) %>"><%= brand.name %></a> |
+  <h4>海外服务</h4>
+
+  <% brand_filters.each do |brand| %>
+    <% if brand == current_brand %>
+    <span class="categories-block__brands --selected"><%= brand.name %></span>
+    <% else %>
+    <a href="<%= guest_services_path(brand_id: brand.slug) %>"><%= brand.name %></a>
+    <% end %>
   <% end %>
-<% end %>
 
-</p>
+<hr />
+</div>
