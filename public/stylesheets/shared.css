@@ -2,7 +2,8 @@
   position: absolute;
   right: 150px;
   padding-top: 1em;
-  padding-bottom: 1em; }
+  padding-bottom: 1em;
+  top: -15px; }
   #csstyle .\+wechat-qrcode div:first-child {
     position: absolute; }
   #csstyle .\+wechat-qrcode div:last-child {
