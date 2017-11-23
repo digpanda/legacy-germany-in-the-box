@@ -3,7 +3,7 @@ class RewardManager < BaseService
 
     # if the user entered a correct email the reward is confirmed
     def process_reward
-      if reward.user.introduced.from_wechat.count >= 10
+      if reward.user.introduced.from_wechat.count >= 3
         coupon
         return return_with(:success)
       end
