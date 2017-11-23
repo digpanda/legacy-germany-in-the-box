@@ -38,7 +38,7 @@ zh-CN:
     wechatpay_no_wechat_mobile_user: 手机浏览器内使用微信支付，请保存二维码到相册后使用微信扫一扫
     alipay_wechat_user: 微信内访问来因盒，支付宝需要拷贝粘贴支付宝链接到手机浏览器里完成支付
   inquiry:
-    raw_referrer: Tourist Guide
+    raw_referrer: 请提供您在德国的导游，朋友姓名便于我们本地联系。
   services:
     referrer_services: 导游专区
     email_placeholder: 您的邮箱或微信号
