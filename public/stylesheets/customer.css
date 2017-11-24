@@ -2438,7 +2438,7 @@ body {
   margin-bottom: 1em; }
   .package-set-infos__qrcode {
     padding: 3em;
-    width: 250px;
+    max-width: 250px;
     text-align: center;
     margin: 0 auto; }
     .package-set-infos__qrcode p {
@@ -2827,6 +2827,16 @@ body {
   margin-top: 1em;
   margin-bottom: 1em;
   text-align: center; }
+  .service-infos__qrcode {
+    text-align: center;
+    margin: 0 auto; }
+    @media (min-width: 995px) {
+      .service-infos__qrcode {
+        width: 300px; } }
+    .service-infos__qrcode h5 {
+      margin: 0; }
+    .service-infos__qrcode p {
+      color: #bdc3c7; }
   .service-infos h1 {
     font-size: 28px; }
   .service-infos__introduction-header {
