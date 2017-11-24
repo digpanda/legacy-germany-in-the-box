@@ -1427,9 +1427,9 @@ body {
   background-color: #F7F7F7; }
 
 .product-page {
-  box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32);
   padding: 2em;
-  margin-bottom: 2em; }
+  margin-bottom: 2em;
+  border-bottom: 1px solid #eee; }
   @media (max-width: 994px) {
     .product-page ol {
       text-align: center;
@@ -2641,7 +2641,6 @@ body {
     color: #919191; }
 
 .product-page-footer {
-  box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32);
   color: #666666;
   padding: 2.5em;
   margin-bottom: 2em; }
@@ -2887,11 +2886,7 @@ body {
   padding: 2em 1em 1em 1em;
   margin-top: 1em;
   margin-bottom: 1em;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  border-radius: 5px;
-  box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32); }
+  border-bottom: 1px solid #eee; }
 
 .shop-block__thumbnail {
   min-height: 280px;
@@ -2940,11 +2935,6 @@ body {
       background: no-repeat center center;
       background-size: cover;
       color: white;
-      border: 2px #bdc3c7 solid;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      -ms-border-radius: 4px;
-      border-radius: 4px;
       height: 13em;
       text-align: center; }
 
@@ -2952,12 +2942,6 @@ body {
   background: no-repeat center center;
   background-size: cover;
   color: white;
-  border: 2px #bdc3c7 solid;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  border-radius: 4px;
-  box-shadow: 0px 4px 6px rgba(139, 139, 139, 0.32);
   padding: 2em;
   min-height: 20em; }
   .shop-page-header h2 {
@@ -2981,11 +2965,7 @@ body {
     background-size: cover; }
 
 .shop-page-product {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  border-radius: 4px;
-  box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32);
+  border-bottom: 1px solid #eee;
   margin-bottom: 1em;
   padding-top: 1em;
   min-height: 40em;
