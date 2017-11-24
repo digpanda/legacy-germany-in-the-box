@@ -35,7 +35,7 @@ module SmartExchange
         end
 
         def introduced_left
-          3 - user.introduced.from_wechat.count
+          10 - user.introduced.from_wechat.count
         end
 
         def link_to_share
