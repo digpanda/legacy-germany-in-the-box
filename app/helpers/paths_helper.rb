@@ -5,7 +5,7 @@ module PathsHelper
   end
 
   def current_url_with_reference
-    url_for params.merge(reference_id: current_user&.referrer&.id)
+    url_for params.merge(reference_id: current_user&.referrer&.reference_id)
   end
 
   # NOTE : for remote / latest version
