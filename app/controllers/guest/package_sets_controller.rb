@@ -12,11 +12,7 @@ class Guest::PackageSetsController < ApplicationController
 
   def show
   end
-
-  def qrcode
-    redirect_to QrcodeHandler.new(guest_package_set_url(package_set), '/uploads/qrcode/package_sets/', "#{order.id}.svg").perform
-  end
-
+  
   def categories
     @categories = Category.with_package_sets.order_by(position: :asc)
     @brand_filters = Brand.with_package_sets.order_by(position: :asc).used_as_filters

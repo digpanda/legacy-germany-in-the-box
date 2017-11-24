@@ -1,4 +1,13 @@
 module PathsHelper
+
+  def current_url_qrcode
+    SmartQrcode.new(current_url_with_reference).perform
+  end
+
+  def current_url_with_reference
+    url_for params.merge(reference_id: current_user&.referrer&.id)
+  end
+
   # NOTE : for remote / latest version
   # use 'https://unpkg.com/vue'
   def resolve_vuejs_path
