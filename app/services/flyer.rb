@@ -14,20 +14,18 @@ class Flyer < BaseService
     @image = Magick::ImageList.new("#{Rails.root}/public/images/flyers/qrcode-with-image.jpg")
 
     insert_image(
-      full_path: "#{Rails.root}/public#{qrcode_path}",
+      full_path: qrcode_path,
       width: 415, height: 415,
       longitude: 823, latitude: 212
     )
 
-    # TODO : check it supports the URls handling
     insert_image(
-      full_path: "#{Rails.root}/public#{cover}",
+      full_path: cover,
       width: 750, height: 750,
       longitude: 40, latitude: 210
     )
 
     image.format = 'jpeg'
-
     self
   end
 
@@ -49,6 +47,7 @@ class Flyer < BaseService
       longitude: 105, latitude: 540
     )
 
+    image.format = 'jpeg'
     self
   end
 
@@ -68,8 +67,22 @@ class Flyer < BaseService
   private
 
     def insert_image(full_path:, width:, height:, longitude:, latitude:)
-      append_image = Magick::Image.read(full_path).first
+      if uri?(full_path)
+        final_path = full_path
+      else
+        final_path = "#{Rails.root}/public#{full_path}"
+      end
+      append_image = Magick::Image.read(final_path).first
       append_image = append_image.resize_to_fit(width, height)
       image.composite!(append_image, longitude, latitude, Magick::OverCompositeOp)
+    end
+
+    def uri?(string)
+      uri = URI.parse(string)
+      %w( http https ).include?(uri.scheme)
+    rescue URI::BadURIError
+      false
+    rescue URI::InvalidURIError
+      false
     end
 end
