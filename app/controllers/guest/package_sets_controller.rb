@@ -54,7 +54,6 @@ class Guest::PackageSetsController < ApplicationController
   end
 
   def qrcode
-    binding.pry
     send_data blob_qrcode, stream: 'false', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
   end
 
@@ -63,7 +62,7 @@ class Guest::PackageSetsController < ApplicationController
     def blob_qrcode
       url_with_reference = guest_package_set_path(package_set, reference_id: current_user&.referrer&.reference_id)
       qrcode_path = SmartQrcode.new(url_with_reference).perform
-      Flyer.new.process_cover_qrcode(package_set, qrcode_path).image.to_blob
+      Flyer.new.process_cover_qrcode(package_set.cover, qrcode_path).image.to_blob
     end
 
     def valid_filters?

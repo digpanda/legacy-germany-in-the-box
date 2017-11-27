@@ -18,7 +18,7 @@
         <!-- Price + Purchase -->
         <%= render partial: "guest/package_sets/show/purchase", locals: { package_set: @package_set } %>
 
-        <img src="<%= package_set_qrcode(@package_set) %>" width="300px" />
+        <img src="<%= guest_package_set_qrcode_path(@package_set) %>" width="300px" />
 
       </div>
     </div>

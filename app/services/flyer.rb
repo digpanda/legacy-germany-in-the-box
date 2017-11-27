@@ -8,13 +8,20 @@ class Flyer < BaseService
   def initialize
   end
 
+  # here we want to integrate the image
+  # of the package set and the qrcode
   def process_cover_qrcode(cover, qrcode_path)
-    # here we want to integrate the image
-    # of the package set and the qrcode
     @image = Magick::ImageList.new("#{Rails.root}/public/images/flyers/qrcode-with-image.jpg")
+
     qrcode = Magick::Image.read("#{Rails.root}/public#{qrcode_path}").first
-    qrcode = qrcode.resize_to_fit(140, 140)
-    image.composite!(qrcode, 105, 540, Magick::OverCompositeOp)
+    qrcode = qrcode.resize_to_fit(415, 415)
+    image.composite!(qrcode, 823, 212, Magick::OverCompositeOp)
+
+    # TODO : check if it works with urls also
+    cover = Magick::Image.read("#{Rails.root}/public#{cover}").first
+    cover = cover.resize_to_fit(750, 750)
+    image.composite!(cover, 40, 210, Magick::OverCompositeOp)
+
     image.format = 'jpeg'
 
     self
