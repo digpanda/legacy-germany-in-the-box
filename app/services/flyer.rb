@@ -13,14 +13,18 @@ class Flyer < BaseService
   def process_cover_qrcode(cover, qrcode_path)
     @image = Magick::ImageList.new("#{Rails.root}/public/images/flyers/qrcode-with-image.jpg")
 
-    qrcode = Magick::Image.read("#{Rails.root}/public#{qrcode_path}").first
-    qrcode = qrcode.resize_to_fit(415, 415)
-    image.composite!(qrcode, 823, 212, Magick::OverCompositeOp)
+    insert_image(
+      full_path: "#{Rails.root}/public#{qrcode_path}",
+      width: 415, height: 415,
+      longitude: 823, latitude: 212
+    )
 
-    # TODO : check if it works with urls also
-    cover = Magick::Image.read("#{Rails.root}/public#{cover}").first
-    cover = cover.resize_to_fit(750, 750)
-    image.composite!(cover, 40, 210, Magick::OverCompositeOp)
+    # TODO : check it supports the URls handling
+    insert_image(
+      full_path: "#{Rails.root}/public#{cover}",
+      width: 750, height: 750,
+      longitude: 40, latitude: 210
+    )
 
     image.format = 'jpeg'
 
@@ -39,22 +43,33 @@ class Flyer < BaseService
       text.font_weight = Magick::BoldWeight
     }
 
-    append_image = Magick::Image.read(qrcode_path).first
-    append_image = append_image.resize_to_fit(140, 140)
-
-    image.composite!(append_image, 105, 540, Magick::OverCompositeOp)
+    insert_image(
+      full_path: qrcode_path,
+      width: 140, height: 140,
+      longitude: 105, latitude: 540
+    )
 
     self
   end
 
   def process_qrcode(qrcode_path)
     @image = Magick::Image.read("#{Rails.root}/public/images/flyers/qrcode.jpg").first
-    append_image = Magick::Image.read(qrcode_path).first
-    append_image = append_image.resize_to_fit(339, 339)
 
-    image.composite!(append_image, 130, 591, Magick::OverCompositeOp)
+    insert_image(
+      full_path: qrcode_path,
+      width: 339, height: 339,
+      longitude: 130, latitude: 591
+    )
 
     image.format = 'jpeg'
     self
   end
+
+  private
+
+    def insert_image(full_path:, width:, height:, longitude:, latitude:)
+      append_image = Magick::Image.read(full_path).first
+      append_image = append_image.resize_to_fit(width, height)
+      image.composite!(append_image, longitude, latitude, Magick::OverCompositeOp)
+    end
 end
