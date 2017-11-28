@@ -1,6 +1,6 @@
 module SmartExchange
   module Scheme
-    class Ping < Base
+    class SpecialDeal < Base
 
       # valid_until -> { 7.days.from_now }
 
