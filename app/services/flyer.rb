@@ -22,7 +22,7 @@ class Flyer < BaseService
     )
 
     insert_image(
-      full_path: cover,
+      full_path: "#{cover}",
       width: 750, height: 750,
       longitude: 40, latitude: 210
     )
