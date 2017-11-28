@@ -6,7 +6,9 @@ describe Guest::ReferrersController, type: :controller do
   describe '#qrcode' do
 
     before(:each) do
-      allow_any_instance_of(WeixinReferrerQrcode).to receive(:local_file).and_return("/samples/images/random/rectangle.png")
+      allow_any_instance_of(described_class).to receive(:wechat_referrer_qrcode).and_return(
+        BaseService.new.return_with(:success, local_file: "/uploads/referrer/qrcode/test-qrcode.jpg", remote_call: false)
+      )
     end
 
     subject { get :qrcode, referrer_id: referrer.id }
