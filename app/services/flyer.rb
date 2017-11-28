@@ -81,8 +81,9 @@ class Flyer < BaseService
     end
 
     def uri?(string)
+      SlackDispatcher.new.message("URI TEST")
       uri = URI.parse(string)
-      SlackDispatcher.new.message(uri)
+      SlackDispatcher.new.message("URI: #{uri}")
       %w( http https ).include?(uri.scheme)
     rescue URI::BadURIError
       false
