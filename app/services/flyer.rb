@@ -1,3 +1,5 @@
+require 'uri'
+
 # image processing
 class Flyer < BaseService
   require 'RMagick'
@@ -81,10 +83,7 @@ class Flyer < BaseService
     end
 
     def uri?(string)
-      SlackDispatcher.new.message("URI TEST")
-      uri = URI.parse(string)
-      SlackDispatcher.new.message("URI: #{uri}")
-      %w( http https ).include?(uri.scheme)
+      string =~ URI::regexp
     rescue URI::BadURIError
       false
     rescue URI::InvalidURIError
