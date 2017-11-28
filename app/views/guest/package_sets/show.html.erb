@@ -18,9 +18,8 @@
         <!-- Price + Purchase -->
         <%= render partial: "guest/package_sets/show/purchase", locals: { package_set: @package_set } %>
 
-        <div class="+centered">
-          <a class="text-button --purple" href="<%= guest_package_set_promote_qrcode_path(@package_set) %>">Promote QRCode</a>
-        </div>
+        <!-- Promote QRCode -->
+        <%= render partial: 'shared/partials/promote_qrcode', locals: { url: guest_package_set_promote_qrcode_path(@package_set) } %>
 
       </div>
     </div>

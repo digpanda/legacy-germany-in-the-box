@@ -21,9 +21,5 @@
 <div class="+small-spacer"></div>
 
 <% if @brand %>
-
-  <div class="+centered">
-    <a class="text-button --purple" href="<%= guest_brand_promote_qrcode_path(@brand) %>">Promote QRCode</a>
-  </div>
-
+  <%= render partial: 'shared/partials/promote_qrcode', locals: { url: guest_brand_promote_qrcode_path(@brand) } %>
 <% end %>
