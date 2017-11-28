@@ -21,11 +21,13 @@ class Flyer < BaseService
       longitude: 823, latitude: 212
     )
 
-    insert_image(
-      full_path: "#{cover}",
-      width: 750, height: 750,
-      longitude: 40, latitude: 50
-    )
+    if "#{cover}".present?
+      insert_image(
+        full_path: "#{cover}",
+        width: 750, height: 750,
+        longitude: 40, latitude: 50
+      )
+    end
 
     image.format = 'jpeg'
     self
