@@ -75,7 +75,7 @@ class Flyer < BaseService
       else
         final_path = "#{Rails.root}/public#{full_path}"
       end
-      SlackDispatcher.new.message(uri?(full_path))
+      SlackDispatcher.new.message(url?(full_path))
       SlackDispatcher.new.message("FINAL PATH : #{final_path}")
       append_image = Magick::Image.read(final_path).first
       append_image = append_image.resize_to_fit(width, height)
