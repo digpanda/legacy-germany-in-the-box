@@ -18,7 +18,7 @@ class Flyer < BaseService
     insert_image(
       full_path: qrcode_path,
       width: 415, height: 415,
-      longitude: 823, latitude: 212
+      longitude: 823, latitude: 112
     )
 
     insert_image(
