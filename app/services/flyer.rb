@@ -70,7 +70,7 @@ class Flyer < BaseService
 
     def insert_image(full_path:, width:, height:, longitude:, latitude:)
       SlackDispatcher.new.message("more full path : #{full_path}")
-      if uri?(full_path)
+      if url?(full_path)
         final_path = full_path
       else
         final_path = "#{Rails.root}/public#{full_path}"
@@ -82,8 +82,8 @@ class Flyer < BaseService
       image.composite!(append_image, longitude, latitude, Magick::OverCompositeOp)
     end
 
-    def uri?(string)
-      string =~ URI::regexp
+    def url?(string)
+      string =~ /\A#{URI::regexp(['http', 'https'])}\z/
     rescue URI::BadURIError
       false
     rescue URI::InvalidURIError
