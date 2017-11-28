@@ -85,7 +85,7 @@ class Flyer < BaseService
     end
 
     def url?(string)
-      return string =~ /\A#{URI::regexp(['http', 'https'])}\z/
+      string.index('http') == 0
     rescue URI::BadURIError
       false
     rescue URI::InvalidURIError
