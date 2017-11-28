@@ -24,7 +24,7 @@ class Flyer < BaseService
     insert_image(
       full_path: "#{cover}",
       width: 750, height: 750,
-      longitude: 40, latitude: 110
+      longitude: 40, latitude: 50
     )
 
     image.format = 'jpeg'
