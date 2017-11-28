@@ -11,7 +11,7 @@ module SmartExchange
 
       def response
         if package_set
-          messenger.image! url: "#{guest_package_sets_promote_qrcode_url(package_set)}.jpg"
+          messenger.image! url: "#{guest_package_set_promote_qrcode_url(package_set)}.jpg"
           messenger.text! "#{promotion}"
         else
           messenger.text! 'No deal found.'
