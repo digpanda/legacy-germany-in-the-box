@@ -56,6 +56,10 @@ namespace :guest do
     get :promote_qrcode
   end
 
+  resources :brands do
+    get :promote_qrcode
+  end
+
   resources :categories do
   end
 
