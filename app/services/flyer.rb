@@ -71,8 +71,10 @@ class Flyer < BaseService
     def insert_image(full_path:, width:, height:, longitude:, latitude:)
       SlackDispatcher.new.message("more full path : #{full_path}")
       if url?(full_path)
+        SlackDispatcher.new.message("ITS A URL")
         final_path = full_path
       else
+        SlackDispatcher.new.message("ITS NOT A URL")
         final_path = "#{Rails.root}/public#{full_path}"
       end
       SlackDispatcher.new.message(url?(full_path))
@@ -83,7 +85,7 @@ class Flyer < BaseService
     end
 
     def url?(string)
-      string =~ /\A#{URI::regexp(['http', 'https'])}\z/
+      return string =~ /\A#{URI::regexp(['http', 'https'])}\z/
     rescue URI::BadURIError
       false
     rescue URI::InvalidURIError
