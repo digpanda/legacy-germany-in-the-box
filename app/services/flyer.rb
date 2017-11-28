@@ -69,16 +69,11 @@ class Flyer < BaseService
   private
 
     def insert_image(full_path:, width:, height:, longitude:, latitude:)
-      SlackDispatcher.new.message("more full path : #{full_path}")
       if url?(full_path)
-        SlackDispatcher.new.message("ITS A URL")
         final_path = full_path
       else
-        SlackDispatcher.new.message("ITS NOT A URL")
         final_path = "#{Rails.root}/public#{full_path}"
       end
-      SlackDispatcher.new.message(url?(full_path))
-      SlackDispatcher.new.message("FINAL PATH : #{final_path}")
       append_image = Magick::Image.read(final_path).first
       append_image = append_image.resize_to_fit(width, height)
       image.composite!(append_image, longitude, latitude, Magick::OverCompositeOp)
@@ -86,9 +81,5 @@ class Flyer < BaseService
 
     def url?(string)
       string.index('http') == 0
-    rescue URI::BadURIError
-      false
-    rescue URI::InvalidURIError
-      false
     end
 end
