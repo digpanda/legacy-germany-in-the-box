@@ -3,7 +3,7 @@ require 'socket'
 module NetworkHelper
 
   def client_country
-    request.location.data["country_name"]
+    request&.location&.data[]("country_name")
   end
 
   def server_ip
