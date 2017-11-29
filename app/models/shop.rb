@@ -91,7 +91,7 @@ class Shop
 
   validates :mail,          presence: false,   length: { maximum: Rails.configuration.gitb[:max_short_text_length] }
 
-  scope :active,       ->    { where(status: true).where('approved.ne': nil) }
+  scope :active,       ->    { where(status: true).where(:approved.ne => nil) }
   scope :has_address, -> { where(addresses: { '$not': { '$size': 0 } }) }
 
   scope :can_buy,         ->    { active }
