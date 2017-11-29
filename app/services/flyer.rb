@@ -74,7 +74,8 @@ class Flyer < BaseService
       if url?(full_path)
         final_path = full_path
       else
-        final_path = "#{Rails.root}/public#{full_path}"
+        # #{Rails.root}/public
+        final_path = "#{full_path}"
       end
       append_image = Magick::Image.read(final_path).first
       append_image = append_image.resize_to_fit(width, height)
