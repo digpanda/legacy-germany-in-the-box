@@ -1,7 +1,6 @@
 <!-- NOTE : this should be refactored and split in a clean way -->
 <% if potential_customer? %>
 
-  COUNTRY : <%= client_country %>
   <%= render "guest/home/show/landing_page_banner" %>
 
   <% @shops.each do |shop| %>

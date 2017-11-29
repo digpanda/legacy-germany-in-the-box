@@ -2,6 +2,7 @@ require 'socket'
 
 module NetworkHelper
 
+  # NOTE : not systematically working
   def client_country
     request&.location&.data&.[]("country_name")
   end
