@@ -4,6 +4,11 @@
     <div class="col-md-12">
       <div class="landing-banner-desktop lazy" style="background-image:url('<%= Setting.instance.landing_page_cover %>')">
         <div class="landing-banner-desktop__content">
+
+            <a href="https://friend.germanyinbox.com/start/">
+              <img src="/images/stickers/incubator.png" width="300px" />
+            </a>
+            
           <% if Setting.instance.landing_page_title.present? %>
           <%= render partial: "guest/home/show/landing_page_banner/content" %>
           <% end %>
