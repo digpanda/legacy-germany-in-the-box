@@ -1,8 +1,12 @@
 #csstyle .\+logo-on-banner {
+  width: 250px;
   position: absolute;
   right: 15px;
   top: 0px;
   box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32); }
+  @media (max-width: 994px) {
+    #csstyle .\+logo-on-banner {
+      width: 200px; } }
 
 #csstyle .\+wechat-qrcode {
   position: absolute;
