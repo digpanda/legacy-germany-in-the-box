@@ -19,3 +19,7 @@
   <% end %>
 </div>
 <div class="+small-spacer"></div>
+
+<% if @brand %>
+  <%= render partial: 'shared/partials/promote_qrcode', locals: { url: guest_brand_promote_qrcode_path(@brand) } %>
+<% end %>

@@ -10,6 +10,9 @@ class Brand
   field :html_desc, type: String, localize: true
   field :position, type: Integer, default: 0
   field :used_as_filter, type: Boolean, default: true
+  field :cover, type: String
+
+  mount_uploader :cover, CoverUploader
 
   has_many :products, inverse_of: :brand
 

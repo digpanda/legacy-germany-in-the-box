@@ -45,7 +45,21 @@
 
   </div>
 
-  <!-- Description -->
+  <!-- Cover -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Cover
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= js_file_upload(form: form, field: :cover) %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+  
+  <!-- Used As Filter -->
   <div class="row">
     <div class="col-md-2">
       <label>

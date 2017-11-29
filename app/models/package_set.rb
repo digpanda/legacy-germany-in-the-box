@@ -24,6 +24,7 @@ class PackageSet
 
   belongs_to :shop, inverse_of: :package_sets
   belongs_to :category, inverse_of: :package_sets
+  has_one :setting_promotion, class_name: 'Setting', inverse_of: :promoted_package_set
 
   embeds_many :package_skus, inverse_of: :package_set, cascade_callbacks: true
 

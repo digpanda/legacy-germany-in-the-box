@@ -13,10 +13,6 @@ class Guest::PackageSetsController < ApplicationController
   def show
   end
 
-  def qrcode
-    redirect_to QrcodeHandler.new(guest_package_set_url(package_set), '/uploads/qrcode/package_sets/', "#{order.id}.svg").perform
-  end
-
   def categories
     @categories = Category.with_package_sets.order_by(position: :asc)
     @brand_filters = Brand.with_package_sets.order_by(position: :asc).used_as_filters
@@ -57,7 +53,17 @@ class Guest::PackageSetsController < ApplicationController
     end
   end
 
+  def promote_qrcode
+    send_data blob_qrcode, stream: 'false', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
+  end
+
   private
+
+    def blob_qrcode
+      url_with_reference = guest_package_set_path(package_set, reference_id: current_user&.referrer&.reference_id)
+      qrcode_path = SmartQrcode.new(url_with_reference).perform
+      Flyer.new.process_cover_qrcode(package_set.cover, qrcode_path).image.to_blob
+    end
 
     def valid_filters?
       category || brand || params[:category_id] == 'all'

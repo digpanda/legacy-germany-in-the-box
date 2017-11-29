@@ -53,7 +53,11 @@ namespace :guest do
 
   match 'package_sets/categories' => 'package_sets#categories', :via => :get
   resources :package_sets do
-    get :qrcode
+    get :promote_qrcode
+  end
+
+  resources :brands do
+    get :promote_qrcode
   end
 
   resources :categories do

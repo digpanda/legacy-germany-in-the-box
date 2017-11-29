@@ -14,6 +14,9 @@ class Setting
 
   field :search_suggestion, type: String
 
+  belongs_to :promoted_package_set, class_name: 'PackageSet', inverse_of: :setting_promotion
+  field :promoted_package_set_text, type: String
+
   field :package_sets_title,       type: String
   field :package_sets_description, type: String
   field :package_sets_link, type: String
