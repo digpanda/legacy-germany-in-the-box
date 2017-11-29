@@ -1,3 +1,9 @@
+#csstyle .\+logo-on-banner {
+  position: absolute;
+  right: 15px;
+  top: 0px;
+  box-shadow: 0px 5px 20px 3px rgba(139, 139, 139, 0.32); }
+
 #csstyle .\+wechat-qrcode {
   position: absolute;
   right: 150px;
