@@ -1,18 +1,9 @@
 require 'socket'
-require 'geoip'
 
 module NetworkHelper
 
   def client_country
-    geoip = GeoIP.new("#{Rails.root}/vendor/geo/GeoIP.dat.gz")
-    remote_ip = request.remote_ip
-    unless ['127.0.0.1', '::1'].include? remote_ip
-      SlackDispatcher.new.message("REMOTE IP #{remote_ip}")
-      location_location = geoip.country(remote_ip)
-      if location_location != nil
-        return location_location[2]
-      end
-    end
+    request.location.data["country_name"]
   end
 
   def server_ip

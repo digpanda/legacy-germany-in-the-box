@@ -8,7 +8,7 @@ gem 'rqrcode'
 gem 'twilio-ruby'
 gem 'addressable'
 gem 'geocoder'
-gem 'geoip'
+
 gem 'ipaddress'
 gem 'api_cache'
 gem 'thin'
