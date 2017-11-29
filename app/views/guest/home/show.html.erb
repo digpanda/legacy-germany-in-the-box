@@ -3,6 +3,10 @@
 
   <%= render "guest/home/show/landing_page_banner" %>
 
+  <a href="https://friend.germanyinbox.com/start/">
+    <img src="/images/stickers/incubator.png" width="300px" />
+  </a>
+
   <% @shops.each do |shop| %>
     <% cache shop do %>
       <%= render partial: "guest/shops/block", :locals => { :shop => shop } %>
