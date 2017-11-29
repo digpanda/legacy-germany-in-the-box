@@ -1,6 +1,19 @@
 require 'socket'
 
 module NetworkHelper
+
+  def client_country
+    binding.pry
+    geoip = GeoIP.new("#{Rails.root}/db/GeoIP.dat")
+    remote_ip = request.remote_ip
+    if remote_ip != "127.0.0.1" #todo: check for other local addresses or set default value
+      location_location = geoip.country(remote_ip)
+      if location_location != nil
+        return location_location[2]
+      end
+    end
+  end
+
   def server_ip
     unless Rails.env.development? || Rails.env.test?
       orig, Socket.do_not_reverse_lookup = Socket.do_not_reverse_lookup, true

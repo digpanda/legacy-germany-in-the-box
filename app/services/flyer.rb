@@ -16,7 +16,7 @@ class Flyer < BaseService
     @image = Magick::ImageList.new("#{Rails.root}/public/images/flyers/qrcode-with-image.jpg")
 
     insert_image(
-      full_path: qrcode_path,
+      full_path: "#{Rails.root}/public#{qrcode_path}",
       width: 415, height: 415,
       longitude: 823, latitude: 212
     )
@@ -71,11 +71,12 @@ class Flyer < BaseService
   private
 
     def insert_image(full_path:, width:, height:, longitude:, latitude:)
-      if url?(full_path)
-        final_path = full_path
-      else
-        final_path = "#{Rails.root}/public#{full_path}"
-      end
+      # if url?(full_path)
+      #   final_path = full_path
+      # else
+      #   # #{Rails.root}/public
+      #   final_path = "#{full_path}"
+      # end
       append_image = Magick::Image.read(final_path).first
       append_image = append_image.resize_to_fit(width, height)
       image.composite!(append_image, longitude, latitude, Magick::OverCompositeOp)
