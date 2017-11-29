@@ -71,7 +71,7 @@ class Flyer < BaseService
   private
 
     def insert_image(full_path:, width:, height:, longitude:, latitude:)
-      SlackDispatcher.new.image("TRYING TO PUSH IMAGE : #{full_path}")
+      SlackDispatcher.new.message("TRYING TO PUSH IMAGE : #{full_path}")
       if url?(full_path)
         final_path = full_path
       else
