@@ -2558,6 +2558,10 @@ body {
     @media (max-width: 994px) {
       .package-set-list-block__footer-note {
         font-size: 12px; } }
+  .package-set-list-block__footer-barred-price {
+    text-decoration: line-through;
+    color: #ABABA8;
+    font-size: 12px; }
   .package-set-list-block__footer-price {
     color: #d6506c;
     font-weight: 300; }
