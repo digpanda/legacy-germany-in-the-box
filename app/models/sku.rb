@@ -1,8 +1,6 @@
 class Sku
   include MongoidBase
 
-  FEES_ESTIMATION_EXPIRATION = 1.week.ago
-
   strip_attributes
 
   field :price,         type: BigDecimal
@@ -33,8 +31,11 @@ class Sku
   # price per unit depends on
   # the context of the user
   def price_per_unit
-    if Thread.current[:user]&.referrer
+    case Thread.current[:custom_price]
+    when :reseller_price
       reseller_price
+    when :casual_price
+      price
     else
       price
     end

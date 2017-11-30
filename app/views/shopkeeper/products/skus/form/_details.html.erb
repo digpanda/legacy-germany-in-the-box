@@ -95,7 +95,7 @@
       <div class="row form-group">
         <div class="col-md-4">
           Discount (%)
-          <em>For display purpose only</em>
+          <em class="+red">This is temporarily unavailable, please do not fill it</em>
         </div>
         <div class="col-md-8">
           <%= form.text_field :discount, :class => 'form-control', :pattern => I18n.t('validation.positive_integer_less_or_equal_than_100'), :required => true %>

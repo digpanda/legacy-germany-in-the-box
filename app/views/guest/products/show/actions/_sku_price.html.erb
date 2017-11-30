@@ -1,10 +1,14 @@
 <div>
   <% if sku.discount? %>
-
   <span id="product_discount_with_currency_yuan" class="+barred-price">
-    <%= sku.product.decorate.preview_price_yuan_html.html_safe %>
+    <%= sku.price_with_taxes.in_euro.to_yuan.display_html.html_safe %>
   </span>
+  <% end %>
 
+  <% if sku.decorate.custom_price? %>
+  <span id="product_discount_with_currency_yuan" class="+barred-price">
+    <%= sku.decorate.casual_total_price.in_euro.to_yuan.display_html.html_safe %>
+  </span>
   <% end %>
 
   <span id="product_price_with_currency_yuan" class="+price-yuan"><%= sku.decorate.after_discount_price.in_euro.to_yuan.display_html.html_safe %></span>

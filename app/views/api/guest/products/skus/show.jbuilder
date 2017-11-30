@@ -9,7 +9,7 @@ json.price_with_currency_euro @sku.price_with_taxes.in_euro.display_html
 json.price_with_currency_yuan @sku.decorate.after_discount_price.in_euro.to_yuan.display_html
 json.price_with_currency_euro @sku.decorate.after_discount_price.in_euro.display_html
 
-json.price_before_discount_in_yuan @sku.product.decorate.preview_price_yuan_html
+json.price_before_discount_in_yuan @sku.product.featured_sku.price_with_taxes.in_euro.to_yuan.display_html
 json.discount @sku.discount
 
 json.images do

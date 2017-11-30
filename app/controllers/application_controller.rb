@@ -19,14 +19,18 @@ class ApplicationController < ActionController::Base
   before_action :force_wechat_login
   before_action :solve_silent_login, :solve_origin, :solve_landing
 
-  before_action :thread
+  before_action :custom_price
 
   # this is used to work with the models
   # we should never share contextual data with the model
   # but for the sku / package sets pricing system the best was to actually throw a thread variable
   # rather than changing the whole system
-  def thread
-    Thread.current[:user] = current_user
+  def custom_price
+    if current_user&.referrer
+      Thread.current[:custom_price] = :reseller_price
+    else
+      Thread.current[:custom_price] = :casual_price
+    end
   end
 
   # if a user comes from wechat browser and is not logged-in yet
