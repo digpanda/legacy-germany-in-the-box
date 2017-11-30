@@ -74,7 +74,7 @@
       <!-- Price -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t('edit_product_detail.price') %> (EUR)
+          Casual Price (EUR)
         </div>
         <div class="col-md-8">
           <%= form.text_field :price, value: @sku.price, :class => 'form-control', :required => true %>
@@ -94,7 +94,8 @@
       <!-- Discount -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t('edit_product_detail.discount') %> (%)
+          Discount (%)
+          <em>For display purpose only</em>
         </div>
         <div class="col-md-8">
           <%= form.text_field :discount, :class => 'form-control', :pattern => I18n.t('validation.positive_integer_less_or_equal_than_100'), :required => true %>
