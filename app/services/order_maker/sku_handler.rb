@@ -69,7 +69,7 @@ class OrderMaker
           order_item.save
 
           if package_sku
-            order_item.price_per_unit = package_sku.price
+            order_item.price_per_unit = package_sku.price_per_unit
             order_item.taxes_per_unit = package_sku.taxes_per_unit
             order_item.package_set = package_sku.package_set
             order_item.save # very important for rollbacks
