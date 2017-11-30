@@ -8,7 +8,7 @@ class Shop
 
   field :approved,        type: Time
   field :name,            type: String
-  slug :name, history: true
+  slug  :name,            history: true
 
   field :shopname,        type: String,     localize: true
   field :desc,            type: String,     localize: true
