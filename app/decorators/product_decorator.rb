@@ -41,10 +41,6 @@ class ProductDecorator < Draper::Decorator
     end
   end
 
-  def preview_discount
-    self.featured_sku.decorate.discount_with_percent
-  end
-
   def preview_price_yuan
     self.featured_sku.price_with_taxes.in_euro.to_yuan.display
   end

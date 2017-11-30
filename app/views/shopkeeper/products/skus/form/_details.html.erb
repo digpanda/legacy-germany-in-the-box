@@ -81,6 +81,16 @@
         </div>
       </div>
 
+      <!-- Reseller Price -->
+      <div class="row form-group">
+        <div class="col-md-4">
+          Reseller Price (EUR)
+        </div>
+        <div class="col-md-8">
+          <%= form.text_field :reseller_price, value: @sku.reseller_price, :class => 'form-control', :required => true %>
+        </div>
+      </div>
+
       <!-- Discount -->
       <div class="row form-group">
         <div class="col-md-4">

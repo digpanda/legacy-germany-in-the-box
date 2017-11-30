@@ -46,20 +46,13 @@
 
           <% end %>
 
-            <span class="+price-yuan"><%= product.featured_sku.decorate.price_after_discount_in_yuan %></span>
+            <span class="+price-yuan"><%= product.featured_sku.decorate.after_discount_price.in_euro.to_yuan.display %></span>
 
             <!-- Warnings -->
             <%= render partial: "guest/products/sku_warnings", :locals => { :sku => product.featured_sku } %>
 
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="+price-euro"><%#= product.featured_sku.decorate.price_after_discount_in_euro %></div>
-          </div>
-        </div>
-
 
       </div>
 
