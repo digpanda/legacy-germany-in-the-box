@@ -5,7 +5,8 @@ module PathsHelper
   end
 
   def current_url_with_reference
-    url_for params.merge(reference_id: current_user&.referrer&.reference_id)
+    path = url_for params.merge(reference_id: current_user&.referrer&.reference_id)
+    "#{request.protocol}#{request.host_with_port}#{path}"
   end
 
   # NOTE : for remote / latest version

@@ -77,7 +77,7 @@ class Flyer < BaseService
       #   # #{Rails.root}/public
       #   final_path = "#{full_path}"
       # end
-      append_image = Magick::Image.read(final_path).first
+      append_image = Magick::Image.read(full_path).first
       append_image = append_image.resize_to_fit(width, height)
       image.composite!(append_image, longitude, latitude, Magick::OverCompositeOp)
     end

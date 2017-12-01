@@ -33,14 +33,5 @@
       <%= render partial: "layouts/customer/header/mobile/menu/general", locals: { categories: @categories } %>
     <% end %>
 
-    <hr />
-
-    <!-- Extra Informations -->
-    <% if current_user&.tester? %>
-      <li>
-        <span class="+blue +bold">Mode : Tester</span>
-      </li>
-    <% end %>
-
   </ul>
 </nav>
