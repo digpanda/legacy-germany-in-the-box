@@ -40,28 +40,4 @@ class ProductDecorator < Draper::Decorator
       best_discount_sku.decorate.discount_with_percent
     end
   end
-
-  def preview_discount
-    self.featured_sku.decorate.discount_with_percent
-  end
-
-  def preview_price_yuan
-    self.featured_sku.price_with_taxes.in_euro.to_yuan.display
-  end
-
-  def preview_fees_yuan_html
-    self.featured_sku.taxes_per_unit.in_euro.to_yuan.display_html
-  end
-
-  def preview_price_yuan_html
-    self.featured_sku.price_with_taxes.in_euro.to_yuan.display_html
-  end
-
-  def preview_price_euro
-    self.featured_sku.price_with_taxes.in_euro.display
-  end
-
-  def preview_price_euro_html
-    self.featured_sku.price_with_taxes.in_euro.display_html
-  end
 end

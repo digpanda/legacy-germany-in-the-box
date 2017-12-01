@@ -21,7 +21,7 @@ class BuyingBreaker < BaseService
   def with_sku?(sku, quantity)
     return false
     return false if order.order_items.size == 0 && quantity == 1
-    (sku.decorate.price_in_yuan * quantity + order_price) > Setting.instance.max_total_per_day
+    (sku.price_with_taxes.in_euro.to_yuan.amount * quantity + order_price) > Setting.instance.max_total_per_day
   end
 
   # we check if he reached the limit

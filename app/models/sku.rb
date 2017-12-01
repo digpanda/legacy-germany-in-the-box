@@ -1,12 +1,12 @@
 class Sku
   include MongoidBase
 
-  FEES_ESTIMATION_EXPIRATION = 1.week.ago
-
   strip_attributes
 
   field :price,         type: BigDecimal
+  field :reseller_price, type: BigDecimal
   field :purchase_price, type: BigDecimal, default: 0 # the price we bought it
+
   field :quantity,      type: Integer
   field :unlimited,     type: Boolean,    default: false
   field :weight,        type: Float
@@ -28,10 +28,17 @@ class Sku
   has_many :images, as: :image
   accepts_nested_attributes_for :images, allow_destroy: true
 
-  # TODO : this is an alias which should be turned
-  # into a real database field at some point
+  # price per unit depends on
+  # the context of the user
   def price_per_unit
-    price
+    case Thread.current[:custom_price]
+    when :reseller_price
+      reseller_price
+    when :casual_price
+      price
+    else
+      price
+    end
   end
 
   # sku can be embedded in order_item and product
@@ -85,7 +92,7 @@ class Sku
   end
 
   def price_with_taxes
-    price + taxes_per_unit
+    price_per_unit + taxes_per_unit
   end
 
   def taxes_per_unit
