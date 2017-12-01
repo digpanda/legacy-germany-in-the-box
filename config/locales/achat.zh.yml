@@ -3,7 +3,7 @@ zh-CN:
     make_first_order: "恭喜！😄您已成功完成了第一单奖励。获得奖励💖一次性85折折扣码 %{coupon_code}"
     fill_in_email: "恭喜！😄您已成功完成了邮箱验证奖励。获得奖励💖50元购物代金券码: %{coupon_code}"
     invite_three_friends: "恭喜！😄您已成功完成了邀请微信好友注册奖励。 获得奖励💖150元购物代金券码 %{coupon_code}"
-    become_vip_user: 恭喜！😄您已成功成为来因盒VIP，客服会与您联系关于VIP返利计划详情💖
+    become_vip_user: 恭喜！😄您已成功成为来因盒VIP💖
     error:
       email_not_valid: 😉邮箱地址不正确。返回奖励对话初始选项请输入 奖励 (菜单➡找小茵|奖励)
       you_did_not_invite: 😉您尚未完成微信好友注册邀请奖励。返回奖励对话初始选项请输入 奖励 (菜单➡找小茵|奖励)
@@ -26,7 +26,7 @@ zh-CN:
             email_was_updated: 已发送邮箱验证链接请访问您的邮箱确认，完成后自动收到奖励。因顾客的电子邮箱服务不同会立即收到我们验证邮件或延迟十几分钟到数小时，如未找到也请检查垃圾邮箱。
             email_is_not_valid: 😉邮箱地址不正确，%{error}， 请重新输入。 返回奖励对话请输入 奖励 (菜单➡找小茵|奖励)
         become_vip_user:
-          you_are_vip: 恭喜！😄您已成功成为来因盒VIP，客服会与您联系关于VIP返利计划详情💖
+          you_are_vip: 恭喜！😄您已成功成为来因盒VIP💖
           please_complete_tasks: 😊请完成以下奖励以成为来因盒VIP💖
           please_fill_in_email: 请完成邮箱验证奖励
           please_invite_friends: 请完成微信好友邀请奖励
