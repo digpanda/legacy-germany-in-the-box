@@ -8,7 +8,7 @@
   <div class="col-md-8 col-md-push-2">
     <% if !@order.decorate.paid? %>
     <div align="center">
-      <%= link_to '继续购买', customer_order_continue_path(@order), method: :patch, class: 'big-button --blue' %>
+      <%= link_to '继续购买', customer_order_continue_path(@order), method: :patch, class: 'big-button --green' %>
     </div>
     <% end %>
   </div>
