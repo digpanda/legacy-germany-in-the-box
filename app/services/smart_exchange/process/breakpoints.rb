@@ -22,6 +22,11 @@ module SmartExchange
       def fetch
         @fetch ||= MemoryBreakpoint.where(user: user).still_valid.any_of({request_key: request}, {request_key: ""}, {request_key: nil}).order_by(c_at: :desc)
       end
+
+      def clear_all
+        MemoryBreakpoint.delete_all
+      end
+
     end
   end
 end

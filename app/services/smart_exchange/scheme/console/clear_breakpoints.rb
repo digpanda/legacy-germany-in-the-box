@@ -10,7 +10,7 @@ module SmartExchange
         end
 
         def response
-          MemoryBreakpoint.delete_all
+          Process::Breakpoints.new.clear_all
           messenger.text! 'All breakpoints were erased.'
         end
       end

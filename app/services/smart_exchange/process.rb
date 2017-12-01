@@ -110,9 +110,5 @@ module SmartExchange
     rescue NameError
       false
     end
-
-    def breakpoints
-      @breakpoints ||= Breakpoints.new(user, request)
-    end
   end
 end
