@@ -1,6 +1,6 @@
 <%= render partial: "guest/package_sets/show/header_navigation", locals: { package_set: @package_set, category: @category, back: guest_package_sets_path(category_id: @package_set.category.slug) } %>
 
-<% cache @package_set do %>
+<!-- < cache @package_set do > -->
 
   <!-- Cover -->
   <%= render partial: "guest/package_sets/show/cover", locals: { package_set: @package_set } %>
@@ -28,4 +28,4 @@
   <!-- Brand description -->
   <%= render partial: "guest/package_sets/show/brand_description", locals: { brand: @package_set.package_skus.first&.product&.brand } %>
 
-<% end %>
+<!-- < end > -->
