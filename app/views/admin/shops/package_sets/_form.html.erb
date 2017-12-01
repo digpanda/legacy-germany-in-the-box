@@ -87,16 +87,16 @@
       </div>
   </div>
 
-  <!-- Casual Price -->
+  <!-- Original Price -->
   <div class="row">
     <div class="col-md-2">
       <label>
-        Casual Price
+        Original Price折前显示价
       </label>
     </div>
 
       <div class="col-md-10 form-group">
-        <%= form.text_field :casual_price, :class => 'form-control', :required => true %>
+        <%= form.text_field :original_price, :class => 'form-control', :required => true %>
         <div class="help-block with-errors"></div>
       </div>
   </div>
@@ -185,6 +185,11 @@
         </th>
         <th>
           <label>
+            Reseller Price per Unit (EUR)
+          </label>
+        </th>
+        <th>
+          <label>
             Taxes per Unit (EUR)
           </label>
         </th>
@@ -210,6 +215,9 @@
         </td>
         <td>
           <%= field.text_field :price %>
+        </td>
+        <td>
+          <%= field.text_field :reseller_price %>
         </td>
         <td>
           <%= field.text_field :taxes_per_unit %>
