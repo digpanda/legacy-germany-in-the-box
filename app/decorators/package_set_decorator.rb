@@ -13,7 +13,7 @@ class PackageSetDecorator < Draper::Decorator
   # it means the price has been altered and is different
   # we make sure to make the difference depending the original price too
   def custom_price?
-    (casual_total_price != total_price_with_taxes) && (original_price > 0)
+    casual_total_price != total_price_with_taxes
   end
 
   def casual_total_price
