@@ -683,9 +683,9 @@ zh-CN:
     shop_seal: 商家照片
     merchant_id: 卖家ID
   edit_product:
-    purchase_price: Purchase Price (EUR)
-    casual_price: Casual Price (EUR)
-    reseller_price: Reseller Price (EUR)
+    purchase_price: Purchase Price采购价(EUR)
+    casual_price: Casual Price零售价(EUR)
+    reseller_price: Reseller Price代购价(EUR)
     skus: 库存管理
     edit: 修改
     remove: 删除产品
