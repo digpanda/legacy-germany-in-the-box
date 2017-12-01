@@ -14,7 +14,7 @@ module SmartExchange
     # we want memory manipulation to be available everywhere
     # including the scheme area
     def breakpoints
-      @breakpoints ||= Breakpoints.new(user, request)
+      @breakpoints ||= Process::Breakpoints.new(user, request)
     end
   end
 end
