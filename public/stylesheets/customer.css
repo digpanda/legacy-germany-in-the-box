@@ -36,7 +36,7 @@
   background-color: #fffff0; }
 
 #csstyle .\+wechat-pointer {
-  color: #83be58;
+  color: #3498db;
   font-size: 40px; }
 
 #csstyle .\+small-padding {
@@ -307,6 +307,9 @@
 
 #csstyle .\+light-green {
   color: #83be58; }
+
+#csstyle .\+light-blue {
+  color: #3498db; }
 
 #csstyle .\+green {
   color: #33965e; }
@@ -665,6 +668,18 @@ body {
     .big-button.\--green-hollow:active {
       color: #464646; }
     .big-button.\--green-hollow:visited {
+      color: #464646; }
+  .big-button.\--blue-hollow {
+    background-color: white;
+    border: 2px solid #3498db;
+    color: #464646; }
+    .big-button.\--blue-hollow:link {
+      color: #464646; }
+    .big-button.\--blue-hollow:hover {
+      color: #464646; }
+    .big-button.\--blue-hollow:active {
+      color: #464646; }
+    .big-button.\--blue-hollow:visited {
       color: #464646; }
   .big-button.\--blue {
     background-color: #3498db; }
@@ -1997,12 +2012,11 @@ body {
   .categories-block__brands a {
     text-align: left;
     padding: 0.2em;
-    border-bottom: 1px solid #3498db;
-    color: #3498db;
+    color: #919191;
     line-height: 2em; }
   .categories-block__brands.\--selected {
     padding: 0.2em;
-    color: #3498db;
+    color: #919191;
     font-weight: bold;
     line-height: 2em; }
   .categories-block__wrapper {
@@ -2706,13 +2720,12 @@ body {
     font-size: 24px;
     font-weight: bold; }
   .referrer__title-button {
-    border-bottom: 1px dashed #33965e;
     float: right;
     margin-top: 0.9em;
     font-size: 15px;
     font-weight: normal; }
     .referrer__title-button a {
-      color: #33965e; }
+      color: #3498db; }
   .referrer__small {
     width: 10%; }
   .referrer__large {
@@ -2728,7 +2741,6 @@ body {
       color: #3498db;
       font-weight: bold; }
     .referrer__list.\--link {
-      border-bottom: 1px dashed #33965e;
       padding-bottom: 3px;
       font-size: 17px; }
     .referrer__list a {
