@@ -63,7 +63,7 @@
       <!-- Purchase Price -->
       <div class="row form-group">
         <div class="col-md-4">
-          Purchase Price (EUR)
+          <%= I18n.t('edit_product.purchase_price') %>
           <%= js_tips(:id => :purchase_price, :tip => "The price you paid before to sell it (export taxes are based on it)") %>
         </div>
         <div class="col-md-8">
@@ -74,7 +74,7 @@
       <!-- Price -->
       <div class="row form-group">
         <div class="col-md-4">
-          Casual Price (EUR)
+          <%= I18n.t('edit_product.casual_price') %>
         </div>
         <div class="col-md-8">
           <%= form.text_field :price, value: @sku.price, :class => 'form-control', :required => true %>
@@ -84,7 +84,7 @@
       <!-- Reseller Price -->
       <div class="row form-group">
         <div class="col-md-4">
-          Reseller Price (EUR)
+          <%= I18n.t('edit_product.reseller_price') %>
         </div>
         <div class="col-md-8">
           <%= form.text_field :reseller_price, value: @sku.reseller_price, :class => 'form-control', :required => true %>
