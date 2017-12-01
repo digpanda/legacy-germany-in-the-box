@@ -38,9 +38,9 @@ zh-CN:
     wechatpay_no_wechat_mobile_user: 手机浏览器内使用微信支付，请保存二维码到相册后使用微信扫一扫
     alipay_wechat_user: 微信内访问来因盒，支付宝需要拷贝粘贴支付宝链接到手机浏览器里完成支付
   inquiry:
-    raw_referrer: 请提供您在德国的导游，朋友姓名便于我们本地联系。
+    raw_referrer: 请提供您在德国的亲属或朋友姓名便于我们本地联系。
   services:
-    referrer_services: 导游专区
+    referrer_services: 推广伙伴专区
     email_placeholder: 您的邮箱或微信号
     referrer: 德国本地联络人
     email: 邮箱|微信号
@@ -82,7 +82,7 @@ zh-CN:
       how_does_it_work: 社交分享
       work_description_1: "- 发送给微信朋友"
       work_description_2: "- 分享到微信朋友圈"
-      work_conclusion: "我们将不断丰富新的导游推广软文，公众号文章，新媒体场景海报，视频敬请关注！"
+      work_conclusion: "我们将不断丰富新的推广软文，公众号文章，新媒体场景海报，视频敬请关注！"
       please_share_this_link: 请分享您的专属文章推广链接
     link: 链接
     links: 智能软文
@@ -321,7 +321,7 @@ zh-CN:
     my_payment: 我的支付方式
     my_cart: 购物车
     my_account: 我的账户
-    flyer: 推广
+    flyer: 推广伙伴
     my_personal: 个人信息
     my_bank: 支付方式
     my_address: 地址管理
