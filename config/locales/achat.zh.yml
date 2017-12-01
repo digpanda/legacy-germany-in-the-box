@@ -60,7 +60,7 @@ zh-CN:
     signature_returned: signature returned
     returned: returned
   brands:
-    hot_brands: 热销产品
+    hot_brands: 热销品链接
   service:
     please_scan_qrcode: 您也可以立即和我们在线客服联系，了解更多相关信息。请扫码访问来因盒服务号。
   referrer:
@@ -146,7 +146,7 @@ zh-CN:
   categories:
     more_info: 浏览分类产品
   package_set:
-    please_scan_qrcode: 手机微信扫码 快速购买
+    please_scan_qrcode: 微信扫码自动注册 手机快速购买
     more_info: 浏览分类产品
     buy_it: 加入购物车
     see_our_campaigns: 查看特惠精品套装
