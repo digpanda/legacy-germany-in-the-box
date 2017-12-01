@@ -9,7 +9,7 @@
       <!-- Country of Origin -->
       <div class="row form-group">
         <div class="col-md-4">
-          <%= I18n.t('edit_product_detail.country_of_origin') %>
+          <%= I18n.t('country_of_origin') %>
         </div>
         <div class="col-md-8">
           <%= country_select("product[skus_attributes][0]", "country_of_origin", priority_countries: ["DE"], format: :translated, selected: form.object.country_of_origin) %>

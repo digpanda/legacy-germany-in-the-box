@@ -7,7 +7,7 @@ describe Guest::ReferrersController, type: :controller do
 
     before(:each) do
       allow_any_instance_of(described_class).to receive(:wechat_referrer_qrcode).and_return(
-        BaseService.new.return_with(:success, local_file: "/uploads/referrer/qrcode/test-qrcode.jpg", remote_call: false)
+        BaseService.new.return_with(:success, local_file: "#{Rails.root}/public/uploads/referrer/qrcode/test-qrcode.jpg", remote_call: false)
       )
     end
 
