@@ -14,7 +14,7 @@ class PackageSku
   validates_presence_of :quantity
 
   validates :price, presence: true, numericality: { greater_than: 0 }
-  validates :reseller_price, presence: true, numericality: { greater_than: 0 }
+  validates :reseller_price, presence: false, numericality: { greater_than: 0 }
 
   # price per unit depends on
   # the context of the user
