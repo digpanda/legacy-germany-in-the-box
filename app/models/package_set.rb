@@ -16,7 +16,7 @@ class PackageSet
   field :details_cover,       type: String
   field :referrer_rate, type: Float, default: 0.0
   field :active, type: Boolean, default: true
-  field :casual_price, type: Float, default: 0
+  field :original_price, type: Float, default: 0
   field :shipping_cost, type: Float, default: 0
 
   mount_uploader :cover, CoverUploader
