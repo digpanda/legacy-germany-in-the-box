@@ -44,11 +44,13 @@ class SkuDecorator < Draper::Decorator
   # by forcing the thread definition
   # and rollingback afterwards
   def casual_total_price
-    price_origin = Thread.current[:price_origin]
-    Thread.current[:price_origin] = :casual_price
-    casual_price = total_price_with_taxes
-    Thread.current[:price_origin] = price_origin
-    casual_price
+    @casual_total_price ||= begin
+      price_origin = Thread.current[:price_origin]
+      Thread.current[:price_origin] = :casual_price
+      casual_price = total_price_with_taxes
+      Thread.current[:price_origin] = price_origin
+      casual_price
+    end
   end
 
   # TODO : we should remove this since

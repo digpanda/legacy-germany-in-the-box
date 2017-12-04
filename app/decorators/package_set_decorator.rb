@@ -9,8 +9,8 @@ class PackageSetDecorator < Draper::Decorator
     truncate(self.desc, length: characters)
   end
 
-  # we just check if the current price_per_unit is equal to the casual price
-  # if not it's custom
+  # we need to do a global check for this one since
+  # it's the displayed price
   def custom_price?
     total_price_with_taxes != casual_total_price
   end
@@ -19,11 +19,13 @@ class PackageSetDecorator < Draper::Decorator
   # by forcing the thread definition
   # and rollingback afterwards
   def casual_total_price
-    price_origin = Thread.current[:price_origin]
-    Thread.current[:price_origin] = :casual_price
-    casual_price = total_price_with_taxes
-    Thread.current[:price_origin] = price_origin
-    casual_price
+    @casual_total_price ||= begin
+      price_origin = Thread.current[:price_origin]
+      Thread.current[:price_origin] = :casual_price
+      casual_price = total_price_with_taxes
+      Thread.current[:price_origin] = price_origin
+      casual_price
+    end
   end
 
 end
