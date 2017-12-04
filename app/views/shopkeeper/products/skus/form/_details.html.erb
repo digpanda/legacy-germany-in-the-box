@@ -8,31 +8,31 @@
 
       <!-- Country of Origin -->
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <%= I18n.t('country_of_origin') %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <%= country_select("product[skus_attributes][0]", "country_of_origin", priority_countries: ["DE"], format: :translated, selected: form.object.country_of_origin) %>
         </div>
       </div>
 
       <!-- Variant Selection -->
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <%= I18n.t('edit_product_detail.sku_variants_options') %>
           <%= js_tips(:id => :product_data, :tip => I18n.t('edit_product_detail.variants_info')) %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <%= form.select :option_ids, grouped_options_for_select(form.object.product.decorate.grouped_variants_options, form.object.option_ids), {}, {:multiple => 'multiple', :class => 'sku-variants-options', :required => true} %>
         </div>
       </div>
 
       <!-- Quantity -->
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <%= I18n.t('edit_product_detail.quantity') %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <div class="row">
             <div class="col-md-2">
               <div class="row tooltipster" title="Unlimited">
@@ -52,72 +52,72 @@
 
       <!-- EAN -->
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <%= I18n.t('edit_product_detail.ean') %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <%= form.text_field :ean, :class => 'form-control' %>
         </div>
       </div>
 
       <!-- Purchase Price -->
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <%= I18n.t('edit_product.purchase_price') %>
           <%= js_tips(:id => :purchase_price, :tip => "The price you paid before to sell it (export taxes are based on it)") %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <%= form.text_field :purchase_price, value: @sku.purchase_price, :class => 'form-control', :required => true %>
         </div>
       </div>
 
       <!-- Price -->
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <%= I18n.t('edit_product.casual_price') %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <%= form.text_field :price, value: @sku.price, :class => 'form-control', :required => true %>
         </div>
       </div>
 
       <!-- Reseller Price -->
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <%= I18n.t('edit_product.reseller_price') %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <%= form.text_field :reseller_price, value: @sku.reseller_price, :class => 'form-control', :required => true %>
         </div>
       </div>
 
       <!-- Discount -->
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-2">
           Discount (%)
-          <em class="+red">This is temporarily unavailable, please do not fill it</em>
+          <em class="+red +bold">This is temporarily unavailable, please do not fill it</em>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <%= form.text_field :discount, :class => 'form-control', :pattern => I18n.t('validation.positive_integer_less_or_equal_than_100'), :required => true %>
         </div>
       </div>
 
       <!-- Space -->
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <%= I18n.t('edit_product_detail.space') %> (CM)
           <%= js_tips(:id => :space, :tip => I18n.t('edit_product_detail.space_info')) %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <div class="row">
 
-            <div class="col-md-4">
+            <div class="col-md-2">
               <%= form.text_field :space_length, value: @sku.space_length, :class => 'form-control', :required => true, :placeholder => I18n.t('edit_product_detail.space_length') %>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
               <%= form.text_field :space_width, value: @sku.space_width, :class => 'form-control', :required => true, :placeholder => I18n.t('edit_product_detail.space_width') %>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
               <%= form.text_field :space_height, value: @sku.space_height, :class => 'form-control', :required => true, :placeholder => I18n.t('edit_product_detail.space_height') %>
             </div>
 
@@ -128,10 +128,10 @@
 
       <!-- Weight -->
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <%= I18n.t('edit_product_detail.weight') %> (KG)
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
           <%= form.text_field :weight, value: @sku.weight, :class => 'form-control', :required => true %>
         </div>
       </div>
