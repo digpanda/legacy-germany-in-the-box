@@ -14,6 +14,8 @@ FactoryGirl.define do
     skus      { [FactoryGirl.build(:sku, option_ids: [self.options.first.suboptions.first.id.to_s])] }
     shop      { FactoryGirl.create(:shop) }
 
+    referrer_rate 10.0
+
     association :duty_category, factory: :duty_medicine_category, strategy: :build
 
     before(:create) do |product|

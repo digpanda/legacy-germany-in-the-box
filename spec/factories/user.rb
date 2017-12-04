@@ -34,7 +34,13 @@ FactoryGirl.define do
 
     trait :with_referrer do
       before(:create) do |user|
-        Referrer.create(user: user, reference_id: SecureRandom.uuid, nickname: "Referrer#{Helpers::Global.next_number(:referrer)}", group: '')
+        Referrer.create(user: user, agb: true, reference_id: SecureRandom.uuid, nickname: "Referrer#{Helpers::Global.next_number(:referrer)}", group: '')
+      end
+    end
+
+    trait :with_parent_referrer do
+      before(:create) do |user|
+        user.parent_referrer = FactoryGirl.create(:customer, :with_referrer).referrer
       end
     end
 

@@ -81,12 +81,35 @@ feature 'checkout process', js: true do
       end
 
       context 'apply a coupon' do
-
         scenario 'pay successfully and generate shipping label correctly with coupon' do
           page.first('#cart').click
           make_and_apply_coupon!
           page.first('#checkout-button').click
           pay_with_alipay!
+        end
+      end
+
+      context 'with parent referrer' do
+
+        let(:customer) { FactoryGirl.create(:customer, :with_parent_referrer) }
+
+        scenario 'pay successfully and give a provision' do
+          page.first('#cart').click
+          page.first('#checkout-button').click
+          pay_with_alipay!
+          expect(ReferrerProvision.count).to eq(1)
+        end
+
+        context 'with no referrer rate' do
+          let(:product) { FactoryGirl.create(:product, shop_id: shop.id, referrer_rate: 0.0) }
+
+          scenario 'pay successfully and do not give a provision' do
+            page.first('#cart').click
+            page.first('#checkout-button').click
+            pay_with_alipay!
+            expect(ReferrerProvision.count).to eq(0)
+          end
+
         end
 
       end

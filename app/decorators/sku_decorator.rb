@@ -47,7 +47,7 @@ class SkuDecorator < Draper::Decorator
     @casual_total_price ||= begin
       price_origin = Thread.current[:price_origin]
       Thread.current[:price_origin] = :casual_price
-      casual_price = total_price_with_taxes
+      casual_price = price_with_taxes
       Thread.current[:price_origin] = price_origin
       casual_price
     end
