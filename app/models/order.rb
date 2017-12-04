@@ -24,6 +24,7 @@ class Order
 
   field :shipping_cost, type: Float, default: 0.0
   field :exchange_rate, type: Float, default: 0.0
+  field :price_origin, type: Symbol, default: 
 
   field :coupon_applied_at, type: Time
   field :coupon_discount, type: Float, default: 0.0

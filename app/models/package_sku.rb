@@ -1,10 +1,13 @@
 class PackageSku
   include MongoidBase
+  include SkuPricing
 
   field :sku_id
   field :quantity, type: Integer
-  field :price, type: Float, default: 0
-  field :reseller_price, type: Float, default: 0
+
+  # NOTE : `price` and `reseller_price`
+  # are contained in the SkuPricing concern
+
   field :taxes_per_unit, type: Float, default: 0
 
   belongs_to :product
@@ -12,28 +15,6 @@ class PackageSku
 
   validates_presence_of :sku_id
   validates_presence_of :quantity
-
-  validates :price, presence: true, numericality: { greater_than: 0 }
-  validates :reseller_price, presence: false, numericality: { greater_than: 0 }
-
-  # price per unit depends on
-  # the context of the user
-  def price_per_unit
-    if Thread.current[:tester?]
-
-      case Thread.current[:custom_price]
-      when :reseller_price
-        reseller_price
-      when :casual_price
-        price
-      else
-        price
-      end
-
-    else
-      price
-    end
-  end
 
   def sku
     @sku ||= product.skus.find(sku_id)

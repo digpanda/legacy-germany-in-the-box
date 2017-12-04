@@ -1,10 +1,12 @@
 class Sku
   include MongoidBase
+  include SkuPricing
 
   strip_attributes
 
-  field :price,         type: BigDecimal
-  field :reseller_price, type: BigDecimal
+  # NOTE : `price` and `reseller_price`
+  # are contained in the SkuPricing concern
+
   field :purchase_price, type: BigDecimal, default: 0 # the price we bought it
 
   field :quantity,      type: Integer
@@ -28,25 +30,6 @@ class Sku
   has_many :images, as: :image
   accepts_nested_attributes_for :images, allow_destroy: true
 
-  # price per unit depends on
-  # the context of the user
-  def price_per_unit
-    if Thread.current[:tester?]
-
-      case Thread.current[:custom_price]
-      when :reseller_price
-        reseller_price
-      when :casual_price
-        price
-      else
-        price
-      end
-
-    else
-      price
-    end
-  end
-
   # sku can be embedded in order_item and product
   # therefore you access the product linked to it
   # in different ways
@@ -68,7 +51,6 @@ class Sku
   # mount_uploader :img3,     ProductUploader
   mount_uploader :attach0,  AttachmentUploader
 
-  validates :price,         presence: true, numericality: { greater_than: 0 }
   validates :quantity,      presence: true, numericality: { greater_than_or_equal_to: 0 }, unless: lambda { self.unlimited }
   validates :unlimited,     presence: true
   validates :weight,        presence: true
