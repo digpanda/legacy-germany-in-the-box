@@ -33,6 +33,7 @@ class Coupon
 
   belongs_to :referrer, class_name: 'Referrer', inverse_of: :coupons
   belongs_to :shop, inverse_of: :coupons
+  belongs_to :product, inverse_of: :coupons
   belongs_to :user, inverse_of: :coupons
 
   validates :code, uniqueness: true

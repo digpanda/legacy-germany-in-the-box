@@ -30,6 +30,7 @@ class Product
   has_and_belongs_to_many :categories
 
   has_many :order_items
+  has_many :coupons, inverse_of: :shop, dependent: :restrict
 
   belongs_to :shop, inverse_of: :products, touch: true
   belongs_to :duty_category, inverse_of: :products, counter_cache: true

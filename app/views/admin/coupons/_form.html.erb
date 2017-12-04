@@ -1,6 +1,6 @@
 <%= form_for [:admin, coupon] do |form| %>
 
-<div class="row details__block">
+<div class="row details__transparent-block">
 
   <!-- Code -->
   <div class="row">
@@ -74,7 +74,10 @@
       </div>
   </div>
 
-  <!-- Code -->
+  <h4>Restrict to ...</h4>
+  <hr />
+
+  <!-- Shop -->
   <div class="row">
     <div class="col-md-2">
         <label>
@@ -83,9 +86,25 @@
     </div>
 
       <div class="col-md-10 form-group">
-        <%= form.select :shop, options_from_collection_for_select(Shop.all, :id, :shopname, form.object.shop&.id), :include_blank => true %>
+        <%= form.select :shop, options_from_collection_for_select(Shop.all, :id, :shopname, form.object.shop&.id), { :include_blank => true }, { class: 'form-control' } %>
         <div class="help-block with-errors"></div>
-        <em>Used to restrict to a specific shop</em>
+        <em>On which shop can we apply this coupon ?</em>
+      </div>
+  </div>
+
+  <!-- Product -->
+  <div class="row">
+    <div class="col-md-2">
+        <label>
+          Product
+          <span class="+red +bold">This system is still under development. Please do not restrict to any product as it will not work.</span>
+        </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.select :product, options_from_collection_for_select(Product.all, :id, :name, form.object.product&.id), { :include_blank => true }, { class: 'form-control' } %>
+        <div class="help-block with-errors"></div>
+        <em>On which product can we apply this coupon ?</em>
       </div>
   </div>
 
@@ -100,9 +119,12 @@
       <div class="col-md-10 form-group">
         <%= customer_select(form) %>
         <div class="help-block with-errors"></div>
-        <em>User to restrict to a specific user.</em>
+        <em>Who can use this coupon ?</em>
       </div>
   </div>
+
+  <h4>Bind to ...</h3>
+  <hr />
 
   <!-- Referrer -->
   <div class="row">
@@ -121,7 +143,7 @@
 
 
   <!-- Exclude China -->
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-md-2">
       <label>
         Exclude China
@@ -132,7 +154,7 @@
         <%= form.select(:exclude_china, boolean_select) %>
         <div class="help-block with-errors"></div>
       </div>
-  </div>
+  </div> -->
 
 </div>
 
