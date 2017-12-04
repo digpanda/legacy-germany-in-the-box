@@ -19,11 +19,17 @@ class PackageSku
   # price per unit depends on
   # the context of the user
   def price_per_unit
-    case Thread.current[:custom_price]
-    when :reseller_price
-      reseller_price
-    when :casual_price
-      price
+    if Thread.current[:tester?]
+
+      case Thread.current[:custom_price]
+      when :reseller_price
+        reseller_price
+      when :casual_price
+        price
+      else
+        price
+      end
+
     else
       price
     end

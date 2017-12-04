@@ -26,6 +26,8 @@ class ApplicationController < ActionController::Base
   # but for the sku / package sets pricing system the best was to actually throw a thread variable
   # rather than changing the whole system
   def custom_price
+    # TODO : TEMPORARY
+    Thread.current[:tester?] = current_user&.tester?
     if current_user&.referrer
       Thread.current[:custom_price] = :reseller_price
     else
