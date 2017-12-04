@@ -9,19 +9,21 @@ class PackageSetDecorator < Draper::Decorator
     truncate(self.desc, length: characters)
   end
 
-  # if the casual total price (the normal one) is different from the current price with taxes
-  # it means the price has been altered and is different
-  # we make sure to make the difference depending the original price too
+  # we just check if the current price_per_unit is equal to the casual price
+  # if not it's custom
   def custom_price?
-    casual_total_price != total_price_with_taxes
+    total_price_with_taxes != casual_total_price
   end
 
+  # this is to show the normal casual price
+  # by forcing the thread definition
+  # and rollingback afterwards
   def casual_total_price
-    custom_price = Thread.current[:custom_price]
-    Thread.current[:custom_price] = :casual_price
-    final_price = total_price_with_taxes
-    Thread.current[:custom_price] = custom_price
-    final_price
+    price_origin = Thread.current[:price_origin]
+    Thread.current[:price_origin] = :casual_price
+    casual_price = total_price_with_taxes
+    Thread.current[:price_origin] = price_origin
+    casual_price
   end
 
 end

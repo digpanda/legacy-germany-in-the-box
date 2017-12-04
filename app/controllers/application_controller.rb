@@ -19,19 +19,18 @@ class ApplicationController < ActionController::Base
   before_action :force_wechat_login
   before_action :solve_silent_login, :solve_origin, :solve_landing
 
-  before_action :custom_price
+  before_action :ensure_price_origin
 
   # this is used to work with the models
   # we should never share contextual data with the model
   # but for the sku / package sets pricing system the best was to actually throw a thread variable
   # rather than changing the whole system
-  def custom_price
-    # TODO : TEMPORARY
-    Thread.current[:tester?] = current_user&.tester?
-    if current_user&.referrer
-      Thread.current[:custom_price] = :reseller_price
+  def ensure_price_origin
+    # TODO : TEMPORARY tester CONDITION
+    if current_user&.referrer && current_user&.tester?
+      Thread.current[:price_origin] = :reseller_price
     else
-      Thread.current[:custom_price] = :casual_price
+      Thread.current[:price_origin] = :casual_price
     end
   end
 

@@ -10,6 +10,12 @@ class OrderItem
   field :price_per_unit, type: Float
   field :referrer_rate, type: Float, default: 0.0
 
+  # the price origin is put on the order item level for constitency purpose
+  # each item of one order should have one unique price origin
+  # but since the price is defined at the sku / package sku level
+  # we better set on the order item as well.
+  field :price_origin, type: Symbol, default: :casual_price # [:casual_price, :reseller_price]
+
   before_save :ensure_price_per_unit, :ensure_taxes_per_unit
 
   def ensure_price_per_unit

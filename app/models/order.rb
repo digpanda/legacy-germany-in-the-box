@@ -24,7 +24,6 @@ class Order
 
   field :shipping_cost, type: Float, default: 0.0
   field :exchange_rate, type: Float, default: 0.0
-  field :price_origin, type: Symbol, default: 
 
   field :coupon_applied_at, type: Time
   field :coupon_discount, type: Float, default: 0.0
@@ -117,6 +116,16 @@ class Order
       end
       self.save!
     end
+  end
+
+  # the price origins is taken from the items
+  # this value is defined on the fly because
+  # in the future we could have mixed price origins
+  # the prefered strategy to make conditions over this is to exclude
+  # such as `!price_origin.include? :reseller_price`
+  # because the array can be empty
+  def price_origins
+    order_items.map(&:price_origin).uniq
   end
 
   def coupon_discount_in_percent

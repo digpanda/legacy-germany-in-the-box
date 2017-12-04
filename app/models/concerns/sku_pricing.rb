@@ -11,13 +11,15 @@ module SkuPricing
     validates :reseller_price, presence: true, numericality: { greater_than: 0 }
   end
 
+  # TODO : at some point we should switch
+  # `price` to `casual_price` totally but for now
+  # it's safer to keep both of them
+  def casual_price
+    price
+  end
+
   def price_origin
-    # TODO : remove the `tester?` after a little while
-    if Thread.current[:tester?]
-      Thread.current[:custom_price]
-    else
-      :casual_price
-    end
+    Thread.current[:price_origin] || :casual_price
   end
 
   # price per unit depends on
