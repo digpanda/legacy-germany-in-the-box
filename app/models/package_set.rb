@@ -22,6 +22,9 @@ class PackageSet
   mount_uploader :cover, CoverUploader
   mount_uploader :details_cover, CoverUploader
 
+  field :promotion_header, type: String
+  field :promotion_footer, type: String
+
   belongs_to :shop, inverse_of: :package_sets
   belongs_to :category, inverse_of: :package_sets
   has_one :setting_promotion, class_name: 'Setting', inverse_of: :promoted_package_set

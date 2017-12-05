@@ -19,7 +19,7 @@
         <%= render partial: "guest/package_sets/show/purchase", locals: { package_set: @package_set } %>
 
         <!-- Promote QRCode -->
-        <%= render partial: 'shared/partials/promote_qrcode', locals: { url: guest_package_set_promote_qrcode_path(@package_set) } %>
+        <%= render partial: 'shared/partials/promote_qrcode', locals: { url: guest_package_set_promote_qrcode_path(@package_set), promotion_footer: @package_set.promotion_footer, promotion_header: @package_set.promotion_header } %>
 
       </div>
     </div>
