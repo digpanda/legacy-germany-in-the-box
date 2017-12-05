@@ -12,7 +12,7 @@ class PackageSetDecorator < Draper::Decorator
   # we need to do a global check for this one since
   # it's the displayed price
   def custom_price?
-    total_price_with_taxes != original_price
+    (total_price_with_taxes != original_price) && (original_price > 0.0)
   end
 
   # this is to show the normal casual price
