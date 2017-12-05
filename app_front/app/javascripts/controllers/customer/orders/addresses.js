@@ -34,7 +34,7 @@ var OrdersAddresses = {
 
   scrollToForm: function() {
     $('html, body').animate({
-        scrollTop: $("#new-address").offset().top
+        scrollTop: $("#new-address-tag").offset().top
     }, 500);
   },
 

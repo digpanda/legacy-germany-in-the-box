@@ -893,7 +893,7 @@ var OrdersAddresses = {
 
   scrollToForm: function scrollToForm() {
     $('html, body').animate({
-      scrollTop: $("#new-address").offset().top
+      scrollTop: $("#new-address-tag").offset().top
     }, 500);
   }
 

@@ -1,4 +1,7 @@
 zh-CN:
+  country:
+    europe: 欧洲
+    china: 中国
   reward:
     make_first_order: "恭喜！😄您已成功完成了第一单奖励。获得奖励💖一次性85折折扣码 %{coupon_code}"
     fill_in_email: "恭喜！😄您已成功完成了邮箱验证奖励。获得奖励💖50元购物代金券码: %{coupon_code}"

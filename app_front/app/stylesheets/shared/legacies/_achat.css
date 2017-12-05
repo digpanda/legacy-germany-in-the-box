@@ -37,10 +37,6 @@ body {
 .container-fluid,
 .row-fluid { height: inherit; }
 
-.has-error .form-control {
-    background-color: #ffdddd !important;
-}
-
 .invalidBorderClass{
     border-color: #A94442 !important;
     border-width:1px !important;
@@ -167,14 +163,14 @@ textarea {
     padding-left: 15%;
     padding-right: 15%;
 
-    width:100%; 
+    width:100%;
     height:auto;
 }
 .bannerImg_shopkeeper.orig {
-    border-top: 3px solid #edefed; 
-    border-bottom: 3px solid #edefed; 
-    border-right: 230px solid #edefed; 
-    border-left: 230px solid #edefed; 
-    width:100%; 
+    border-top: 3px solid #edefed;
+    border-bottom: 3px solid #edefed;
+    border-right: 230px solid #edefed;
+    border-left: 230px solid #edefed;
+    width:100%;
     height:auto;
 }

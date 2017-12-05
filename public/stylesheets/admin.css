@@ -1816,6 +1816,9 @@
   color: white;
   background: transparent; }
 
+#new-address-tag {
+  margin-top: -1.7em; }
+
 .radio-group {
   border: solid 2px #33965e;
   display: inline-block;
@@ -1837,6 +1840,8 @@
     background: #33965e; }
   .radio-group label + input[type=radio] + label {
     border-left: solid 2px #33965e; }
+  .radio-group .field_with_errors {
+    display: none; }
 
 hr {
   margin-top: 10px;
@@ -1868,6 +1873,12 @@ h3 {
   background-color: #f9f9f9; }
   .form-control:focus {
     border: 1px solid #33965e; }
+
+textarea, input, button {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important; }
 
 .js-editable button {
   color: #3498db !important; }

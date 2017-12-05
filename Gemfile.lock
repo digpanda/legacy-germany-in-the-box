@@ -652,7 +652,6 @@ DEPENDENCIES
   carrierwave-qiniu
   chromedriver-helper
   copy_carrierwave_file
-  countries
   country_select
   daemons
   database_cleaner

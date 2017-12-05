@@ -25,6 +25,11 @@
         </div>
         <% end %>
 
+        <!-- Scroll down on click -->
+        <div class="row">
+            <div id="new-address-tag"></div>
+        </div>
+
         <div class="row addresses__new">
 
           <div class="col-xs-12">
@@ -34,8 +39,6 @@
             <a href="#" id="button-new-address" class="big-button --green"><%= I18n.t('address.create_new') %></a>
 
             <div id="new-address" class="+hidden">
-              <div class="+spacer"></div>
-              <div class="+spacer"></div>
               <%= form_for [:customer, @order, @address], :data => {:toggle => 'validator'} do |form| %>
               <%= render partial: "customer/addresses/form", :locals => { :address => @address, :form => form } %>
               <% end %>

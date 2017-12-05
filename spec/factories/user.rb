@@ -11,7 +11,7 @@ FactoryGirl.define do
     password_confirmation  '12345678'
     mobile                 { Faker::PhoneNumber.cell_phone }
     birth                  { Helpers::Global.random_date }
-    addresses             { FactoryGirl.build_list(:customer_address, 2, primary: true) }
+    addresses             { FactoryGirl.build_list(:customer_address, 2) }
 
     confirmed_at { Time.now }
     confirmation_sent_at { Time.now }

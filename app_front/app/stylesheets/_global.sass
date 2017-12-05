@@ -1,3 +1,7 @@
+#new-address-tag
+  // we recalibrate for the scrolldown on the address new field
+  margin-top: -1.7em
+
 .radio-group
   border: solid 2px $color-dark-green
   display: inline-block
@@ -25,10 +29,8 @@
   label + input[type=radio] + label
     border-left: solid 2px $color-dark-green
 
-
-
-
-
+  .field_with_errors
+    display: none
 hr
   margin-top: 10px
   margin-bottom: 10px
@@ -60,6 +62,12 @@ h3
   background-color: $color-almost-white
   &:focus
     border: 1px solid $color-dark-green
+
+textarea, input, button
+  outline: none !important
+  -webkit-box-shadow: none !important
+  -moz-box-shadow: none !important
+  box-shadow: none !important
 
 .js-editable
   button

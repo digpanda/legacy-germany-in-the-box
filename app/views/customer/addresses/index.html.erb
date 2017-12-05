@@ -4,9 +4,6 @@
     <thead>
       <tr>
         <th>
-          <%= I18n.t('edit_address.primary') %>
-        </th>
-        <th>
           <%= I18n.t('edit_address.name') %>
         </th>
         <th>
@@ -30,9 +27,6 @@
       <% @addresses.each do |address| %>
         <tr>
           <td>
-            <%= boolean_icon(address.primary) %>
-          </td>
-          <td>
             <%= address.decorate.full_name %>
           </td>
           <td>
@@ -42,7 +36,7 @@
             <%= address.mobile %>
           </td>
           <td>
-            <%= address.country %>
+            <%= address.decorate.readable_country %>
           </td>
           <td>
             <%= address.full_address %>
@@ -62,9 +56,6 @@
     <thead>
       <tr>
         <th>
-          <%= I18n.t('edit_address.primary') %>
-        </th>
-        <th>
           <%= I18n.t('edit_address.full_address') %>
         </th>
         <th>
@@ -75,9 +66,6 @@
     <tbody>
       <% @addresses.each do |address| %>
         <tr>
-          <td>
-            <%= boolean_icon(address.primary) %>
-          </td>
           <td>
             <%= address.decorate.full_name %><br/>
             <%= address.pid %><br/>
