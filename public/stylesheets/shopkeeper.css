@@ -1777,6 +1777,28 @@
   color: white;
   background: transparent; }
 
+.radio-group {
+  border: solid 2px #33965e;
+  display: inline-block;
+  border-radius: 5px;
+  overflow: hidden; }
+  .radio-group input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    display: none; }
+  .radio-group label {
+    color: #33965e;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.8em 2em;
+    margin: -0.4em; }
+  .radio-group input[type=radio]:checked + label {
+    color: white;
+    background: #33965e; }
+  .radio-group label + input[type=radio] + label {
+    border-left: solid 2px #33965e; }
+
 hr {
   margin-top: 10px;
   margin-bottom: 10px; }
@@ -1804,11 +1826,9 @@ h3 {
 
 .form-control {
   border: 1px solid #bdc3c7;
-  background-color: #f9f9f9;
-  border-width: 0px 0px 1px 0px; }
+  background-color: #f9f9f9; }
   .form-control:focus {
-    border: 1px solid #33965e;
-    border-width: 0px 0px 1px 0px; }
+    border: 1px solid #33965e; }
 
 .js-editable button {
   color: #3498db !important; }

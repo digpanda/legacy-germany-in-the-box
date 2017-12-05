@@ -55,6 +55,13 @@
     <%= form.text_field :country, :value => ISO3166::Country[:CN].local_name, :readonly => true, :class => 'form-control' %>
   </div>
 
+  <form>
+    <div class="radio-group">
+      <input type="radio" id="china" name="selector" checked="checked"><label for="china">China</label>
+      <input type="radio" id="europe" name="selector"><label for="europe">Europe</label>
+    </div>
+  </form>
+
   <div class="form-group">
     <%= form.label :primary do %>
       <%= form.check_box :primary, {}, true, false %> <%=I18n.t('edit_address.set_primary')%>

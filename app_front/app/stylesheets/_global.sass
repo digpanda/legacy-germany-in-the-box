@@ -1,3 +1,34 @@
+.radio-group
+  border: solid 2px $color-dark-green
+  display: inline-block
+  border-radius: 5px
+  overflow: hidden
+
+  input[type=radio]
+    position: absolute
+    visibility: hidden
+    display: none
+
+  label
+    color: $color-dark-green
+    display: inline-block
+    cursor: pointer
+    font-weight: bold
+    padding: 0.8em 2em
+    margin: -0.4em
+
+  input[type=radio]:checked + label
+    color: $color-white
+    background: $color-dark-green
+
+
+  label + input[type=radio] + label
+    border-left: solid 2px $color-dark-green
+
+
+
+
+
 hr
   margin-top: 10px
   margin-bottom: 10px
@@ -27,13 +58,8 @@ h3
 .form-control
   border: 1px solid $color-grey
   background-color: $color-almost-white
-  border-width: 0px 0px 1px 0px
   &:focus
     border: 1px solid $color-dark-green
-    border-width: 0px 0px 1px 0px
-
-// #cart
-//   z-index: 11 // right above the flash messages
 
 .js-editable
   button
