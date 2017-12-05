@@ -26,7 +26,6 @@ module Helpers
 
         # fill_in 'address[zip]', with: '300222'
 
-        page.first('#address_primary').trigger('click')
         page.first('input[type=submit]').trigger('click')
 
         expect(page).to have_content(CHOOSE_EXISTING)

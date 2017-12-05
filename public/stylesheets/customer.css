@@ -3087,6 +3087,9 @@ body {
     float: right; }
   .subheader.\--highlight {
     color: #3498db; }
+  .subheader__middle {
+    text-align: center;
+    margin: 0 auto; }
 
 .wechat-share {
   margin-top: -3em;
