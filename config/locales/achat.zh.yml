@@ -213,11 +213,7 @@ zh-CN:
     to_activate_this_section: 才能继续
   results_for: 的结果
   button:
-<<<<<<< HEAD
-    promote_qrcode: 产品直达推广码
-=======
     promote_qrcode: 直达推广二维码
->>>>>>> staging
     see_all_products: 浏览所有品类产品
     show_product: 产品详情
     read_more: 点击查看
