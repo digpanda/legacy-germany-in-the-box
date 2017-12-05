@@ -97,13 +97,13 @@ zh-CN:
     type: 类目
     description: 详情
     more_details: 查看详情
-    provision_rates: 奖金|折扣率
+    provision_rates: 🏅奖金|折扣率
     package_set_product: 订单
     rate: 提成比率
     referrer: 推广账号
     provision_insight: 奖金账户
     total_earned: 总奖金
-    your_coupons: 专属95折码(游客分享)
+    your_coupons: 专属95折码(推广分享)
     current_balance: 未提取奖金
     your_can_claim_this_money_from: "奖金满%{amount}即可结算"
     claim_your_money: 结算
