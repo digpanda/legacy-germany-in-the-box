@@ -58,7 +58,34 @@
         <div class="help-block with-errors"></div>
       </div>
   </div>
-  
+
+  <!-- Promotion header -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Promotion header
+      </label>
+    </div>
+      <div class="col-md-10 form-group">
+        <%= form.text_field :promotion_header, :class => 'form-control', :required => false %>
+        <div class="help-block with-errors"></div>
+      </div>
+    </div>
+
+    <!-- Promotion footer -->
+    <div class="row">
+      <div class="col-md-2">
+        <label>
+          Promotion footer
+        </label>
+      </div>
+        <div class="col-md-10 form-group">
+          <%= form.text_field :promotion_footer, :class => 'form-control', :required => false %>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+
+
   <!-- Used As Filter -->
   <div class="row">
     <div class="col-md-2">

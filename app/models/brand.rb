@@ -12,6 +12,9 @@ class Brand
   field :used_as_filter, type: Boolean, default: true
   field :cover, type: String
 
+  field :promotion_header, type: String
+  field :promotion_footer, type: String
+
   mount_uploader :cover, CoverUploader
 
   has_many :products, inverse_of: :brand
