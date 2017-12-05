@@ -266,7 +266,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       address = Address.new(
       fname:       '薇',
       lname:       '李',
-      full_address: '天津天津和平区华江里21309室, 300222',
+      full_address: '天津和平区华江里21309室, 300222',
       country:     :china,
       mobile:      '13802049778',
       pid:         '11000019790225207X'
