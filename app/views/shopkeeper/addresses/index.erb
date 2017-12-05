@@ -15,19 +15,11 @@
     </div>
     <div class="panel-body">
       <div class="address-box">
-
         <%= link_to '', shopkeeper_address_path(address), method: :delete, data: { confirm: I18n.t('edit_address.delete_address_message') }, "data-placement" => "right",  class: 'address-box-remove' %>
 
         <a class="address-box-edit popup-text" data-effect="mfp-move-from-top" data-placement="right" data-toggle="tooltip" href="#edit-address-dialog-<%= address.id %>"></a>
 
         <%= render partial: 'table', locals: {address: address} %>
-
-        <div class="form-group">
-          <%= label_tag :primary do %>
-            <% checked = address.primary %>
-            <%= "#{I18n.t('edit_address.type')} : #{ I18n.t("edit_address.#{address.type}") }" %>
-          <% end %>
-        </div>
       </div>
 
     </div>
