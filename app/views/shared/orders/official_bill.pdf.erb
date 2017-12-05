@@ -9,7 +9,7 @@
     <br />
     Address:<br />
     <%= @order.billing_address.full_address %><br />
-    <%= @order.billing_address.country %>
+    <%= @order.billing_address.decorate.readable_country %>
 
   <% end %>
 </div>

@@ -12,6 +12,6 @@
     <%= "#{I18n.t('edit_address.full_address')} : #{ address.full_address }" %>
   </li>
   <li>
-    <%= "#{I18n.t('edit_address.country')} : #{ address.country }" %>
+    <%= "#{I18n.t('edit_address.country')} : #{ address.decorate.readable_country }" %>
   </li>
 </ul>

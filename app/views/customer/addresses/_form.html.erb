@@ -52,10 +52,10 @@
   </div>
 
   <div class="radio-group">
-    <%= form.radio_button :country, 'china', :checked => (form.object&.country ? false : true) %>
-    <%= form.label :country_china, 'China' %>
+    <%= form.radio_button :country, 'china', :checked => (form.object&.country&.empty? ? false : true) %>
+    <%= form.label :country_china, I18n.t('country.china') %>
     <%= form.radio_button :country, 'europe' %>
-    <%= form.label :country_europe, 'Europe' %>
+    <%= form.label :country_europe,  I18n.t('country.europe') %>
   </div>
 
       <div class="+small-spacer"></div>
