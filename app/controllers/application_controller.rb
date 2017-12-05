@@ -19,6 +19,21 @@ class ApplicationController < ActionController::Base
   before_action :force_wechat_login
   before_action :solve_silent_login, :solve_origin, :solve_landing
 
+  before_action :ensure_price_origin
+
+  # this is used to work with the models
+  # we should never share contextual data with the model
+  # but for the sku / package sets pricing system the best was to actually throw a thread variable
+  # rather than changing the whole system
+  def ensure_price_origin
+    # TODO : TEMPORARY tester CONDITION
+    if current_user&.referrer && current_user&.tester?
+      Thread.current[:price_origin] = :reseller_price
+    else
+      Thread.current[:price_origin] = :casual_price
+    end
+  end
+
   # if a user comes from wechat browser and is not logged-in yet
   # we force-login him to the correct domain
   def force_wechat_login

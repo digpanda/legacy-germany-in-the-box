@@ -267,7 +267,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       fname:       '薇',
       lname:       '李',
       full_address: '天津天津和平区华江里21309室, 300222',
-      country:     'CN',
+      country:     :china,
       mobile:      '13802049778',
       pid:         '11000019790225207X'
       )
@@ -459,7 +459,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
         category: random_category,
         referrer_rate: [*0..20].sample,
         details_cover: setup_image(:banner),
-        casual_price: Faker::Number.decimal(2),
+        original_price: Faker::Number.decimal(2),
         shipping_cost: Faker::Number.decimal(1)
       )
 

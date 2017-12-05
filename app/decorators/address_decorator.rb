@@ -24,12 +24,11 @@ class AddressDecorator < Draper::Decorator
   end
 
   def imprint_address
-    "#{full_address} <br /> #{country}"
+    "#{full_address} <br /> #{readable_country}"
   end
 
-  # NOTE : street number aren't used anymore, it's one block in the system.
-  # def full_address
-  #   "#{province}#{city}#{district}#{street}#{number}#{additional}, #{zip}, #{country}"
-  # end
+  def readable_country
+    I18n.t("country.#{country}")
+  end
 
 end

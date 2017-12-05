@@ -51,15 +51,14 @@
 
   </div>
 
-  <div class="form-group">
-    <%= form.text_field :country, :value => ISO3166::Country[:CN].local_name, :readonly => true, :class => 'form-control' %>
+  <div class="radio-group">
+    <%= form.radio_button :country, 'china', :checked => (form.object&.country&.empty? ? false : true) %>
+    <%= form.label :country_china, I18n.t('country.china') %>
+    <%= form.radio_button :country, 'europe' %>
+    <%= form.label :country_europe,  I18n.t('country.europe') %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :primary do %>
-      <%= form.check_box :primary, {}, true, false %> <%=I18n.t('edit_address.set_primary')%>
-    <% end %>
-  </div>
+      <div class="+small-spacer"></div>
 
   <div class="form-group">
     <input class="big-button --green" type="submit" value="<%= I18n.t('edit_address.save_address') %>"></input>

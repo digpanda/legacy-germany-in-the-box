@@ -2,16 +2,9 @@ require 'socket'
 
 module NetworkHelper
 
+  # NOTE : not systematically working
   def client_country
-    binding.pry
-    geoip = GeoIP.new("#{Rails.root}/db/GeoIP.dat")
-    remote_ip = request.remote_ip
-    if remote_ip != "127.0.0.1" #todo: check for other local addresses or set default value
-      location_location = geoip.country(remote_ip)
-      if location_location != nil
-        return location_location[2]
-      end
-    end
+    request&.location&.data&.[]("country_name")
   end
 
   def server_ip

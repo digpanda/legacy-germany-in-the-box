@@ -5,7 +5,6 @@ class Customer::AddressesController < ApplicationController
   authorize_resource class: false
   layout :custom_sublayout
   before_action :set_address, only: [:show, :edit, :update, :destroy]
-  before_action :set_address_params, only: [:create, :update]
 
   def index
     @addresses = current_user.addresses
@@ -22,11 +21,9 @@ class Customer::AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
-    address.primary = true if current_user.addresses.empty?
     address.user = current_user
 
     if address.save
-      reset_primary_address! if address.primary
       flash[:success] = I18n.t('edit_address.create_ok')
       redirect_to navigation.back(1)
       return
@@ -44,7 +41,6 @@ class Customer::AddressesController < ApplicationController
 
   def update
     if address.update(address_params)
-      reset_primary_address! if address.primary
       flash[:success] = I18n.t('edit_address.update_ok')
       redirect_to navigation.back(1)
       return
@@ -56,26 +52,10 @@ class Customer::AddressesController < ApplicationController
 
   def destroy
     address.delete
-    solve_primary_address! if address.primary
     redirect_to navigation.back(1)
   end
 
   private
-
-    def solve_primary_address!
-      other_address = current_user.addresses.first
-      if other_address
-        other_address.primary = true
-        other_address.save
-      end
-    end
-
-    def reset_primary_address!
-      current_user.addresses.not.where(id: address.id).each do |other_address|
-        other_address.primary = false
-        other_address.save
-      end
-    end
 
     def set_address
       @address = current_user.addresses.find(params[:id])
@@ -85,7 +65,4 @@ class Customer::AddressesController < ApplicationController
       params.require(:address).permit!
     end
 
-    def set_address_params
-      address_params[:country] = 'CN'
-    end
 end

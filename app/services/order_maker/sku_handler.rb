@@ -65,13 +65,15 @@ class OrderMaker
           order_item.referrer_rate = 0.0 # for now we set the referrer rate to 0.0
           order_item.quantity = 1 # we will increment this afterwards
           order_item.sku_origin = sku # we don't forget to define the origin
+          order_item.price_origin = sku.price_origin # and also the price origin
           clone_sku!(order_item) # we clone in a clean way the sku
           order_item.save
 
           if package_sku
-            order_item.price_per_unit = package_sku.price
+            order_item.price_per_unit = package_sku.price_per_unit
             order_item.taxes_per_unit = package_sku.taxes_per_unit
             order_item.package_set = package_sku.package_set
+            order_item.price_origin = package_sku.price_origin # we overwrite the sku price origin by principle
             order_item.save # very important for rollbacks
           end
 

@@ -33,6 +33,11 @@ class Coupon
 
   belongs_to :referrer, class_name: 'Referrer', inverse_of: :coupons
   belongs_to :shop, inverse_of: :coupons
+
+  # NOTE : not currently in use in the system because we need to refactor the coupon system deeply
+  # if still not in use within a few months, just remove the field on both models.
+  # - Laurent, 04/12/2017
+  belongs_to :product, inverse_of: :coupons
   belongs_to :user, inverse_of: :coupons
 
   validates :code, uniqueness: true

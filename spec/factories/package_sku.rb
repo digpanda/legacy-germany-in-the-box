@@ -3,6 +3,7 @@ FactoryGirl.define do
 
     quantity 2
     price { BigDecimal.new(rand(1..10)) }
+    reseller_price { BigDecimal.new(rand(1..10)) }
     taxes_per_unit { BigDecimal.new(rand(1..10)) }
 
     before(:create) do |package_sku|

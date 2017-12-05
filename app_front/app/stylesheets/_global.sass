@@ -1,10 +1,43 @@
+#new-address-tag
+  // we recalibrate for the scrolldown on the address new field
+  margin-top: -1.7em
+
+.radio-group
+  border: solid 2px $color-dark-green
+  display: inline-block
+  border-radius: 5px
+  overflow: hidden
+
+  input[type=radio]
+    position: absolute
+    visibility: hidden
+    display: none
+
+  label
+    color: $color-dark-green
+    display: inline-block
+    cursor: pointer
+    font-weight: bold
+    padding: 0.8em 2em
+    margin: -0.4em
+
+  input[type=radio]:checked + label
+    color: $color-white
+    background: $color-dark-green
+
+
+  label + input[type=radio] + label
+    border-left: solid 2px $color-dark-green
+
+  .field_with_errors
+    display: none
 hr
   margin-top: 10px
   margin-bottom: 10px
 
 .remodal
-  padding-left: 0em
-  padding-right: 0em
+  padding-left: 0.5em
+  padding-right: 0.5em
 
 .js-editable-field
   input
@@ -27,13 +60,14 @@ h3
 .form-control
   border: 1px solid $color-grey
   background-color: $color-almost-white
-  border-width: 0px 0px 1px 0px
   &:focus
     border: 1px solid $color-dark-green
-    border-width: 0px 0px 1px 0px
 
-// #cart
-//   z-index: 11 // right above the flash messages
+textarea, input, button
+  outline: none !important
+  -webkit-box-shadow: none !important
+  -moz-box-shadow: none !important
+  box-shadow: none !important
 
 .js-editable
   button

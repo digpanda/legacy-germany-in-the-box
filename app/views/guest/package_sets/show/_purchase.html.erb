@@ -7,8 +7,10 @@
       <!-- Prices -->
       <div class="row">
         <div class="+centered">
-          <% if package_set.casual_price? %>
-            <div class="package-set-infos__original-price"><%= package_set.casual_price.in_euro.to_yuan.display %></div>
+          <% if package_set.original_price? %>
+            <div class="package-set-infos__original-price"><%= package_set.original_price.in_euro.to_yuan.display %></div>
+          <% elsif package_set.decorate.custom_price? %>
+            <div class="package-set-infos__original-price"><%= package_set.decorate.casual_total_price.in_euro.to_yuan.display %></div>
           <% end %>
           <div class="package-set-infos__new-price"><%= package_set.end_price.in_euro.to_yuan.display %></div>
           <div class="package-set-infos__euro-price">( <%= I18n.t('cart.all_included') %> )</div>

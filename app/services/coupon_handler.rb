@@ -13,6 +13,7 @@ class CouponHandler < BaseService
 
   # try to apply the coupon to this specific order
   def apply
+    return return_with(:error, "You can't apply this coupon to a reseller order.") if reseller_order?
     unless reached_minimum_order?
       return return_with(:error, I18n.t('coupon.no_minimum_price', minimum: coupon.minimum_order.in_euro.to_yuan(exchange_rate: order.exchange_rate).display))
     end
@@ -99,10 +100,14 @@ class CouponHandler < BaseService
       order.bought? == false
     end
 
+    def reseller_order?
+      order.price_origins.include?(:reseller_price)
+    end
+
     # we check for the minimum order price
     # and if the order doesn't have a coupon already
     def valid_order?
-      reached_minimum_order? && order.coupon.nil? && coupon.cancelled_at.nil?
+      order.coupon.nil? && coupon.cancelled_at.nil?
     end
 
     # if we want to exclude chinese IPs

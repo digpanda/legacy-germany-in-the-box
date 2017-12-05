@@ -38,28 +38,29 @@
 
         <div class="row">
           <div class="col-md-12">
-          <% if product.discount? %>
+            <% if product.discount? %>
 
-            <span class="+barred-price">
-              <%= product.decorate.preview_price_yuan_html.html_safe %>
-            </span>
+              <span class="+barred-price">
+                <%= product.decorate.featured_sku.price_with_taxes.in_euro.to_yuan.display_html.html_safe %>
+              </span>
 
-          <% end %>
+            <% end %>
 
-            <span class="+price-yuan"><%= product.featured_sku.decorate.price_after_discount_in_yuan %></span>
+            <% if product.decorate.featured_sku.decorate.custom_price? %>
+
+              <span class="+barred-price">
+                <%= product.decorate.featured_sku.decorate.casual_total_price.in_euro.to_yuan.display_html.html_safe %>
+              </span>
+
+            <% end %>
+
+            <span class="+price-yuan"><%= product.featured_sku.decorate.after_discount_price.in_euro.to_yuan.display %></span>
 
             <!-- Warnings -->
             <%= render partial: "guest/products/sku_warnings", :locals => { :sku => product.featured_sku } %>
 
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="+price-euro"><%#= product.featured_sku.decorate.price_after_discount_in_euro %></div>
-          </div>
-        </div>
-
 
       </div>
 

@@ -250,7 +250,6 @@ GEM
     genderize (0.0.6)
       rails (>= 3.2.13)
     geocoder (1.4.1)
-    geoip (1.6.3)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -653,7 +652,6 @@ DEPENDENCIES
   carrierwave-qiniu
   chromedriver-helper
   copy_carrierwave_file
-  countries
   country_select
   daemons
   database_cleaner
@@ -675,7 +673,6 @@ DEPENDENCIES
   font-awesome-rails
   genderize
   geocoder
-  geoip
   haml-rails
   http_accept_language
   ipaddress

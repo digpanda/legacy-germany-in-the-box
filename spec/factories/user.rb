@@ -11,7 +11,7 @@ FactoryGirl.define do
     password_confirmation  '12345678'
     mobile                 { Faker::PhoneNumber.cell_phone }
     birth                  { Helpers::Global.random_date }
-    addresses             { FactoryGirl.build_list(:customer_address, 2, primary: true) }
+    addresses             { FactoryGirl.build_list(:customer_address, 2) }
 
     confirmed_at { Time.now }
     confirmation_sent_at { Time.now }
@@ -34,7 +34,13 @@ FactoryGirl.define do
 
     trait :with_referrer do
       before(:create) do |user|
-        Referrer.create(user: user, reference_id: SecureRandom.uuid, nickname: "Referrer#{Helpers::Global.next_number(:referrer)}", group: '')
+        Referrer.create(user: user, agb: true, reference_id: SecureRandom.uuid, nickname: "Referrer#{Helpers::Global.next_number(:referrer)}", group: '')
+      end
+    end
+
+    trait :with_parent_referrer do
+      before(:create) do |user|
+        user.parent_referrer = FactoryGirl.create(:customer, :with_referrer).referrer
       end
     end
 

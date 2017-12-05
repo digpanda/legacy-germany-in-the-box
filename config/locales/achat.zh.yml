@@ -1,4 +1,7 @@
 zh-CN:
+  country:
+    europe: 欧洲
+    china: 中国
   reward:
     make_first_order: "恭喜！😄您已成功完成了第一单奖励。获得奖励💖一次性85折折扣码 %{coupon_code}"
     fill_in_email: "恭喜！😄您已成功完成了邮箱验证奖励。获得奖励💖50元购物代金券码: %{coupon_code}"
@@ -91,21 +94,21 @@ zh-CN:
     qrcode: 专属二维码
     update_account: 更新账户
     agb_agreement: 我已阅读并同意接受<a href="%{url}">AGB</a>条款
-    service_provision_rates: 海外服务佣金率
-    package_set_provision_rates: 电商佣金率
+    service_provision_rates: 海外服务奖金率
+    package_set_provision_rates: 电商奖金|折扣率
     balance_history: 收支明细
     type: 类目
     description: 详情
     more_details: 查看详情
-    provision_rates: 佣金率
+    provision_rates: 🏅奖金|折扣率
     package_set_product: 订单
     rate: 提成比率
     referrer: 推广账号
-    provision_insight: 佣金账户
-    total_earned: 总佣金
-    your_coupons: 专属95折码(游客分享)
-    current_balance: 未提取佣金
-    your_can_claim_this_money_from: "佣金满%{amount}即可结算"
+    provision_insight: 奖金账户
+    total_earned: 总奖金
+    your_coupons: 专属95折码(推广分享)
+    current_balance: 未提取奖金
+    your_can_claim_this_money_from: "奖金满%{amount}即可结算"
     claim_your_money: 结算
     orders: 订单总览
     operations: 结算记录
@@ -113,12 +116,12 @@ zh-CN:
     customer: 顾客
     order: 订单
     inquiry: 问询
-    provision: 佣金
+    provision: 奖金
     creation: 更新时间
     transfer: 流水
     description: 详情
     date: 日期
-    you_cant_claim_your_money: "佣金满%{amount}时才可结算"
+    you_cant_claim_your_money: "奖金满%{amount}时才可结算"
     your_request_was_sent_to_our_operation_team: 您已成功提交结算申请，运营团队将尽快处理
   featured_sku:
     not_ready_yet: 此产品不存在
@@ -210,7 +213,11 @@ zh-CN:
     to_activate_this_section: 才能继续
   results_for: 的结果
   button:
+<<<<<<< HEAD
     promote_qrcode: 产品直达推广码
+=======
+    promote_qrcode: 直达推广二维码
+>>>>>>> staging
     see_all_products: 浏览所有品类产品
     show_product: 产品详情
     read_more: 点击查看

@@ -1,6 +1,6 @@
 <%= translation_js(:more, :title) %>
 
-<% cache @product do %>
+<!-- < cache @product do > -->
 
   <div class="row">
     <div class="col-md-12">
@@ -19,12 +19,11 @@
           <div class="col-md-6 col-md-push-3 col-xs-12">
             <%= render partial: "guest/products/show/images", :locals => {product: @product} %>
           </div>
-
+          
           <!-- Title, Brand and some Actions -->
           <div class="col-md-3 col-md-push-3 col-xs-12">
             <%= render partial: "guest/products/show/actions", :locals => {product: @product} %>
           </div>
-
           <!-- Detailled description -->
           <div class="col-md-3 col-md-pull-9 col-xs-12">
             <%= render partial: "guest/products/show/description", :locals => {sku: @featured_sku} %>
@@ -44,7 +43,7 @@
     </div>
   </div>
 
-<% end %>
+<!-- < end > -->
 
 <!-- Product Footer -->
 <%= render partial: "guest/products/show/footer", :locals => { :products => @other_products, product: @product } %>

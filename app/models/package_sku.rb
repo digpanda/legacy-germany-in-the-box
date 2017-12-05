@@ -1,9 +1,13 @@
 class PackageSku
   include MongoidBase
+  include SkuPricing
 
   field :sku_id
   field :quantity, type: Integer
-  field :price, type: Float, default: 0
+
+  # NOTE : `price` and `reseller_price`
+  # are contained in the SkuPricing concern
+
   field :taxes_per_unit, type: Float, default: 0
 
   belongs_to :product
@@ -12,14 +16,12 @@ class PackageSku
   validates_presence_of :sku_id
   validates_presence_of :quantity
 
-  validates :price, presence: true, numericality: { greater_than: 0 }
-
   def sku
     @sku ||= product.skus.find(sku_id)
   end
 
   def total_price
-    price * quantity
+    price_per_unit * quantity
   end
 
   def total_taxes

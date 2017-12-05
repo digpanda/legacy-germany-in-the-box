@@ -4,7 +4,7 @@ FactoryGirl.define do
     fname       '薇'
     lname       '李'
     full_address '天津天津和平区华江里21309室, 300222'
-    country     'CN'
+    country     :china
     email       'customer01@hotmail.com'
     mobile      '13802049778'
     pid         '11000019790225207X'
@@ -14,7 +14,7 @@ FactoryGirl.define do
     fname       { Faker::Name.first_name }
     lname       { Faker::Name.last_name }
     full_address     { Faker::Address.street_name }
-    country     'DE'
+    country     :europe
     email       { Faker::Internet.email }
     company     { Faker::Company.name }
     mobile      { Faker::PhoneNumber.phone_number }

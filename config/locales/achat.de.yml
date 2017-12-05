@@ -1,4 +1,7 @@
 de:
+  country:
+    europe: Europe
+    china: China
   reward:
     fill_in_email: "Reward is a coupon %{coupon_code} because you are a good buddy."
     invite_three_friends: "Reward is a coupon #{coupon.code} because got many friends."
@@ -671,6 +674,9 @@ de:
     shop_seal_info: Ein Bild sagt mehr als thausende Worte. Ergänzen Sie Ihre Herstellerbeschreibung mit Bildern, die die Qualität und Ihre Persöhnlichkeit unterstreichen. (Z.B. Bilder von Geschäft, Produktionsstätte, Team, Auszeichnungen, Magazinausschnitten, etc.) (max. 1MB pro Bild)
     merchant_id: Herstellernummer
   edit_product:
+    purchase_price: Purchase Price (EUR)
+    casual_price: Casual Price (EUR)
+    reseller_price: Reseller Price (EUR)
     skus: Artikelpositionen
     edit: Editieren
     remove: Entfernen

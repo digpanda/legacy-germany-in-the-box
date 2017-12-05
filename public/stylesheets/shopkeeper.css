@@ -36,7 +36,7 @@
   background-color: #fffff0; }
 
 #csstyle .\+wechat-pointer {
-  color: #83be58;
+  color: #3498db;
   font-size: 40px; }
 
 #csstyle .\+small-padding {
@@ -307,6 +307,9 @@
 
 #csstyle .\+light-green {
   color: #83be58; }
+
+#csstyle .\+light-blue {
+  color: #3498db; }
 
 #csstyle .\+green {
   color: #33965e; }
@@ -662,6 +665,18 @@
     .big-button.\--green-hollow:active {
       color: #464646; }
     .big-button.\--green-hollow:visited {
+      color: #464646; }
+  .big-button.\--blue-hollow {
+    background-color: white;
+    border: 2px solid #3498db;
+    color: #464646; }
+    .big-button.\--blue-hollow:link {
+      color: #464646; }
+    .big-button.\--blue-hollow:hover {
+      color: #464646; }
+    .big-button.\--blue-hollow:active {
+      color: #464646; }
+    .big-button.\--blue-hollow:visited {
       color: #464646; }
   .big-button.\--blue {
     background-color: #3498db; }
@@ -1045,7 +1060,8 @@
   margin-right: 1em;
   margin-bottom: 1em; }
   .details__block h4 {
-    font-weight: bold; }
+    font-weight: bold;
+    color: #464646; }
 
 .feedback-blocks {
   padding: 0; }
@@ -1761,13 +1777,40 @@
   color: white;
   background: transparent; }
 
+#new-address-tag {
+  margin-top: -1.7em; }
+
+.radio-group {
+  border: solid 2px #33965e;
+  display: inline-block;
+  border-radius: 5px;
+  overflow: hidden; }
+  .radio-group input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    display: none; }
+  .radio-group label {
+    color: #33965e;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.8em 2em;
+    margin: -0.4em; }
+  .radio-group input[type=radio]:checked + label {
+    color: white;
+    background: #33965e; }
+  .radio-group label + input[type=radio] + label {
+    border-left: solid 2px #33965e; }
+  .radio-group .field_with_errors {
+    display: none; }
+
 hr {
   margin-top: 10px;
   margin-bottom: 10px; }
 
 .remodal {
-  padding-left: 0em;
-  padding-right: 0em; }
+  padding-left: 0.5em;
+  padding-right: 0.5em; }
 
 .js-editable-field input {
   background-color: white;
@@ -1788,11 +1831,15 @@ h3 {
 
 .form-control {
   border: 1px solid #bdc3c7;
-  background-color: #f9f9f9;
-  border-width: 0px 0px 1px 0px; }
+  background-color: #f9f9f9; }
   .form-control:focus {
-    border: 1px solid #33965e;
-    border-width: 0px 0px 1px 0px; }
+    border: 1px solid #33965e; }
+
+textarea, input, button {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important; }
 
 .js-editable button {
   color: #3498db !important; }

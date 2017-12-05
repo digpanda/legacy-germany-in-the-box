@@ -6,17 +6,9 @@ class Address
 
   strip_attributes
 
-  # field :additional,    type: String
-  # field :number,        type: String
-  # field :street,        type: String
-  # field :district,      type: String
-  # field :city,          type: String
-  # field :province,      type: String
-  # field :zip,           type: String
-
   field :full_address
 
-  field :country,       type: ISO3166::Country
+  field :country,       type: Symbol, default: :china # [:china, :europe]
   field :type,          type: Symbol, default: :both
   field :company,       type: String
 
@@ -25,8 +17,7 @@ class Address
   field :pid,           type: String
   field :email,         type: String
   field :mobile,        type: String
-  field :primary,       type: Boolean, default: false
-
+  
   embedded_in :shop, inverse_of: :addresses
   embedded_in :user, inverse_of: :addresses
 
@@ -43,16 +34,14 @@ class Address
 
   validates :mobile, presence: true, if: -> { user&.customer? }
   validates :pid, presence: true, if: -> { user&.customer? }
-  validates :fname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, if: -> { user&.customer? }
-  validates :lname, presence: true#, :format => { :with => CHINESE_CHARACTERS }, if: -> { user&.customer? }
+  validates :fname, presence: true
+  validates :lname, presence: true
 
-  # validates :street, presence: true
-  # validates :city, presence: true
-  # validates :zip, presence: true
+
   validates :country, presence: true
   validates :company, presence: true, if: -> { shop.present? }
-  # validates :province, presence: true
   validates :type, presence: true , inclusion: { in: [:billing, :shipping, :both] }
+  validates :country, presence: true , inclusion: { in: [:china, :europe] }
 
   before_save :ensure_valid_mobile
 
@@ -62,15 +51,4 @@ class Address
     end
   end
 
-  def country_code
-    country&.alpha2
-  end
-
-  def country_name
-    country&.name
-  end
-
-  def country_local_name
-    country&.local_name
-  end
 end
