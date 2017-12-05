@@ -36,7 +36,7 @@
               <div class="col-xs-10 +nopadding">
                 <div class="package-set-list-block__footer-price">
                   <% if package_set.decorate.custom_price? %>
-                  <span class="package-set-list-block__footer-barred-price"><%= package_set.decorate.casual_total_price.in_euro.to_yuan.display %></span>
+                  <span class="package-set-list-block__footer-barred-price"><%= package_set.original_price.in_euro.to_yuan.display %></span>
                   <% end %>
                   <%= package_set.end_price.in_euro.to_yuan.display %>
                   <% unless package_set.decorate.custom_price? %>
