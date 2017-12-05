@@ -3,7 +3,7 @@ class PackageSku
   include SkuPricing
 
   field :sku_id
-  field :quantity, type: Integer
+  field :quantity, type: Integer, default: 0
 
   # NOTE : `price` and `reseller_price`
   # are contained in the SkuPricing concern

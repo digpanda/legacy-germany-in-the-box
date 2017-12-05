@@ -96,7 +96,12 @@
     </div>
 
       <div class="col-md-10 form-group">
-        <%= form.text_field :original_price, :class => 'form-control', :required => true %>
+        <%= form.text_field :original_price, :class => 'form-control', :required => false %>
+        <% if form.object.persisted? %>
+        <br />
+          <span class="badge badge-green">Casual price <%= form.object.decorate.casual_total_price %></span>
+          <span class="badge badge-blue">Reseller price <%= form.object.decorate.reseller_total_price %></span>
+        <% end %>
         <div class="help-block with-errors"></div>
       </div>
   </div>

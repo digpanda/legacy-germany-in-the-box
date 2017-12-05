@@ -7166,6 +7166,12 @@ ul.pagination li a {
 .label-blue {
   background-color: #3498db; }
 
+.badge-blue {
+  background-color: #3498db; }
+
+.badge-green {
+  background-color: #83be58; }
+
 .ui-datepicker-prev {
   display: none; }
 
