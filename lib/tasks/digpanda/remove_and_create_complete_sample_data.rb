@@ -350,8 +350,8 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
     end
 
     def setup_banners
-      Banner.create(location: :shops_landing, file: setup_image(:banner))
-      Banner.create(location: :package_sets_landing, file: setup_image(:banner))
+      Banner.create(location: :shops_landing_cover, file: setup_image(:banner))
+      Banner.create(location: :package_sets_landing_cover, file: setup_image(:banner))
     end
 
     def setup_customer(customer)

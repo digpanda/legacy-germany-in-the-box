@@ -13,7 +13,7 @@ class Admin::BannersController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @banners = Banner.all
+    @banners = Banner.order_by(c_at: :asc).full_text_search(params[:query], match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
   end
 
   def new
