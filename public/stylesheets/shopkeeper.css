@@ -1019,6 +1019,13 @@
   .dashboard-layout__menu li {
     padding: 0.5em;
     font-size: 13px; }
+  .dashboard-layout__menu .active {
+    background-color: #919191;
+    -webkit-box-shadow: 0px 6px 6px -8px black;
+    -moz-box-shadow: 0px 6px 6px -8px black;
+    box-shadow: 0px 6px 6px -8px black;
+    margin-left: -2.2em;
+    padding-left: 2.6em; }
 
 .dashboard-layout__footer {
   background: white;
