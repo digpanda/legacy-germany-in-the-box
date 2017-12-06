@@ -3206,7 +3206,8 @@ textarea, input, button {
   outline: none !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
-  box-shadow: none !important; }
+  box-shadow: none !important;
+  -webkit-appearance: none !important; }
 
 .js-editable button {
   color: #3498db !important; }
