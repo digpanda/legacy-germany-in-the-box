@@ -14,3 +14,5 @@
 </div>
 
 <%= render partial: "admin/banners/table", :locals => { :banners => @banners } %>
+
+<%= will_paginate @banners, renderer: BootstrapPagination::Rails %>
