@@ -124,7 +124,7 @@ class Shop
   end
 
   def categories
-    Category.in(id: categories_ids)
+    Category.showable.in(id: categories_ids)
   end
 
   def categories_ids
