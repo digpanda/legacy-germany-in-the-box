@@ -320,6 +320,9 @@
 #csstyle .\+light-grey {
   color: #ABABA8; }
 
+#csstyle .\+referrer-blue {
+  color: #3498db !important; }
+
 #csstyle .\+blue {
   color: #3498db; }
 

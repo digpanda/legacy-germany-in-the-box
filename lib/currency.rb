@@ -21,8 +21,17 @@ class Currency
     update_currency!('EUR', amount / (exchange_rate || Setting.instance.exchange_rate_to_yuan))
   end
 
+  # we display depending the decimal or not
   def display
-    "#{current_symbol}%.2f" % amount
+    if got_decimal?
+      "#{current_symbol}%.2f" % amount
+    else
+      "#{current_symbol}%.0f" % amount
+    end
+  end
+
+  def got_decimal?
+    amount % 1 != 0
   end
 
   def display_formal
@@ -34,7 +43,11 @@ class Currency
   end
 
   def display_html
-    "<span class=\"current_symbol\">#{current_symbol}</span> <span class=\"amount\">%.2f</span>" % amount
+    if got_decimal?
+      "<span class=\"current_symbol\">#{current_symbol}</span> <span class=\"amount\">%.2f</span>" % amount
+    else
+      "<span class=\"current_symbol\">#{current_symbol}</span> <span class=\"amount\">%.0f</span>" % amount
+    end
   end
 
   private

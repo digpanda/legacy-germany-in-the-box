@@ -12,10 +12,13 @@ module WechatBot
 
       # menu click handling here
       def handle
+        SlackDispatcher.new.message("EVENT KYE IS #{event_key}")
         case event_key
         when 'specialdeal'
+          SlackDispatcher.new.message("SPECIAL DEAL FROM CLICK WAS TRIGGERED")
           # it simulate an exchange with the special deal keyword
           SmartExchange::Process.new(user, 'special deal').perform
+          SlackDispatcher.new.message("IT WAS PERFORMED")
         when 'offers'
           # it simulate an exchange with the offers keyword
           SmartExchange::Process.new(user, '奖励').perform

@@ -11,9 +11,9 @@
   </span>
   <% end %>
 
-  <span id="product_price_with_currency_yuan" class="+price-yuan"><%= sku.decorate.after_discount_price.in_euro.to_yuan.display_html.html_safe %></span>
+  <span id="product_price_with_currency_yuan" class="+price-yuan <%= solve_referrer_price_class %>"><%= sku.decorate.after_discount_price.in_euro.to_yuan.display_html.html_safe %></span>
 </div>
 
-<span class="+red">(<%= I18n.t('product_box.taxes_included') %>)</span>
+<span class="+red <%= solve_referrer_price_class %>">(<%= I18n.t('product_box.taxes_included') %>)</span>
 
 <br />

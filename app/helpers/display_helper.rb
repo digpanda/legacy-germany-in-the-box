@@ -28,6 +28,14 @@ module DisplayHelper
     end
   end
 
+  def solve_referrer_price_class
+    if current_user&.referrer
+      '+referrer-blue'
+    else
+      ''
+    end
+  end
+
   def boolean_icon(value)
     if value
       ''"
