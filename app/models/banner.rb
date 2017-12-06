@@ -4,7 +4,7 @@ class Banner
 
   field :link, type: String
   field :active, type: Boolean, default: false
-  field :origin, type: Symbol # [:shops_landing, :package_sets_landing, ...]
+  field :location, type: Symbol # [:shops_landing, :package_sets_landing, ...]
 
   field :file, type: String
   mount_uploader :file, CoverUploader

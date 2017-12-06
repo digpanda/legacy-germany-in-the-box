@@ -48,6 +48,8 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     add_orders_to_customers
 
+    setup_banners
+
     Rails.cache.clear
 
     puts 'End of process.'
@@ -278,7 +280,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     def create_shop_address(shop)
       type = 'both'
-      country = 'DE'
+      country = :europe
 
       puts 'We create a shop address'
 
@@ -344,6 +346,11 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
     def random_customer
       User.where(role: :customer).all.sample
+    end
+
+    def setup_banners
+      Banner.create(location: :shops_landing, file: setup_image(:banner))
+      Banner.create(location: :package_sets_landing, file: setup_image(:banner))
     end
 
     def setup_customer(customer)
