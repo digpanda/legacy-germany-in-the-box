@@ -13,9 +13,9 @@
 <!-- The positioning is impossible to do before we get the actual array -->
 <div class="row">
   <% @package_sets.sort_by(&:position).each_with_index do |package_set, index| %>
-    <% cache package_set do %>
+    <!-- < cache package_set > -->
       <%= render "guest/package_sets/index/block", :options => { :reversed => reversed?(index) }, :package_set => package_set %>
-    <% end %>
+    <!-- < end > -->
   <% end %>
 </div>
 <div class="+small-spacer"></div>
