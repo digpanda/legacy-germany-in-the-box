@@ -24,6 +24,9 @@ namespace :admin do
     patch :approve
   end
 
+  resources :banners do
+  end
+
   resources :links do
     get :ping
   end
