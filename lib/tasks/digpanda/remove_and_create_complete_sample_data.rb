@@ -130,6 +130,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
 
       sku = Sku.new(
         price: price,
+        reseller_price: price,
         product: product,
         quantity: quantity,
         weight: weight,
@@ -478,6 +479,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
             product: sku.product,
             quantity: Faker::Number.between(1, 3),
             price: Faker::Number.decimal(2),
+            reseller_price: Faker::Number.decimal(2),
             taxes_per_unit: Faker::Number.decimal(1)
           )
         end
