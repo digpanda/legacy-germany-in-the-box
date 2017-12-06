@@ -128,7 +128,7 @@ class Shop
   end
 
   def categories_ids
-    products.map(&:category_ids).flatten.uniq
+    products.pluck(:category_ids).flatten.uniq
   end
 
   def payment_method?(payment_method)
