@@ -7,7 +7,7 @@
 
   <div class="form-group">
     <%= form.label :promoted_package_set_text, "Promotion Text" %>
-    <%= form.text_field :promoted_package_set_text, :autocomplete => :off %>
+    <%= form.text_field :promoted_package_set_text, :autocomplete => :off, class: 'form-control' %>
   </div>
 
   <%= form.button "Update", :type => 'submit', :class => 'btn btn-primary', value: :edit_settings %>

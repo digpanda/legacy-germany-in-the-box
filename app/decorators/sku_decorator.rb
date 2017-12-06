@@ -34,6 +34,10 @@ class SkuDecorator < Draper::Decorator
     !self.data.nil? && (self.data.is_a?(String) && !self.data.empty?)
   end
 
+  def total_price
+    price_with_taxes * quantity
+  end
+
   # we just check if the current price_per_unit is equal to the casual price
   # if not it's custom
   def custom_price?

@@ -3,7 +3,7 @@ FactoryGirl.define do
   factory :customer_address, class: Address do
     fname       '薇'
     lname       '李'
-    full_address '天津天津和平区华江里21309室, 300222'
+    full_address '天津和平区华江里21309室, 300222'
     country     :china
     email       'customer01@hotmail.com'
     mobile      '13802049778'

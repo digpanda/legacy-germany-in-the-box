@@ -3,7 +3,7 @@
 
   <div class="form-group">
     <%= form.label :current_version, "Current Version" %>
-    <%= form.select :current_version, project_versions %>
+    <%= form.select :current_version, project_versions, {}, { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
