@@ -152,9 +152,4 @@ class Shop
     def ensure_shopkeeper
       shopkeeper.role == :shopkeeper
     end
-
-    # TODO : should be refactored / cleaned
-    def self.with_can_buy_products
-      self.in(id: Product.can_buy.map { |p| p.shop_id }).all
-    end
 end

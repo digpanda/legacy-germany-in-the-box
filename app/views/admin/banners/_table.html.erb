@@ -6,6 +6,9 @@
       #
     </th>
     <th>
+      Location
+    </th>
+    <th>
       Cover
     </th>
     <th>
@@ -31,6 +34,9 @@
         <%= banner.id %>
       </td>
       <td>
+        <%= banner.location %>
+      </td>
+      <td>
         <img src="<%= banner.image %>" class="img-icon">
       </td>
       <td>
@@ -46,7 +52,7 @@
         <%= banner.u_at %>
       </td>
       <td>
-        <%= banner_to '', admin_banner_path(banner), :method => :get, :class => 'tooltipster fa fa-eye buttons buttons__edit', :title => "Details and configuration" %>
+        <%= link_to '', admin_banner_path(banner), :method => :get, :class => 'tooltipster fa fa-eye buttons buttons__edit', :title => "Details and configuration" %>
       </td>
     </tr>
   <% end %>
