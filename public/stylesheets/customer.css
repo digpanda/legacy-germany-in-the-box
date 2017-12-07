@@ -2926,7 +2926,7 @@ body {
   border-bottom: 1px solid #eee; }
 
 .shop-block__thumbnail {
-  min-height: 200px;
+  min-height: 130px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center; }
