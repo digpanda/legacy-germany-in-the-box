@@ -30,10 +30,10 @@
 
             <!-- NOTE : tweak to display only if desktop for the rest of the items -->
 
-            <% if index > 2 %>
+            <% if index > 3 %>
 
               <a href="<%= guest_product_path(product) %>">
-                <div class="col-md-3 col-xs-6 +desktop">
+                <div class="col-md-3 col-xs-4 +desktop">
                   <div class="shop-block__item lazy" data-original="<%= product.decorate.product_cover_url %>" style="background-image:url('/images/grey.jpg');">
                   </div>
                 </div>
@@ -42,7 +42,7 @@
             <% else %>
 
               <a href="<%= guest_product_path(product) %>">
-                <div class="col-md-3 col-xs-6">
+                <div class="col-md-3 col-xs-4">
                   <div class="shop-block__item lazy" data-original="<%= product.decorate.product_cover_url %>" style="background-image:url('/images/grey.jpg');">
                   </div>
                 </div>
