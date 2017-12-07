@@ -20,6 +20,9 @@
 <li class="<%= menu_active? customer_orders_path %>">
   <%= link_to I18n.t('top_menu.my_order'), customer_orders_path %>
 </li>
-<li>
-  <%= link_to I18n.t('top_menu.sign_out'), destroy_user_session_path, :method => :delete %>
-</li>
+
+<% unless identity_solver.wechat_browser? %>
+  <li>
+    <%= link_to I18n.t('top_menu.sign_out'), destroy_user_session_path, :method => :delete %>
+  </li>
+<% end %>

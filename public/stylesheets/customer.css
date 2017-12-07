@@ -2145,7 +2145,7 @@ body {
     min-height: 4em;
     padding-left: 3em; }
     .header-desktop__logo img {
-      max-height: 67px; }
+      height: 80px; }
   .header-desktop__categories {
     padding-right: 0;
     padding-left: 0;
