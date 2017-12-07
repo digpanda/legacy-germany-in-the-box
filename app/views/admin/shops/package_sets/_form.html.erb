@@ -124,7 +124,7 @@
     </div>
 
       <div class="col-md-10 form-group">
-        <%= form.text_field :original_price, :class => 'form-control', :required => false %>
+        <%= form.text_field :original_price, :class => 'form-control js-currency', :required => false %>
         <% if form.object.persisted? %>
         <br />
           <span class="badge badge-green">Casual price <%= form.object.decorate.casual_total_price %></span>
@@ -143,7 +143,7 @@
     </div>
 
       <div class="col-md-10 form-group">
-        <%= form.text_field :shipping_cost, :class => 'form-control', :required => true %>
+        <%= form.text_field :shipping_cost, :class => 'form-control js-currency', :required => true %>
         <div class="help-block with-errors"></div>
       </div>
   </div
@@ -247,13 +247,13 @@
           <%= field.select :sku_id, [], :prompt => '-' %>
         </td>
         <td>
-          <%= field.text_field :price %>
+          <%= field.text_field :price, class: 'js-currency' %>
         </td>
         <td>
-          <%= field.text_field :reseller_price %>
+          <%= field.text_field :reseller_price, class: 'js-currency' %>
         </td>
         <td>
-          <%= field.text_field :taxes_per_unit %>
+          <%= field.text_field :taxes_per_unit, class: 'js-currency' %>
         </td>
         <td>
           <%= field.select :quantity, (1..10) %>

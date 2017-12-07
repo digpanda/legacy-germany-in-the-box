@@ -5,6 +5,7 @@ var Starters = [
 
   'anti_cache',
   'auto_resize',
+  'live_currency',
   'back_to_top',
   'bootstrap',
   'charts',

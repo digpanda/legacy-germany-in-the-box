@@ -2355,6 +2355,47 @@ module.exports = DutyCategory;
 
 });
 
+require.register("javascripts/models/exchange_rate.js", function(exports, require, module) {
+"use strict";
+
+/**
+ * ExchangeRate Class
+ */
+var ExchangeRate = {
+
+  /**
+   * Get the total number of products within the cart
+   */
+  show: function show(callback) {
+
+    // NOTE : condition race made it impossible to build
+    // I passed 2 full days on this problem
+    // Good luck.
+    // - Laurent
+    $.ajax({
+      method: "GET",
+      url: "/api/admin/exchange_rate",
+      data: {}
+
+    }).done(function (res) {
+
+      callback(res);
+    }).error(function (err) {
+
+      if (typeof err == "undefined") {
+        return;
+      }
+
+      callback({ success: false, error: err.responseJSON.error });
+    });
+  }
+
+};
+
+module.exports = ExchangeRate;
+
+});
+
 require.register("javascripts/models/link.js", function(exports, require, module) {
 "use strict";
 
@@ -2838,7 +2879,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['anti_cache', 'auto_resize', 'back_to_top', 'bootstrap', 'charts', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
+var Starters = ['anti_cache', 'auto_resize', 'live_currency', 'back_to_top', 'bootstrap', 'charts', 'datepicker', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
 
 module.exports = Starters;
 
@@ -3510,6 +3551,64 @@ var LinkBehaviour = {
 };
 
 module.exports = LinkBehaviour;
+
+});
+
+require.register("javascripts/starters/live_currency.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * LiveCurrency Class
+ */
+var LiveCurrency = {
+
+  to_euro: 0.0,
+  to_yuan: 0.0,
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+
+    this.setupLiveCurrency();
+    this.handleDisplay();
+  },
+
+  /**
+   *
+   */
+  setupLiveCurrency: function setupLiveCurrency() {
+
+    var ExchangeRate = require("javascripts/models/exchange_rate");
+
+    ExchangeRate.show(function (res) {
+      LiveCurrency.to_euro = parseFloat(res.data.to_euro);
+      LiveCurrency.to_yuan = parseFloat(res.data.to_yuan);
+    });
+  },
+
+  handleDisplay: function handleDisplay() {
+
+    // initialize your tooltip as usual:
+    $('.js-currency').tooltipster({});
+
+    $('.js-currency').on('keyup', function (e) {
+      var current = parseFloat($(this).val());
+
+      if (isNaN(current)) {
+        current = 0.0;
+      }
+
+      var in_yuan = current * LiveCurrency.to_yuan;
+      // at some point you may decide to update its content:
+      $(this).tooltipster('content', 'EUR ' + current + ' > CNY ' + in_yuan);
+      $(this).tooltipster('open');
+    });
+  }
+
+};
+
+module.exports = LiveCurrency;
 
 });
 
