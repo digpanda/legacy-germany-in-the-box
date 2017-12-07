@@ -39,7 +39,7 @@
 
         <%= f.fields_for :referrer do |fields| %>
 
-          <%= fields.check_box :agb, :required => true %>
+          <%= fields.check_box :agb, :required => true, :class => '--blue' %>
           <%= fields.label :agb, I18n.t('referrer.agb_agreement', url: agb_customer_referrer_path).html_safe %>
 
         <% end %>

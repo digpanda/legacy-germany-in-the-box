@@ -3208,7 +3208,12 @@ input[type=checkbox] {
 
 input[type=checkbox]:checked {
   border: 1px solid #33965e;
-  background: url("/images/elements/cross-checkbox.png") center center no-repeat;
+  background: url("/images/elements/cross-checkbox-green.png") center center no-repeat;
+  background-size: 10px 10px; }
+
+input[type=checkbox][class='--blue']:checked {
+  border: 1px solid #3498db;
+  background: url("/images/elements/cross-checkbox-blue.png") center center no-repeat;
   background-size: 10px 10px; }
 
 textarea, input, button {
