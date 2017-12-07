@@ -176,7 +176,7 @@ zh-CN:
     taxes_included: 已含税，运费另计
   coupon:
     no_minimum_price: "无法使用本代金券，因为未达到使用代金券的最低购物金额（不含物流及关税）： %{minimum} 人民币。"
-    cannot_apply:  此折扣码不适用于该订单。
+    cannot_apply:  此折扣或优惠码不适用于该订单。
     error_occurred_applying: 使用折扣码时出现错误。
     not_valid_anymore: 此折扣码已失效。
     cannot_remove: 无法删除已用于该订单的折扣码。
@@ -187,7 +187,7 @@ zh-CN:
     coupon_desktop: 折扣码
     coupon_mobile: 折扣码
     applied_successfully: 折扣码使用成功。
-    applied_fail: 折扣码无法用于当前订单。
+    applied_fail: 此折扣或优惠码不适用于该订单。
   product_left:
     only: 只剩
     left: 件
