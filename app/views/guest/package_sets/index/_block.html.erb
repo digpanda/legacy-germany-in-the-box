@@ -36,11 +36,11 @@
               <div class="col-xs-10 +nopadding">
                 <div class="package-set-list-block__footer-price">
                   <% if package_set.decorate.custom_price? %>
-                  <span class="package-set-list-block__footer-barred-price"><%= package_set.original_price.in_euro.to_yuan.display %></span>
-                  <% end %>
-                  <%= package_set.end_price.in_euro.to_yuan.display %>
-                  <% unless package_set.decorate.custom_price? %>
-                  <span class="package-set-list-block__footer-note"><%= I18n.t('cart.all_included') %></span>
+                    <span class="package-set-list-block__footer-barred-price"><%= package_set.original_price.in_euro.to_yuan.display %></span>
+                    <span class="<%= solve_referrer_price_class %>"><%= package_set.end_price.in_euro.to_yuan.display %></span>
+                  <% else %>
+                    <span class="<%= solve_referrer_price_class %>"><%= package_set.end_price.in_euro.to_yuan.display %></span>
+                    <span class="package-set-list-block__footer-note"><%= I18n.t('cart.all_included') %></span>
                   <% end %>
                 </div>
               </div>

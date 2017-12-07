@@ -21,7 +21,6 @@ class Guest::ShopsController < ApplicationController
 
     def set_products
       if from_category
-        SlackDispatcher.new.message("FROM CATEGORY #{from_category}")
         @products = shop.products.where(:category_ids => from_category.id.to_s).highlight_first.can_buy.by_brand
       else
         @products = shop.products.highlight_first.can_buy.by_brand

@@ -13,7 +13,7 @@ module WechatBot
       # menu click handling here
       def handle
         case event_key
-        when 'special-deal'
+        when 'specialdeal'
           # it simulate an exchange with the special deal keyword
           SmartExchange::Process.new(user, 'special deal').perform
         when 'offers'
