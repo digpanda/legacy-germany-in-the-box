@@ -11,8 +11,10 @@ var LiveCurrency = {
      */
     init: function() {
 
-      this.setupLiveCurrency();
-      this.handleDisplay();
+      if ($('#js-info').data('userRole') == 'admin') {
+        this.setupLiveCurrency();
+        this.handleDisplay();
+      }
 
     },
 

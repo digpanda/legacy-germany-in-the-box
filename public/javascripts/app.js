@@ -1579,21 +1579,23 @@ module.exports = ProductsVariants;
 require.register("javascripts/initialize.js", function(exports, require, module) {
 "use strict";
 
+var $routes, $info, $starters;
+
 $(document).ready(function () {
 
   /**
    * Controllers loader by Loschcode
    * Damn simple class loader.
    */
-  var routes = $("#js-routes").data();
-  var info = $("#js-info").data();
-  var starters = require("javascripts/starters");
+  $routes = $("#js-routes").data();
+  $info = $("#js-info").data();
+  $starters = require("javascripts/starters");
 
   /**
    * Disable console.log for production and tests (poltergeist)
    */
-  if (info.environment == "production" || info.environment == "test") {
-    // || (info.environment == "test")
+  if ($info.environment == "production" || $info.environment == "test") {
+    // || ($info.environment == "test")
     if (typeof window.console != "undefined") {
       window.console = {};
       window.console.log = function () {};
@@ -1607,13 +1609,13 @@ $(document).ready(function () {
 
     var Casing = require("javascripts/lib/casing");
 
-    for (var idx in starters) {
+    for (var idx in $starters) {
 
-      if (info.environment != "test") {
-        console.info('Loading starter : ' + starters[idx]);
+      if ($info.environment != "test") {
+        console.info('Loading starter : ' + $starters[idx]);
       }
 
-      var formatted_starter = Casing.underscoreCase(starters[idx]).replace('-', '_');
+      var formatted_starter = Casing.underscoreCase($starters[idx]).replace('-', '_');
       var _obj = require("javascripts/starters/" + formatted_starter);
       _obj.init();
     }
@@ -1624,18 +1626,18 @@ $(document).ready(function () {
   }
 
   try {
-    var meta_obj = require("javascripts/controllers/" + routes.controller);
-    console.info("Loading controller " + routes.controller);
+    var meta_obj = require("javascripts/controllers/" + $routes.controller);
+    console.info("Loading controller " + $routes.controller);
     meta_obj.init();
   } catch (err) {
-    console.warn("Unable to initialize #js-routes `" + routes.controller + "` (" + err + ")");
+    console.warn("Unable to initialize #js-routes `" + $routes.controller + "` (" + err + ")");
   }
 
   try {
-    var obj = require("javascripts/controllers/" + routes.controller + "/" + routes.action);
-    console.info("Loading controller-action " + routes.controller + "/" + routes.action);
+    var obj = require("javascripts/controllers/" + $routes.controller + "/" + $routes.action);
+    console.info("Loading controller-action " + $routes.controller + "/" + $routes.action);
   } catch (err) {
-    console.warn("Unable to initialize #js-routes `" + routes.controller + "`.`" + routes.action + "` (" + err + ")");
+    console.warn("Unable to initialize #js-routes `" + $routes.controller + "`.`" + $routes.action + "` (" + err + ")");
     return;
   }
 
@@ -3570,8 +3572,10 @@ var LiveCurrency = {
    */
   init: function init() {
 
-    this.setupLiveCurrency();
-    this.handleDisplay();
+    if ($('#js-info').data('userRole') == 'admin') {
+      this.setupLiveCurrency();
+      this.handleDisplay();
+    }
   },
 
   /**
