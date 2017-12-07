@@ -9,15 +9,14 @@
   <div class="help-block with-errors"></div>
 </div>
 <div class="form-group">
-  <label class="radio-inline">
+  <div class="radio-group">
     <%= f.radio_button :gender, 'm', :checked => @user.gender.present? ? @user.gender.male? : true %>
-    <%= I18n.t('genderize.name.masculine') %>
-  </label>
-  <label class="radio-inline">
+    <%= f.label :gender_m, I18n.t('genderize.name.masculine') %>
     <%= f.radio_button :gender, 'f', :checked => @user.gender.present? ? @user.gender.female? : true %>
-    <%= I18n.t('genderize.name.feminine') %>
-  </label>
+    <%= f.label :gender_f, I18n.t('genderize.name.feminine') %>
+  </div>
 </div>
+
 <div class="form-group">
   <%= f.text_field :mobile, :class => 'form-control', :pattern => I18n.t('validation.tel', locale: :'zh-CN'), placeholder: I18n.t('edit_personal.placeholder_tel') %>
 </div>
