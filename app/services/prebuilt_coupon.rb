@@ -16,7 +16,6 @@ class PrebuiltCoupon < BaseService
           origin: :make_referrer,
           group: :referrers,
           referrer: referrer,
-          exclude_china: false
         )
       end
     end

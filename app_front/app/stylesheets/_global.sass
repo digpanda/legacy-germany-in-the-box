@@ -1,36 +1,9 @@
+@import 'global/forms'
+
 #new-address-tag
   // we recalibrate for the scrolldown on the address new field
   margin-top: -1.7em
 
-.radio-group
-  border: solid 2px $color-dark-green
-  display: inline-block
-  border-radius: 5px
-  overflow: hidden
-
-  input[type=radio]
-    position: absolute
-    visibility: hidden
-    display: none
-
-  label
-    color: $color-dark-green
-    display: inline-block
-    cursor: pointer
-    font-weight: bold
-    padding: 0.8em 2em
-    margin: -0.4em
-
-  input[type=radio]:checked + label
-    color: $color-white
-    background: $color-dark-green
-
-
-  label + input[type=radio] + label
-    border-left: solid 2px $color-dark-green
-
-  .field_with_errors
-    display: none
 hr
   margin-top: 10px
   margin-bottom: 10px
@@ -57,31 +30,6 @@ h3
   font-weight: bold
   color: $color-black
 
-input#query
-  background-color: $color-white
-  
-textarea, input
-  border: 1px solid $color-grey
-  background-color: $color-almost-white
-  border-radius: 3px
-  padding: 6px 12px
-  &:focus
-    border: 1px solid $color-dark-green
-
-// NOTE : if we remove this couponia will go and rewrite the background
-.form-control
-  border: 1px solid $color-grey
-  background-color: $color-almost-white
-  &:focus
-    border: 1px solid $color-dark-green
-
-textarea, input, button
-  outline: none !important
-  -webkit-box-shadow: none !important
-  -moz-box-shadow: none !important
-  box-shadow: none !important
-  -webkit-appearance: none !important
-
 .js-editable
   button
     color: $color-blue !important
@@ -97,9 +45,6 @@ textarea, input, button
 
 html
   box-sizing: border-box
-
-input, textarea, select, a, button
-  outline: none !important
 
 .content
   margin: 0 auto
@@ -129,12 +74,6 @@ body
   background-color: $color-almost-white
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-
-textarea, input, a
-  outline: none
-
-*:focus
-  outline: none
 
 #{$a-tags}
   text-decoration: none !important

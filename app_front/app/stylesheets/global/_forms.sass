@@ -1,0 +1,77 @@
+input, textarea, select, a, button
+  outline: none !important
+
+textarea, input, a
+  outline: none
+
+*:focus
+  outline: none
+
+.radio-group
+  border: solid 2px $color-dark-green
+  display: inline-block
+  border-radius: 5px
+  overflow: hidden
+
+  input[type=radio]
+    position: absolute
+    visibility: hidden
+    display: none
+
+  label
+    color: $color-dark-green
+    display: inline-block
+    cursor: pointer
+    font-weight: bold
+    padding: 0.8em 2em
+    margin: -0.4em
+
+  input[type=radio]:checked + label
+    color: $color-white
+    background: $color-dark-green
+
+
+  label + input[type=radio] + label
+    border-left: solid 2px $color-dark-green
+
+  .field_with_errors
+    display: none
+
+input#query
+  background-color: $color-white
+
+textarea, input
+  border: 1px solid $color-grey
+  background-color: $color-almost-white
+  border-radius: 3px
+  padding: 6px 12px
+  &:focus
+    border: 1px solid $color-dark-green
+
+// NOTE : if we remove this couponia will go and rewrite the background
+.form-control
+  border: 1px solid $color-grey
+  background-color: $color-almost-white
+  &:focus
+    border: 1px solid $color-dark-green
+
+input[type=checkbox]
+  height: 18px
+  width: 18px
+  border: 1px solid $color-dark-grey
+  background-color: $color-almost-white
+  cursor: pointer
+  margin: 0em
+  vertical-align: middle
+
+input[type=checkbox]:checked
+  border: 1px solid $color-dark-green
+  background: url('/images/elements/cross-checkbox.png') center center no-repeat
+  background-size: 10px 10px
+
+textarea, input, button
+  outline: none !important
+  -webkit-box-shadow: none !important
+  -moz-box-shadow: none !important
+  box-shadow: none !important
+  -webkit-appearance: none !important

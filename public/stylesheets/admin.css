@@ -1826,8 +1826,14 @@
   color: white;
   background: transparent; }
 
-#new-address-tag {
-  margin-top: -1.7em; }
+input, textarea, select, a, button {
+  outline: none !important; }
+
+textarea, input, a {
+  outline: none; }
+
+*:focus {
+  outline: none; }
 
 .radio-group {
   border: solid 2px #33965e;
@@ -1852,6 +1858,47 @@
     border-left: solid 2px #33965e; }
   .radio-group .field_with_errors {
     display: none; }
+
+input#query {
+  background-color: white; }
+
+textarea, input {
+  border: 1px solid #bdc3c7;
+  background-color: #f9f9f9;
+  border-radius: 3px;
+  padding: 6px 12px; }
+  textarea:focus, input:focus {
+    border: 1px solid #33965e; }
+
+.form-control {
+  border: 1px solid #bdc3c7;
+  background-color: #f9f9f9; }
+  .form-control:focus {
+    border: 1px solid #33965e; }
+
+input[type=checkbox] {
+  height: 18px;
+  width: 18px;
+  border: 1px solid #919191;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  margin: 0em;
+  vertical-align: middle; }
+
+input[type=checkbox]:checked {
+  border: 1px solid #33965e;
+  background: url("/images/elements/cross-checkbox.png") center center no-repeat;
+  background-size: 10px 10px; }
+
+textarea, input, button {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important; }
+
+#new-address-tag {
+  margin-top: -1.7em; }
 
 hr {
   margin-top: 10px;
@@ -1878,30 +1925,6 @@ h3 {
   font-weight: bold;
   color: #464646; }
 
-input#query {
-  background-color: white; }
-
-textarea, input {
-  border: 1px solid #bdc3c7;
-  background-color: #f9f9f9;
-  border-radius: 3px;
-  padding: 6px 12px; }
-  textarea:focus, input:focus {
-    border: 1px solid #33965e; }
-
-.form-control {
-  border: 1px solid #bdc3c7;
-  background-color: #f9f9f9; }
-  .form-control:focus {
-    border: 1px solid #33965e; }
-
-textarea, input, button {
-  outline: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
-  -webkit-appearance: none !important; }
-
 .js-editable button {
   color: #3498db !important; }
 
@@ -1917,9 +1940,6 @@ textarea, input, button {
 
 html {
   box-sizing: border-box; }
-
-input, textarea, select, a, button {
-  outline: none !important; }
 
 .content {
   margin: 0 auto; }
@@ -1946,12 +1966,6 @@ body {
   background-color: #f9f9f9;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
-
-textarea, input, a {
-  outline: none; }
-
-*:focus {
-  outline: none; }
 
 a, a:active, a:hover, a:visited {
   text-decoration: none !important;

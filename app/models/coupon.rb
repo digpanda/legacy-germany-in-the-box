@@ -19,7 +19,6 @@ class Coupon
   field :last_applied_at, type: Time
   field :last_used_at, type: Time
   field :cancelled_at, type: Time, default: false
-  field :exclude_china, type: Boolean, default: false
   field :origin, type: Symbol, default: :default
 
   # not to mix up with origin, this is the type of coupon, which is the used for it when it's categorized
