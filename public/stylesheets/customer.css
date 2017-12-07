@@ -2922,14 +2922,12 @@ body {
     margin-top: 0.1em; }
 
 .shop-block__container {
-  padding: 2em 1em 1em 1em;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  padding: 1em 0em 1em 0em;
   border-bottom: 1px solid #eee; }
 
 .shop-block__thumbnail {
-  min-height: 280px;
-  background-size: contain;
+  min-height: 200px;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center center; }
 
