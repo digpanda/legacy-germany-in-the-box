@@ -33,8 +33,13 @@ describe Currency do
   context '#display' do
 
     it 'should display euros' do
-      expect(Currency.new(10, 'EUR').display).to eql('€10.00')
+      expect(Currency.new(10, 'EUR').display).to eql('€10')
     end
+
+    it 'should display euros with decimals' do
+      expect(Currency.new(10.05, 'EUR').display).to eql('€10.05')
+    end
+
 
     it 'should display yuan' do
       expect(Currency.new(60.50, 'CNY').display).to eql('¥60.50')
