@@ -2145,7 +2145,7 @@ body {
     min-height: 4em;
     padding-left: 3em; }
     .header-desktop__logo img {
-      max-width: 160px; }
+      max-height: 67px; }
   .header-desktop__categories {
     padding-right: 0;
     padding-left: 0;
@@ -2210,7 +2210,7 @@ body {
     padding-top: 0.2em;
     padding-left: 3em; }
     .header-mobile__logo img {
-      max-width: 130px; }
+      max-height: 50px; }
   .header-mobile__menu {
     padding-right: 3.5em;
     padding-top: 0.7em; }
