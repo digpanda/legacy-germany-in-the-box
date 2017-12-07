@@ -175,6 +175,9 @@ zh-CN:
     shipping_and_taxes_excluded: 不含运费及关税
     taxes_included: 已含税，运费另计
   coupon:
+    cannot_apply_reseller: You can't apply this coupon to a reseller order.
+    cannot_apply_user: You can't apply this coupon on this user.
+    cannot_apply_shop: You can't apply this coupon on this shop.
     no_minimum_price: "无法使用本代金券，因为未达到使用代金券的最低购物金额（不含物流及关税）： %{minimum} 人民币。"
     cannot_apply:  此折扣码不适用于该订单。
     error_occurred_applying: 使用折扣码时出现错误。

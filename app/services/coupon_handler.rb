@@ -13,12 +13,12 @@ class CouponHandler < BaseService
 
   # try to apply the coupon to this specific order
   def apply
-    return return_with(:error, "You can't apply this coupon to a reseller order.") if reseller_order?
+    return return_with(:error, I18n.t('coupon.cannot_apply_reseller')) if reseller_order?
     unless reached_minimum_order?
       return return_with(:error, I18n.t('coupon.no_minimum_price', minimum: coupon.minimum_order.in_euro.to_yuan(exchange_rate: order.exchange_rate).display))
     end
-    return return_with(:error, "You can't apply this coupon on this user.") unless valid_user?
-    return return_with(:error, "You can't apply this coupon on this shop.") unless valid_shop?
+    return return_with(:error, I18n.t('coupon.cannot_apply_user')) unless valid_user?
+    return return_with(:error, I18n.t('coupon.cannot_apply_shop')) unless valid_shop?
     return return_with(:error, I18n.t('coupon.cannot_apply')) unless valid_order?
     return return_with(:error, I18n.t('coupon.not_valid_anymore')) unless valid_coupon?
     return return_with(:error, I18n.t('coupon.error_occurred_applying')) unless update_order! && update_referrer! && update_coupon!
