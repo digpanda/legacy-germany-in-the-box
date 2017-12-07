@@ -44,7 +44,7 @@ var LiveCurrency = {
 
         let in_yuan = current * LiveCurrency.to_yuan;
         // at some point you may decide to update its content:
-        $(this).tooltipster('content', `EUR ${current} > CNY ${in_yuan}`);
+        $(this).tooltipster('content', `EUR ${current} = CNY ${in_yuan}`);
         $(this).tooltipster('open');
 
       })
