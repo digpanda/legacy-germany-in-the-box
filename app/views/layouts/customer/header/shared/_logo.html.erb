@@ -2,7 +2,10 @@
 <div class="+centered">
     <a href="<%= identity_solver.origin_url %>">
       <% if current_user&.referrer %>
-        <img src="/images/logos/germany-in-the-box-resellers.svg">
+        <!-- NOTE : if it evolved to more path, improve the global system, abstract from the view -->
+        <% unless section_active? qrcode_customer_referrer_path %>
+          <img src="/images/logos/germany-in-the-box-resellers.svg">
+        <% end %>
       <% else %>
         <img src="/images/logos/germany-in-the-box.svg">
       <% end %>

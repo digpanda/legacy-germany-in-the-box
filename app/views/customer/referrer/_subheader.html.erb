@@ -13,9 +13,9 @@
     <!-- MIDDLE -->
     <div class="col-xs-6">
       <div class="subheader__middle">
-        <a href="<%= back %>">
+        <% unless section_active? qrcode_customer_referrer_path %>
           <a href="<%= provision_rates_customer_referrer_path %>"> <%= I18n.t('referrer.provision_rates') %></a>
-        </a>
+        <% end %>
       </div>
     </div>
 

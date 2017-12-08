@@ -1,5 +1,13 @@
 module PathsHelper
 
+  def solve_incubator_url
+    if german_browser?
+      "https://incubator.germanyinbox.com/de/"
+    else
+      "https://incubator.germanyinbox.com/en/"
+    end
+  end
+
   def current_url_qrcode
     SmartQrcode.new(current_url_with_reference).perform
   end

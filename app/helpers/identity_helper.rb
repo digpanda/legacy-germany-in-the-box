@@ -23,4 +23,9 @@ module IdentityHelper
   def chinese_ip?
     identity_solver.chinese_ip?
   end
+
+  def german_browser?
+    request.env['HTTP_ACCEPT_LANGUAGE'].to_s.include? '-DE'
+  end
+
 end
