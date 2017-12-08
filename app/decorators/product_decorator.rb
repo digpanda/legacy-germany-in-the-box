@@ -22,7 +22,7 @@ class ProductDecorator < Draper::Decorator
     simple_format(self.desc)
   end
 
-  def short_desc(characters = 50)
+  def short_desc(characters = 40)
     truncate(self.desc, length: characters)
   end
 
