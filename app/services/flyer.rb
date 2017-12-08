@@ -61,7 +61,7 @@ class Flyer < BaseService
     insert_image(
       full_path: qrcode_path,
       width: 339, height: 339,
-      longitude: 130, latitude: 591
+      longitude: 130, latitude: 671
     )
 
     image.format = 'jpeg'
