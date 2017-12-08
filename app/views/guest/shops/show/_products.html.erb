@@ -15,7 +15,7 @@
 
       <div class="row">
         <% fetched_products.each do |product| %>
-          <div class="col-md-3">
+          <div class="col-md-3 col-xs-6">
             <div class="shop-page-product">
               <%= render partial: 'guest/products/product_box', :locals => {product: product} %>
             </div>
