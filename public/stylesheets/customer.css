@@ -2707,6 +2707,7 @@ body {
     float: left;
     font-size: 1.3em; }
   .product-select__quantity {
+    z-index: 3 !important;
     margin-bottom: 1em;
     width: 45%;
     float: left;
