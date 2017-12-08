@@ -3002,13 +3002,8 @@ body {
 
 .shop-page-product {
   border-bottom: 1px solid #eee;
-  margin-bottom: 1em;
-  padding-top: 1em;
-  min-height: 40em;
+  min-height: 30em;
   color: #666666; }
-  @media (max-width: 994px) {
-    .shop-page-product {
-      min-height: 37em; } }
   .shop-page-product a {
     color: #666666; }
   .shop-page-product__options {
