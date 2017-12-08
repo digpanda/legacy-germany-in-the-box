@@ -96,11 +96,11 @@ class Api::Webhook::WechatController < Api::ApplicationController
     end
 
     def event_callback
-      WechatBot::Event.new(user, event, event_key).dispatch
+      @event_callback ||= WechatBot::Event.new(user, event, event_key).dispatch
     end
 
     def text_callback
-      WechatBot::Text.new(user, content).dispatch
+      @text_callback ||= WechatBot::Text.new(user, content).dispatch
     end
 
     def wechat_user_solver

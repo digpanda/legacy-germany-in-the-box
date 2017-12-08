@@ -11,7 +11,6 @@ module WechatBot
 
       # when the user subscribe it'll trigger this method
       def handle
-        SlackDispatcher.new.message("WE WILL TRIGGER THE MESSAGE NOW")
         messenger.text! data(:subscribe, identity: user.decorate.readable_who)
       end
     end
