@@ -15,6 +15,8 @@ class Banner
 
   belongs_to :banner, polymorphic: true
 
+  scope :active, -> { self.and(active: true) }
+  
   def image
     image_url(:file, :fullsize)
   end
