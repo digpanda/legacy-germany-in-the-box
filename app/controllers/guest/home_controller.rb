@@ -2,6 +2,7 @@ require 'actionpack/action_caching'
 
 class Guest::HomeController < ApplicationController
   before_filter :admin_redirection, :shopkeeper_redirection
+  before_action :set_banner
 
   def show
     @shops = Shop.can_buy.order_by(position: :asc).all
@@ -16,6 +17,10 @@ class Guest::HomeController < ApplicationController
   end
 
   private
+
+    def set_banner
+      @banner = Banner.active.where(location: :shops_landing_cover).first
+    end
 
     def admin_redirection
       if identity_solver.potential_admin?
