@@ -420,10 +420,10 @@
   bottom: 0;
   background-color: black;
   opacity: 0.4;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  border-radius: 4px; }
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  border-radius: 0px; }
 
 #csstyle .\+onoverlay {
   position: relative;
@@ -2926,14 +2926,18 @@ body {
   border-bottom: 1px solid #eee; }
 
 .shop-block__thumbnail {
-  min-height: 130px;
-  background-size: cover;
+  min-height: 300px;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
+  @media (max-width: 994px) {
+    .shop-block__thumbnail {
+      min-height: 250px; } }
 
 .shop-block__button {
   margin-bottom: 1.2em;
-  margin-right: 1.5em; }
+  margin-right: 1.5em;
+  margin-top: 0.8em; }
 
 .shop-block__title {
   margin: 0;
@@ -3017,15 +3021,18 @@ body {
     width: 100%; }
   .shop-page-product__description {
     text-align: center;
-    margin: 0 auto;
-    width: 80%; }
+    margin: 0 auto; }
     .shop-page-product__description * {
       text-align: left; }
     .shop-page-product__description h2 {
+      font-size: 1.5em;
       margin-top: 0.5em;
-      font-size: 1.7em; }
+      margin-bottom: 0em; }
     .shop-page-product__description h3 {
-      margin-top: -0.5em;
+      font-weight: 100;
+      font-size: 1em;
+      margin-top: 0em;
+      margin-bottom: 0em;
       font-size: 1.2em;
       color: #ABABA8;
       display: inline-block;
@@ -3034,12 +3041,23 @@ body {
       text-overflow: ellipsis;
       -o-text-overflow: ellipsis;
       width: 100%; }
-    .shop-page-product__description p {
-      margin-top: -0.5em;
-      margin-bottom: 0;
-      color: #919191; }
-  .shop-page-product__title {
-    font-size: 1.4em !important; }
+  .shop-page-product__h2-wrapper {
+    position: relative;
+    word-wrap: break-word;
+    overflow: hidden;
+    height: 3.8em;
+    line-height: 1.2em; }
+  .shop-page-product__p-wrapper {
+    position: relative;
+    display: inline-block;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 3.6em;
+    line-height: 1.2em; }
+  .shop-page-product p {
+    margin-bottom: 0;
+    font-size: 12px;
+    color: #919191; }
   .shop-page-product__discount {
     position: absolute;
     left: 70%;
@@ -3063,8 +3081,7 @@ body {
       font-weight: bold;
       text-align: center; }
   .shop-page-product__image {
-    height: 20em;
-    width: 80%;
+    height: 15em;
     margin: 0 auto;
     display: block;
     background-size: contain;

@@ -20,16 +20,18 @@
 
       <div class="shop-page-product__description">
 
-        <h2 class="shop-page-product__title">
-          <%= product.name %>
-        </h2>
+        <div class="shop-page-product__h2-wrapper">
+          <h2>
+            <%= product.name %>
+          </h2>
+        </div>
 
         <h3>
           <%= product.brand&.name %>
         </h3>
 
-        <div class="hop-page-product__text-wrapper">
-          <p class="hop-page-product__text-wrapped">
+        <div class="shop-page-product__p-wrapper">
+          <p>
             <%= product.decorate.short_desc %>
           </p>
         </div>

@@ -25,15 +25,27 @@
       text-align: left
 
     h2
-      margin-top: 0em
-      font-size: 1.7em
+      font-size: 1.5em
+      margin-top: 0.5em
+      margin-bottom: 0em
     h3
-      margin-top: -0.5em
+      font-weight: 100
+      font-size: 1em
+      margin-top: 0em
+      margin-bottom: 0em
       font-size: 1.2em
       color: $color-light-grey
       +truncate(100%)
 
-  +part(text-wrapper)
+  +part(h2-wrapper)
+    position: relative
+    //display: inline-block
+    word-wrap: break-word
+    overflow: hidden
+    height: 3.8em
+    line-height: 1.2em
+
+  +part(p-wrapper)
     position: relative
     display: inline-block
     word-wrap: break-word
@@ -42,20 +54,10 @@
     line-height: 1.2em
     text-align:justify
 
-  +part(text-wrapped)
-    margin-top: -0.5em
+  p
     margin-bottom: 0
     font-size: 12px
     color: $color-dark-grey
-
-    .ellipsis::after
-      content: "..."
-      position: absolute
-      right: -12px;
-      bottom: 4px
-
-  +part(title)
-    font-size: 1.2em !important
 
   +part(discount)
     position: absolute
