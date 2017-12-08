@@ -15,6 +15,7 @@ module WechatBot
       when 'click'
         Click.new(user, event_key).handle
       when 'subscribe'
+        SlackDispatcher.new.message("SUBSCRBE EVENT WAS TRIGGERED")
         Subscribe.new(user).handle
       else
         # in case it's not understood by the system
