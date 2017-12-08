@@ -28,9 +28,11 @@
           <%= product.brand&.name %>
         </h3>
 
-        <p>
-          <%= product.decorate.short_desc %>
-        </p>
+        <div class="hop-page-product__text-wrapper">
+          <p class="hop-page-product__text-wrapped">
+            <%= product.decorate.short_desc %>
+          </p>
+        </div>
 
         <div class="shop-page-product__options">
           <%= get_options_names(product) %>
