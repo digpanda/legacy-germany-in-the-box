@@ -1,4 +1,4 @@
-<% if banner.present? %>
+<% if defined?(banner) && banner.present? %>
 
   <!-- Banner show up -->
   <div class="row">
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-<% elsif cover.present? %>
+<% elsif defined?(cover) && cover.present? %>
 
   <!-- Cover show up -->
   <div class="row">
