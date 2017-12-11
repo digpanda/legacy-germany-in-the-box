@@ -1,0 +1,21 @@
+<div class="details">
+
+  <div class="row">
+    <div class="col-md-10">
+      <h2>Banner <%= @banner.id %></h2>
+    </div>
+    <div class="col-md-2 details__action">
+    </div>
+  </div>
+
+  <div class="+small-spacer"></div>
+
+  <div class="row details__block">
+    <%= render partial: "admin/banners/show/action", locals: { banner: @banner } %>
+  </div>
+
+  <div class="row details__block +danger-zone">
+    <%= render partial: "admin/banners/show/danger_zone", locals: { banner: @banner } %>
+  </div>
+
+</div>

@@ -1,5 +1,5 @@
 <!-- Global package set cover -->
-<%= render "guest/package_sets/cover" %>
+<%= render partial: 'shared/partials/cover', locals: { cover: Setting.instance.package_sets_cover, banner: @banner } %>
 
 <!-- Wechat QRCode Support -->
 <%= render partial: "guest/package_sets/wechat_qrcode" %>

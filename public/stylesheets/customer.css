@@ -2069,36 +2069,17 @@ body {
       .categories-block__image {
         height: 70vw; } }
 
-.landing-banner-desktop {
+.landing-banner {
   background-color: #bdc3c7;
   background-size: cover;
   background-position: center;
   min-height: 35vw; }
-  .landing-banner-desktop__content {
-    color: white;
-    text-align: center;
-    margin: 0 auto;
-    padding-top: 8em;
-    padding-bottom: 5em; }
-    .landing-banner-desktop__content h2 {
-      font-size: 3em; }
-    .landing-banner-desktop__content p {
-      font-size: 1.7em;
-      padding-bottom: 0.5em; }
-
-.landing-banner-mobile {
-  background-color: #bdc3c7;
-  background-size: cover;
-  background-position: center;
-  min-height: 50vw; }
-  .landing-banner-mobile__content {
-    text-align: center;
-    padding: 1em; }
-    .landing-banner-mobile__content h2 {
-      font-size: 3em; }
-    .landing-banner-mobile__content p {
-      font-size: 1.7em;
-      padding-bottom: 0.5em; }
+  @media (max-width: 994px) {
+    .landing-banner {
+      background-color: #bdc3c7;
+      background-size: cover;
+      background-position: center;
+      min-height: 55vw; } }
 
 .footer {
   padding-top: 0.5em;

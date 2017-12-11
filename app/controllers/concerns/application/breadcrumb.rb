@@ -99,7 +99,22 @@ module Application
         add_breadcrumb 'Edit', edit_admin_link_path(@link) if @link
       end
 
-      def breadcrumb_admin_link_new
+      def breadcrumb_admin_banner_new
+        add_breadcrumb 'New', new_admin_banner_path
+      end
+      def breadcrumb_admin_banners
+        add_breadcrumb 'Links', admin_banners_path
+      end
+
+      def breadcrumb_admin_banner
+        add_breadcrumb @banner.id, admin_banner_path(@banner) if @banner
+      end
+
+      def breadcrumb_admin_banner_edit
+        add_breadcrumb 'Edit', edit_admin_banner_path(@banner) if @banner
+      end
+
+      def breadcrumb_admin_banner_new
         add_breadcrumb 'New', new_admin_link_path
       end
 

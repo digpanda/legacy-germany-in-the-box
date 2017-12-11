@@ -1,0 +1,62 @@
+<%= form_for [:admin, banner] do |form| %>
+
+<div class="row details__transparent-block">
+
+  <!-- Cover -->
+  <div class="row">
+    <div class="col-md-2">
+      <%= form.label :cover, "Cover" %>
+    </div>
+    <div class="col-md-10 form-group">
+      <%= js_file_upload(form: form, field: :cover) %>
+    </div>
+  </div>
+
+  <!-- Link -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Link
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :link, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+  <!-- Location -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Location
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.text_field :location, :class => 'form-control', :required => true %>
+        <div class="help-block with-errors"></div>
+        <span class="+red"><em>Do not touch this field if you do not know what it means.</em></span>
+      </div>
+  </div>
+
+  <!-- Active -->
+  <div class="row">
+    <div class="col-md-2">
+      <label>
+        Active
+      </label>
+    </div>
+
+      <div class="col-md-10 form-group">
+        <%= form.select :active, boolean_select %>
+        <div class="help-block with-errors"></div>
+      </div>
+  </div>
+
+</div>
+
+<%= form.submit :class => 'big-button --blue', :value =>  "Save" %>
+
+<% end %>

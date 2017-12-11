@@ -25,7 +25,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   # used for root_url and equivalent
-  Rails.application.routes.default_url_options = { host: 'local.dev', port: 3000 }
+  Rails.application.routes.default_url_options = { host: 'localhost', port: 3000 }
 
   config.action_mailer.delivery_method = :smtp
 

@@ -29,7 +29,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test #:smtp
 
   # used for root_url and equivalent
-  Rails.application.routes.default_url_options = { host: 'local.dev', port: 3333 }
+  Rails.application.routes.default_url_options = { host: 'localhost', port: 3333 }
 
   OmniAuth.config.test_mode = true
 

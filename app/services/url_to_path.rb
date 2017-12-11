@@ -4,7 +4,7 @@ require 'open-uri'
 class UrlToPath < BaseService
   attr_reader :url
 
-  # UrlToPath.new("http://local.dev:3000/guest/referrers/59e0d6782fe398a892253f8d/qrcode.jpg").perform
+  # UrlToPath.new("http://localhost:3000/guest/referrers/59e0d6782fe398a892253f8d/qrcode.jpg").perform
   def initialize(url)
     @url = url
   end
