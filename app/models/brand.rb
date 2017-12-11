@@ -17,6 +17,8 @@ class Brand
 
   mount_uploader :cover, CoverUploader
 
+  has_one :banner
+
   has_many :products, inverse_of: :brand
 
   scope :with_package_sets, -> { where(:id.in => package_set_brand_ids) }

@@ -4,9 +4,9 @@
 <!-- Global package set cover -->
 <!-- NOTE : there is a lot of logic here, maybe place it elsewhere -->
 <% if @brand&.cover&.present? %>
-  <%= render partial: 'shared/partials/cover', locals: { cover: @brand&.cover } %>
+  <%= render partial: 'shared/partials/cover', locals: { cover: @brand.cover, banner: @brand.banner } %>
 <% elsif @category&.cover&.present? %>
-  <%= render partial: 'shared/partials/cover', locals: { cover: @category&.cover } %>
+  <%= render partial: 'shared/partials/cover', locals: { cover: @category.cover, banner: @category.banner } %>
 <% else %>
   <%= render partial: 'shared/partials/cover', locals: { cover: Setting.instance.package_sets_cover, banner: @banner } %>
 <% end %>
