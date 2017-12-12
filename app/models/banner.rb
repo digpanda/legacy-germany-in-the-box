@@ -13,7 +13,8 @@ class Banner
   field :cover, type: String
   mount_uploader :cover, CoverUploader
 
-  belongs_to :banner, polymorphic: true
+  belongs_to :category
+  belongs_to :brand
 
   scope :active, -> { self.and(active: true) }
 

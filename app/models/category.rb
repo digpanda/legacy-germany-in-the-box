@@ -21,8 +21,9 @@ class Category
   field :cover,       type: String
 
   mount_uploader :cover, CoverUploader
-  
+
   has_one :banner
+  accepts_nested_attributes_for :banner, allow_destroy: true
 
   scope :only_with_products,       ->    { where(:product_ids.ne => nil).and(:product_ids.ne => []) }
   scope :with_package_sets, -> { where(:id.in => PackageSet.active.all.pluck(:category_id)) }

@@ -103,7 +103,7 @@ module Application
         add_breadcrumb 'New', new_admin_banner_path
       end
       def breadcrumb_admin_banners
-        add_breadcrumb 'Links', admin_banners_path
+        add_breadcrumb 'Banners', admin_banners_path
       end
 
       def breadcrumb_admin_banner
