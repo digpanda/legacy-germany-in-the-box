@@ -1,13 +1,14 @@
 <!-- Form used in different sides of the dashboard for update / create -->
 <div class="row">
-  <div class="col-md-8 +nopadding">
+  <div class="col-md-12 +nopadding">
     <h3>Banner</h3>
     <hr>
   </div>
-  <div class="col-md-4 +right">
-    <hr>
-  </div>
 </div>
+
+<% unless form.object.banner %>
+  <% form.object.build_banner %>
+<% end %>
 
 <%= form.fields_for :banner do |fields| %>
 <div class="row details__transparent-block">
@@ -21,7 +22,7 @@
     <div class="col-md-10 fields-group">
       <!-- NOTE : if there's a problem with this field (like form.object.cover not existing)
       please change the assoc to the object directly, it might be because the two original models were with cover and i mixed it up. -->
-      <%= js_image_file_upload(form: fields, assoc: (form.object.banner || form.object.build_banner), field: :cover) %>
+      <%= js_image_file_upload(form: fields, assoc: form.object.banner, field: :cover) %>
     </div>
   </div>
 

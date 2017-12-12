@@ -4,6 +4,13 @@
     <%= render partial: "admin/brands/form/informations", :locals => {:form => form} %>
   </div>
 
+  <!-- Banner -->
+  <div class="row details__block">
+    <div class="col-md-12">
+      <%= render partial: "admin/banners/form_fields", locals: { form: form, location: :brand } %>
+    </div>
+  </div>
+
   <%= form.submit :class => 'big-button --blue', :value =>  "Save" %>
 
 <% end %>
