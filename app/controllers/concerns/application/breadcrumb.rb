@@ -88,20 +88,53 @@ module Application
       end
 
       def breadcrumb_admin_links
-        add_breadcrumb 'Links', admin_links_path
+        breadcrumb :admin, :links
+        # OLD
+        # add_breadcrumb 'Links', admin_links_path
       end
 
       def breadcrumb_admin_link
         add_breadcrumb @link.title, admin_link_path(@link) if @link
       end
 
-      def breadcrumb_admin_link_edit
-        add_breadcrumb 'Edit', edit_admin_link_path(@link) if @link
+      def breadcrumb(namespace, resource, action = nil)
+        return unless resource
+
+        if resource.instance_of? Symbol
+          controller = resource
+        else
+          controller = resource.class.to_s.downcase.pluralize
+        end
+
+        if action
+          title = action.to_s.capitalize
+        else
+          if resource.instance_of? Symbol
+            title = resource.to_s.capitalize
+          else
+            title = (resource&.title || resource&.name || resource&.id || resource)
+          end
+        end
+
+        path = url_for(action: action, controller: "#{namespace}/#{controller}", only_path: true)
+        add_breadcrumb title, path
       end
 
-      def breadcrumb_admin_banner_new
-        add_breadcrumb 'New', new_admin_banner_path
+
+      def breadcrumb_admin_link_edit
+        # NEW :
+        breadcrumb :admin, @link, :edit
+        # OLD :
+        # add_breadcrumb 'Edit', edit_admin_link_path(@link) if @link
       end
+
+      def breadcrumb_admin_link_new
+        # NEW :
+        breadcrumb :admin, :links, :new
+        # OLD :
+        # add_breadcrumb 'New', new_admin_link_path
+      end
+
       def breadcrumb_admin_banners
         add_breadcrumb 'Banners', admin_banners_path
       end
