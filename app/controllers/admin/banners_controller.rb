@@ -9,6 +9,7 @@ class Admin::BannersController < ApplicationController
 
   before_action :breadcrumb_admin_banners, except: [:index]
   before_action :breadcrumb_admin_banner, only: [:edit]
+  before_action :breadcrumb_admin_banner_edit, only: [:edit]
 
   layout :custom_sublayout
 

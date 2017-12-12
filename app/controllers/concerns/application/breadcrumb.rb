@@ -79,23 +79,6 @@ module Application
       # ADMIN
       # =====
       #
-      def breadcrumb_admin_inquiries
-        add_breadcrumb 'Inquiries', admin_inquiries_path
-      end
-
-      def breadcrumb_admin_inquiry
-        add_breadcrumb @inquiry.id, admin_inquiry_path(@inquiry) if @inquiry
-      end
-
-      def breadcrumb_admin_links
-        breadcrumb :admin, :links
-        # OLD
-        # add_breadcrumb 'Links', admin_links_path
-      end
-
-      def breadcrumb_admin_link
-        add_breadcrumb @link.title, admin_link_path(@link) if @link
-      end
 
       def breadcrumb(namespace, resource, action = nil)
         return unless resource
@@ -112,7 +95,15 @@ module Application
           if resource.instance_of? Symbol
             title = resource.to_s.capitalize
           else
-            title = (resource&.title || resource&.name || resource&.id || resource)
+            if resource.respond_to?(:title)
+              title = resource.title
+            elsif resource.respond_to?(:name)
+              title = resource.name
+            elsif resource.respond_to?(:id)
+              title = resource.id
+            else
+              title = resource
+            end
           end
         end
 
@@ -120,6 +111,26 @@ module Application
         add_breadcrumb title, path
       end
 
+      def breadcrumb_admin_inquiries
+        breadcrumb :admin, :inquiries
+        #add_breadcrumb 'Inquiries', admin_inquiries_path
+      end
+
+      def breadcrumb_admin_inquiry
+        breadcrumb :admin, @inquiry
+        # add_breadcrumb @inquiry.id, admin_inquiry_path(@inquiry) if @inquiry
+      end
+
+      def breadcrumb_admin_links
+        breadcrumb :admin, :links
+        # OLD
+        # add_breadcrumb 'Links', admin_links_path
+      end
+
+      def breadcrumb_admin_link
+        breadcumb :admin, @link
+        # add_breadcrumb @link.title, admin_link_path(@link) if @link
+      end
 
       def breadcrumb_admin_link_edit
         # NEW :
@@ -136,35 +147,45 @@ module Application
       end
 
       def breadcrumb_admin_banners
-        add_breadcrumb 'Banners', admin_banners_path
+        breadcrumb :admin, :banners
+        # OLD :
+        # add_breadcrumb 'Banners', admin_banners_path
       end
 
       def breadcrumb_admin_banner
-        add_breadcrumb @banner.id, admin_banner_path(@banner) if @banner
+        breadcrumb :admin, @banner
+        # OLD :
+        # add_breadcrumb @banner.id, admin_banner_path(@banner) if @banner
       end
 
       def breadcrumb_admin_banner_edit
-        add_breadcrumb 'Edit', edit_admin_banner_path(@banner) if @banner
+        breadcrumb :admin, @banner, :edit
+        # add_breadcrumb 'Edit', edit_admin_banner_path(@banner) if @banner
       end
 
       def breadcrumb_admin_banner_new
-        add_breadcrumb 'New', new_admin_link_path
+        breadcrumb :admin, :banners, :new
+        # add_breadcrumb 'New', new_admin_link_path
       end
 
       def breadcrumb_admin_coupons
-        add_breadcrumb 'Coupons', admin_coupons_path
+        breadcrumb :admin, :coupons
+        # add_breadcrumb 'Coupons', admin_coupons_path
       end
 
       def breadcrumb_admin_coupon
-        add_breadcrumb @coupon.code, admin_coupon_path(@coupon) if @coupon
+        breadcrumb :admin, @coupon
+        # add_breadcrumb @coupon.code, admin_coupon_path(@coupon) if @coupon
       end
 
       def breadcrumb_admin_coupon_edit
-        add_breadcrumb 'Edit', edit_admin_coupon_path(@coupon) if @coupon
+        breadcrumb :admin, @coupon, :edit
+        # add_breadcrumb 'Edit', edit_admin_coupon_path(@coupon) if @coupon
       end
 
       def breadcrumb_admin_coupon_new
-        add_breadcrumb 'New', new_admin_coupon_path
+        breadcrumb :admin, :coupons, :new
+        # add_breadcrumb 'New', new_admin_coupon_path
       end
 
       def breadcrumb_admin_order_payments
