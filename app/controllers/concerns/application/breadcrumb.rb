@@ -93,7 +93,7 @@ module Application
           title = action.to_s.capitalize
         else
           if resource.instance_of? Symbol
-            title = resource.to_s.capitalize
+            title = resource.to_s.gsub('_', ' ').capitalize
           else
             if resource.respond_to?(:title)
               title = resource.title
@@ -189,122 +189,151 @@ module Application
       end
 
       def breadcrumb_admin_order_payments
-        add_breadcrumb 'Order Payment', admin_order_payments_path
+        breadcrumb :admin, :order_payments
+        # add_breadcrumb 'Order Payment', admin_order_payments_path
       end
 
       def breadcrumb_admin_order_payment
-        add_breadcrumb @order_payment.id, admin_order_payment_path(@order_payment) if @order_payment
+        breadcrumb :admin, @order_payment
+        # add_breadcrumb @order_payment.id, admin_order_payment_path(@order_payment) if @order_payment
       end
 
       def breadcrumb_admin_carts
-        add_breadcrumb'Cart', admin_carts_path
+        breadcrumb :admin, :carts
+        # add_breadcrumb 'Cart', admin_carts_path
       end
 
       def breadcrumb_admin_cart
-        add_breadcrumb @cart.id, admin_cart_path(@cart) if @cart
+        breadcrumb :admin, @cart
+        # add_breadcrumb @cart.id, admin_cart_path(@cart) if @cart
       end
 
       def breadcrumb_admin_orders
-        add_breadcrumb 'Orders', admin_orders_path
+        breadcrumb :admin, :orders
+        # add_breadcrumb 'Orders', admin_orders_path
       end
 
       def breadcrumb_admin_order
-        add_breadcrumb @order.id, admin_order_path(@order) if @order
+        breadcrumb :admin, @order
+        # add_breadcrumb @order.id, admin_order_path(@order) if @order
       end
 
       def breadcrumb_admin_referrer_groups
-        add_breadcrumb 'Referrer Groups', admin_referrer_groups_path
+        breadcrumb :admin, :referrer_groups
+        # add_breadcrumb 'Referrer Groups', admin_referrer_groups_path
       end
 
       def breadcrumb_admin_referrer_group
-        add_breadcrumb @referrer_group.token, admin_referrer_group_path(@referrer_group) if @referrer_group
+        breadcrumb :admin, @referrer_group
+        # add_breadcrumb @referrer_group.token, admin_referrer_group_path(@referrer_group) if @referrer_group
       end
 
       def breadcrumb_admin_referrer_group_edit
-        add_breadcrumb 'Edit', edit_admin_referrer_group_path(@referrer_group) if @referrer_group
+        breadcrumb :admin, @referrer_group, :edit
+        # add_breadcrumb 'Edit', edit_admin_referrer_group_path(@referrer_group) if @referrer_group
       end
 
       def breadcrumb_admin_referrer_group_new
-        add_breadcrumb 'New', new_admin_referrer_group_path
+        breadcrumb :admin, @referrer_group, :new
+        # add_breadcrumb 'New', new_admin_referrer_group_path
       end
 
       def breadcrumb_admin_referrers
-        add_breadcrumb 'Referrers', admin_referrers_path
+        breadcrumb :admin, :referrers
+        # add_breadcrumb 'Referrers', admin_referrers_path
       end
 
       def breadcrumb_admin_referrer
-        add_breadcrumb @referrer.reference_id, admin_referrer_path(@referrer) if @referrer
+        breadcrumb :admin, @referrer
+        # add_breadcrumb @referrer.reference_id, admin_referrer_path(@referrer) if @referrer
       end
 
       def breadcrumb_admin_referrer_provisions
+        # TODO : this can't be solved right now.
         add_breadcrumb 'Provisions', admin_referrer_provisions_path(@referrer) if @referrer
       end
 
       def breadcrumb_admin_referrer_provision
-        add_breadcrumb @provision.id, '#' if @provision
+        breadcrumb :admin, @provision
+        # add_breadcrumb @provision.id, '#' if @provision
       end
 
       def breadcrumb_admin_referrer_coupon
+        # TODO : this can't be solved right now.
         add_breadcrumb 'Coupon', coupon_admin_referrer_coupon_path(@referrer) if @referrer
       end
 
       def breadcrumb_admin_users
-        add_breadcrumb 'Users', admin_users_path
+        breadcrumb :admin, :users
+        # add_breadcrumb 'Users', admin_users_path
       end
 
       def breadcrumb_admin_user
-        add_breadcrumb @user.decorate.full_name, admin_user_path(@user) if @user
+        breadcrumb :admin, @user
+        # add_breadcrumb @user.decorate.full_name, admin_user_path(@user) if @user
       end
 
       def breadcrumb_admin_categories
-        add_breadcrumb 'Categories', admin_categories_path
+        breadcrumb :admin, :categories
+        # add_breadcrumb 'Categories', admin_categories_path
       end
 
       def breadcrumb_admin_category
-        add_breadcrumb @category.name, admin_category_path(@category) if @category
+        breadcrumb :admin, @category
+        # add_breadcrumb @category.name, admin_category_path(@category) if @category
       end
 
       def breadcrumb_admin_brands
-        add_breadcrumb 'Brands', admin_brands_path
+        breadcrumb :admin, :brands
+        # add_breadcrumb 'Brands', admin_brands_path
       end
 
       def breadcrumb_admin_brand
-        add_breadcrumb @brand.name, admin_brand_path(@brand) if @brand
+        breadcrumb :admin, @brand
+        # add_breadcrumb @brand.name, admin_brand_path(@brand) if @brand
       end
 
       def breadcrumb_admin_brand_edit
-        add_breadcrumb 'Edit', edit_admin_brand_path(@brand) if @brand
+        breadcrumb :admin, @brand, :edit
+        # add_breadcrumb 'Edit', edit_admin_brand_path(@brand) if @brand
       end
 
       def breadcrumb_admin_shops
-        add_breadcrumb 'Shops', admin_shops_path
+        breadcrumb :admin, :shops
+        # add_breadcrumb 'Shops', admin_shops_path
       end
 
       def breadcrumb_admin_shop
-        add_breadcrumb @shop.shopname, admin_shop_path(@shop) if @shop
+        breadcrumb :admin, @shop
+        # add_breadcrumb @shop.shopname, admin_shop_path(@shop) if @shop
       end
 
       def breadcrumb_admin_shop_products
+        # TODO : this can't be solved right now.
         add_breadcrumb @shop.shopname, admin_shop_products_path(@shop) if @shop
       end
 
       def breadcrumb_admin_edit_product
+        # TODO : this can't be solved right now.
         if @product.name
           add_breadcrumb @product.name, edit_admin_shop_product_path(@product.shop, @product)
         end
       end
 
       def breadcrumb_admin_product_skus
+        # TODO : this can't be solved right now.
         add_breadcrumb 'Skus', admin_shop_product_skus_path(@product.shop, @product) if @product
       end
 
       def breadcrumb_admin_product_edit_sku
+        # TODO : this can't be solved right now.
         if @sku
           add_breadcrumb 'Edit', edit_admin_shop_product_sku_path(@sku.product.shop, @sku.product, @sku)
         end
       end
 
       def breadcrumb_admin_product_variants
+        # TODO : this can't be solved right now.
         add_breadcrumb 'Variants', admin_shop_product_variants_path(@product.shop, @product) if @product
       end
   end
