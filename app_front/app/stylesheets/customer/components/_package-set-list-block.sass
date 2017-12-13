@@ -1,7 +1,7 @@
 +component(package-set-list-block)
 
   +part(promotion-text)
-    
+
     background-color: $color-flash-red
     color: $color-white
     text-align: center
@@ -16,7 +16,7 @@
 
     +breakpoint('mobile')
       margin-top: 2.2em
-      margin-left: -2em
+      margin-left: -3em
       padding: 0.3em
       font-size: 10px
       font-weight: bold
@@ -53,6 +53,7 @@
   +part(central-promotion)
     position: absolute
     top: 0
+    width: 100%
     +overflow
     +centered
 
@@ -64,7 +65,6 @@
     +overflow
     +centered
 
-    // ADDED
     height: 17vw
     +breakpoint('mobile')
       height: 36vw
@@ -74,12 +74,6 @@
       height: 17vw
       +breakpoint('mobile')
         height: 36vw
-
-    // max-height: 672px
-    //
-    // background-position: center center
-    // background-size: contain
-    // background-repeat: no-repeat
 
   +part(footer-content)
     margin: 1em
