@@ -2507,7 +2507,7 @@ body {
     @media (min-width: 995px) {
       .package-set-list-block__promotion-text {
         margin-top: 2.2em;
-        margin-left: -2em;
+        margin-left: -4em;
         padding: 0.3em;
         font-weight: bold;
         -ms-transform: rotate(-25deg);
@@ -2561,11 +2561,7 @@ body {
   .package-set-list-block__central-image {
     overflow-x: auto;
     text-align: center;
-    margin: 0 auto;
-    height: 17vw; }
-    @media (max-width: 994px) {
-      .package-set-list-block__central-image {
-        height: 36vw; } }
+    margin: 0 auto; }
     .package-set-list-block__central-image img {
       z-index: 0;
       height: 17vw; }
