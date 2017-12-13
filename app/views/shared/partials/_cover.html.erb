@@ -23,6 +23,14 @@
           </a>
         <% end %>
 
+        <div class="landing-banner__promotion">
+          <div class="landing-banner__promotion-text">PROMOTION</div>
+        </div>
+
+        <% if defined?(promotion) && promotion.present? %>
+            <div class="landing-banner__promotion-text"><%= promotion %></div>
+        <% end %>
+
       </div>
     </div>
   </div>

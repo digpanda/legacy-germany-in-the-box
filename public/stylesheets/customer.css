@@ -2080,6 +2080,35 @@ body {
       background-size: cover;
       background-position: center;
       min-height: 55vw; } }
+  .landing-banner__promotion {
+    overflow-x: auto;
+    height: 55vw; }
+  .landing-banner__promotion-text {
+    background-color: #df002f;
+    overflow: hidden;
+    color: white;
+    text-align: center; }
+    @media (min-width: 995px) {
+      .landing-banner__promotion-text {
+        margin-top: 4em;
+        margin-left: -4em;
+        padding: 0.3em;
+        font-weight: bold;
+        -ms-transform: rotate(-25deg);
+        -webkit-transform: rotate(-25deg);
+        transform: rotate(-25deg);
+        width: 40%; } }
+    @media (max-width: 994px) {
+      .landing-banner__promotion-text {
+        margin-top: 2em;
+        margin-left: -2em;
+        padding: 0.3em;
+        font-size: 12px;
+        font-weight: bold;
+        -ms-transform: rotate(-25deg);
+        -webkit-transform: rotate(-25deg);
+        transform: rotate(-25deg);
+        width: 65%; } }
 
 .footer {
   padding-top: 0.5em;

@@ -3,22 +3,7 @@
 <!-- < cache @package_set do > -->
 
   <!-- Cover -->
-  <!-- < render partial: 'shared/partials/cover', locals: { cover: @package_set.cover, banner: @banner } > -->
-
-
-  <!-- IMAGE -->
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="package-set-list-block__central-image">
-        <img src="<%= @package_set.cover %>" />
-      </div>
-      <div class="package-set-list-block__central-promotion">
-        <% if @package_set.promotion_text.present? %>
-          <div class="package-set-list-block__promotion-text"><%= @package_set.promotion_text %></div>
-        <% end %>
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'shared/partials/cover', locals: { cover: @package_set.cover, promotion: @package_set.promotion_text } %>
 
   <div class="row">
     <div class="col-md-12">
