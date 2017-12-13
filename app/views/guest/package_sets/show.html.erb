@@ -3,7 +3,7 @@
 <!-- < cache @package_set do > -->
 
   <!-- Cover -->
-  <%= render partial: 'shared/partials/cover', locals: { cover: Setting.instance.package_sets_cover, banner: @banner } %>
+  <%= render partial: 'shared/partials/cover', locals: { cover: @package_set.cover, banner: @banner } %>
 
   <div class="row">
     <div class="col-md-12">
