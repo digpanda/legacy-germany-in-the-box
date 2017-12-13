@@ -1,6 +1,11 @@
 +component(package-set-list-block)
 
   +part(promotion-text)
+
+    // ADDED
+    position: absolute
+    top: 0
+
     background-color: $color-flash-red
     color: $color-white
     text-align: center
@@ -52,6 +57,12 @@
   +part(central-image)
     +overflow
     +centered
+
+    // ADDED
+    height: 17vw
+    +breakpoint('mobile')
+      height: 36vw
+      
     img
       height: 17vw
       +breakpoint('mobile')

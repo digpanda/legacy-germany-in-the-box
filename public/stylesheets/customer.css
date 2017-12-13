@@ -2501,6 +2501,8 @@ body {
   font-size: 15px;
   margin-bottom: 1em; }
   .package-set-list-block__promotion-text {
+    position: absolute;
+    top: 0;
     background-color: #df002f;
     color: white;
     text-align: center; }
@@ -2551,10 +2553,14 @@ body {
     overflow-x: auto;
     text-align: center;
     margin: 0 auto;
+    height: 17vw;
     max-height: 672px;
     background-position: center center;
     background-size: contain;
     background-repeat: no-repeat; }
+    @media (max-width: 994px) {
+      .package-set-list-block__central-image {
+        height: 36vw; } }
     .package-set-list-block__central-image img {
       height: 17vw; }
       @media (max-width: 994px) {
