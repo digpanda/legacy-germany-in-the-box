@@ -2549,15 +2549,21 @@ body {
     color: #bdc3c7;
     font-weight: 300;
     text-align: right; }
+  .package-set-list-block__central-promotion {
+    position: absolute;
+    top: 0;
+    overflow-x: auto;
+    text-align: center;
+    margin: 0 auto;
+    height: 17vw; }
+    @media (max-width: 994px) {
+      .package-set-list-block__central-promotion {
+        height: 36vw; } }
   .package-set-list-block__central-image {
     overflow-x: auto;
     text-align: center;
     margin: 0 auto;
-    height: 17vw;
-    max-height: 672px;
-    background-position: center center;
-    background-size: contain;
-    background-repeat: no-repeat; }
+    height: 17vw; }
     @media (max-width: 994px) {
       .package-set-list-block__central-image {
         height: 36vw; } }

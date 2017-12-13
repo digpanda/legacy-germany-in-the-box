@@ -54,6 +54,16 @@
     font-weight: 300
     text-align: right
 
+  +part(central-promotion)
+    position: absolute
+    top: 0
+    +overflow
+    +centered
+
+    height: 17vw
+    +breakpoint('mobile')
+      height: 36vw
+
   +part(central-image)
     +overflow
     +centered
@@ -69,11 +79,11 @@
       +breakpoint('mobile')
         height: 36vw
 
-    max-height: 672px
-
-    background-position: center center
-    background-size: contain
-    background-repeat: no-repeat
+    // max-height: 672px
+    //
+    // background-position: center center
+    // background-size: contain
+    // background-repeat: no-repeat
 
   +part(footer-content)
     margin: 1em
