@@ -2524,7 +2524,7 @@ body {
         -ms-transform: rotate(-25deg);
         -webkit-transform: rotate(-25deg);
         transform: rotate(-25deg);
-        width: 10%; } }
+        width: 100%; } }
   @media (max-width: 994px) {
     .package-set-list-block {
       margin-bottom: 0; } }
