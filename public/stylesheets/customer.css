@@ -2109,6 +2109,15 @@ body {
         -webkit-transform: rotate(-25deg);
         transform: rotate(-25deg);
         width: 65%; } }
+  .landing-banner__image-link {
+    background-color: #464646;
+    text-align: right;
+    position: absolute;
+    padding-right: 1em;
+    padding-left: 1em;
+    bottom: 0; }
+    .landing-banner__image-link a, .landing-banner__image-link a:active, .landing-banner__image-link a:hover, .landing-banner__image-link a:visited {
+      color: white; }
 
 .footer {
   padding-top: 0.5em;

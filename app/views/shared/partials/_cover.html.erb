@@ -17,7 +17,7 @@
     <div class="col-md-12">
       <div class="landing-banner lazy" data-original="<%= cover %>" style="background-image:url('/images/grey.jpg');">
 
-        <% if defined? sticker %>
+        <% if defined?(sticker) %>
           <a href="<%= sticker[:url] %>">
             <img src="<%= sticker[:image] %>" class="+logo-on-banner" />
           </a>
@@ -27,6 +27,13 @@
           <div class="landing-banner__promotion">
             <div class="landing-banner__promotion-text"><%= promotion %></div>
           </div>
+        <% end %>
+
+        <div class="landing-banner__image-link">
+          <a href="<%= cover %>">Share image</a>
+        </div>
+        <% if current_user&.referrer %>
+
         <% end %>
 
       </div>
