@@ -2524,7 +2524,7 @@ body {
         -ms-transform: rotate(-25deg);
         -webkit-transform: rotate(-25deg);
         transform: rotate(-25deg);
-        width: 100%; } }
+        width: 90%; } }
   @media (max-width: 994px) {
     .package-set-list-block {
       margin-bottom: 0; } }
@@ -2567,8 +2567,7 @@ body {
       height: 17vw; }
       @media (max-width: 994px) {
         .package-set-list-block__central-image img {
-          height: 36vw;
-          max-width: 50%; } }
+          height: 36vw; } }
   .package-set-list-block__footer-content {
     margin: 1em;
     margin-top: 0.1em; }
