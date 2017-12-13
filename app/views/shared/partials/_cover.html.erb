@@ -29,11 +29,10 @@
           </div>
         <% end %>
 
-        <div class="landing-banner__image-link">
-          <a href="<%= cover %>">Share image</a>
-        </div>
-        <% if current_user&.referrer %>
-
+        <% if defined?(share) && share %>
+          <div class="landing-banner__image-link">
+            <a href="<%= cover %>">Share image</a>
+          </div>
         <% end %>
 
       </div>
