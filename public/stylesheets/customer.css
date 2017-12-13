@@ -2517,14 +2517,14 @@ body {
     @media (max-width: 994px) {
       .package-set-list-block__promotion-text {
         margin-top: 2.2em;
-        margin-left: -3em;
+        margin-left: -2em;
         padding: 0.3em;
         font-size: 10px;
         font-weight: bold;
         -ms-transform: rotate(-25deg);
         -webkit-transform: rotate(-25deg);
         transform: rotate(-25deg);
-        width: 90%; } }
+        width: 10%; } }
   @media (max-width: 994px) {
     .package-set-list-block {
       margin-bottom: 0; } }
