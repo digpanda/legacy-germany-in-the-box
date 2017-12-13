@@ -14,7 +14,9 @@
           <div class="package-set-list-block__central-image">
             <div><img src="<%= package_set.cover %>" /></div>
             <% if package_set.promotion_text.present? %>
+            <div>
               <div class="package-set-list-block__promotion-text"><%= package_set.promotion_text %></div>
+            </div>
             <% end %>
           </div>
         </div>
