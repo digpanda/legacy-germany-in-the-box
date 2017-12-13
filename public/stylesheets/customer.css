@@ -2516,7 +2516,7 @@ body {
         width: 100%; } }
     @media (max-width: 994px) {
       .package-set-list-block__promotion-text {
-        margin-top: 2.2em;
+        margin-top: 1em;
         margin-left: -2em;
         padding: 0.3em;
         font-size: 10px;
@@ -2550,6 +2550,7 @@ body {
   .package-set-list-block__central-promotion {
     position: absolute;
     top: 0;
+    left: 15px;
     width: 100%;
     overflow-x: auto;
     text-align: center;
