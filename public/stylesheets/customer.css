@@ -2562,6 +2562,7 @@ body {
       .package-set-list-block__central-image {
         height: 36vw; } }
     .package-set-list-block__central-image img {
+      z-index: 0;
       height: 17vw; }
       @media (max-width: 994px) {
         .package-set-list-block__central-image img {
