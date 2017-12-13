@@ -65,15 +65,12 @@
     +overflow
     +centered
 
-    // height: 17vw
-    +breakpoint('mobile')
-      // height: 36vw
-
     img
-      z-index: 0 // to avoid collapsing anything
+      z-index: 0
       height: 17vw
       +breakpoint('mobile')
         height: 36vw
+        max-width: 50%
 
   +part(footer-content)
     margin: 1em

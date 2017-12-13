@@ -2567,7 +2567,8 @@ body {
       height: 17vw; }
       @media (max-width: 994px) {
         .package-set-list-block__central-image img {
-          height: 36vw; } }
+          height: 36vw;
+          max-width: 50%; } }
   .package-set-list-block__footer-content {
     margin: 1em;
     margin-top: 0.1em; }
