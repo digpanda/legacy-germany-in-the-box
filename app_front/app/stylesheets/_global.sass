@@ -1,5 +1,15 @@
 @import 'global/forms'
 
+// intl tel input bugfixing lightbox
+.iti-container
+  +breakpoint('mobile')
+    z-index: 10001 !important
+    width: 100%
+    height: 100%
+    left: 0 !important
+    position: absolute
+    top: 0 !important
+
 #new-address-tag
   // we recalibrate for the scrolldown on the address new field
   margin-top: -1.7em

@@ -26,6 +26,7 @@ var AutoResize = {
         initialCountry: "CN"
       });
 
+
       $("#address_mobile").intlTelInput({
         nationalMode: false,
         preferredCountries: ["DE", "CN"],
