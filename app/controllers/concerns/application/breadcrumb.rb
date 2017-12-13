@@ -12,7 +12,8 @@ module Application
 
       # we should put it into a library, there's an obvious possible abstraction here
       def breadcrumb_category
-        add_breadcrumb @category.name, guest_category_path(@category) unless @category.nil?
+        breadcrumb :guest, @category
+        # add_breadcrumb @category.name, guest_category_path(@category) unless @category.nil?
       end
 
       def breadcrumb_package_sets
@@ -107,7 +108,11 @@ module Application
           end
         end
 
-        path = url_for(action: action, controller: "#{namespace}/#{controller}", only_path: true)
+        if resource.instance_of? Symbol
+          path = polymorphic_url([namespace, controller, action], only_path: true)
+        else
+          path = polymorphic_url([namespace, resource], only_path: true)
+        end
         add_breadcrumb title, path
       end
 
