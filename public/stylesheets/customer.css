@@ -2501,8 +2501,6 @@ body {
   font-size: 15px;
   margin-bottom: 1em; }
   .package-set-list-block__promotion-text {
-    position: absolute;
-    top: 0;
     background-color: #df002f;
     color: white;
     text-align: center; }
