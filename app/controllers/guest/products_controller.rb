@@ -10,7 +10,6 @@ class Guest::ProductsController < ApplicationController
   before_filter :valid_featured_sku?
 
   before_action :breadcrumb_home, only: [:show]
-  before_action :breadcrumb_category, :breadcrumb_shop, :breadcrumb_product, only: [:show]
 
   def show
     @other_products = shop.products.not_in(_id: [product.id]).highlight_first.can_buy.by_brand.limit(6)

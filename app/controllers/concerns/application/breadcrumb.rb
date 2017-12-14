@@ -7,15 +7,6 @@ module Application
 
     protected
 
-      # NOTE : we should make a library such as breadcrumb category: [:index, :edit] or something
-      # try to DRY up this repeatitive system.
-
-      # we should put it into a library, there's an obvious possible abstraction here
-      def breadcrumb_category
-        breadcrumb :guest, @category
-        # add_breadcrumb @category.name, guest_category_path(@category) unless @category.nil?
-      end
-
       def breadcrumb_package_sets
         add_breadcrumb I18n.t('package_set.package_sets'), guest_package_sets_path
       end

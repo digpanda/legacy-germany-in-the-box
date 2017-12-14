@@ -7,9 +7,6 @@ class Guest::ShopsController < ApplicationController
 
   before_action :set_shop, :set_products
 
-  before_action :breadcrumb_home, only: [:show]
-  before_action :breadcrumb_category, :breadcrumb_shop, only: [:show]
-
   def show
   end
 
