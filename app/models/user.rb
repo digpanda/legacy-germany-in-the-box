@@ -39,7 +39,7 @@ class User
   field :role,      type: Symbol, default: :customer
   field :fname,     type: String
   field :lname,     type: String
-  field :birth,     type: String
+  field :birth,     type: Time
   field :city,      type: String
   field :province,  type: String
   field :country,   type: String

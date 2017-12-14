@@ -4,10 +4,23 @@
 <div class="form-group">
   <%= f.text_field :fname, :class => 'form-control', placeholder: I18n.t('edit_personal.firstname') %>
 </div>
+
 <div class="form-group">
-  <%= f.text_field :birth, :id => 'datepicker', :class => 'form-control', placeholder: I18n.t('edit_personal.birthday'), :required => true %>
-  <div class="help-block with-errors"></div>
+
+  <div class="row">
+    <div class="col-xs-4 col-md-4">
+      <%= select_tag :'user[birth][month]', options_for_select(chinese_months, selected: @user.birth&.strftime("%m")), class: 'form-control' %>
+    </div>
+    <div class="col-xs-4 col-md-4">
+      <%= text_field_tag :'user[birth][day]', @user.birth&.strftime("%d"), { class: 'form-control', placeholder: 'Day' } %>
+    </div>
+    <div class="col-xs-4 col-md-4">
+      <%= text_field_tag :'user[birth][year]', @user.birth&.strftime("%Y"), { class: 'form-control', placeholder: 'Year' } %>
+    </div>
+  </div>
+
 </div>
+
 <div class="form-group">
   <div class="radio-group">
     <%= f.radio_button :gender, 'm', :checked => @user.gender.present? ? @user.gender.male? : true %>

@@ -1,41 +1,15 @@
-<%= translation_js(:max_exceeded_message, :image_upload) %>
-<%= translation_js(:ext_error_message, :image_upload) %>
-
 <%= form_for @user, :data => {:toggle => 'validator'}, :url => customer_account_path, :method => :patch do |f| %>
 
 <div class="row">
-  <div class="col-md-11 +centered">
-    <div class="form-group">
-      <div class="row">
-        <%= f.label :pic, I18n.t('account.profile_picture'), :class => 'control-label' %>
-        <i class="fa fa-info-circle" title="<%= I18n.t('account.profile_picture') %>"></i>
-      </div>
 
-      <div class="row">
-        <%= image_tag (current_user.pic.url.nil? ? "/images/icons/default_user_pic.png" : current_user.pic.url), :class => 'logo-img-large', :id => "pic_#{current_user.id}" %>
-      </div>
-    </div>
+  <!-- < content_tag(:div, nil, :id => "js-show-datepicker", :data => { :language => I18n.locale }) > -->
 
-    <div class="form-group">
-      <div class="fileUpload btn btn-default">
-        <span>
-          <i class="fa fa-cloud-upload"></i>
-          <%= I18n.t('image_upload.upload') %>
-        </span>
-        <%= f.file_field :pic, :accept => "image/png, image/jpeg, image/jpg", :class => 'img-file-upload upload', :img_id => "#pic_#{current_user.id}" %>
-      </div>
-    </div>
+  <div class="col-md-5 col-md-push-6">
+    <%= render partial: "shared/user/partials/user_details", :locals => { :f => f } %>
+    <hr />
   </div>
-</div>
 
-<hr />
-
-<div class="+spacer"></div>
-
-
-<div class="row">
-
-  <div class="col-md-5">
+  <div class="col-md-5 col-md-pull-5">
 
     <div class="form-group">
       <%= f.text_field :email, :class => 'form-control', :type => 'email', placeholder: I18n.t('edit_account.email') %>
@@ -45,12 +19,7 @@
       <%= render partial: "shared/user/partials/edit_password", :locals => { :f => f } %>
     <% end %>
 
-  </div>
-
-  <%= content_tag(:div, nil, :id => "js-show-datepicker", :data => { :language => I18n.locale }) %>
-
-  <div class="col-md-5 col-md-push-1">
-    <%= render partial: "shared/user/partials/user_details", :locals => { :f => f } %>
+    <hr />
   </div>
 
 </div>

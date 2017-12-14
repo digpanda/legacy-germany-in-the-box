@@ -12,7 +12,7 @@ class Customer::AccountController < ApplicationController
   # NOTE : this update is used from many different points
   # within the system (e.g checkout process) be careful with this.
   def update
-    if valid_password? && ensure_password! && user.update(user_params)
+    if valid_password? && ensure_password && update_user
       # update email nonetheless without waiting for confirmation
       # NOTE : this was coded regarding a bug on missing informations
       # it should be optimized.
@@ -76,7 +76,17 @@ class Customer::AccountController < ApplicationController
       end
     end
 
-    def ensure_password!
+    def update_user
+      ensure_birth
+      user.update(user_params)
+    end
+
+    def ensure_birth
+      birth = params[:user][:birth]
+      params[:user][:birth] = "#{birth[:year]}-#{birth[:month]}-#{birth[:day]}"
+    end
+
+    def ensure_password
       unless password_needed?
         params[:user][:password] = params[:user][:password_confirmation] = params[:user][:current_password]
       end
