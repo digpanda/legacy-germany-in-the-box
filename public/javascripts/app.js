@@ -3544,35 +3544,18 @@ var AutoResize = {
 
   setupInternational: function setupInternational() {
 
-    $("#user_mobile").intlTelInput({
+    var config = {
       nationalMode: false,
       preferredCountries: ["DE", "CN"],
-      initialCountry: "DE"
-    });
+      initialCountry: "CN",
+      onlyCountries: ["at", "au", "be", "ba", "bg", "ca", "ch", "cn", "cz", "de", "dk", "es", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "it", "lu", "nl", "no", "pl", "pt", "ro", "ru", "sg", "sk", "si", "se", "ua", "us"]
+    };
 
-    $("#inquiry_mobile").intlTelInput({
-      nationalMode: false,
-      preferredCountries: ["DE", "CN"],
-      initialCountry: "CN"
-    });
-
-    $("#address_mobile").intlTelInput({
-      nationalMode: false,
-      preferredCountries: ["DE", "CN"],
-      initialCountry: "CN"
-    });
-
-    $("#shop_application_mobile").intlTelInput({
-      nationalMode: false,
-      preferredCountries: ["DE", "CN"],
-      initialCountry: "DE"
-    });
-
-    $("#shop_application_tel").intlTelInput({
-      nationalMode: false,
-      preferredCountries: ["DE", "CN"],
-      initialCountry: "DE"
-    });
+    $("#user_mobile").intlTelInput(config);
+    $("#inquiry_mobile").intlTelInput(config);
+    $("#address_mobile").intlTelInput(config);
+    $("#shop_application_mobile").intlTelInput(config);
+    $("#shop_application_tel").intlTelInput(config);
   }
 };
 

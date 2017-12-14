@@ -12,10 +12,10 @@
       <%= select_tag :'user[birth][month]', options_for_select(chinese_months, selected: @user.birth&.strftime("%m")), class: 'form-control' %>
     </div>
     <div class="col-xs-4 col-md-4">
-      <%= text_field_tag :'user[birth][day]', @user.birth&.strftime("%d"), { class: 'form-control', placeholder: 'Day' } %>
+      <%= text_field_tag :'user[birth][day]', @user.birth&.strftime("%d"), { class: 'form-control', placeholder: I18n.t('edit_personal.day') } %>
     </div>
     <div class="col-xs-4 col-md-4">
-      <%= text_field_tag :'user[birth][year]', @user.birth&.strftime("%Y"), { class: 'form-control', placeholder: 'Year' } %>
+      <%= text_field_tag :'user[birth][year]', @user.birth&.strftime("%Y"), { class: 'form-control', placeholder: I18n.t('edit_personal.year') } %>
     </div>
   </div>
 

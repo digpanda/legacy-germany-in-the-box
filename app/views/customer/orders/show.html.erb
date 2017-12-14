@@ -17,8 +17,6 @@
 <!-- TODO : this must be refactored, it's fugly -->
 <div class="row">
   <div class="col-md-8 col-md-push-2">
-    <div class="+white-box">
-      <%= render partial: "customer/orders/show/address", :locals => { :address => @order.shipping_address} %>
-    </div>
+    <%= render partial: "customer/orders/show/address", :locals => { :address => @order.shipping_address} %>
   </div>
 </div>

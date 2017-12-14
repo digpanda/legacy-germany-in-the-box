@@ -450,6 +450,9 @@ zh-CN:
     unfoolow_ko: 取消关注失败
   edit_followers:
   edit_personal:
+    year: 年
+    month: 月
+    day: 日
     firstname: 名
     lastname: 姓
     birthday: 生日
