@@ -63,7 +63,7 @@ class Customer::AccountController < ApplicationController
     end
 
     def password_needed?
-      !user.wechat? && params[:user][:password].present?
+      !user.wechat?
     end
 
     def valid_password?
