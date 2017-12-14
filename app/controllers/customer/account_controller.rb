@@ -82,8 +82,10 @@ class Customer::AccountController < ApplicationController
     end
 
     def ensure_birth
-      birth = params[:user][:birth]
-      params[:user][:birth] = "#{birth[:year]}-#{birth[:month]}-#{birth[:day]}"
+      if params[:user][:birth]
+        birth = params[:user][:birth]
+        params[:user][:birth] = "#{birth[:year]}-#{birth[:month]}-#{birth[:day]}"
+      end
     end
 
     def ensure_password
