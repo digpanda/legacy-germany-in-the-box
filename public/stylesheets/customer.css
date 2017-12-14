@@ -2069,36 +2069,55 @@ body {
       .categories-block__image {
         height: 70vw; } }
 
-.landing-banner-desktop {
+.landing-banner {
   background-color: #bdc3c7;
   background-size: cover;
   background-position: center;
   min-height: 35vw; }
-  .landing-banner-desktop__content {
+  @media (max-width: 994px) {
+    .landing-banner {
+      background-color: #bdc3c7;
+      background-size: cover;
+      background-position: center;
+      min-height: 55vw; } }
+  .landing-banner__promotion {
+    overflow-x: auto;
+    height: 55vw; }
+  .landing-banner__promotion-text {
+    background-color: #df002f;
+    overflow: hidden;
     color: white;
-    text-align: center;
-    margin: 0 auto;
-    padding-top: 8em;
-    padding-bottom: 5em; }
-    .landing-banner-desktop__content h2 {
-      font-size: 3em; }
-    .landing-banner-desktop__content p {
-      font-size: 1.7em;
-      padding-bottom: 0.5em; }
-
-.landing-banner-mobile {
-  background-color: #bdc3c7;
-  background-size: cover;
-  background-position: center;
-  min-height: 50vw; }
-  .landing-banner-mobile__content {
-    text-align: center;
-    padding: 1em; }
-    .landing-banner-mobile__content h2 {
-      font-size: 3em; }
-    .landing-banner-mobile__content p {
-      font-size: 1.7em;
-      padding-bottom: 0.5em; }
+    text-align: center; }
+    @media (min-width: 995px) {
+      .landing-banner__promotion-text {
+        margin-top: 4em;
+        margin-left: -4em;
+        padding: 0.3em;
+        font-weight: bold;
+        -ms-transform: rotate(-25deg);
+        -webkit-transform: rotate(-25deg);
+        transform: rotate(-25deg);
+        width: 40%; } }
+    @media (max-width: 994px) {
+      .landing-banner__promotion-text {
+        margin-top: 2em;
+        margin-left: -2em;
+        padding: 0.3em;
+        font-size: 12px;
+        font-weight: bold;
+        -ms-transform: rotate(-25deg);
+        -webkit-transform: rotate(-25deg);
+        transform: rotate(-25deg);
+        width: 65%; } }
+  .landing-banner__image-link {
+    background-color: #464646;
+    text-align: right;
+    position: absolute;
+    padding-right: 1em;
+    padding-left: 1em;
+    bottom: 0; }
+    .landing-banner__image-link a, .landing-banner__image-link a:active, .landing-banner__image-link a:hover, .landing-banner__image-link a:visited {
+      color: white; }
 
 .footer {
   padding-top: 0.5em;
@@ -2526,7 +2545,7 @@ body {
     @media (min-width: 995px) {
       .package-set-list-block__promotion-text {
         margin-top: 2.2em;
-        margin-left: -2em;
+        margin-left: -4em;
         padding: 0.3em;
         font-weight: bold;
         -ms-transform: rotate(-25deg);
@@ -2535,7 +2554,7 @@ body {
         width: 100%; } }
     @media (max-width: 994px) {
       .package-set-list-block__promotion-text {
-        margin-top: 2.2em;
+        margin-top: 1em;
         margin-left: -2em;
         padding: 0.3em;
         font-size: 10px;
@@ -2566,18 +2585,28 @@ body {
     color: #bdc3c7;
     font-weight: 300;
     text-align: right; }
-  .package-set-list-block__central-image {
+  .package-set-list-block__central-promotion {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 90%;
     overflow-x: auto;
     text-align: center;
     margin: 0 auto;
-    height: 17vw;
-    max-height: 672px;
-    background-position: center center;
-    background-size: contain;
-    background-repeat: no-repeat; }
+    height: 17vw; }
     @media (max-width: 994px) {
-      .package-set-list-block__central-image {
+      .package-set-list-block__central-promotion {
         height: 36vw; } }
+  .package-set-list-block__central-image {
+    overflow-x: auto;
+    text-align: center;
+    margin: 0 auto; }
+    .package-set-list-block__central-image img {
+      z-index: 0;
+      height: 17vw; }
+      @media (max-width: 994px) {
+        .package-set-list-block__central-image img {
+          height: 36vw; } }
   .package-set-list-block__footer-content {
     margin: 1em;
     margin-top: 0.1em; }
@@ -3218,6 +3247,10 @@ textarea, input {
   background-color: #f9f9f9; }
   .form-control:focus {
     border: 1px solid #33965e; }
+
+.form-control-important {
+  border: 1px solid #33965e;
+  background-color: #f5f9ee; }
 
 input[type=checkbox] {
   height: 18px;

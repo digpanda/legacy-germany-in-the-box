@@ -3,7 +3,7 @@
 <!-- < cache @package_set do > -->
 
   <!-- Cover -->
-  <%= render partial: "guest/package_sets/show/cover", locals: { package_set: @package_set } %>
+  <%= render partial: 'shared/partials/cover', locals: { cover: @package_set.cover, promotion: @package_set.promotion_text, share: current_user&.referrer } %>
 
   <div class="row">
     <div class="col-md-12">

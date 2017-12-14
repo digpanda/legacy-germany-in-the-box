@@ -10,12 +10,15 @@ class Banner
   field :active, type: Boolean, default: false
   field :location, type: Symbol # [:shops_landing_cover, :package_sets_landing_cover, ...]
 
-  field :file, type: String
-  mount_uploader :file, CoverUploader
+  field :cover, type: String
+  mount_uploader :cover, CoverUploader
 
-  belongs_to :banner, polymorphic: true
+  belongs_to :category
+  belongs_to :brand
+
+  scope :active, -> { self.and(active: true) }
 
   def image
-    image_url(:file, :fullsize)
+    image_url(:cover, :fullsize)
   end
 end

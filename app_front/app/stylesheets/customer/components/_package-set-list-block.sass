@@ -1,20 +1,21 @@
 +component(package-set-list-block)
 
   +part(promotion-text)
+
     background-color: $color-flash-red
     color: $color-white
     text-align: center
 
     +breakpoint('desktop')
       margin-top: 2.2em
-      margin-left: -2em
+      margin-left: -4em
       padding: 0.3em
       font-weight: bold
       +rotate(-25deg)
       width: 100%
 
     +breakpoint('mobile')
-      margin-top: 2.2em
+      margin-top: 1em
       margin-left: -2em
       padding: 0.3em
       font-size: 10px
@@ -22,8 +23,6 @@
       +rotate(-25deg)
       width: 100%
 
-  //+shadow
-  //+border-radius(4px)
   font-size: 15px
   margin-bottom: 1em
   +breakpoint('mobile')
@@ -49,18 +48,28 @@
     font-weight: 300
     text-align: right
 
-  +part(central-image)
+  +part(central-promotion)
+    position: absolute
+    top: 0
+    left: 15px
+    width: 90%
     +overflow
     +centered
+
     height: 17vw
     +breakpoint('mobile')
       height: 36vw
 
-    max-height: 672px
+  +part(central-image)
+    +overflow
+    +centered
 
-    background-position: center center
-    background-size: contain
-    background-repeat: no-repeat
+    img
+      z-index: 0
+      height: 17vw
+      +breakpoint('mobile')
+        height: 36vw
+        //max-width: 50%
 
   +part(footer-content)
     margin: 1em

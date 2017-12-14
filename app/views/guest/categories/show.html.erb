@@ -6,8 +6,6 @@
   </div>
 </div>
 
-<%= render partial: "guest/categories/show/navigation", :locals => { :category => @category } %>
-
 <% @shops.each do |shop| %>
 
   <%= render partial: "guest/shops/block", :locals => { :shop => shop } %>

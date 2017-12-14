@@ -53,7 +53,7 @@ end
 VCR.turn_off!
 
 port = 3333 + ENV['TEST_ENV_NUMBER'].to_i # for `parallel_tests`
-host = 'local.dev'
+host = 'localhost'
 
 Capybara.app_host = "http://#{host}:#{port}"
 Capybara.always_include_port = true

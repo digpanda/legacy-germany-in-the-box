@@ -1,0 +1,42 @@
+<% if defined?(banner) && banner.present? %>
+
+  <!-- Banner show up -->
+  <div class="row">
+    <div class="col-md-12">
+      <a href="<%= banner.link %>">
+        <div class="landing-banner lazy" data-original="<%= banner.image %>" style="background-image:url('/images/grey.jpg');">
+        </div>
+      </a>
+    </div>
+  </div>
+
+<% elsif defined?(cover) && cover.present? %>
+
+  <!-- Cover show up -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="landing-banner lazy" data-original="<%= cover %>" style="background-image:url('/images/grey.jpg');">
+
+        <% if defined?(sticker) %>
+          <a href="<%= sticker[:url] %>">
+            <img src="<%= sticker[:image] %>" class="+logo-on-banner" />
+          </a>
+        <% end %>
+
+        <% if defined?(promotion) && promotion.present? %>
+          <div class="landing-banner__promotion">
+            <div class="landing-banner__promotion-text"><%= promotion %></div>
+          </div>
+        <% end %>
+
+        <% if defined?(share) && share %>
+          <div class="landing-banner__image-link">
+            <a href="<%= cover %>">Share image</a>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+<% end %>

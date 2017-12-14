@@ -1,7 +1,15 @@
 <%= render partial: "guest/package_sets/index/navigation", :locals => { package_sets: @package_sets, category: @category, back: guest_package_sets_categories_path  } %>
 
+
 <!-- Global package set cover -->
-<%= render "guest/package_sets/cover" %>
+<!-- NOTE : there is a lot of logic here, maybe place it elsewhere -->
+<% if @brand&.cover&.present? %>
+  <%= render partial: 'shared/partials/cover', locals: { cover: @brand.cover, banner: @brand.banner } %>
+<% elsif @category&.cover&.present? %>
+  <%= render partial: 'shared/partials/cover', locals: { cover: @category.cover, banner: @category.banner } %>
+<% else %>
+  <%= render partial: 'shared/partials/cover', locals: { cover: Setting.instance.package_sets_cover, banner: @banner } %>
+<% end %>
 
 <!-- Brand filters for Package sets -->
 <%= render partial: "guest/package_sets/brand_filters", locals: { current_brand: @brand, current_category: @category, brand_filters: @brand_filters} %>

@@ -63,16 +63,6 @@
 
     <div class="col-md-12">
 
-      <div class="row">
-        <div class="col-md-8 +nopadding">
-          <h3>Images</h3>
-          <hr>
-        </div>
-        <div class="col-md-4 +right">
-          <hr>
-        </div>
-      </div>
-
       <!-- Cover -->
       <div class="row">
         <div class="col-md-2">
@@ -89,6 +79,13 @@
 
     </div>
 
+  </div>
+
+  <!-- Banner -->
+  <div class="row details__block">
+    <div class="col-md-12">
+      <%= render partial: "admin/banners/form_fields", locals: { form: form, location: :category } %>
+    </div>
   </div>
 
   <%= form.submit :class => 'btn btn-primary', :value =>  "Save category" %>

@@ -1,4 +1,22 @@
 module ArrayHelper
+
+  def chinese_months
+    {
+      '一月'  => '01',
+      '二月' => '02',
+      '三月' => '03',
+      '四月' => '04',
+      '五月' => '05',
+      '六月' => '06',
+      '七月' => '07',
+      '八月' => '08',
+      '九月' => '09',
+      '十月' => '10',
+      '十一月' => '11',
+      '十二月' => '12'
+    }
+  end
+
   def parent_referrers
     Referrer.all.reduce([]) do |acc, referrer|
       acc << ["#{referrer.user.decorate.full_name} (#{referrer.reference_id})", referrer.id]

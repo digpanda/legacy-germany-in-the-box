@@ -1848,6 +1848,10 @@ textarea, input {
   .form-control:focus {
     border: 1px solid #33965e; }
 
+.form-control-important {
+  border: 1px solid #33965e;
+  background-color: #f5f9ee; }
+
 input[type=checkbox] {
   height: 18px;
   width: 18px;

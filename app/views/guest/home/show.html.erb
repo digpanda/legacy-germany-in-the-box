@@ -1,7 +1,13 @@
 <!-- NOTE : this should be refactored and split in a clean way -->
 <% if potential_customer? %>
 
-  <%= render "guest/home/show/landing_page_banner" %>
+  <!-- Landing page cover -->
+  <%= render partial: 'shared/partials/cover', locals: {
+      cover: Setting.instance.landing_page_cover,
+      banner: @banner,
+      sticker: { url: solve_incubator_url, image: '/images/stickers/incubator.jpg' }
+      } %>
+
 
   <% @shops.each do |shop| %>
     <!-- < cache shop do > -->

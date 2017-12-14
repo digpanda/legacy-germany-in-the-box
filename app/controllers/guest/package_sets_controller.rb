@@ -6,9 +6,7 @@ class Guest::PackageSetsController < ApplicationController
   end
 
   before_action :set_package_set, :set_category, :set_brand
-
-  before_action :breadcrumb_package_set, only: [:show]
-  before_action :breadcrumb_package_sets, only: [:index]
+  before_action :set_banner, only: [:index, :categories]
 
   def show
   end
@@ -73,6 +71,10 @@ class Guest::PackageSetsController < ApplicationController
       @order ||= cart_manager.order(shop: package_set.shop)
     end
     # end of abstraction
+
+    def set_banner
+      @banner = Banner.active.where(location: :package_sets_landing_cover).first
+    end
 
     def set_package_set
       @package_set = PackageSet.find(params[:id] || params[:package_set_id]) if params[:id] || params[:package_set_id]

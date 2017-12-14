@@ -1,0 +1,44 @@
++component(landing-banner)
+
+  +header-banner
+  +breakpoint('mobile')
+    +header-banner(55vw)
+
+  +part(promotion)
+    +overflow
+    height: 55vw
+
+  +part(promotion-text)
+    background-color: $color-flash-red
+    overflow: hidden
+    color: $color-white
+    text-align: center
+
+    +breakpoint('desktop')
+      margin-top: 4em
+      margin-left: -4em
+      padding: 0.3em
+      font-weight: bold
+      +rotate(-25deg)
+      width: 40%
+
+    +breakpoint('mobile')
+      margin-top: 2em
+      margin-left: -2em
+      padding: 0.3em
+      font-size: 12px
+      font-weight: bold
+      +rotate(-25deg)
+      width: 65%
+
+  +part(image-link)
+    background-color: $color-black
+
+    #{$a-tags}
+      color: $color-white
+
+    text-align: right
+    position: absolute
+    padding-right: 1em
+    padding-left: 1em
+    bottom: 0

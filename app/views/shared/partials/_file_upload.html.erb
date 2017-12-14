@@ -30,7 +30,9 @@
 
       <% if form.object.persisted? %>
         <% if form.object.send(field).present? %>
-          <%= link_to '', guess_destroy_image_path(form, field), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this image" %>
+          <% if form.object === Image %>
+            <%= link_to '', guess_destroy_image_path(form, field), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this image" %>
+          <% end %>
         <% end %>
       <% end %>
 

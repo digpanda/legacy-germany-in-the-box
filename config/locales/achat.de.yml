@@ -431,6 +431,9 @@ de:
     unfoolow_ko: Ein Fehler ist bei der Deaktivierung der Beobachtung aufgetreten.
   edit_followers:
   edit_personal:
+    year: Year
+    month: Month
+    day: Day
     firstname: Vorname
     lastname: Nachname
     birthday: Geburtstag

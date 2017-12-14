@@ -2,7 +2,7 @@ describe NavigationHistory do
 
   include Rails.application.routes.url_helpers
 
-  let(:request) { double(get?: true, xhr?: false, path: 'ONE_PATH', fullpath: 'ONE_FULL_PATH', host_with_port: 'local.dev:3333', protocol: 'http://') }
+  let(:request) { double(get?: true, xhr?: false, path: 'ONE_PATH', fullpath: 'ONE_FULL_PATH', host_with_port: 'localhost:3333', protocol: 'http://') }
 
   context '#store' do
 

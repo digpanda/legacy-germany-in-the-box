@@ -2,26 +2,28 @@
   <!-- Thumbnail -->
   <div class="row">
     <%= form.label field do %>
-      <%= image_tag form.object.decorate.image_url(field, :thumb, :fallback => true), :id =>
-          "#{field}_#{form.object.id}" %>
+      <%= image_tag assoc.decorate.image_url(field, :thumb, :fallback => true), :id =>
+          "#{field}_#{assoc.id}" %>
     <% end %>
   </div>
 
   <!-- Invisible browsing input -->
   <div class="row">
     <div class="file-upload__browser">
-      <%= form.file_field field, :accept => "image/png, image/jpeg, image/jpg", :image_selector => "##{field}_#{form.object.id}", :class => 'js-file-upload' %>
+      <%= form.file_field field, :accept => "image/png, image/jpeg, image/jpg", :image_selector => "##{field}_#{assoc.id}", :class => 'js-file-upload' %>
     </div>
   </div>
 
   <!-- Actions -->
   <div class="row">
     <div class="file-upload__action">
-      <%= link_to '', '#', :class => 'tooltipster fa fa-check buttons buttons__add hidden', :id => "#{field}_#{form.object.id}_add", :title => "Update changes", :data => {:form => 'submit'} %>
+      <%= link_to '', '#', :class => 'tooltipster fa fa-check buttons buttons__add hidden', :id => "#{field}_#{assoc.id}_add", :title => "Update changes", :data => {:form => 'submit'} %>
 
-      <% if form.object.persisted? %>
-        <% if form.object.send(field).present? %>
-          <%= link_to '', shared_image_path(form.object.id), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this image" %>
+      <% if assoc.persisted? %>
+        <% if assoc.send(field).present? %>
+          <% if assoc === Image %>
+            <%= link_to '', shared_image_path(assoc.id), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this image" %>
+          <% end %>
         <% end %>
       <% end %>
     </div>

@@ -15,7 +15,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   # used for root_url and equivalent
-  Rails.application.routes.default_url_options = { host: 'local.dev', port: 3000 }
+  Rails.application.routes.default_url_options = { host: 'localhost', port: 3000 }
 
   config.action_mailer.smtp_settings = {
       address: 'mailtrap.io',
