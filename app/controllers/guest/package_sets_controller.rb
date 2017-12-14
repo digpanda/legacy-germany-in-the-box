@@ -8,9 +8,6 @@ class Guest::PackageSetsController < ApplicationController
   before_action :set_package_set, :set_category, :set_brand
   before_action :set_banner, only: [:index, :categories]
 
-  before_action :breadcrumb_package_set, only: [:show]
-  before_action :breadcrumb_package_sets, only: [:index]
-
   def show
   end
 

@@ -5,7 +5,7 @@ class Customer::Orders::AddressesController < Customer::AddressesController
   authorize_resource class: false
   before_action :set_order
   before_action :set_addresses
-  before_action :breadcrumb_cart, :breadcrumb_checkout_address
+  
   layout :default_layout # overwrite the sublayout inherit
 
   def index

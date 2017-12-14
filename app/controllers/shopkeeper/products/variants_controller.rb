@@ -11,7 +11,6 @@ class Shopkeeper::Products::VariantsController < ApplicationController
 
   before_action :set_shop, :set_product
   before_action :set_variant, except: [:index, :create]
-  before_action :breadcrumb_shopkeeper_products, :breadcrumb_shopkeeper_edit_product, :breadcrumb_shopkeeper_product_variants
 
   layout :custom_sublayout
 

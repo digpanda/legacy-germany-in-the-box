@@ -11,8 +11,6 @@ class Customer::CheckoutController < ApplicationController
 
   before_filter :force_address_param, only: [:create]
 
-  before_action :breadcrumb_cart, :breadcrumb_checkout_address, :breadcrumb_payment_method
-
   def create
     current_address = current_user.addresses.find(params[:delivery_destination_id])
     checkout_ready = CheckoutReady.new(session, current_user, order, current_address).perform!
