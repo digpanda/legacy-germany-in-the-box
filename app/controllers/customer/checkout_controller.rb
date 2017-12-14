@@ -14,7 +14,7 @@ class Customer::CheckoutController < ApplicationController
   def create
     current_address = current_user.addresses.find(params[:delivery_destination_id])
     checkout_ready = CheckoutReady.new(session, current_user, order, current_address).perform!
-
+    
     if checkout_ready.success?
       redirect_to payment_method_customer_checkout_path
     else
