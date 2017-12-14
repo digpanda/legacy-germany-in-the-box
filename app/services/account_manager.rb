@@ -22,7 +22,7 @@ class AccountManager < BaseService
   private
 
     def try_update
-      check_valid_password? && user.update(user_params)
+      check_valid_password? && update_user
     end
 
     def check_valid_password?
@@ -32,6 +32,16 @@ class AccountManager < BaseService
         user.errors.add(:password, 'wrong')
         false
       end
+    end
+
+    def update_user
+      ensure_birth
+      user.update(user_params)
+    end
+
+    def ensure_birth
+      birth = params[:user][:birth]
+      params[:user][:birth] = "#{birth[:year]}-#{birth[:month]}-#{birth[:day]}"
     end
 
     def bypass_password
