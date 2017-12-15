@@ -96,8 +96,8 @@
       <em>Will it appear on the filters ?</em>
     </div>
 
-    <div class="col-md-5 form-group">
-      <%= form.select(:used_as_filter, boolean_select) %>
+    <div class="col-md-10 form-group">
+      <%= form.select :used_as_filter, boolean_select, {}, class: 'form-control' %>
       <div class="help-block with-errors"></div>
     </div>
 
