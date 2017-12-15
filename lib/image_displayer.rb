@@ -28,8 +28,10 @@ class ImageDisplayer
   private
 
     def field_url
-      if model.send(image_field).present?
-        model.send(image_field).url
+      if model.respond_to?(image_field)
+        if model.send(image_field).present?
+          model.send(image_field).url
+        end
       end
     end
 
