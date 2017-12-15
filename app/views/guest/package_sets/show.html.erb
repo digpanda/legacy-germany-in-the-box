@@ -26,6 +26,40 @@
   </div>
 
   <!-- Image slider -->
+  <div class="row">
+    <div class="col-md-12">
+      <div id="slider-vue">
+
+        <swiper :options="swiperOption">
+
+          <swiper-slide>
+            <img src="/samples/images/logo/350x350.png" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="/samples/images/logo/350x350.png" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="/samples/images/logo/350x350.png" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="/samples/images/logo/350x350.png" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="/samples/images/logo/350x350.png" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="/samples/images/logo/350x350.png" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="/samples/images/logo/350x350.png" />
+          </swiper-slide>
+
+          <div class="swiper-pagination" slot="pagination"></div>
+        </swiper>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Brand description -->
   <%= render partial: "guest/package_sets/show/brand_description", locals: { brand: @package_set.package_skus.first&.product&.brand } %>

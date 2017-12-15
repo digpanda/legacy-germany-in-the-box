@@ -20,7 +20,8 @@ module.exports = {
         'stylesheets/customer.css': /^app\/stylesheets\/customer.sass/,
         'stylesheets/shopkeeper.css': /^app\/stylesheets\/shopkeeper.sass/,
         'stylesheets/admin.css': /^app\/stylesheets\/admin.sass/,
-        'stylesheets/vendor.css': /^bower_components/
+        'stylesheets/vendor.css': /^bower_components/,
+        'stylesheets/vendor-node.css': /^node_modules/
       }
     }
 

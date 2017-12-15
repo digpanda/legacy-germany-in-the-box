@@ -116,7 +116,6 @@
 
 (function() {
 var global = typeof window === 'undefined' ? this : window;
-var process;
 var __makeRelativeRequire = function(require, mappings, pref) {
   var none = {};
   var tryReq = function(name, pref) {
@@ -1083,11 +1082,14 @@ module.exports = PackageSetsShow;
 require.register("javascripts/controllers/guest/package_sets/show.js", function(exports, require, module) {
 'use strict';
 
-var _vueCarousel = require('vue-carousel');
+var _vueAwesomeSwiper = require('vue-awesome-swiper');
 
-var _vueCarousel2 = _interopRequireDefault(_vueCarousel);
+var _vueAwesomeSwiper2 = _interopRequireDefault(_vueAwesomeSwiper);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// require styles
+// import 'swiper/dist/css/swiper.css'
 
 /**
 * PackageSetsShow Class
@@ -1099,13 +1101,20 @@ var PackageSetsShow = {
   init: function init() {
 
     // everything is auto managed ... incredible vuejs.
-    Vue.use(_vueCarousel2.default);
+    Vue.use(_vueAwesomeSwiper2.default);
 
     this.vue = new Vue({
       el: '#slider-vue',
-      data: {},
-      watch: {},
-      methods: {}
+      data: {
+        swiperOption: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          }
+        }
+      }
     });
   }
 };
@@ -4705,7 +4714,7 @@ module.exports = WeixinStarter;
 
 });
 
-require.alias("process/browser.js", "process");process = require('process');require.register("___globals___", function(exports, require, module) {
+require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');
 

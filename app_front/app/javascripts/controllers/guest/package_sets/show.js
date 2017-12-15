@@ -1,11 +1,13 @@
-// import VueAwesomeSwiper from 'vue-awesome-swiper'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+// require styles
+// import 'swiper/dist/css/swiper.css'
 
 /**
 * PackageSetsShow Class
 * We use vue for a carousel system within the page
 */
 var PackageSetsShow = {
-  
+
   vue: null,
   init: function() {
 
@@ -15,11 +17,15 @@ var PackageSetsShow = {
     this.vue = new Vue({
       el: '#slider-vue',
       data: {
-      },
-      watch: {
-      },
-      methods: {
-      },
+        swiperOption: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          }
+        }
+      }
     });
   },
 }
