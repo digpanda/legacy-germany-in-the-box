@@ -116,6 +116,7 @@
 
 (function() {
 var global = typeof window === 'undefined' ? this : window;
+var process;
 var __makeRelativeRequire = function(require, mappings, pref) {
   var none = {};
   var tryReq = function(name, pref) {
@@ -1079,6 +1080,40 @@ module.exports = PackageSetsShow;
 
 });
 
+require.register("javascripts/controllers/guest/package_sets/show.js", function(exports, require, module) {
+'use strict';
+
+var _vueCarousel = require('vue-carousel');
+
+var _vueCarousel2 = _interopRequireDefault(_vueCarousel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+* PackageSetsShow Class
+* We use vue for a carousel system within the page
+*/
+var PackageSetsShow = {
+
+  vue: null,
+  init: function init() {
+
+    // everything is auto managed ... incredible vuejs.
+    Vue.use(_vueCarousel2.default);
+
+    this.vue = new Vue({
+      el: '#slider-vue',
+      data: {},
+      watch: {},
+      methods: {}
+    });
+  }
+};
+
+module.exports = PackageSetsShow;
+
+});
+
 require.register("javascripts/controllers/guest/products/show.js", function(exports, require, module) {
 'use strict';
 
@@ -1724,6 +1759,86 @@ var ContentPreloader = {
 };
 
 module.exports = ContentPreloader;
+
+});
+
+require.register("javascripts/lib/foreign/datepicker-de.js", function(exports, require, module) {
+"use strict";
+
+/* German initialisation for the jQuery UI date picker plugin. */
+/* Written by Milian Wolff (mail@milianw.de). */
+(function (factory) {
+  if (typeof define === "function" && define.amd) {
+
+    // AMD. Register as an anonymous module.
+    define(["../widgets/datepicker"], factory);
+  } else {
+
+    // Browser globals
+    factory(jQuery.datepicker);
+  }
+})(function (datepicker) {
+
+  datepicker.regional.de = {
+    closeText: "Schließen",
+    prevText: "&#x3C;Zurück",
+    nextText: "Vor&#x3E;",
+    currentText: "Heute",
+    monthNames: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    monthNamesShort: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+    dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+    dayNamesShort: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+    dayNamesMin: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+    weekHeader: "KW",
+    dateFormat: "dd.mm.yy",
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: "" };
+  datepicker.setDefaults(datepicker.regional.de);
+
+  return datepicker.regional.de;
+});
+
+});
+
+require.register("javascripts/lib/foreign/datepicker-zh-CN.js", function(exports, require, module) {
+"use strict";
+
+/* Chinese initialisation for the jQuery UI date picker plugin. */
+/* Written by Cloudream (cloudream@gmail.com). */
+(function (factory) {
+  if (typeof define === "function" && define.amd) {
+
+    // AMD. Register as an anonymous module.
+    define(["../widgets/datepicker"], factory);
+  } else {
+
+    // Browser globals
+    factory(jQuery.datepicker);
+  }
+})(function (datepicker) {
+
+  datepicker.regional['zh-CN'] = {
+    closeText: "关闭",
+    prevText: "&#x3C;上月",
+    nextText: "下月&#x3E;",
+    currentText: "今天",
+    monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+    dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+    dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+    weekHeader: "周",
+    dateFormat: "yy-mm-dd",
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: true,
+    yearSuffix: "年" };
+  datepicker.setDefaults(datepicker.regional['zh-CN']);
+
+  return datepicker.regional['zh-CN'];
+});
 
 });
 
@@ -4591,7 +4706,7 @@ module.exports = WeixinStarter;
 
 });
 
-require.register("___globals___", function(exports, require, module) {
+require.alias("process/browser.js", "process");process = require('process');require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');
 

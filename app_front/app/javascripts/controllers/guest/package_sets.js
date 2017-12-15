@@ -9,7 +9,7 @@ var PackageSetsShow = {
      */
     init: function() {
 
-        this.manageAddPackageSet();
+      this.manageAddPackageSet();
 
     },
 
