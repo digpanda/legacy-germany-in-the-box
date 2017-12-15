@@ -2,6 +2,12 @@
 <div class="address-box">
   <ul>
     <li>
+      <%= "#{I18n.t('edit_address.fname')} : #{ address.decorate.full_name }" %>
+    </li>
+    <li>
+      <%= "#{I18n.t('edit_address.mobile')} : #{ address.mobile }" %>
+    </li>
+    <li>
       <%= "#{I18n.t('edit_address.full_address')} : #{ address.full_address }" %>
     </li>
     <li>
