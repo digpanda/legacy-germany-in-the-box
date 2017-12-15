@@ -17,7 +17,7 @@ var AutoResize = {
       let config = {
         nationalMode: false,
         initialCountry: "CN",
-        onlyCountries: ["at", "au", "be", "ba", "bg", "ca", "ch", "cn", "cz", "de", "dk", "es",
+        onlyCountries: ["at", "au", "be", "bg", "ca", "ch", "cn", "cz", "de", "dk", "es",
                         "fi", "fr", "gb", "gr", "hr", "hu", "ie", "it", "lu", "nl", "no", "pl", "pt", "ro",
                         "ru", "sg", "sk", "si",  "se",  "ua", "us"]
       }

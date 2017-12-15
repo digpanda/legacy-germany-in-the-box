@@ -63,7 +63,9 @@ class Customer::AccountController < ApplicationController
     end
 
     def password_needed?
-      !user.wechat?
+      return false if user.wechat?
+      return false if current_user.missing_info?
+      true
     end
 
     def valid_password?
