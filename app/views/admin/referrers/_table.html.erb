@@ -21,6 +21,9 @@
         Linked Users
       </th>
       <th>
+        Introducer
+      </th>
+      <th>
         Flyers
       </th>
       <th>
@@ -62,6 +65,9 @@
           </td>
           <td>
             <%= referrer.children_users.count %>
+          </td>
+          <td>
+            <%= referrer.user.introducer&.user&.decorate&.full_name %>
           </td>
           <td>
             <% if referrer.has_coupon? %>
