@@ -67,7 +67,7 @@
             <%= referrer.children_users.count %>
           </td>
           <td>
-            <%= referrer.user.introducer&.user&.decorate&.full_name %>
+            <%= referrer.user.introducer&.decorate&.full_name %>
           </td>
           <td>
             <% if referrer.has_coupon? %>
