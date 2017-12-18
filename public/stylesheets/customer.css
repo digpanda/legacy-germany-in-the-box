@@ -222,15 +222,15 @@
   white-space: nowrap;
   width: 100%;
   text-align: center;
-  color: #b1c2c6;
+  color: #ABABA8;
   vertical-align: top;
   font-family: Lato,sans-serif;
-  font-weight: 400;
+  font-weight: 200;
   margin-bottom: 10px;
   margin-top: 10px;
   text-transform: uppercase; }
   #csstyle .\+divider:before, #csstyle .\+divider:after {
-    border-top: 3px solid #c9d4d7;
+    border-top: 1px solid #eee;
     display: table-cell;
     position: relative;
     top: 10px;
@@ -995,7 +995,8 @@ body {
           left: 100%; }
 
 .connect__alternative-login img {
-  max-width: 75px; }
+  max-width: 75px;
+  color: #33965e; }
 
 .connect__alternative-login a {
   color: #33965e; }

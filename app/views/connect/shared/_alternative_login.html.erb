@@ -1,4 +1,4 @@
-<% unless identity_solver.wechat_customer? %>
+<% unless identity_solver.wechat_browser? %>
   <div class="row">
     <div class="col-md-4 col-md-push-4 col-md-pull-4 connect__separator">
       <div class="+divider"><%= I18n.t('label.login_or') %></div>
@@ -8,9 +8,9 @@
   <div class="row">
     <div class="col-md-4 col-md-push-4 col-md-pull-4 connect__alternative-login +centered +desktop">
       <a href="<%= user_omniauth_authorize_path(:wechat) %>">
-        <img src="/images/logos/wechat.png">
-        <br />
-        微信登录
+        <img src="/images/logos/wechat-logo.png">
+        <div class="+small-spacer"></div>
+        <!-- 微信登录 -->
       </a>
     </div>
   </div>
