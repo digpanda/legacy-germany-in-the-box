@@ -56,7 +56,7 @@ class Admin::BrandsController < ApplicationController
   private
 
     def build_brand_images
-      4.times { brand.images.build }
+      12.times { brand.images.build }
     end
 
     def set_brand
