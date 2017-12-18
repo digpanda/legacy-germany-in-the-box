@@ -8,6 +8,9 @@
     #csstyle .\+logo-on-banner {
       width: 200px; } }
 
+#csstyle .\+thin {
+  font-weight: normal; }
+
 #csstyle .\+wechat-qrcode {
   position: absolute;
   right: 150px;

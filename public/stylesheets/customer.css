@@ -8,6 +8,9 @@
     #csstyle .\+logo-on-banner {
       width: 200px; } }
 
+#csstyle .\+thin {
+  font-weight: normal; }
+
 #csstyle .\+wechat-qrcode {
   position: absolute;
   right: 150px;
@@ -712,6 +715,9 @@ body {
       color: #464646; }
     .big-button.\--grey:visited {
       color: #464646; }
+  .big-button.\--smaller {
+    width: 80%;
+    font-size: 16px; }
 
 .category-blocks {
   padding: 0; }
