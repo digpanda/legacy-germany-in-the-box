@@ -9,6 +9,8 @@
       <%= I18n.t('sign_up_dialog.title') %>
     </h5>
 
+    <hr />
+
     <%= form_for resource, url: user_registration_path(resource), :method => :post, :class => 'dialog-form', :data => {:toggle => 'validator'} do |f| %>
     <div class="form-inline">
       <div class="form-group">
@@ -33,14 +35,15 @@
       <div class="help-block with-errors"></div>
     </div>
 
-    <%= submit_tag I18n.t('sign_up_dialog.sign_up'), :class => 'btn btn-primary' %>
+    <%= submit_tag I18n.t('sign_up_dialog.sign_up'), :class => 'big-button --green' %>
+    <div class="+small-spacer"></div>
 
     <% end %>
 
-    <br />
-    <a class="simple-text" href="<%= new_user_session_path %>">
+    <a class="big-button --grey --smaller +centered" href="<%= new_user_session_path %>">
       <%= I18n.t('sign_up_dialog.already_member') %>
     </a>
+    <div class="+small-spacer"></div>
 
   </div>
 </div>
