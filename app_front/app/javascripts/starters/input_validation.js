@@ -14,7 +14,6 @@ var InputValidation = {
   },
 
   cancelValidation: function(field) {
-
     return $('form').find(field)
              .prop('required', false)
              .removeData(['bs.validator.errors', 'bs.validator.previous']).end()
@@ -27,8 +26,10 @@ var InputValidation = {
   // NOTE : all those are sensitive since we use the raw selectors generated from Rails
   // If there's any problem about it, check them from the HTML directly and fix it here
   addressPidValidation: function() {
+    console.log('refresh validation')
     InputValidation.refreshPidValidation();
     $("input[name='address[country]'").on('click', function(e) {
+      console.log('something is happening')
       InputValidation.refreshPidValidation();
     })
   },
