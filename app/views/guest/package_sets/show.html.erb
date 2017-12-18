@@ -25,39 +25,10 @@
     </div>
   </div>
 
-  <!-- Image slider -->
+  <!-- Image slider from Brand -->
   <div class="row">
     <div class="col-md-12">
-      <div id="slider-vue">
-
-        <swiper :options="swiperOption">
-
-          <swiper-slide>
-            <img src="/samples/images/logo/350x350.png" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/samples/images/logo/350x350.png" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/samples/images/logo/350x350.png" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/samples/images/logo/350x350.png" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/samples/images/logo/350x350.png" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/samples/images/logo/350x350.png" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="/samples/images/logo/350x350.png" />
-          </swiper-slide>
-
-          <div class="swiper-pagination" slot="pagination"></div>
-        </swiper>
-
-      </div>
+      <%= render partial: "guest/brands/show/slider", locals: { brand: @package_set.brands.first } %>
     </div>
   </div>
 

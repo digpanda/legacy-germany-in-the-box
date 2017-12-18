@@ -3278,6 +3278,9 @@ textarea, input, button {
   box-shadow: none !important;
   -webkit-appearance: none !important; }
 
+.slider img {
+  max-height: 350px; }
+
 @media (max-width: 994px) {
   .iti-container {
     z-index: 10001 !important;
