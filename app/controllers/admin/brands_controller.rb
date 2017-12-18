@@ -16,6 +16,7 @@ class Admin::BrandsController < ApplicationController
 
   def new
     @brand = Brand.new
+    build_brand_images
   end
 
   def create
@@ -30,6 +31,7 @@ class Admin::BrandsController < ApplicationController
   end
 
   def edit
+    build_brand_images
   end
 
   def update
@@ -52,6 +54,10 @@ class Admin::BrandsController < ApplicationController
   end
 
   private
+
+    def build_brand_images
+      4.times { brand.images.build }
+    end
 
     def set_brand
       @brand ||= Brand.find(params[:id])
