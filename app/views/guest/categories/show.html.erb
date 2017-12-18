@@ -1,10 +1,4 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="banner lazy" data-original="<%= @category.cover %>" style="background-image:url('/images/grey.jpg');">
-      <h1><%= @category.name %></h1>
-    </div>
-  </div>
-</div>
+<%= render partial: 'shared/partials/cover', locals: { cover: @category.cover, banner: @category.banner, share: current_user&.referrer } %>
 
 <% @shops.each do |shop| %>
 
