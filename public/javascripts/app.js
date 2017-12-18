@@ -3432,10 +3432,10 @@ var InputValidation = {
     console.log($('#address_country_europe:checked').val());
     if ($('#address_country_europe:checked').val()) {
       this.cancelValidation('#address_pid');
-      $('#address_pid').hide();
+      $('#address_pid').parent().hide();
     } else {
       this.requireValidation('#address_pid');
-      $('#address_pid').show();
+      $('#address_pid').parent().show();
     }
   },
 
