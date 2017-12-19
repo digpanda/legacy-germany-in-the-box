@@ -12,6 +12,7 @@ var Show = {
   init: function() {
 
     // everything is auto managed ... incredible vuejs.
+    console.log('loading')
     Vue.use(VueAwesomeSwiper);
     Show.setupSlider();
   },

@@ -1101,6 +1101,7 @@ var Show = {
   init: function init() {
 
     // everything is auto managed ... incredible vuejs.
+    console.log('loading');
     Vue.use(_vueAwesomeSwiper2.default);
     Show.setupSlider();
   },
@@ -3497,14 +3498,15 @@ var InputValidation = {
   // NOTE : all those are sensitive since we use the raw selectors generated from Rails
   // If there's any problem about it, check them from the HTML directly and fix it here
   addressPidValidation: function addressPidValidation() {
-    InputValidation.refreshPidValidation();
-    $("input[name='address[country]'").on('click', function (e) {
+    if ($("input[name='address[country]']").length > 0) {
       InputValidation.refreshPidValidation();
-    });
+      $("input[name='address[country]']").on('click', function (e) {
+        InputValidation.refreshPidValidation();
+      });
+    }
   },
 
   refreshPidValidation: function refreshPidValidation() {
-    console.log($('#address_country_europe:checked').val());
     if ($('#address_country_europe:checked').val()) {
       this.cancelValidation('#address_pid');
       $('#address_pid').parent().hide();
