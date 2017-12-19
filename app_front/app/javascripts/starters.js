@@ -9,6 +9,7 @@ var Starters = [
   'back_to_top',
   'bootstrap',
   'charts',
+  'device',
   'editable_fields',
   'footer',
   'input_validation',

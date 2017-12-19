@@ -25,7 +25,12 @@
     </div>
   </div>
 
-  <!-- Image slider -->
+  <!-- Image slider from Brand -->
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: "guest/brands/show/slider", locals: { brand: @package_set.brands.first } %>
+    </div>
+  </div>
 
   <!-- Brand description -->
   <%= render partial: "guest/package_sets/show/brand_description", locals: { brand: @package_set.package_skus.first&.product&.brand } %>

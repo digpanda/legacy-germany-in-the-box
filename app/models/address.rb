@@ -17,7 +17,7 @@ class Address
   field :pid,           type: String
   field :email,         type: String
   field :mobile,        type: String
-  
+
   embedded_in :shop, inverse_of: :addresses
   embedded_in :user, inverse_of: :addresses
 
@@ -33,7 +33,7 @@ class Address
   scope :is_only_both,        ->  { any_of(type: :both) }
 
   validates :mobile, presence: true, if: -> { user&.customer? }
-  validates :pid, presence: true, if: -> { user&.customer? }
+  validates :pid, presence: true, if: -> { user&.customer? && self.country == :china }
   validates :fname, presence: true
   validates :lname, presence: true
 

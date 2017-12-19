@@ -1,5 +1,6 @@
 <%= form_for [:admin, brand], :html => {:data => {:toggle => 'validator'}} do |form| %>
 
+  <!-- Basic details -->
   <div class="row details__block">
     <%= render partial: "admin/brands/form/informations", :locals => {:form => form} %>
   </div>
@@ -10,6 +11,14 @@
       <%= render partial: "admin/banners/form_fields", locals: { form: form, location: :brand } %>
     </div>
   </div>
+
+  <!-- Images (Slider) -->
+  <div class="row details__block">
+    <div class="col-md-12">
+      <%= render partial: "admin/brands/form/images", locals: { form: form } %>
+    </div>
+  </div>
+
 
   <%= form.submit :class => 'big-button --blue', :value =>  "Save" %>
 

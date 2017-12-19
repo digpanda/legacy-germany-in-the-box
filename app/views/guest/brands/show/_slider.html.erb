@@ -1,0 +1,16 @@
+<% if brand.images.count > 0 %>
+<div id="slider-vue">
+
+  <swiper :options="swiperOption" class="slider">
+
+    <% brand.images.each do |image| %>
+    <swiper-slide>
+      <img src="<%= image.file %>" />
+    </swiper-slide>
+    <% end %>
+
+    <div class="swiper-pagination" slot="pagination"></div>
+  </swiper>
+
+</div>
+<% end %>
