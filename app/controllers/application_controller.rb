@@ -1,9 +1,9 @@
 require 'base64_to_upload'
-require "turbolinks/redirection"
+# require "turbolinks/redirection"
 
 class ApplicationController < ActionController::Base
   include HttpAcceptLanguage::AutoLocale
-  include Turbolinks::Redirection
+  # include Turbolinks::Redirection
 
   include Application::Exceptions
   include Application::Ability

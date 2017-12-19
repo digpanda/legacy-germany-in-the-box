@@ -87,7 +87,7 @@ gem 'omniauth-wechat-oauth2', git: 'https://github.com/yangsr/omniauth-wechat-oa
 
 gem 'exception_notification'
 
-gem 'turbolinks', '~> 5.0.0', require: false
+# gem 'turbolinks', '~> 5.0.0', require: false
 
 group :development do
   gem 'capistrano'
