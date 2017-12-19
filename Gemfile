@@ -41,7 +41,6 @@ gem 'wicked_pdf' # pdf generation
 gem 'breadcrumbs_on_rails'
 gem 'sass-rails', '~> 5.0.3'
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
-gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the API under doc/api.
 gem 'devise', '3.5.3'
@@ -87,6 +86,8 @@ gem 'omniauth'
 gem 'omniauth-wechat-oauth2', git: 'https://github.com/yangsr/omniauth-wechat-oauth2.git'
 
 gem 'exception_notification'
+
+gem 'turbolinks', '~> 5.0.0', require: false
 
 group :development do
   gem 'capistrano'
