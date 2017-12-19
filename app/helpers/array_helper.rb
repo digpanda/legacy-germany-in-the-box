@@ -75,7 +75,7 @@ module ArrayHelper
       'DHL英文' => :dhlen,
       'EMS' => :ems,
       'EMS Guoji' => :emsguoji,
-      'Adler' => :adlierlogi
+      'Adler' => :adlerlogi
     }
   end
 
