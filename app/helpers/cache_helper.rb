@@ -1,10 +1,12 @@
 module CacheHelper
 
   def solve_cache(&block)
-    Rails.cache.fetch("anything", expires_in: 20.seconds) do
-      content = yield
-      puts "CONTENT #{content}"
+    return Rails.cache.fetch("anything") if Rails.cache.fetch("anything")
+    data = capture do
+      yield
     end
+    Rails.cache.write("anything", data)
+    Rails.cache.fetch("anything")
   end
 
 end
