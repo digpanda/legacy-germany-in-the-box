@@ -1092,23 +1092,50 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // import 'swiper/dist/css/swiper.css'
 
 /**
-* PackageSetsShow Class
+* Show Class
 * We use vue for a carousel system within the page
 */
-var PackageSetsShow = {
+var Show = {
 
   vue: null,
   init: function init() {
 
     // everything is auto managed ... incredible vuejs.
     Vue.use(_vueAwesomeSwiper2.default);
+    Show.setupSlider();
+  },
 
-    this.vue = new Vue({
+  setupSlider: function setupSlider() {
+    if ($('#js-device').data('current') == 'mobile') {
+      Show.vue = Show.mobileSlider();
+    } else {
+      Show.vue = Show.desktopSlider();
+    }
+  },
+
+  mobileSlider: function mobileSlider() {
+    return new Vue({
+      el: '#slider-vue',
+      data: {
+        swiperOption: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          }
+        }
+      }
+    });
+  },
+
+  desktopSlider: function desktopSlider() {
+    return new Vue({
       el: '#slider-vue',
       data: {
         swiperOption: {
           slidesPerView: 3,
-          spaceBetween: 30,
+          spaceBetween: 20,
           pagination: {
             el: '.swiper-pagination',
             clickable: true
@@ -1117,9 +1144,10 @@ var PackageSetsShow = {
       }
     });
   }
+
 };
 
-module.exports = PackageSetsShow;
+module.exports = Show;
 
 });
 
@@ -2925,7 +2953,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['anti_cache', 'auto_resize', 'live_currency', 'back_to_top', 'bootstrap', 'charts', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
+var Starters = ['anti_cache', 'auto_resize', 'live_currency', 'back_to_top', 'bootstrap', 'charts', 'device', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
 
 module.exports = Starters;
 
@@ -3175,6 +3203,53 @@ var Charts = {
 };
 
 module.exports = Charts;
+
+});
+
+require.register("javascripts/starters/device.js", function(exports, require, module) {
+'use strict';
+
+/**
+ * Device Class
+ */
+var Device = {
+
+  mobile_size: 992,
+  current_window: null,
+
+  /**
+   * Initializer
+   */
+  init: function init() {
+    this.handleResize();
+  },
+
+  /**
+  * Check if window is mobile or desktop
+  * And will refresh dependinf the size
+  */
+  handleResize: function handleResize() {
+    Device.check();
+    $(window).resize(Device.check);
+  },
+
+  check: function check() {
+    if (Device.width() < Device.mobile_size) {
+      // mobile size
+      $('#js-device').data('current', 'mobile');
+    } else {
+      // desktop size
+      $('#js-device').data('current', 'desktop');
+    }
+  },
+
+  width: function width() {
+    return $(window).width();
+  }
+
+};
+
+module.exports = Device;
 
 });
 

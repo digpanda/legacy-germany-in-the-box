@@ -3285,8 +3285,11 @@ textarea, input, button {
   box-shadow: none !important;
   -webkit-appearance: none !important; }
 
-.slider img {
-  max-height: 350px; }
+.slider {
+  text-align: center;
+  margin: 0 auto; }
+  .slider img {
+    max-height: 350px; }
 
 @media (max-width: 994px) {
   .iti-container {

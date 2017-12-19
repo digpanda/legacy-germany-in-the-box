@@ -3,23 +3,34 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 // import 'swiper/dist/css/swiper.css'
 
 /**
-* PackageSetsShow Class
+* Show Class
 * We use vue for a carousel system within the page
 */
-var PackageSetsShow = {
+var Show = {
 
   vue: null,
   init: function() {
 
     // everything is auto managed ... incredible vuejs.
     Vue.use(VueAwesomeSwiper);
+    Show.setupSlider();
+  },
 
-    this.vue = new Vue({
+  setupSlider: function() {
+    if ($('#js-device').data('current') == 'mobile') {
+      Show.vue = Show.mobileSlider();
+    } else {
+      Show.vue = Show.desktopSlider();
+    }
+  },
+
+  mobileSlider: function() {
+    return new Vue({
       el: '#slider-vue',
       data: {
         swiperOption: {
-          slidesPerView: 3,
-          spaceBetween: 30,
+          slidesPerView: 1,
+          spaceBetween: 20,
           pagination: {
             el: '.swiper-pagination',
             clickable: true
@@ -28,6 +39,23 @@ var PackageSetsShow = {
       }
     });
   },
+
+  desktopSlider: function() {
+    return new Vue({
+      el: '#slider-vue',
+      data: {
+        swiperOption: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          }
+        }
+      }
+    });
+  },
+
 }
 
-module.exports = PackageSetsShow;
+module.exports = Show;
