@@ -9,11 +9,6 @@ class Guest::HomeController < ApplicationController
   end
 
   def test
-    render text: "ok"
-  end
-
-  def weixin
-    # the redirect is made from JavaScript
   end
 
   private
