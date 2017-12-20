@@ -5,7 +5,9 @@
 
     <% brand.images.each do |image| %>
     <swiper-slide>
-      <img src="<%= image.file %>" />
+      <a href="#">
+        <img src="<%= image.file %>" />
+      </a>
     </swiper-slide>
     <% end %>
 
