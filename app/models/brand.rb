@@ -20,8 +20,8 @@ class Brand
   has_one :banner
   accepts_nested_attributes_for :banner, allow_destroy: true
 
-  has_many :images, as: :image
-  accepts_nested_attributes_for :images, allow_destroy: true
+  has_many :footer_slides, as: :image, class_name: 'Image'
+  accepts_nested_attributes_for :footer_slides, allow_destroy: true
 
   has_many :products, inverse_of: :brand
 

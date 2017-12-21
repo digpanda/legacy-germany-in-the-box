@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-md-8 +nopadding">
-      <h3>Images</h3>
+      <h3>Footer Slider</h3>
       <hr>
     </div>
     <div class="col-md-4 +right">
@@ -10,11 +10,11 @@
     </div>
   </div>
 
-  <!-- Name -->
+  <!-- Footer Slides -->
   <div class="row">
-    <%= form.fields_for :images do |field| %>
+    <%= form.fields_for :footer_slides do |field| %>
       <div class="col-md-3">
-        <%= field.label :file, "Optional Image ##{solve_index}" %>
+        <%= field.label :file, "Optional Footer Slids ##{solve_index}" %>
         <%= js_image_file_upload(form: field, assoc: field.object, field: :file) %>
       </div>
     <% end %>

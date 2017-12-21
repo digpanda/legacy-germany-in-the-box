@@ -7,6 +7,8 @@ class Image
 
   belongs_to :image, polymorphic: true
 
+  field :url, type: String
+
   def thumb
     image_url(:file, :thumb)
   end

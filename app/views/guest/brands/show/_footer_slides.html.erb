@@ -1,9 +1,9 @@
-<% if brand.images.count > 0 %>
+<% if brand.footer_slides.count > 0 %>
 <div id="slider-vue">
 
   <swiper :options="swiperOption" class="slider">
 
-    <% brand.images.each do |image| %>
+    <% brand.footer_slides.each do |image| %>
     <swiper-slide>
       <a href="#">
         <img src="<%= image.file %>" />
