@@ -21,7 +21,7 @@ class Brand
   accepts_nested_attributes_for :banner, allow_destroy: true
 
   has_many :footer_slides, as: :image, class_name: 'Image'
-  accepts_nested_attributes_for :footer_slides, allow_destroy: true, reject_if: proc { |attributes| attributes['url'].blank? }
+  accepts_nested_attributes_for :footer_slides, allow_destroy: true, reject_if: proc { |attributes| attributes['file'].blank? }
 
   has_many :products, inverse_of: :brand
 
