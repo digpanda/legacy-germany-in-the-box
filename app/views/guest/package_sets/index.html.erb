@@ -11,6 +11,30 @@
   <%= render partial: 'shared/partials/cover', locals: { cover: Setting.instance.package_sets_cover, banner: @banner } %>
 <% end %>
 
+<!-- Header Slider -->
+<% if @category.header_slides.count > 0 %>
+<div id="slider-vue">
+
+  <swiper :options="swiperOption" class="slider">
+
+    <% @category.header_slides.each do |image| %>
+    <swiper-slide>
+      <% if image.url.present? %>
+        <a href="<%= image.url %>" target="_blank">
+          <img src="<%= image.file %>" />
+        </a>
+      <% else %>
+        <img src="<%= image.file %>" />
+      <% end %>
+    </swiper-slide>
+    <% end %>
+
+    <div class="swiper-pagination" slot="pagination"></div>
+  </swiper>
+
+</div>
+<% end %>
+
 <!-- Brand filters for Package sets -->
 <%= render partial: "guest/package_sets/brand_filters", locals: { current_brand: @brand, current_category: @category, brand_filters: @brand_filters} %>
 
