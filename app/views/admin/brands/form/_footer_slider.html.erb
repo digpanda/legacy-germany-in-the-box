@@ -13,10 +13,17 @@
   <!-- Footer Slides -->
   <div class="row">
     <%= form.fields_for :footer_slides do |field| %>
-      <div class="col-md-3">
-        <%= field.label :file, "Optional Footer Slids ##{solve_index}" %>
+    <div class="col-md-3">
+      <div>
+        <%= field.label :file, "Optional Footer Slides ##{solve_index}" %>
         <%= js_image_file_upload(form: field, assoc: field.object, field: :file) %>
       </div>
+      <div class="+small-spacer"></div>
+      <div class="+centered">
+        <%= field.text_field :url, placeholder: "http://example.com", autocomplete: 'off' %>
+      </div>
+      <div class="+small-spacer"></div>
+    </div>
     <% end %>
   </div>
 

@@ -5,9 +5,13 @@
 
     <% brand.footer_slides.each do |image| %>
     <swiper-slide>
-      <a href="#">
+      <% if image.url.present? %>
+        <a href="<%= image.url %>" target="_blank">
+          <img src="<%= image.file %>" />
+        </a>
+      <% else %>
         <img src="<%= image.file %>" />
-      </a>
+      <% end %>
     </swiper-slide>
     <% end %>
 
