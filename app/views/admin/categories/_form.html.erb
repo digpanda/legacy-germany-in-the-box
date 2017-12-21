@@ -79,6 +79,39 @@
 
     </div>
 
+
+    <div class="col-md-12">
+
+      <div class="row">
+        <div class="col-md-8 +nopadding">
+          <h3>Footer Slider</h3>
+          <hr>
+        </div>
+        <div class="col-md-4 +right">
+          <hr>
+        </div>
+      </div>
+
+      <!-- Footer Slides -->
+      <div class="row">
+        <%= form.fields_for :header_slides do |field| %>
+        <div class="col-md-3">
+          <div>
+            <%= field.label :file, "Optional Header Slides ##{solve_index}" %>
+            <%= js_image_file_upload(form: field, assoc: field.object, field: :file) %>
+          </div>
+          <div class="+small-spacer"></div>
+          <div class="+centered">
+            <%= field.text_field :url, placeholder: "http://example.com", autocomplete: 'off' %>
+          </div>
+          <div class="+small-spacer"></div>
+        </div>
+        <% end %>
+      </div>
+
+    </div>
+
+
   </div>
 
   <!-- Banner -->
@@ -89,6 +122,5 @@
   </div>
 
   <%= form.submit :class => 'btn btn-primary', :value =>  "Save category" %>
-  <!-- :id => 'edit_category_submit_btn' -->
 
 <% end %>

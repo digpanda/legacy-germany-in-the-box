@@ -18,6 +18,7 @@ class Admin::CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    build_category_images
   end
 
   def create
@@ -32,6 +33,7 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def edit
+    build_category_images
   end
 
   def update
@@ -61,5 +63,9 @@ class Admin::CategoriesController < ApplicationController
 
     def category_params
       params.require(:category).permit!
+    end
+
+    def build_category_images
+      12.times { category.header_slides.build }
     end
 end

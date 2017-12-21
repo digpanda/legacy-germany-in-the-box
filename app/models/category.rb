@@ -22,6 +22,9 @@ class Category
 
   mount_uploader :cover, CoverUploader
 
+  has_many :header_slides, as: :image, class_name: 'Image'
+  accepts_nested_attributes_for :header_slides, allow_destroy: true, reject_if: proc { |attributes| attributes['file'].blank? }
+
   has_one :banner
   accepts_nested_attributes_for :banner, allow_destroy: true
 
