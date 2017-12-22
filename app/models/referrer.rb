@@ -81,7 +81,7 @@ class Referrer
       if order.price_origins.include?(:reseller_price)
         acc + order.end_price
       end
-    end
+    end || 0.0
   end
 
   def main_coupon
