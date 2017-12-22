@@ -51,7 +51,7 @@ class Metrics < BaseService
 
           users_ids = Order.bought.reduce([]) do |acc, order|
             acc << order&.user&.id
-          end
+          end.uniq
 
           User.where(:_id.in => users_ids).order(c_at: :asc).group_by do |user|
             user.c_at.strftime('%Y-%m')
