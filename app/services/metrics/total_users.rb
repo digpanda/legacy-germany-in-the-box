@@ -50,7 +50,7 @@ class Metrics < BaseService
           counter = 0
 
           users_ids = Order.bought.reduce([]) do |acc, order|
-            acc << order.user.id
+            acc << order&.user&.id
           end
 
           User.where(:_id.in => users_ids).order(c_at: :asc).group_by do |user|
