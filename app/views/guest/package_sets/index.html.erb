@@ -12,7 +12,7 @@
 <% end %>
 
 <!-- Header Slider -->
-<% if @category.header_slides.count > 0 %>
+<% if @category.present? && @category.header_slides.count > 0 %>
 <div id="slider-vue" class="+header-slider">
 
   <swiper :options="swiperOption" class="slider">
@@ -34,7 +34,6 @@
 
 </div>
 <% end %>
-
 <!-- Brand filters for Package sets -->
 <%= render partial: "guest/package_sets/brand_filters", locals: { current_brand: @brand, current_category: @category, brand_filters: @brand_filters} %>
 

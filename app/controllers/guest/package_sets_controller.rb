@@ -20,6 +20,7 @@ class Guest::PackageSetsController < ApplicationController
   # we show the list of package by category
   # otherwise we redirect the user to the /categories area
   def index
+
     @package_sets = PackageSet.active.order_by(position: :asc)
 
     # category querying
