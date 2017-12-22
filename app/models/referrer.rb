@@ -77,9 +77,11 @@ class Referrer
   end
 
   def total_resells
-    # TODO : calculate resells with referrer price
-    0.0
-    # provisions.count
+    user.orders.bought.reduce(0.0) do |acc, order|
+      if order.price_origins.include?(:reseller_price)
+        acc + order.end_price
+      end
+    end
   end
 
   def main_coupon
