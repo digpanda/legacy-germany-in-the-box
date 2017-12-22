@@ -77,11 +77,13 @@ class Referrer
   end
 
   def total_resells
-    user.orders.bought.reduce(0.0) do |acc, order|
-      if order.price_origins.include?(:reseller_price)
-        acc + order.end_price
-      end
-    end || 0.0
+    Rails.cache.fetch('referrers_total_resells', expires_in: 24.hours) do
+      user.orders.bought.reduce(0.0) do |acc, order|
+        if order.price_origins.include?(:reseller_price)
+          acc + order.end_price
+        end
+      end || 0.0
+    end
   end
 
   def main_coupon
