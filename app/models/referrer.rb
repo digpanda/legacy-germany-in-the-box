@@ -77,7 +77,9 @@ class Referrer
   end
 
   def total_resells
-    provisions.count
+    # TODO : calculate resells with referrer price
+    0.0
+    # provisions.count
   end
 
   def main_coupon

@@ -29,6 +29,7 @@ var Starters = [
   'responsive',
   'search',
   'sku_form',
+  'sliders',
   'sweet_alert',
   'table_clicker',
   'tooltipster',

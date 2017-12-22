@@ -2953,7 +2953,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['anti_cache', 'auto_resize', 'live_currency', 'back_to_top', 'bootstrap', 'charts', 'device', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
+var Starters = ['anti_cache', 'auto_resize', 'live_currency', 'back_to_top', 'bootstrap', 'charts', 'device', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sliders', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
 
 module.exports = Starters;
 
@@ -4486,6 +4486,79 @@ var SkuForm = {
 };
 
 module.exports = SkuForm;
+
+});
+
+require.register("javascripts/starters/sliders.js", function(exports, require, module) {
+'use strict';
+
+var _vueAwesomeSwiper = require('vue-awesome-swiper');
+
+var _vueAwesomeSwiper2 = _interopRequireDefault(_vueAwesomeSwiper);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// require styles
+// import 'swiper/dist/css/swiper.css'
+
+/**
+* Sliders Class
+* We use vue for a carousel system within the page
+*/
+var Sliders = {
+
+  vue: null,
+  init: function init() {
+
+    // everything is auto managed ... incredible vuejs.
+    Vue.use(_vueAwesomeSwiper2.default);
+    Sliders.setupSlider();
+    console.log('slider');
+  },
+
+  setupSlider: function setupSlider() {
+    if ($('#js-device').data('current') == 'mobile') {
+      Sliders.vue = Sliders.mobileSlider();
+    } else {
+      Sliders.vue = Sliders.desktopSlider();
+    }
+  },
+
+  mobileSlider: function mobileSlider() {
+    return new Vue({
+      el: '#slider-vue',
+      data: {
+        swiperOption: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          }
+        }
+      }
+    });
+  },
+
+  desktopSlider: function desktopSlider() {
+    return new Vue({
+      el: '#slider-vue',
+      data: {
+        swiperOption: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          }
+        }
+      }
+    });
+  }
+
+};
+
+module.exports = Sliders;
 
 });
 
