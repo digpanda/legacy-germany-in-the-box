@@ -76,6 +76,10 @@ class Referrer
     end
   end
 
+  def total_resells
+    provisions.count
+  end
+
   def main_coupon
     coupons.not_expired.first
   end

@@ -36,6 +36,9 @@
         Total Growth
       </th>
       <th>
+        Total Resells
+      </th>
+      <th>
         Group
       </th>
       <th>
@@ -85,6 +88,9 @@
           </td>
           <td>
             <%= referrer.total_growth.in_euro.display %>
+          </td>
+          <td>
+            <%= referrer.total_resells %>
           </td>
           <td>
             <%= referrer&.referrer_group&.name %>
