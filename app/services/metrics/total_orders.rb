@@ -25,8 +25,8 @@ class Metrics < BaseService
 
       def new_orders_per_month
         @new_orders_per_month ||= begin
-          Order.all.order(c_at: :asc).group_by do |user|
-            user.c_at.strftime('%Y-%m')
+          Order.all.order(c_at: :asc).group_by do |order|
+            order.c_at.strftime('%Y-%m')
           end.reduce({}) do |acc, group|
             acc.merge({"#{group.first}": group.last.count})
           end
@@ -36,8 +36,8 @@ class Metrics < BaseService
       def total_orders_per_month
         @total_orders_per_month ||= begin
           counter = 0
-          Order.all.order(c_at: :asc).group_by do |user|
-            user.c_at.strftime('%Y-%m')
+          Order.all.order(c_at: :asc).group_by do |order|
+            order.c_at.strftime('%Y-%m')
           end.reduce({}) do |acc, group|
             counter += group.last.count
             acc.merge({"#{group.first}": counter})
@@ -48,8 +48,8 @@ class Metrics < BaseService
       def total_paid_orders_per_month
         @total_paid_orders_per_month ||= begin
           counter = 0
-          Order.bought.order(c_at: :asc).group_by do |user|
-            user.c_at.strftime('%Y-%m')
+          Order.bought.order(c_at: :asc).group_by do |order|
+            order.c_at.strftime('%Y-%m')
           end.reduce({}) do |acc, group|
             counter += group.last.count
             acc.merge({"#{group.first}": counter})
