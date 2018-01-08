@@ -14,6 +14,8 @@ class Metrics < BaseService
       draw(:total_users_per_month, label: 'Total users', color: :blue, type: :line)
       draw(:total_paid_users_per_month, label: 'Total paid users', color: :purple, type: :line)
 
+      SlackDispatcher.new.message("TOTAL PAID USERS PER MONTH : #{total_paid_users_per_month}")
+
       chart.render
     end
 
