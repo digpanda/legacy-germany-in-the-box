@@ -345,6 +345,7 @@ class Order
     # the unique number in it will be equal to the total of the previous bills + 1.
     # every year the system got reset
     def make_bill_id
+      puts "VALID MAKE BILL ID : `#{bill_id.nil? && self.bought?}`"
       if bill_id.nil? && self.bought?
         start_day = paid_at.beginning_of_day
         digits = start_day.strftime('%Y%m%d')
