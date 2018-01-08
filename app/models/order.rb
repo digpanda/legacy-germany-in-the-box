@@ -128,6 +128,10 @@ class Order
     order_items.map(&:price_origin).uniq
   end
 
+  def from_reseller?
+    price_origins.include?(:reseller_price)
+  end
+
   def coupon_discount_in_percent
     # we use the total_price_with_taxes because
     # the coupon_discount is calculated with taxes

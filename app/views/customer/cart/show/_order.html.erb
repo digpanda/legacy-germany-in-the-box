@@ -114,6 +114,23 @@
             <% end %>
           <% end %>
 
+          <!-- Order Id -->
+          <% unless action %>
+          <div class="row">
+            <div class="cart__order-id">
+              <div class="col-xs-6">
+                <%= I18n.t('cart.order_id') %>
+              </div>
+              <div class="col-xs-6">
+                <div class="cart__order-id-number">
+                  <%= order.id %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+
+
           </div>
         </div>
 

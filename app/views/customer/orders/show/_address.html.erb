@@ -13,6 +13,9 @@
     <li>
       <%= "#{I18n.t('edit_address.country')} : #{ address.decorate.readable_country }" %>
     </li>
+    <li>
+      <%= "#{I18n.t('edit_address.delivery_id')} : #{ address.order.order_tracking&.delivery_id }" %>
+    </li>
   </ul>
 </div>
 <% else %>
