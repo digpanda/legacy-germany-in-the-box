@@ -100,7 +100,13 @@
             <div class="clearfix"></div>
             <strong><%= I18n.t('edit_order.link_tracking') %>:</strong>
             <% if order.order_tracking %>
-              <a href="<%= guest_order_tracking_public_url_path(order.order_tracking) %>"><%= order.order_tracking.delivery_id %></a>
+              <!-- For now DHL is a special case where we need to wait 10 days before we show the tracking
+              for the other delivery provider we show straight away -->
+              <% if (order.order_tracking.delivery_provider != 'dhlde') || (order.paid_at < 10.days.ago) %>
+                <a href="<%= guest_order_tracking_public_url_path(order.order_tracking) %>"><%= order.order_tracking.delivery_id %></a>
+              <% else %>
+                德国发往中国途中
+              <% end %>
             <% else %>
               -
             <% end %>
