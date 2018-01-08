@@ -81,6 +81,8 @@ class Referrer
       user.orders.bought.reduce(0.0) do |acc, order|
         if order.price_origins.include?(:reseller_price)
           acc + order.end_price
+        else
+          acc
         end
       end || 0.0
     end
