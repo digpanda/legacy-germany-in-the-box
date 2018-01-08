@@ -1848,7 +1848,9 @@ body {
   border-top: 1px solid #eee; }
 
 .cart__order-id-number {
-  font-weight: bold; }
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 0.2em; }
 
 .cart__order-title a {
   color: #464646;
