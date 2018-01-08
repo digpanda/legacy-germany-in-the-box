@@ -345,12 +345,10 @@ class Order
     # the unique number in it will be equal to the total of the previous bills + 1.
     # every year the system got reset
     def make_bill_id
-      puts "VALID MAKE BILL ID : `#{bill_id.nil? && self.bought?}`"
       if bill_id.nil? && self.bought?
         start_day = paid_at.beginning_of_day
         digits = start_day.strftime('%Y%m%d')
         num = Order.and(:bill_id.ne => nil).and(:paid_at => { :$gte => start_day }).count + 1
-        puts "SELECTOR #{Order.and(:bill_id.ne => nil).and(:paid_at => { :$gte => start_day }).selector}"
         self.bill_id = "R#{digits}-#{num}"
         self.save
       end
