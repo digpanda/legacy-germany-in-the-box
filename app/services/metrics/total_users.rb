@@ -59,6 +59,7 @@ class Metrics < BaseService
             user.c_at.strftime('%Y-%m')
           end.reduce({}) do |acc, group|
             counter += group.last.count
+            SlackDispatcher.new.message("NEW COUNTER : #{counter}")
             acc.merge({"#{group.first}": counter})
           end
         end
