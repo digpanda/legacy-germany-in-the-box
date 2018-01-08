@@ -14,8 +14,6 @@ class Metrics < BaseService
       draw(:total_users_per_month, label: 'Total users', color: :blue, type: :line)
       draw(:total_paid_users_per_month, label: 'Total paid users', color: :purple, type: :line)
 
-      SlackDispatcher.new.message("TOTAL PAID USERS PER MONTH : #{total_paid_users_per_month}")
-
       chart.render
     end
 
@@ -59,7 +57,6 @@ class Metrics < BaseService
             user.c_at.strftime('%Y-%m')
           end.reduce({}) do |acc, group|
             counter += group.last.count
-            SlackDispatcher.new.message("NEW COUNTER : #{counter}")
             acc.merge({"#{group.first}": counter})
           end
         end
