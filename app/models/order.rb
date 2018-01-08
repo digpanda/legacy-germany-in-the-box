@@ -348,7 +348,8 @@ class Order
       if bill_id.nil? && self.bought?
         start_day = paid_at.beginning_of_day
         digits = start_day.strftime('%Y%m%d')
-        num = Order.where(:bill_id.ne => nil).and(:paid_at => { :$gte => start_day }).count + 1
+        num = Order.and(:bill_id.ne => nil).and(:paid_at => { :$gte => start_day }).count + 1
+        puts "SELECTOR #{Order.and(:bill_id.ne => nil).and(:paid_at => { :$gte => start_day }).selector}"
         self.bill_id = "R#{digits}-#{num}"
         self.save
       end
