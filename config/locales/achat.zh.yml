@@ -95,13 +95,13 @@ zh-CN:
     qrcode: 专属二维码
     update_account: 更新账户
     agb_agreement: 我已阅读并同意接受<a href="%{url}">AGB</a>条款
-    service_provision_rates: 海外服务奖金率
-    package_set_provision_rates: 电商奖金|折扣率
+    service_provision_rates: 海外服务推广奖金
+    package_set_provision_rates: 商城推广奖金 = 会员进货折扣
     balance_history: 收支明细
     type: 类目
     description: 详情
     more_details: 查看详情
-    provision_rates: 🏅佣金|折扣率
+    provision_rates: 🏅奖金|折扣率
     package_set_product: 订单
     rate: 比率
     referrer: 推广账号
