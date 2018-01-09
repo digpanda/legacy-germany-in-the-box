@@ -44,7 +44,7 @@ zh-CN:
   inquiry:
     raw_referrer: 请提供您在德国的亲属或朋友姓名便于我们本地联系。
   services:
-    referrer_services: 推广伙伴专区
+    referrer_services: 会员伙伴专区
     email_placeholder: 您的邮箱或微信号
     referrer: 德国本地联络人
     email: 邮箱|微信号
@@ -82,12 +82,12 @@ zh-CN:
       preview: 预览
       thank_you_for_sharing: 感谢分享
       you_will_now_be_redirected: 页面即将为您跳转
-      please_click_and_share: 请按右上角菜单发布您的专属文章推广链接
+      please_click_and_share: 请按右上角菜单发布您的专属文章导购链接
       how_does_it_work: 社交分享
       work_description_1: "- 发送给微信朋友"
       work_description_2: "- 分享到微信朋友圈"
-      work_conclusion: "我们将不断丰富新的推广软文，公众号文章，新媒体场景海报，视频敬请关注！"
-      please_share_this_link: 请分享您的专属文章推广链接
+      work_conclusion: "我们将不断丰富新的导购软文，公众号文章，新媒体场景海报，视频敬请关注！"
+      please_share_this_link: 请分享您的专属文章导购链接
     link: 链接
     links: 智能软文
     title: 软文预览|分享
@@ -95,8 +95,8 @@ zh-CN:
     qrcode: 专属二维码
     update_account: 更新账户
     agb_agreement: 我已阅读并同意接受<a href="%{url}">AGB</a>条款
-    service_provision_rates: 海外服务推广奖金
-    package_set_provision_rates: 商城推广奖金 = 会员进货折扣
+    service_provision_rates: 海外服务导购奖金
+    package_set_provision_rates: 商城导购奖金 = 会员代购折扣
     balance_history: 收支明细
     type: 类目
     description: 详情
@@ -104,10 +104,10 @@ zh-CN:
     provision_rates: 🏅奖金|折扣率
     package_set_product: 订单
     rate: 比率
-    referrer: 推广账号
+    referrer: 会员账号
     provision_insight: 奖金账户
     total_earned: 总奖金
-    your_coupons: 专属95折码(推广分享)
+    your_coupons: 专属95折码(导购分享)
     current_balance: 未提取奖金
     your_can_claim_this_money_from: "奖金满%{amount}即可结算"
     claim_your_money: 结算
@@ -217,7 +217,7 @@ zh-CN:
     to_activate_this_section: 才能继续
   results_for: 的结果
   button:
-    promote_qrcode: 直达推广二维码
+    promote_qrcode: 直达导购二维码
     see_all_products: 浏览所有品类产品
     show_product: 产品详情
     read_more: 点击查看
@@ -328,7 +328,7 @@ zh-CN:
     my_payment: 我的支付方式
     my_cart: 购物车
     my_account: 我的账户
-    flyer: 推广伙伴
+    flyer: 会员伙伴
     my_personal: 个人信息
     my_bank: 支付方式
     my_address: 地址管理
