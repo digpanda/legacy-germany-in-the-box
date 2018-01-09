@@ -100,7 +100,7 @@ class CouponHandler < BaseService
     end
 
     def reseller_order?
-      order.price_origins.include?(:reseller_price)
+      order.from_reseller?
     end
 
     # we check for the minimum order price

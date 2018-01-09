@@ -471,6 +471,7 @@ zh-CN:
     placeholder_tel: 固定电话 0571-12343434
     placeholder_mobile: 移动电话 13802049772
   edit_address:
+    delivery_id: 运单号
     maximal_number_of_addresses: 您最多可以设定三个地址
     add_new_address: 添加新地址
     new_address_title: 您的新地址
@@ -848,6 +849,7 @@ zh-CN:
   category:
     categories: 产品分类
   cart:
+    order_id: 订单号
     no_products: 购物车里还没有产品
     item: 产品图
     name: 名称
