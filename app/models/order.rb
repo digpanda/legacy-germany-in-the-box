@@ -128,6 +128,10 @@ class Order
     order_items.map(&:price_origin).uniq
   end
 
+  def from_reseller?
+    price_origins.include?(:reseller_price)
+  end
+
   def coupon_discount_in_percent
     # we use the total_price_with_taxes because
     # the coupon_discount is calculated with taxes
@@ -344,7 +348,7 @@ class Order
       if bill_id.nil? && self.bought?
         start_day = paid_at.beginning_of_day
         digits = start_day.strftime('%Y%m%d')
-        num = Order.where('bill_id.ne': nil).where('paid_at.gte': start_day).count + 1
+        num = Order.and(:bill_id.ne => nil).and(:paid_at => { :$gte => start_day }).count + 1
         self.bill_id = "R#{digits}-#{num}"
         self.save
       end

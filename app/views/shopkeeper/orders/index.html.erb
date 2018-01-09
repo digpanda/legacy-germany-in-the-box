@@ -57,7 +57,7 @@
             <%= render partial: "shared/orders/partials/files_buttons", locals: { :order => order } %>
           </td>
           <td>
-            <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S').in_time_zone %>
+            <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
           </td>
           <td>
 

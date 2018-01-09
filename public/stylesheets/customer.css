@@ -1843,6 +1843,15 @@ body {
   margin-top: 0.5em;
   margin-bottom: 1em; }
 
+.cart__order-id {
+  padding-top: 0.5em;
+  border-top: 1px solid #eee; }
+
+.cart__order-id-number {
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 0.2em; }
+
 .cart__order-title a {
   color: #464646;
   font-size: 24px;

@@ -452,6 +452,7 @@ de:
     placeholder_tel: Festnetz 0571-12343434
     placeholder_mobile: Mobile 13802049772
   edit_address:
+    delivery_id: Delivery ID
     maximal_number_of_addresses: Sie können maximal %{num} Adressen konfigurieren.
     add_new_address: Adresse hinzufügen
     new_address_title: Ihre neue Adresse
@@ -837,6 +838,7 @@ de:
   category:
     categories: Kategorien
   cart:
+    order_id: Order ID
     no_products: Kein Produkt vorhanden
     item: Icon
     name: Name

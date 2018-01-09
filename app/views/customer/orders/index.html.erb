@@ -85,7 +85,7 @@
           <% if order.decorate.total_price_with_extra_costs > 0 %>
             <%= order.decorate.skus_names %>
             <div class="clearfix"></div>
-            <%= link_to '订单详情', customer_order_path(order) %>
+            <%= link_to "订单详情 #{order.id}", customer_order_path(order) %>
           <% else %>
             <%= order.decorate.skus_names %>
           <% end %>
@@ -100,7 +100,13 @@
             <div class="clearfix"></div>
             <strong><%= I18n.t('edit_order.link_tracking') %>:</strong>
             <% if order.order_tracking %>
-              <a href="<%= guest_order_tracking_public_url_path(order.order_tracking) %>"><%= order.order_tracking.delivery_id %></a>
+              <!-- For now DHL is a special case where we need to wait 10 days before we show the tracking
+              for the other delivery provider we show straight away -->
+              <% if (order.order_tracking.delivery_provider != 'dhlde') || (order.paid_at < 10.days.ago) %>
+                <a href="<%= guest_order_tracking_public_url_path(order.order_tracking) %>"><%= order.order_tracking.delivery_id %></a>
+              <% else %>
+                德国发往中国途中
+              <% end %>
             <% else %>
               -
             <% end %>
