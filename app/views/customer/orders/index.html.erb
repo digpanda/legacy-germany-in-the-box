@@ -52,6 +52,7 @@
           </td>
           <td>
             <%= order.c_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
+
           </td>
           <td>
           <% unless order.decorate.paid? %>
@@ -112,7 +113,7 @@
             <% end %>
           <% end %>
           <div class="clearfix"></div>
-          <strong><%= I18n.t('edit_order.updated_at') %>:</strong> <%= order.u_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
+          <strong><%= I18n.t('edit_order.created_at') %>:</strong> <%= order.c_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %>
 
         </td>
 
