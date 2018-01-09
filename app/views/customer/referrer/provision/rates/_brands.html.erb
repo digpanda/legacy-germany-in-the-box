@@ -1,0 +1,39 @@
+<% unless brands.count == 0 %>
+<div class="referrer__orders">
+
+  <!-- ORDERS LIST -->
+  <div class="referrer__title">
+    <%= I18n.t('referrer.package_set_provision_rates') %>
+  </div>
+
+  <div class="referrer__list">
+    <table>
+      <thead>
+        <th>
+          <%= I18n.t('referrer.package_set_product') %>
+        </th>
+        <th>
+          <%= I18n.t('referrer.rate') %>
+        </th>
+      </thead>
+      <tbody>
+
+        <% brands.each do |brand| %>
+            <tr data-href="<%= guest_brand_path(brand) %>">
+              <td>
+                <%= brand.name %>
+              </td>
+              <td>
+                <%= referrer_rate_range(brand) %>
+              </td>
+            </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="+spacer"></div>
+<% end %>

@@ -29,6 +29,10 @@ class Brand
   scope :with_services, -> { where(:id.in => services_brand_ids) }
   scope :used_as_filters, -> { where(:used_as_filter.ne => false) }
 
+  def package_sets
+    PackageSet.with_brand(self)
+  end
+
   private
 
     def self.package_set_brand_ids
