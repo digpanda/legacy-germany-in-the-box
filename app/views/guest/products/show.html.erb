@@ -2,6 +2,7 @@
 
 <!-- < cache @product do > -->
 
+  <% title "#{@product.brand.name} #{@product.name}" %>
   <div class="row">
     <div class="col-md-12">
       <!-- Product Subheader -->
@@ -19,7 +20,7 @@
           <div class="col-md-6 col-md-push-3 col-xs-12">
             <%= render partial: "guest/products/show/images", :locals => {product: @product} %>
           </div>
-          
+
           <!-- Title, Brand and some Actions -->
           <div class="col-md-3 col-md-push-3 col-xs-12">
             <%= render partial: "guest/products/show/actions", :locals => {product: @product} %>
