@@ -1,5 +1,8 @@
 <!-- < cache @shop do > -->
-  <% title @shop.name %>
+<% set_meta_tags title: @shop.name,
+                 description: @shop.desc,
+                 keywords: '' %>
+
   <div class="row">
     <div class="col-md-12">
 

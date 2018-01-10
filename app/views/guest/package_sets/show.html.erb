@@ -1,7 +1,10 @@
 <%= render partial: "guest/package_sets/show/header_navigation", locals: { package_set: @package_set, category: @category, back: guest_package_sets_path(category_id: @package_set.category.slug) } %>
 
 <!-- < cache @package_set do > -->
-  <% title @package_set.name %>
+<% set_meta_tags title: @package_set.name,
+                 description: @package_set.desc,
+                 keywords: '' %>
+
   <!-- Cover -->
   <%= render partial: 'shared/partials/cover', locals: { cover: @package_set.cover, promotion: @package_set.promotion_text, share: current_user&.referrer } %>
 

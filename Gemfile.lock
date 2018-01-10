@@ -308,6 +308,8 @@ GEM
       json (>= 1.7.7)
       rest-client (>= 1.6.7)
     memory_profiler (0.9.8)
+    meta-tags (2.7.0)
+      actionpack (>= 3.2.0, < 5.3)
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_magick (4.5.1)
@@ -683,6 +685,7 @@ DEPENDENCIES
   magnific-popup-rails
   mailgun_rails
   memory_profiler
+  meta-tags
   mini_magick
   minitest (= 5.8.3)
   mobvious-rails

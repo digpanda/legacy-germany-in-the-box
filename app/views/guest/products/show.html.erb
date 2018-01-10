@@ -2,7 +2,10 @@
 
 <!-- < cache @product do > -->
 
-  <% title "#{@product.brand.name} #{@product.name}" %>
+<% set_meta_tags title: @product.name,
+                 description: @product.desc,
+                 keywords: '' %>
+
   <div class="row">
     <div class="col-md-12">
       <!-- Product Subheader -->

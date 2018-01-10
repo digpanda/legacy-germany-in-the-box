@@ -20,6 +20,8 @@ gem 'mongoid_search', github: 'Loschcode/mongoid_search', branch: 'master' # pat
 
 gem 'keen'
 
+gem 'meta-tags'
+
 gem 'rest-client'
 
 gem 'mongoid-slug'
