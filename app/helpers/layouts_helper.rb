@@ -1,7 +1,7 @@
 module LayoutsHelper
-  def title(page_title)
-    content_for :title, page_title.to_s
-  end
+  # def title(page_title)
+  #   content_for :title, page_title.to_s
+  # end
 
   def menu_active?(path)
     return '' if @menu_active
