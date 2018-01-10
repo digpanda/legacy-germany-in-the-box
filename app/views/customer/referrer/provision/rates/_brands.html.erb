@@ -19,7 +19,8 @@
       <tbody>
 
         <% brands.each do |brand| %>
-            <tr data-href="<%= guest_brand_path(brand) %>">
+          <% unless brand.package_sets_referrer_rates_range == [0.0] %>
+            <tr>
               <td>
                 <%= brand.name %>
               </td>
@@ -27,6 +28,7 @@
                 <%= referrer_rate_range(brand) %>
               </td>
             </tr>
+          <% end %>
         <% end %>
 
       </tbody>

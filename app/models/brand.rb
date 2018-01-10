@@ -33,6 +33,10 @@ class Brand
     PackageSet.with_brand(self)
   end
 
+  def package_sets_referrer_rates_range
+    package_sets.map(&:referrer_rate).sort.uniq
+  end
+
   private
 
     def self.package_set_brand_ids
