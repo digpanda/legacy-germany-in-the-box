@@ -22,6 +22,7 @@ class ReferrerMaker < BaseService
   private
 
     def assign_itself_as_referrer!
+      customer.reload
       customer.update(parent_referrer: customer.referrer)
     end
 
