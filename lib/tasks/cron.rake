@@ -7,4 +7,8 @@ namespace :cron do
   task remove_empty_carts: :environment do
     Tasks::Cron::RemoveEmptyCarts.new.perform
   end
+  desc 'Refresh all the on-going order tracking status from the API'
+  task refresh_trackings: :environment do
+    Tasks::Cron::RefreshTrackings.new.perform
+  end
 end

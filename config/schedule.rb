@@ -34,6 +34,13 @@ set :output, '/var/www/germany_in_the_box/current/log/cron.log'
 #   command 'The system has launched the rake task `rake mongoid_search:index`'
 #   rake 'mongoid_search:index'
 # end
+#
+
+# - refresh all the on going order trackings from the API
+every :day do
+  command 'The system has launched the rake task `rake cron:refresh_trackings`'
+  rake 'cron:refresh_trackings'
+end
 
 # - check all the links added to the admin dashboard and notify problems
 every :day do
