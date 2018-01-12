@@ -18,7 +18,7 @@ class Admin::OrdersController < ApplicationController
     respond_to do |format|
       format.html do
         @orders = orders.full_text_search(params[:query])
-                        .paginate(page: current_page, per_page: 10)
+                        .paginate(page: current_page, per_page: 100)
       end
       format.csv do
         render_csv
@@ -28,7 +28,7 @@ class Admin::OrdersController < ApplicationController
 
   def ongoing
     @orders = Order.ongoing.full_text_search(params[:query])
-                           .paginate(page: current_page, per_page: 10)
+                           .paginate(page: current_page, per_page: 100)
   end
 
   def show
