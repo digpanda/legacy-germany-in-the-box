@@ -2,7 +2,7 @@ module WechatBot
   class Text < Base
     attr_reader :user, :content
 
-    CUSTOMER_SUPPORT_CHANNEL = '#customer_support'
+    CUSTOMER_SUPPORT_CHANNEL = '#customer_support'.freeze
 
     def initialize(user, content)
       @user = user
