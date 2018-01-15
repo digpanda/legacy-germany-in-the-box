@@ -60,6 +60,7 @@ class Guest::PackageSetsController < ApplicationController
 
     def blob_qrcode
       url_with_reference = guest_package_set_url(package_set, reference_id: current_user&.referrer&.reference_id)
+      SlackDispatcher.new.message("URL WITH REFERENCE : #{url_with_reference}")
       qrcode_path = SmartQrcode.new(url_with_reference).perform
       Flyer.new.process_cover_qrcode(package_set.cover, qrcode_path).image.to_blob
     end
