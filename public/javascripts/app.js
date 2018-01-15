@@ -1082,11 +1082,15 @@ module.exports = PackageSetsShow;
 require.register("javascripts/controllers/guest/package_sets/show.js", function(exports, require, module) {
 'use strict';
 
+<<<<<<< Updated upstream
 var _vueAwesomeSwiper = require('vue-awesome-swiper');
 
 var _vueAwesomeSwiper2 = _interopRequireDefault(_vueAwesomeSwiper);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+=======
+// import VueAwesomeSwiper from 'vue-awesome-swiper'
+>>>>>>> Stashed changes
 
 // require styles
 // import 'swiper/dist/css/swiper.css'
@@ -1101,6 +1105,7 @@ var Show = {
   init: function init() {
 
     // everything is auto managed ... incredible vuejs.
+<<<<<<< Updated upstream
     Vue.use(_vueAwesomeSwiper2.default);
     Show.setupSlider();
   },
@@ -1128,6 +1133,9 @@ var Show = {
       }
     });
   },
+=======
+    Vue.use(VueAwesomeSwiper);
+>>>>>>> Stashed changes
 
   desktopSlider: function desktopSlider() {
     return new Vue({
