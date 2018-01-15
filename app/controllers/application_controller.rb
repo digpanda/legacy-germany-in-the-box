@@ -87,6 +87,7 @@ class ApplicationController < ActionController::Base
   # if there is a URL containing a code
   # we try to store it before sign-in
   def assign_referrer
+    SlackDispatcher.new.message("PARAM REFERENCE ID #{params[:reference_id]}")
     session[:reference_id] = params[:reference_id] if params[:reference_id]
   end
 
