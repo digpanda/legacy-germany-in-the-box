@@ -89,7 +89,6 @@ class ApplicationController < ActionController::Base
   def assign_referrer
     if params[:reference_id]
       session[:reference_id] = params[:reference_id]
-      SlackDispatcher.new.message("PARAM REFERENCE ID #{params[:reference_id]}")
     end
   end
 
