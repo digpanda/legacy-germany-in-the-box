@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+
+    <!-- BACK -->
+    <%= render partial: 'customer/referrer/subheader', :locals => { back: customer_referrer_path } %>
+
+    <%= form_for [:customer, @customization], :data => {:toggle => 'validator'} do |form| %>
+
+    <h3>Title</h3>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-12">
+          <%= form.text_field :title, :class => 'form-control', :placeholder => 'Any title' %>
+          <div class="help-block with-errors +left"></div>
+         </div>
+       </div>
+    </div>
+
+
+    <h3>Logo</h3>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Logo -->
+          <div class="row">
+            <div class="col-md-3">
+              <%= js_file_upload(form: form, field: :logo) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input class="big-button --blue" type="submit" value="Save"></input>
+    </div>
+
+
+    <% end %>
+  </div>
+</div>

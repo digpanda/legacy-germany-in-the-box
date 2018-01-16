@@ -16,6 +16,8 @@ class Referrer
 
   belongs_to :referrer_group, class_name: 'ReferrerGroup', inverse_of: :referrer
 
+  has_one :customization, class_name: 'ReferrerCustomization', inverse_of: :referrer
+
   has_many :coupons, class_name: 'Coupon', inverse_of: :referrer
   has_many :orders, class_name: 'Order', inverse_of: :referrer
   has_many :inquiries, class_name: 'Inquiry', inverse_of: :referrer

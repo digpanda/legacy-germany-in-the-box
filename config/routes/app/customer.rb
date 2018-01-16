@@ -9,6 +9,9 @@ namespace :customer do
     post :claim
     get :agb
 
+    resource :customization, controller: 'referrer/customization' do
+    end
+
     resources :links, controller: 'referrer/links' do
       get :share
     end
