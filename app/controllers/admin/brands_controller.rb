@@ -20,7 +20,6 @@ class Admin::BrandsController < ApplicationController
   end
 
   def create
-    binding.pry
     @brand = Brand.create(brand_params)
     if brand.errors.empty?
       flash[:success] = 'The brand was created.'
