@@ -50,8 +50,16 @@ class Notifier
     end
 
     def order_has_been_shipped(order)
+      # if it's a reseller order then we send the SMS to the reseller himself
+      # else we just send it out to the shipping address
+      if order.price_origins.include?(:reseller_price)
+        mobile_recipient = order.user.mobile
+      else
+        mobile_recipient = order.shipping_address.mobile
+      end
+
       dispatch(
-        mobile: "#{order.shipping_address.mobile}",
+        mobile: "#{mobile_recipient}",
         title: '发货通知',
         desc: "亲爱的顾客，您的订单#{order.id}已安排发货。快递单号为：#{order.order_tracking&.delivery_id}，您可以访问快递100网站查询快递状态 http://www.kuaidi100.com"
       ).perform(:sms)
