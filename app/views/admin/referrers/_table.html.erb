@@ -18,6 +18,9 @@
         AGB
       </th>
       <th>
+        Group
+      </th>
+      <th>
         Linked Users
       </th>
       <th>
@@ -65,6 +68,9 @@
           </td>
           <td>
             <%= boolean_icon(referrer.agb) %>
+          </td>
+          <td>
+            <%= editable_field(referrer.user, admin_user_path(referrer.user), :group, :select, [user_groups, {:selected => referrer.user.group}]) %>
           </td>
           <td>
             <%= referrer.children_users.count %>
