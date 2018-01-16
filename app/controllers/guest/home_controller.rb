@@ -5,7 +5,11 @@ class Guest::HomeController < ApplicationController
   before_action :set_banner
 
   def show
-    @shops = Shop.can_buy.order_by(position: :asc).all
+    # NOTE : we cancelled totally this part of the site for now
+    # as it does not generate any money.
+    # - Laurent, 16/01/2018
+    redirect_to guest_package_sets_path
+    # @shops = Shop.can_buy.order_by(position: :asc).all
   end
 
   def test

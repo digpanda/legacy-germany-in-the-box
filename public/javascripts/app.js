@@ -1082,72 +1082,30 @@ module.exports = PackageSetsShow;
 require.register("javascripts/controllers/guest/package_sets/show.js", function(exports, require, module) {
 'use strict';
 
-var _vueAwesomeSwiper = require('vue-awesome-swiper');
-
-var _vueAwesomeSwiper2 = _interopRequireDefault(_vueAwesomeSwiper);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// require styles
-// import 'swiper/dist/css/swiper.css'
+// import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 /**
-* Show Class
+* PackageSetsShow Class
 * We use vue for a carousel system within the page
 */
-var Show = {
+var PackageSetsShow = {
 
   vue: null,
   init: function init() {
 
     // everything is auto managed ... incredible vuejs.
-    Vue.use(_vueAwesomeSwiper2.default);
-    Show.setupSlider();
-  },
+    Vue.use(VueAwesomeSwiper);
 
-  setupSlider: function setupSlider() {
-    if ($('#js-device').data('current') == 'mobile') {
-      Show.vue = Show.mobileSlider();
-    } else {
-      Show.vue = Show.desktopSlider();
-    }
-  },
-
-  mobileSlider: function mobileSlider() {
-    return new Vue({
+    this.vue = new Vue({
       el: '#slider-vue',
-      data: {
-        swiperOption: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-          }
-        }
-      }
-    });
-  },
-
-  desktopSlider: function desktopSlider() {
-    return new Vue({
-      el: '#slider-vue',
-      data: {
-        swiperOption: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-          }
-        }
-      }
+      data: {},
+      watch: {},
+      methods: {}
     });
   }
-
 };
 
-module.exports = Show;
+module.exports = PackageSetsShow;
 
 });
 
@@ -2953,7 +2911,7 @@ require.register("javascripts/starters.js", function(exports, require, module) {
 /**
  * Starters Class
  */
-var Starters = ['anti_cache', 'auto_resize', 'live_currency', 'back_to_top', 'bootstrap', 'charts', 'device', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sliders', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
+var Starters = ['anti_cache', 'auto_resize', 'live_currency', 'back_to_top', 'bootstrap', 'charts', 'editable_fields', 'footer', 'input_validation', 'images_handler', 'lazy_loader', 'left_menu', 'links_behaviour', 'messages', 'mobile_menu', 'mobile', 'navigation', 'product_favorite', 'product_form', 'products_list', 'qrcode', 'refresh_time', 'responsive', 'search', 'sku_form', 'sweet_alert', 'table_clicker', 'tooltipster', 'total_products', 'weixin'];
 
 module.exports = Starters;
 
@@ -3206,53 +3164,6 @@ module.exports = Charts;
 
 });
 
-require.register("javascripts/starters/device.js", function(exports, require, module) {
-'use strict';
-
-/**
- * Device Class
- */
-var Device = {
-
-  mobile_size: 992,
-  current_window: null,
-
-  /**
-   * Initializer
-   */
-  init: function init() {
-    this.handleResize();
-  },
-
-  /**
-  * Check if window is mobile or desktop
-  * And will refresh dependinf the size
-  */
-  handleResize: function handleResize() {
-    Device.check();
-    $(window).resize(Device.check);
-  },
-
-  check: function check() {
-    if (Device.width() < Device.mobile_size) {
-      // mobile size
-      $('#js-device').data('current', 'mobile');
-    } else {
-      // desktop size
-      $('#js-device').data('current', 'desktop');
-    }
-  },
-
-  width: function width() {
-    return $(window).width();
-  }
-
-};
-
-module.exports = Device;
-
-});
-
 require.register("javascripts/starters/editable_fields.js", function(exports, require, module) {
 'use strict';
 
@@ -3481,40 +3392,7 @@ var InputValidation = {
   init: function init() {
 
     this.restrictToChinese();
-    this.addressPidValidation();
   },
-
-  cancelValidation: function cancelValidation(field) {
-    return $('form').find(field).prop('required', false).removeData(['bs.validator.errors', 'bs.validator.previous']).end().validator('validate');
-  },
-
-  requireValidation: function requireValidation(field) {
-    return $('form').find(field).prop('required', true).removeData(['bs.validator.errors', 'bs.validator.previous']).end().validator('validate');
-  },
-
-  // Depending the country we remove or not the mandatory attribute
-  // and then hide the field (Europe / China)
-  // NOTE : all those are sensitive since we use the raw selectors generated from Rails
-  // If there's any problem about it, check them from the HTML directly and fix it here
-  addressPidValidation: function addressPidValidation() {
-    if ($("input[name='address[country]']").length > 0) {
-      InputValidation.refreshPidValidation();
-      $("input[name='address[country]']").on('click', function (e) {
-        InputValidation.refreshPidValidation();
-      });
-    }
-  },
-
-  refreshPidValidation: function refreshPidValidation() {
-    if ($('#address_country_europe:checked').val()) {
-      this.cancelValidation('#address_pid');
-      $('#address_pid').parent().hide();
-    } else {
-      this.requireValidation('#address_pid');
-      $('#address_pid').parent().show();
-    }
-  },
-
 
   /**
    * USE : just add data-error to an input to have the custom error show up
@@ -4486,79 +4364,6 @@ var SkuForm = {
 };
 
 module.exports = SkuForm;
-
-});
-
-require.register("javascripts/starters/sliders.js", function(exports, require, module) {
-'use strict';
-
-var _vueAwesomeSwiper = require('vue-awesome-swiper');
-
-var _vueAwesomeSwiper2 = _interopRequireDefault(_vueAwesomeSwiper);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// require styles
-// import 'swiper/dist/css/swiper.css'
-
-/**
-* Sliders Class
-* We use vue for a carousel system within the page
-*/
-var Sliders = {
-
-  vue: null,
-  init: function init() {
-
-    // everything is auto managed ... incredible vuejs.
-    Vue.use(_vueAwesomeSwiper2.default);
-    Sliders.setupSlider();
-    console.log('slider');
-  },
-
-  setupSlider: function setupSlider() {
-    if ($('#js-device').data('current') == 'mobile') {
-      Sliders.vue = Sliders.mobileSlider();
-    } else {
-      Sliders.vue = Sliders.desktopSlider();
-    }
-  },
-
-  mobileSlider: function mobileSlider() {
-    return new Vue({
-      el: '#slider-vue',
-      data: {
-        swiperOption: {
-          slidesPerView: 1,
-          spaceBetween: 20,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-          }
-        }
-      }
-    });
-  },
-
-  desktopSlider: function desktopSlider() {
-    return new Vue({
-      el: '#slider-vue',
-      data: {
-        swiperOption: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-          }
-        }
-      }
-    });
-  }
-
-};
-
-module.exports = Sliders;
 
 });
 
