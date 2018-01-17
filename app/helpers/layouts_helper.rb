@@ -20,17 +20,17 @@ module LayoutsHelper
 
   def solve_logo
     return "/images/logos/germany-in-the-box-resellers.svg" if referrer?
-    return @customization.logo.url if @customization&.active? && @customization&.logo&.present?
+    return @customization.logo.url if customization? && @customization&.logo&.present?
 
     "/images/logos/germany-in-the-box.svg"
   end
 
   def solve_title
-    @customization.title if @customization&.active? && @customization&.title&.present?
+    @customization.title if customization? && @customization&.title&.present?
   end
 
   def customization?
-    @customization.active?
+    @customization&.active?
   end
 
 end
