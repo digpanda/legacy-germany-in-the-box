@@ -16,7 +16,6 @@ namespace :admin do
   end
 
   resources :categories do
-    delete :destroy_image
   end
 
   resources :coupons do
@@ -60,13 +59,10 @@ namespace :admin do
     patch :approve
     post :force_login
     patch :disapprove
-    delete :destroy_image
 
     resources :package_sets, controller: 'shops/package_sets' do
       patch :active
       patch :unactive
-      delete :destroy_image
-      delete :destroy_image_file
     end
 
     resources :products, controller: 'shops/products' do
@@ -80,7 +76,6 @@ namespace :admin do
       end
 
       resources :skus, controller: 'shops/products/skus' do
-        delete :destroy_image
         patch :clone
       end
 
@@ -142,7 +137,6 @@ namespace :admin do
   end
 
   resources :settings do
-    delete :destroy_image
   end
 
   authenticate :user, lambda { |u| u.admin? } do

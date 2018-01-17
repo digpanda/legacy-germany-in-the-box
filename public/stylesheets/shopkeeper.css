@@ -1881,6 +1881,11 @@ input[type=checkbox][class='--blue']:checked {
   background: url("/images/elements/cross-checkbox-blue.png") center center no-repeat;
   background-size: 10px 10px; }
 
+input[type=checkbox][class='--red']:checked {
+  border: 1px solid #d6506c;
+  background: url("/images/elements/cross-checkbox-red.png") center center no-repeat;
+  background-size: 10px 10px; }
+
 textarea, input, button {
   outline: none !important;
   -webkit-box-shadow: none !important;
