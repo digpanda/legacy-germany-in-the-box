@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   before_action :force_wechat_login
   before_action :solve_silent_login, :solve_origin, :solve_landing
 
-  before_action :ensure_price_origin
+  before_action :ensure_price_origin, :ensure_customization
 
   # this is used to work with the models
   # we should never share contextual data with the model
@@ -96,6 +96,10 @@ class ApplicationController < ActionController::Base
     else
       1
     end
+  end
+
+  def ensure_customization
+    @customization = current_user&.parent_referrer&.customization
   end
 
   def slack
