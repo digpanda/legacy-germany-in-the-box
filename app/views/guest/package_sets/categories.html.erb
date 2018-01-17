@@ -2,7 +2,9 @@
 <%= render partial: 'shared/partials/cover', locals: { cover: Setting.instance.package_sets_cover, banner: @banner } %>
 
 <!-- Wechat QRCode Support -->
-<%= render partial: "guest/package_sets/wechat_qrcode" %>
+<% unless customization? %>
+  <%= render partial: "guest/package_sets/wechat_qrcode" %>
+<% end %>
 
 <!-- Brand filters for Package Sets -->
 <%= render partial: "guest/package_sets/brand_filters", locals: { current_brand: @brand, current_category: @category, brand_filters: @brand_filters} %>

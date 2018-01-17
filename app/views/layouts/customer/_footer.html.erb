@@ -1,29 +1,42 @@
 <div class="row js-footer-stick">
   <div class="footer">
 
-    <div class="col-md-offset-1 col-md-2 col-xs-6">
-      <%= render "layouts/customer/footer/germany_in_the_box" %>
-    </div>
+    <!-- If it's a customized site we manage differently -->
+    <% if customization? %>
 
-    <div class="col-md-2 col-xs-5">
-      <%= render "layouts/customer/footer/buying_info" %>
-    </div>
+      <div class="col-md-10 col-md-offset-1 col-xs-11">
+        <hr />
+        <%= render "layouts/customer/footer/payment_methods" %>
+      </div>
 
 
-    <div class="col-md-2 col-xs-11">
-      <hr />
-      <%= render "layouts/customer/footer/social_medias" %>
-    </div>
+    <% else %>
 
-    <div class="col-md-2 col-xs-11">
-      <hr />
-      <%= render "layouts/customer/footer/payment_methods" %>
-    </div>
+      <div class="col-md-offset-1 col-md-2 col-xs-6">
+        <%= render "layouts/customer/footer/germany_in_the_box" %>
+      </div>
 
-    <div class="col-md-2 col-xs-11">
-      <hr />
-      <%= render "layouts/customer/footer/partners" %>
-    </div>
+      <div class="col-md-2 col-xs-5">
+        <%= render "layouts/customer/footer/buying_info" %>
+      </div>
+
+
+      <div class="col-md-2 col-xs-11">
+        <hr />
+        <%= render "layouts/customer/footer/social_medias" %>
+      </div>
+
+      <div class="col-md-2 col-xs-11">
+        <hr />
+        <%= render "layouts/customer/footer/payment_methods" %>
+      </div>
+
+      <div class="col-md-2 col-xs-11">
+        <hr />
+        <%= render "layouts/customer/footer/partners" %>
+      </div>
+
+    <% end %>
 
     <div class="clearfix"></div>
 

@@ -32,6 +32,7 @@ class Customer::Referrer::CustomizationController < ApplicationController
     end
 
     def customization_params
+      params[:referrer_customization][:active] = true unless params[:referrer_customization][:active]
       params[:referrer_customization].permit!
     end
 
