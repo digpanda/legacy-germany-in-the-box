@@ -128,6 +128,7 @@ class AfterSigninHandler
 
     def handle_referrer_binding
       if session[:reference_id]
+        SlackDispatcher.new.message("REFERENCE ID PRESENT ON LOGIN #{session[:reference_id]}")
         referrer = Referrer.where(reference_id: session[:reference_id]).first
         ReferrerBinding.new(referrer).bind(user) if referrer
         session[:reference_id] = nil
