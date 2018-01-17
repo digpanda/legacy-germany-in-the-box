@@ -17,15 +17,7 @@
   <!-- Actions -->
   <div class="row">
     <div class="file-upload__action">
-      <%= link_to '', '#', :class => 'tooltipster fa fa-check buttons buttons__add hidden', :id => "#{field}_#{assoc.id}_add", :title => "Update changes", :data => {:form => 'submit'} %>
-
-      <% if assoc.persisted? %>
-        <% if assoc.send(field).present? %>
-          <% if assoc === Image %>
-            <%= link_to '', shared_image_path(assoc.id), :method => :delete, :class => 'tooltipster fa fa-times buttons buttons__delete', :title => "Delete this image" %>
-          <% end %>
-        <% end %>
-      <% end %>
+      <%= form.check_box "remove_#{field}".to_sym %>
     </div>
   </div>
 </div>
