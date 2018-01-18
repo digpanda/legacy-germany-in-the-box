@@ -23,7 +23,6 @@ class WechatSilentLogin < BaseService
   # NOTE : the redirect_url must be used for the final redirection
   # it won't be triggered with connect! which only return a boolean
   def connect!
-    SlackDispatcher.new.message("CONNECT NOW")
     if wechat_api_connect_solver.success?
       signin! user
       true

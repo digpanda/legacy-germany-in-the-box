@@ -9,6 +9,7 @@ class Guest::PackageSetsController < ApplicationController
   before_action :set_banner, only: [:index, :categories]
 
   def show
+    SlackDispatcher.new.message("URL #{request.protocol}#{request.host_with_port}#{request.fullpath}")
   end
 
   def categories

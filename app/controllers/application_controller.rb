@@ -40,9 +40,7 @@ class ApplicationController < ActionController::Base
     return unless Rails.env.production? # this should work solely in production
     return if current_user
     return if params[:code]
-    SlackDispatcher.new.message("URL #{request.protocol}#{request.host_with_port}#{request.fullpath}")
     return unless identity_solver.wechat_browser?
-    SlackDispatcher.new.message("WECHAT BROWSER SO CONTINUE")
     redirect_to WechatUrlAdjuster.new(identity_solver.wechat_url).adjusted_url
   end
 
@@ -50,9 +48,7 @@ class ApplicationController < ActionController::Base
   # with the code in parameters (typically wechat related)
   def solve_silent_login
     return unless params[:code]
-    SlackDispatcher.new.message("SILENT LOG IN NOX")
     return unless wechat_silent_login.connect!
-    SlackDispatcher.new.message("WE GO FOR IT")
     redirect_to wechat_silent_login.redirect(refresh: true)
   end
 
