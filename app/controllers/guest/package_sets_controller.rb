@@ -9,7 +9,6 @@ class Guest::PackageSetsController < ApplicationController
   before_action :set_banner, only: [:index, :categories]
 
   def show
-    SlackDispatcher.new.message("URL #{request.protocol}#{request.host_with_port}#{request.fullpath}")
   end
 
   def categories
@@ -60,12 +59,10 @@ class Guest::PackageSetsController < ApplicationController
   private
 
     def blob_qrcode
-      SlackDispatcher.new.message("REFERRER PRESENT FOR QRCODE ? #{current_user&.referrer}")
       if current_user&.referrer
         url_with_reference = guest_package_set_url(package_set, reference_id: current_user&.referrer&.reference_id)
         force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
         qrcode_path = SmartQrcode.new(force_login_url).perform
-        SlackDispatcher.new.message("QRCODE WITH PATH ON QRCODE PACKAGE SET IS #{force_login_url}")
         Flyer.new.process_cover_qrcode(package_set.cover, qrcode_path).image.to_blob
       end
     end
