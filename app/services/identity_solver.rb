@@ -59,7 +59,7 @@ class IdentitySolver < BaseService
   end
 
   def wechat_browser?
-    SlackDispatcher.new.messgage("BROWSER IS #{request.user_agent}")
+    SlackDispatcher.new.message("BROWSER IS #{request.user_agent}")
     request.user_agent&.include? 'MicroMessenger'
   end
 
