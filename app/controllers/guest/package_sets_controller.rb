@@ -60,6 +60,7 @@ class Guest::PackageSetsController < ApplicationController
   private
 
     def blob_qrcode
+      SlackDispatcher.new.message("REFERRER PRESENT FOR QRCODE ? #{current_user&.referrer}")
       if current_user&.referrer
         url_with_reference = guest_package_set_url(package_set, reference_id: current_user&.referrer&.reference_id)
         qrcode_path = SmartQrcode.new(url_with_reference).perform
