@@ -39,9 +39,8 @@ class ApplicationController < ActionController::Base
   def force_wechat_login
     return unless Rails.env.production? # this should work solely in production
     return if current_user
-    SlackDispatcher.new.message("NO CURRENT USER SO CONTINUE")
     return if params[:code]
-    SlackDispatcher.new.message("NO CODE SO CONTINUE")
+    SlackDispatcher.new.message("URL #{request.protocol}#{request.host_with_port}#{request.fullpath}")
     return unless identity_solver.wechat_browser?
     SlackDispatcher.new.message("WECHAT BROWSER SO CONTINUE")
     redirect_to WechatUrlAdjuster.new(identity_solver.wechat_url).adjusted_url
