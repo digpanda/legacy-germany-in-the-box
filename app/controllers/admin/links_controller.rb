@@ -8,11 +8,6 @@ class Admin::LinksController < ApplicationController
   authorize_resource class: false
   before_action :set_link, except: [:index, :create, :new]
 
-  before_action :breadcrumb_admin_links, except: [:index]
-  before_action :breadcrumb_admin_link, only: [:show, :edit]
-  before_action :breadcrumb_admin_link_new, only: [:new]
-  before_action :breadcrumb_admin_link_edit, only: [:edit]
-
   layout :custom_sublayout
 
   def index
