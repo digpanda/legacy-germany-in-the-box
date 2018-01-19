@@ -19,7 +19,16 @@
               Full Name
             </th>
             <th>
-              ???
+              Total Earned
+            </th>
+            <th>
+              Current Balance
+            </th>
+            <th>
+              Total Binded Sells
+            </th>
+            <th>
+              Total Resells
             </th>
           </thead>
           <tbody>
@@ -30,7 +39,18 @@
                     <%= referrer.user.decorate.full_name %>
                   </td>
                   <td>
-                    ???
+                    <%= referrer.total_earned.in_euro.display %>
+                  </td>
+                  <td>
+                    <span class="+blue +bold">
+                    <%= referrer.current_balance.in_euro.display %>
+                    </span>
+                  </td>
+                  <td>
+                    <%= referrer.total_growth.in_euro.display %>
+                  </td>
+                  <td>
+                    <%= referrer.total_resells.in_euro.display %>
                   </td>
                 </tr>
             <% end %>
