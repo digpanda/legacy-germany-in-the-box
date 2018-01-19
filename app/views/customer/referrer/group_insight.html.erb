@@ -30,6 +30,9 @@
             <th>
               Total Resells
             </th>
+            <th>
+              Group
+            </th>
           </thead>
           <tbody>
 
@@ -51,6 +54,9 @@
                   </td>
                   <td>
                     <%= referrer.total_resells.in_euro.display %>
+                  </td>
+                  <td>
+                    <%= referrer&.referrer_group&.name %>
                   </td>
                 </tr>
             <% end %>
