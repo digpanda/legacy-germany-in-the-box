@@ -33,6 +33,12 @@ module ArrayHelper
     }
   end
 
+  def referrer_groups
+    ReferrerGroup.all.reduce([]) do |acc, referrer_group|
+      acc << [referrer_group.name, referrer_group.id]
+    end
+  end
+
   def inquiry_status
     {
       'New' => :new,

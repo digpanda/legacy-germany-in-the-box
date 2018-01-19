@@ -112,6 +112,7 @@
           </td>
           <td>
             <%= referrer&.referrer_group&.name %>
+            <%= editable_field(referrer, admin_referrer_path(referrer), :referrer_group_id, :select, [referrer_groups, {:selected => referrer.referrer_group_id}]) %>
           </td>
           <td>
             <%= editable_field(referrer, admin_referrer_path(referrer), :label, :text_field) %>
