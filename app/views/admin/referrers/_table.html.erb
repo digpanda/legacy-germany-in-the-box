@@ -21,7 +21,7 @@
         Customization
       </th>
       <th>
-        Group
+        User Group
       </th>
       <th>
         Linked Users
@@ -45,7 +45,10 @@
         Total Resells
       </th>
       <th>
-        Group
+        Group Leader
+      </th>
+      <th>
+        Referrer Group
       </th>
       <th>
         Label
@@ -103,6 +106,9 @@
           </td>
           <td>
             <%= referrer.total_resells.in_euro.display %>
+          </td>
+          <td>
+            <%= editable_field(referrer, admin_referrer_path(referrer), :group_leader, :select, [boolean_select, {:selected => referrer.group_leader}]) %>
           </td>
           <td>
             <%= referrer&.referrer_group&.name %>

@@ -11,6 +11,8 @@ class Referrer
   field :agb, type: Boolean, default: false
   field :label, type: String
 
+  field :group_leader, type: Boolean, default: false
+
   belongs_to :user, class_name: 'User', inverse_of: :referrer
   has_many :children_users, class_name: 'User', inverse_of: :parent_referrer
 

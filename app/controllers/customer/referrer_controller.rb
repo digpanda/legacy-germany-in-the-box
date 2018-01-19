@@ -2,10 +2,15 @@ class Customer::ReferrerController < ApplicationController
   attr_reader :referrer
 
   before_filter :valid_referrer?
+  before_filter :valid_group_leader?, only: [:group_insight]
   before_action :set_referrer
   authorize_resource class: false
 
   def show
+  end
+
+  def group_insight
+    @referrers = Referrer.where(group: current_user.referrer.group).all
   end
 
   def provision
@@ -43,6 +48,14 @@ class Customer::ReferrerController < ApplicationController
 
     def set_referrer
       @referrer = current_user.referrer
+    end
+
+    def valid_group_leader?
+      unless current_user&.referrer&.group_leader
+        flash[:error] = I18n.t('general.not_allowed_section')
+        redirect_to root_path
+        false
+      end
     end
 
     def valid_referrer?

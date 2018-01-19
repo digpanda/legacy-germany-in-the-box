@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+
+    <!-- Subheader -->
+    <%= render partial: 'customer/referrer/subheader', :locals => { back:  customer_referrer_path } %>
+
+    <% unless @referrers.count == 0 %>
+    <div class="referrer__orders">
+
+      <!-- ORDERS LIST -->
+      <div class="referrer__title">
+        <%= I18n.t('referrer.group_insight') %>
+      </div>
+
+      <div class="referrer__list">
+        <table>
+          <thead>
+            <th>
+              Full Name
+            </th>
+            <th>
+              ???
+            </th>
+          </thead>
+          <tbody>
+
+            <% @referrers.each do |referrer| %>
+                <tr>
+                  <td>
+                    <%= referrer.user.decorate.full_name %>
+                  </td>
+                  <td>
+                    ???
+                  </td>
+                </tr>
+            <% end %>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="+spacer"></div>
+    <% end %>
+
+  </div>
+</div>
