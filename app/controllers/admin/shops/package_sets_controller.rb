@@ -11,7 +11,7 @@ class Admin::Shops::PackageSetsController < ApplicationController
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products
 
   def index
-    @package_sets = shop.package_sets.order_by(position: :asc).full_text_search(query, match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
+    @package_sets = shop.package_sets.order_by(position: :asc).full_text_search(query, match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 100)
   end
 
   def show

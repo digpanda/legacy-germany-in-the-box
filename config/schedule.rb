@@ -37,7 +37,7 @@ set :output, '/var/www/germany_in_the_box/current/log/cron.log'
 #
 
 # - refresh all the on going order trackings from the API
-every 1.day, :at => '11 am' do
+every 1.day, :at => '11:00 am' do
   command 'The system has launched the rake task `rake cron:refresh_trackings`'
   rake 'cron:refresh_trackings'
 end

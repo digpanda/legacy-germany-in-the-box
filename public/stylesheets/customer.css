@@ -2099,6 +2099,17 @@ body {
       background-size: cover;
       background-position: center;
       min-height: 55vw; } }
+  .landing-banner__title-square {
+    height: 80px;
+    background-color: white;
+    opacity: 0.7;
+    width: 400px; }
+  .landing-banner__title {
+    position: absolute;
+    top: 17px;
+    left: 50px;
+    font-size: 30px;
+    color: #464646; }
   .landing-banner__promotion {
     overflow-x: auto;
     height: 55vw; }

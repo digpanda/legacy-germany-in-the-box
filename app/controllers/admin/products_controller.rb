@@ -8,7 +8,7 @@ class Admin::ProductsController < ApplicationController
   layout :custom_sublayout
 
   def index
-    @products = Product.order_by(c_at: :desc).full_text_search(query, match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 10)
+    @products = Product.order_by(c_at: :desc).full_text_search(query, match: :all, allow_empty_search: true).paginate(page: current_page, per_page: 100)
   end
 
   private

@@ -59,10 +59,12 @@ class Guest::PackageSetsController < ApplicationController
   private
 
     def blob_qrcode
-      url_with_reference = guest_package_set_url(package_set, reference_id: current_user&.referrer&.reference_id)
-      SlackDispatcher.new.message("URL WITH REFERENCE : #{url_with_reference}")
-      qrcode_path = SmartQrcode.new(url_with_reference).perform
-      Flyer.new.process_cover_qrcode(package_set.cover, qrcode_path).image.to_blob
+      if current_user&.referrer
+        url_with_reference = guest_package_set_url(package_set, reference_id: current_user&.referrer&.reference_id)
+        force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
+        qrcode_path = SmartQrcode.new(force_login_url).perform
+        Flyer.new.process_cover_qrcode(package_set.cover, qrcode_path).image.to_blob
+      end
     end
 
     def valid_filters?
