@@ -91,6 +91,12 @@ de:
     rate: Rate
     referrer: Referrer
     group_insight: Group Insight
+    insight_full_name: Full Name
+    insight_total_earned: Total Earned
+    insight_current_balance: Current Balance
+    insight_total_binded_sells: Total Binded Sells
+    insight_total_resells: Total Resells
+    insight_group: Group
     customize_site: Customize Site
     customize_title: Title
     customize_title_placeholder: Any title

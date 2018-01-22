@@ -106,6 +106,12 @@ zh-CN:
     rate: 比率
     referrer: 会员账号
     group_insight: 我的群组
+    insight_full_name: Full Name
+    insight_total_earned: Total Earned
+    insight_current_balance: Current Balance
+    insight_total_binded_sells: Total Binded Sells
+    insight_total_resells: Total Resells
+    insight_group: Group
     customize_site: 我的店
     customize_title: Title
     customize_title_placeholder: Any title
