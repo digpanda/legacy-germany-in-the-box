@@ -16,6 +16,9 @@
         <table>
           <thead>
             <th>
+              #
+            </th>
+            <th>
               Full Name
             </th>
             <th>
@@ -36,8 +39,11 @@
           </thead>
           <tbody>
 
-            <% @referrers.each do |referrer| %>
+            <% @referrers.each_with_index do |referrer, index| %>
                 <tr>
+                  <td>
+                    <%= (index+1) %>
+                  </td>
                   <td>
                     <%= referrer.user.decorate.full_name %>
                   </td>
@@ -61,6 +67,36 @@
                 </tr>
             <% end %>
 
+
+            <tr>
+              <td colspan="7" class="table-td-placeholder">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <strong><%= I18n.t('referrer.provision_insight_total') %></strong>
+              </td>
+              <td>
+              </td>
+              <td>
+                <%= @referrers.sum(&:total_earned).in_euro.display %>
+              </td>
+              <td>
+                <span class="+blue +bold">
+                <%= @referrers.sum(&:current_balance).in_euro.display %>
+                </span>
+              </td>
+              <td>
+                <%= @referrers.sum(&:total_growth).in_euro.display %>
+              </td>
+              <td>
+                <%= @referrers.sum(&:total_resells).in_euro.display %>
+              </td>
+              <td>
+              </td>
+            </tr>
+
           </tbody>
         </table>
       </div>
@@ -68,6 +104,7 @@
     </div>
 
     <div class="+spacer"></div>
+
     <% end %>
 
   </div>

@@ -1847,6 +1847,10 @@
   color: white;
   background: transparent; }
 
+.table-td-placeholder {
+  height: 25px;
+  background-color: #f9f9f9; }
+
 input, textarea, select, a, button {
   outline: none !important; }
 
