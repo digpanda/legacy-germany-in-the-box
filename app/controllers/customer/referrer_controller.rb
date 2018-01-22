@@ -10,7 +10,7 @@ class Customer::ReferrerController < ApplicationController
   end
 
   def group_insight
-    @referrers = Referrer.where(group: current_user.referrer.referrer_group&.id).all
+    @referrers = Referrer.where(referrer_group: current_user.referrer.referrer_group).all
   end
 
   def provision
