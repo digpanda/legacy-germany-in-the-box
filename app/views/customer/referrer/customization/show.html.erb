@@ -6,19 +6,19 @@
 
     <%= form_for [:customer, @customization], :data => {:toggle => 'validator'} do |form| %>
 
-    <h3>Title</h3>
+    <h3><%= I18n.t('referrer.customize_title') %></h3>
 
     <div class="form-group">
       <div class="row">
         <div class="col-md-12">
-          <%= form.text_field :title, :class => 'form-control', :placeholder => 'Any title' %>
+          <%= form.text_field :title, :class => 'form-control', :placeholder => I18n.t('referrer.customize_title_placeholder') %>
           <div class="help-block with-errors +left"></div>
          </div>
        </div>
     </div>
 
 
-    <h3>Logo</h3>
+    <h3><%= I18n.t('referrer.customize_logo') %></h3>
 
     <div class="form-group">
       <div class="row">

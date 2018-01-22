@@ -92,6 +92,9 @@ de:
     referrer: Referrer
     group_insight: Group Insight
     customize_site: Customize Site
+    customize_title: Title
+    customize_title_placeholder: Any title
+    customize_logo: Logo
     provision_insight: Übersicht meiner Provision
     total_earned: Gesamtprovision
     your_coupons: Dein Coupon

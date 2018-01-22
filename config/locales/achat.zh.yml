@@ -107,6 +107,9 @@ zh-CN:
     referrer: 会员账号
     group_insight: 我的群组
     customize_site: 我的店
+    customize_title: Title
+    customize_title_placeholder: Any title
+    customize_logo: Logo  
     provision_insight: 奖金账户
     total_earned: 总奖金
     your_coupons: 专属95折码(导购分享)
