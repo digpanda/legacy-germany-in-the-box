@@ -106,6 +106,7 @@ zh-CN:
     rate: 比率
     referrer: 会员账号
     group_insight: 我的群组
+    insight_nickname: Nickname
     insight_full_name: Full Name
     insight_total_earned: Total Earned
     insight_current_balance: Current Balance

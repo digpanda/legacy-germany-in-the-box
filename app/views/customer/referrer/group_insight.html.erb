@@ -19,6 +19,9 @@
               #
             </th>
             <th>
+              <%= I18n.t('referrer.insight_nickname') %>
+            </th>
+            <th>
               <%= I18n.t('referrer.insight_full_name') %>
             </th>
             <th>
@@ -43,6 +46,9 @@
                 <tr>
                   <td>
                     <%= (index+1) %>
+                  </td>
+                  <td>
+                    <%= referrer.user.nickname %>
                   </td>
                   <td>
                     <%= referrer.user.decorate.full_name %>
