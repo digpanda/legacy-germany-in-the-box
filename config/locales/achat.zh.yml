@@ -107,9 +107,9 @@ zh-CN:
     referrer: 会员账号
     group_insight: 我的群组
     customize_site: 我的店
-    customize_title: Title
-    customize_title_placeholder: Any title
-    customize_logo: Logo
+    customize_title: 店铺名称
+    customize_title_placeholder: 店铺名称(建议8个字以内)
+    customize_logo: 店面图标
     provision_insight: 奖金账户
     provision_insight_total: Total
     total_earned: 总奖金
