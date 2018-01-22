@@ -55,14 +55,22 @@ class Flyer < BaseService
     self
   end
 
-  def process_qrcode(qrcode_path)
+  def process_qrcode(qrcode_path, logo_path:)
     @image = Magick::Image.read("#{Rails.root}/public/images/flyers/qrcode.jpg").first
 
     insert_image(
       full_path: qrcode_path,
       width: 339, height: 339,
-      longitude: 130, latitude: 671
+      longitude: 150, latitude: 681
     )
+
+    insert_image(
+      full_path: logo_path,
+      width: 170, height: 170,
+      longitude: 233, latitude: 1070
+    )
+
+    # TODO : insert logo here (digpanda or other)
 
     image.format = 'jpeg'
     self
