@@ -37,7 +37,14 @@
       <input class="big-button --blue" type="submit" value="Save"></input>
     </div>
 
-
     <% end %>
+
+    <% if @referrer.customization&.active %>
+    <hr />
+      <div class="+centered">
+        <img src="<%= guest_referrer_customized_qrcode_path(@referrer) %>" style="max-height: 500px;">
+      </div>
+    <% end %>
+
   </div>
 </div>

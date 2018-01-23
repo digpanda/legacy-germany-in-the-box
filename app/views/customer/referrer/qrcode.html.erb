@@ -3,19 +3,9 @@
     <!-- SUBHEADER (BACK BUTTON + REFERRER ID) -->
     <%= render partial: 'customer/referrer/subheader', :locals => { back: customer_referrer_path } %>
 
-    <hr />
-
     <div class="+centered">
-      <img src="<%= guest_referrer_customized_qrcode_path(@referrer) %>" style="max-height: 500px;">
+      <img src="<%= guest_referrer_service_qrcode_path(@referrer) %>" style="max-height: 500px;">
     </div>
-
-    <hr />
-
-    <% if @referrer.customization&.active %>
-      <div class="+centered">
-        <img src="<%= guest_referrer_service_qrcode_path(@referrer) %>" style="max-height: 500px;">
-      </div>
-    <% end %>
 
     <div class="+spacer"></div>
 
