@@ -2103,10 +2103,12 @@ body {
     height: 80px;
     background-color: white;
     opacity: 0.7;
-    width: 400px; }
+    width: 400px;
+    position: absolute;
+    bottom: 0px; }
   .landing-banner__title {
     position: absolute;
-    top: 17px;
+    bottom: 17px;
     left: 50px;
     font-size: 30px;
     color: #464646; }
