@@ -5,8 +5,14 @@
     <%= render partial: 'customer/referrer/subheader', :locals => { back: customer_referrer_path } %>
 
     <div class="+centered">
-      <img src="<%= guest_referrer_qrcode_path(@referrer) %>" style="max-height: 500px;">
+      <img src="<%= guest_referrer_service_qrcode_path(@referrer) %>" style="max-height: 500px;">
     </div>
+
+    <% if @referrer.customization&.active %>
+      <div class="+centered">
+        <img src="<%= guest_referrer_service_qrcode_path(@referrer) %>" style="max-height: 500px;">
+      </div>
+    <% end %>
 
     <div class="+spacer"></div>
 

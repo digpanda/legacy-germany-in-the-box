@@ -91,7 +91,10 @@
             <% if referrer.has_coupon? %>
                 <span class="+green +bold"><%= referrer.main_coupon.code %> </span>
             <% end %>
-            <a href="<%= guest_referrer_qrcode_path(referrer) %>">QR</a>
+              <a href="<%= guest_referrer_service_qrcode_path(referrer) %>">Service QR</a>
+            <% if referrer.customization&.active? %>
+              <a href="<%= guest_referrer_customized_qrcode_path(referrer) %>">Customized QR</a>
+            <% end %>
           </td>
           <td>
             <%= referrer.total_earned.in_euro.display %>

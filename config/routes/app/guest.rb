@@ -41,7 +41,8 @@ namespace :guest do
   end
 
   resources :referrers do
-    get :qrcode
+    get :service_qrcode
+    get :customized_qrcode
   end
 
   resources :order_trackings do
