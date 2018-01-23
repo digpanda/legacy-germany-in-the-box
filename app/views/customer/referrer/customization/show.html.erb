@@ -39,7 +39,7 @@
 
     <% end %>
 
-    <% if @referrer.customization&.active %>
+    <% if @referrer.customization&.active && @referrer.customization&.logo&.url %>
     <hr />
       <div class="+centered">
         <img src="<%= guest_referrer_customized_qrcode_path(@referrer) %>" style="max-height: 500px;">
