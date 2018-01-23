@@ -67,14 +67,15 @@
             <tr>
               <td>
               </td>
-              <td>
-                <strong><%= I18n.t('referrer.provision_insight_total') %></strong>
+              <td colspan="2" class="+left">
+                <strong><%= I18n.t('referrer.provision_insight_total') %></strong> <br />
+                <strong><%= I18n.t('referrer.insight_total_binded_sells') %> <br />
+                <strong><%= I18n.t('referrer.insight_total_resells') %></strong> <br />
               </td>
-              <td colspan="2">
-                <%= @referrers.sum(&:total_growth).in_euro.display %>
-              </td>
-              <td colspan="2">
-                <%= @referrers.sum(&:total_resells).in_euro.display %>
+              <td colspan="2" class="+left">
+                <br />
+                <%= @referrers.sum(&:total_growth).in_euro.display %> <br />
+                <%= @referrers.sum(&:total_resells).in_euro.display %> <br />
               </td>
             </tr>
 
