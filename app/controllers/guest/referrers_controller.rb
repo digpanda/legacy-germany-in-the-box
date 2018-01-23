@@ -37,7 +37,7 @@ class Guest::ReferrersController < ApplicationController
         force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
         qrcode_path = SmartQrcode.new(force_login_url).perform
         return "#{Rails.root}/public/#{qrcode_path}"
-      else
+      end
     end
 
     # the qrcode will be from wechat if its our service
