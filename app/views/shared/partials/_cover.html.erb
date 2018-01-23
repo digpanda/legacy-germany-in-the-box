@@ -6,11 +6,13 @@
       <a href="<%= banner.link %>">
         <div class="landing-banner lazy" data-original="<%= banner.image %>" style="background-image:url('/images/grey.jpg');">
 
+          <% if customization? && @customization.title %>
           <div class="landing-banner__title-square">
           </div>
           <div class="landing-banner__title">
-            <%= title %>
+            <%= @customization.title %>
           </div>
+          <% end %>
 
         </div>
       </a>

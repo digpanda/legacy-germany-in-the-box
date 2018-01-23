@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="col-md-8 col-md-push-2">
+
+    <!-- Subheader -->
+    <%= render partial: 'customer/referrer/subheader', :locals => { back:  customer_referrer_path } %>
+
+    <% unless @referrers.count == 0 %>
+    <div class="referrer__orders">
+
+      <!-- ORDERS LIST -->
+      <div class="referrer__title">
+        <%= I18n.t('referrer.group_insight') %>
+      </div>
+
+      <div class="referrer__list">
+        <table>
+          <thead>
+            <th>
+              #
+            </th>
+            <th>
+              <%= I18n.t('referrer.insight_nickname') %>
+            </th>
+            <th>
+              <%= I18n.t('referrer.insight_full_name') %>
+            </th>
+            <th>
+              <%= I18n.t('referrer.insight_total_binded_sells') %>
+            </th>
+            <th>
+              <%= I18n.t('referrer.insight_total_resells') %>
+            </th>
+            <th>
+              <%= I18n.t('referrer.insight_group') %>
+            </th>
+          </thead>
+          <tbody>
+
+            <% @referrers.each_with_index do |referrer, index| %>
+                <tr>
+                  <td>
+                    <%= (index+1) %>
+                  </td>
+                  <td>
+                    <%= referrer.user.nickname %>
+                  </td>
+                  <td>
+                    <%= referrer.user.decorate.full_name %>
+                  </td>
+                  <td>
+                    <%= referrer.total_growth.in_euro.display %>
+                  </td>
+                  <td>
+                    <%= referrer.total_resells.in_euro.display %>
+                  </td>
+                  <td>
+                    <%= referrer&.referrer_group&.name %>
+                  </td>
+                </tr>
+            <% end %>
+
+            <tr>
+              <td colspan="6" class="table-td-placeholder">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+              </td>
+              <td>
+                <strong><%= I18n.t('referrer.provision_insight_total') %></strong>
+              </td>
+              <td>
+              </td>
+              <td>
+                <%= @referrers.sum(&:total_growth).in_euro.display %>
+              </td>
+              <td>
+                <%= @referrers.sum(&:total_resells).in_euro.display %>
+              </td>
+              <td>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="+spacer"></div>
+
+    <% end %>
+
+  </div>
+</div>

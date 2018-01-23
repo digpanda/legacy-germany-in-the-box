@@ -11,10 +11,14 @@ class Referrer
   field :agb, type: Boolean, default: false
   field :label, type: String
 
+  field :group_leader, type: Boolean, default: false
+
   belongs_to :user, class_name: 'User', inverse_of: :referrer
   has_many :children_users, class_name: 'User', inverse_of: :parent_referrer
 
   belongs_to :referrer_group, class_name: 'ReferrerGroup', inverse_of: :referrer
+
+  has_one :customization, class_name: 'ReferrerCustomization', inverse_of: :referrer
 
   has_many :coupons, class_name: 'Coupon', inverse_of: :referrer
   has_many :orders, class_name: 'Order', inverse_of: :referrer

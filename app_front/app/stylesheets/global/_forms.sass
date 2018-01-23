@@ -1,3 +1,7 @@
+.table-td-placeholder
+  height: 25px
+  background-color: $color-almost-white
+
 input, textarea, select, a, button
   outline: none !important
 
@@ -76,6 +80,11 @@ input[type=checkbox]:checked
 input[type=checkbox][class='--blue']:checked
   border: 1px solid $color-blue
   background: url('/images/elements/cross-checkbox-blue.png') center center no-repeat
+  background-size: 10px 10px
+
+input[type=checkbox][class='--red']:checked
+  border: 1px solid $color-red
+  background: url('/images/elements/cross-checkbox-red.png') center center no-repeat
   background-size: 10px 10px
 
 textarea, input, button

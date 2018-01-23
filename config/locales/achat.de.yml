@@ -90,7 +90,18 @@ de:
     package_set_product: Set Paket / Produkt
     rate: Rate
     referrer: Referrer
+    group_insight: Group Insight
+    insight_nickname=: Nickname
+    insight_full_name: Full Name
+    insight_total_binded_sells: Total Binded Sells
+    insight_total_resells: Total Resells
+    insight_group: Group
+    customize_site: Customize Site
+    customize_title: Title
+    customize_title_placeholder: Any title
+    customize_logo: Logo
     provision_insight: Übersicht meiner Provision
+    provision_insight_total: Total
     total_earned: Gesamtprovision
     your_coupons: Dein Coupon
     current_balance: Dein Kontostand

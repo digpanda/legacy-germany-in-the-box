@@ -8,7 +8,6 @@ namespace :shopkeeper do
     end
 
     resources :skus, controller: 'products/skus' do
-      delete :destroy_image
       patch :clone
     end
   end
@@ -25,7 +24,6 @@ namespace :shopkeeper do
   end
 
   resource :shop, controller: 'shop' do
-    delete :destroy_image
   end
 
   resources :addresses do

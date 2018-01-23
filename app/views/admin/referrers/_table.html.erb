@@ -18,6 +18,12 @@
         AGB
       </th>
       <th>
+        Customization
+      </th>
+      <th>
+        User Group
+      </th>
+      <th>
         Linked Users
       </th>
       <th>
@@ -39,7 +45,10 @@
         Total Resells
       </th>
       <th>
-        Group
+        Group Leader
+      </th>
+      <th>
+        Referrer Group
       </th>
       <th>
         Label
@@ -65,6 +74,12 @@
           </td>
           <td>
             <%= boolean_icon(referrer.agb) %>
+          </td>
+          <td>
+            <%= boolean_icon(referrer&.customization&.active) %>
+          </td>
+          <td>
+            <%= editable_field(referrer.user, admin_user_path(referrer.user), :group, :select, [user_groups, {:selected => referrer.user.group}]) %>
           </td>
           <td>
             <%= referrer.children_users.count %>
@@ -93,7 +108,11 @@
             <%= referrer.total_resells.in_euro.display %>
           </td>
           <td>
+            <%= editable_field(referrer, admin_referrer_path(referrer), :group_leader, :select, [boolean_select, {:selected => referrer.group_leader}]) %>
+          </td>
+          <td>
             <%= referrer&.referrer_group&.name %>
+            <%= editable_field(referrer, admin_referrer_path(referrer), :referrer_group_id, :select, [referrer_groups, {:selected => referrer.referrer_group_id}]) %>
           </td>
           <td>
             <%= editable_field(referrer, admin_referrer_path(referrer), :label, :text_field) %>

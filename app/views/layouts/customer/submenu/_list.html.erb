@@ -1,4 +1,4 @@
-<% if current_user&.referrer? %>
+<% if referrer? %>
   <li class="<%= menu_active? customer_referrer_path %>">
     <%= link_to I18n.t('top_menu.flyer'), customer_referrer_path, class: '+referrer-blue' %>
   </li>

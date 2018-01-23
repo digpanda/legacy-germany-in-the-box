@@ -9,7 +9,7 @@ class Admin::Shops::Products::SkusController < ApplicationController
   before_action :set_product, :set_shop
   before_action :set_sku, except: [:index, :new, :create]
   before_action :breadcrumb_admin_shops, :breadcrumb_admin_shop_products,
-                :breadcrumb_admin_edit_product, :breadcrumb_admin_product_skus, except: [:destroy_image, :destroy_image_file]
+                :breadcrumb_admin_edit_product, :breadcrumb_admin_product_skus
   before_action :breadcrumb_admin_product_edit_sku, only: [:edit]
 
   def index

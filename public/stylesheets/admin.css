@@ -1847,6 +1847,10 @@
   color: white;
   background: transparent; }
 
+.table-td-placeholder {
+  height: 25px;
+  background-color: #f9f9f9; }
+
 input, textarea, select, a, button {
   outline: none !important; }
 
@@ -1918,6 +1922,11 @@ input[type=checkbox]:checked {
 input[type=checkbox][class='--blue']:checked {
   border: 1px solid #3498db;
   background: url("/images/elements/cross-checkbox-blue.png") center center no-repeat;
+  background-size: 10px 10px; }
+
+input[type=checkbox][class='--red']:checked {
+  border: 1px solid #d6506c;
+  background: url("/images/elements/cross-checkbox-red.png") center center no-repeat;
   background-size: 10px 10px; }
 
 textarea, input, button {

@@ -92,7 +92,7 @@ zh-CN:
     links: 智能软文
     title: 软文预览|分享
     share: 预览|分享
-    qrcode: 专属二维码
+    qrcode: 官网商城二维码
     update_account: 更新账户
     agb_agreement: 我已阅读并同意接受<a href="%{url}">AGB</a>条款
     service_provision_rates: 海外服务导购奖金
@@ -105,7 +105,18 @@ zh-CN:
     package_set_product: 订单
     rate: 比率
     referrer: 会员账号
+    group_insight: 我的群组
+    insight_nickname: 微信昵称
+    insight_full_name: 姓名
+    insight_total_binded_sells: 导购总额
+    insight_total_resells: 代购总额
+    insight_group: 群组
+    customize_site: 我的店
+    customize_title: 店铺名称
+    customize_title_placeholder: 店铺名称(建议8个字以内)
+    customize_logo: 店面图标
     provision_insight: 奖金账户
+    provision_insight_total: Total
     total_earned: 总奖金
     your_coupons: 专属95折码(导购分享)
     current_balance: 未提取奖金
