@@ -30,9 +30,7 @@ class Guest::ReferrersController < ApplicationController
     end
 
     def service_qrcode_logo
-      if referrer.customization&.active && referrer.customization.logo.url
-        "#{Rails.root}/public/images/logo.png"
-      end
+      "#{Rails.root}/public/images/logo.png"
     end
 
     def customized_qrcode_path
