@@ -21,7 +21,7 @@ class Guest::ReferrersController < ApplicationController
 
     def customized_qrcode_logo
       if referrer.customization&.active && referrer.customization.logo.url
-        "#{Rails.root}/public#{referrer.customization.logo.url}"
+        "#{referrer.customization.logo.url}"
       end
     end
 
