@@ -70,15 +70,11 @@
               <td>
                 <strong><%= I18n.t('referrer.provision_insight_total') %></strong>
               </td>
-              <td>
-              </td>
-              <td>
+              <td colspan="2">
                 <%= @referrers.sum(&:total_growth).in_euro.display %>
               </td>
-              <td>
+              <td colspan="2">
                 <%= @referrers.sum(&:total_resells).in_euro.display %>
-              </td>
-              <td>
               </td>
             </tr>
 
