@@ -25,7 +25,7 @@ class Flyer < BaseService
       insert_image(
         full_path: "#{cover}",
         width: 750, height: 750,
-        longitude: 40, latitude: 50
+        longitude: 40, latitude: 40
       )
     end
 
@@ -67,7 +67,7 @@ class Flyer < BaseService
     insert_image(
       full_path: logo_path,
       width: 170, height: 170,
-      longitude: 233, latitude: 1070
+      longitude: 233, latitude: 1050
     )
 
     # TODO : insert logo here (digpanda or other)
