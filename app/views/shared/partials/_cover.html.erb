@@ -26,6 +26,14 @@
     <div class="col-md-12">
       <div class="landing-banner lazy" data-original="<%= cover %>" style="background-image:url('/images/grey.jpg');">
 
+        <% if customization? && @customization.title %>
+        <div class="landing-banner__title-square">
+        </div>
+        <div class="landing-banner__title">
+          <%= @customization.title %>
+        </div>
+        <% end %>
+        
         <% if defined?(sticker) %>
           <a href="<%= sticker[:url] %>">
             <img src="<%= sticker[:image] %>" class="+logo-on-banner" />
