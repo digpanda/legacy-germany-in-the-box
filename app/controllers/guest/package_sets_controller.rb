@@ -53,6 +53,7 @@ class Guest::PackageSetsController < ApplicationController
   end
 
   def promote_qrcode
+    SlackDispatcher.new.message("HIT PROMOTE QRCODE")
     send_data blob_qrcode, stream: 'false', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
   end
 
@@ -62,6 +63,7 @@ class Guest::PackageSetsController < ApplicationController
       if current_user&.referrer
         url_with_reference = guest_package_set_url(package_set, reference_id: current_user&.referrer&.reference_id)
         force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
+        SlackDispatcher.new.message("FORCE LOGIN URL #{force_login_url}")
         qrcode_path = SmartQrcode.new(force_login_url).perform
         Flyer.new.process_cover_qrcode(package_set.cover, qrcode_path).image.to_blob
       end
