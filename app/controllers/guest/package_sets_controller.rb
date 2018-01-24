@@ -60,6 +60,7 @@ class Guest::PackageSetsController < ApplicationController
   private
 
     def blob_qrcode
+      SlackDispatcher.new.message("NOT WORKING")
       if current_user&.referrer
         url_with_reference = guest_package_set_url(package_set, reference_id: current_user&.referrer&.reference_id)
         force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
