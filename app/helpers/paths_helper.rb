@@ -9,12 +9,13 @@ module PathsHelper
   end
 
   def current_url_qrcode
-    SmartQrcode.new(current_url_with_reference).perform
+    force_login_url = WechatUrlAdjuster.new(current_url_with_reference).adjusted_url
+    SmartQrcode.new(force_login_url).perform
   end
 
   def current_url_with_reference
     path = url_for params.merge(reference_id: current_user&.referrer&.reference_id)
-    "#{request.protocol}#{request.host_with_port}#{path}"
+    "#{request.protocol}#{ENV['wechat_local_domain']}#{path}"
   end
 
   # NOTE : for remote / latest version
