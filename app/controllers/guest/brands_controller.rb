@@ -14,20 +14,21 @@ class Guest::BrandsController < ApplicationController
   private
 
     def blob_qrcode
+      if current_user&.referrer
+        url_with_reference = url_for(
+          action:       'show',
+          id:      package_set.id,
+          controller:   'guest/package_sets',
+          host:         ENV['wechat_local_domain'],
+          protocol:     'https',
+          reference_id: current_user&.referrer&.reference_id,
+          brand_id: brand.id
+        )
 
-      url_with_reference = url_for(
-        action:       'show',
-        package_set_id:      package_set.id,
-        controller:   'guest/package_sets',
-        host:         ENV['wechat_local_domain'],
-        protocol:     'https',
-        reference_id: current_user&.referrer&.reference_id,
-        brand_id: brand.id
-      )
-
-      force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
-      qrcode_path = SmartQrcode.new(force_login_url).perform
-      Flyer.new.process_cover_qrcode(brand.cover, qrcode_path).image.to_blob
+        force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
+        qrcode_path = SmartQrcode.new(force_login_url).perform
+        Flyer.new.process_cover_qrcode(brand.cover, qrcode_path).image.to_blob
+      end
     end
 
     # for filtering (optional)

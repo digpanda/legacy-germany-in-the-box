@@ -60,10 +60,9 @@ class Guest::PackageSetsController < ApplicationController
 
     def blob_qrcode
       if current_user&.referrer
-
         url_with_reference = url_for(
           action:       'show',
-          package_set_id:      package_set.id,
+          id:      package_set.id,
           controller:   'guest/package_sets',
           host:         ENV['wechat_local_domain'],
           protocol:     'https',
