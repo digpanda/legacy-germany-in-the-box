@@ -61,7 +61,6 @@
   <div class="row">
     <div class="col-md-12">
       <h4>History</h4>
-      <%= order_tracking.id %>
       <%= render partial: "admin/orders/show/shipping/histories", :locals => { :order_tracking => order_tracking } %>
       <div class="+small-spacer"></div>
     </div>
@@ -69,6 +68,7 @@
 
   <% if order.order_tracking %>
     <div class="row">
+      <a data-method="delete" href="<%= admin_order_order_tracking_refresh_path(order, order.order_tracking) %>"><i class="fa fa-times tooltipster buttons buttons__delete" title="Delete tracking"></i></a>
       <a data-method="patch" href="<%= admin_order_order_tracking_refresh_path(order, order.order_tracking) %>" class="text-button --blue">Refresh tracking</a>
       <a target="_blank" href="<%= admin_order_order_tracking_public_tracking_path(order, order.order_tracking) %>" class="text-button --green">Public tracking page <i class="fa fa-external-link"></i></a>
     </div>
