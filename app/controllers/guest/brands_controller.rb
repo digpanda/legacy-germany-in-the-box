@@ -27,7 +27,7 @@ class Guest::BrandsController < ApplicationController
 
         force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
         qrcode_path = SmartQrcode.new(force_login_url).perform
-        Flyer.new.process_cover_qrcode(brand.cover, qrcode_path).image.to_blob
+        Flyer.new.process_cover_qrcode(brand.cover_url, qrcode_path).image.to_blob
       end
     end
 

@@ -21,9 +21,15 @@ class Flyer < BaseService
       longitude: 823, latitude: 212
     )
 
-    if "#{cover}".present?
+    if Rails.env.development?
+      cover_full_path = "#{Rails.root}/public#{cover}"
+    else
+      cover_full_path = "#{cover}"
+    end
+
+    if cover_full_path.present?
       insert_image(
-        full_path: "#{cover}",
+        full_path: cover_full_path,
         width: 750, height: 750,
         longitude: 40, latitude: 40
       )
