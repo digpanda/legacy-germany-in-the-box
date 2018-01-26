@@ -47,6 +47,7 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
     else
       flash[:error] = order_tracking.errors.full_message(', ')
     end
+    redirect_to navigation.back(1)
   end
 
   def public_tracking
