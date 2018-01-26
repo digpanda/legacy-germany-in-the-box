@@ -90,7 +90,11 @@
           <%= render partial: "shared/orders/partials/files_buttons", locals: { :order => order } %>
 
           <% if order.order_tracking %>
-          <a data-method="patch" href="<%= admin_order_order_tracking_refresh_path(order, order.order_tracking) %>"><i class="fa fa-bolt tooltipster buttons buttons__edit" title="Refresh tracking"></i></a>
+            <a data-method="delete" href="<%= admin_order_order_tracking_refresh_path(order, order.order_tracking) %>"><i class="fa fa-bolt tooltipster buttons buttons__delete" title="Delete tracking"></i></a>
+          <% end %>
+
+          <% if order.order_tracking %>
+            <a data-method="patch" href="<%= admin_order_order_tracking_refresh_path(order, order.order_tracking) %>"><i class="fa fa-bolt tooltipster buttons buttons__edit" title="Refresh tracking"></i></a>
           <% end %>
         </td>
       </tr>

@@ -41,6 +41,14 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
     redirect_to navigation.back(1)
   end
 
+  def destroy
+    if order_tracking.destroy
+      flash[:success] = 'Tracking was successfully deleted'
+    else
+      flash[:error] = order_tracking.errors.full_message(', ')
+    end
+  end
+
   def public_tracking
     redirect_to guest_order_tracking_public_url_path(order_tracking)
   end
