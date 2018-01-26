@@ -4,7 +4,7 @@ class Admin::Orders::OrderTrackingsController < ApplicationController
   authorize_resource class: false
 
   before_action :set_order
-  before_action :set_order_tracking, only: [:show, :update, :refresh, :public_tracking]
+  before_action :set_order_tracking, only: [:destroy, :show, :update, :refresh, :public_tracking]
 
   layout :custom_sublayout
 
