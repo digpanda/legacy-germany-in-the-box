@@ -68,7 +68,7 @@
 
   <% if order.order_tracking %>
     <div class="row">
-      <a data-method="delete" href="<%= admin_order_order_tracking_path(order, order.order_tracking) %>" class="buttons buttons__delete">Delete tracking</a>
+      <a data-method="delete" href="<%= admin_order_order_tracking_path(order, order.order_tracking) %>" class="text-button --delete">Delete tracking</a>
       <a data-method="patch" href="<%= admin_order_order_tracking_refresh_path(order, order.order_tracking) %>" class="text-button --blue">Refresh tracking</a>
       <a target="_blank" href="<%= admin_order_order_tracking_public_tracking_path(order, order.order_tracking) %>" class="text-button --green">Public tracking page <i class="fa fa-external-link"></i></a>
     </div>
