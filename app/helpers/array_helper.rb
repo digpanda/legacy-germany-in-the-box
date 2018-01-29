@@ -76,6 +76,7 @@ module ArrayHelper
   def delivery_providers
     {
       'Postelbe' => :postelbe,
+      '德国邮政' => :deutschepost,
       'DHL中国件' => :dhl,
       'DHL德国国内' => :dhlde,
       'DHL英文' => :dhlen,
