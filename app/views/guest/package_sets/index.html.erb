@@ -51,6 +51,16 @@
 </div>
 <div class="+small-spacer"></div>
 
+<hr />
+<!-- QRCode -->
+<div class="row">
+  <div class="package-set-infos__qrcode +desktop">
+    <img src="<%= current_url_qrcode %>" />
+    <p><%= I18n.t('package_set.please_scan_qrcode') %></p>
+  </div>
+</div>
+
 <% if @brand %>
+  <!-- Referrer QRCode -->
   <%= render partial: 'shared/partials/promote_qrcode', locals: { url: guest_brand_promote_qrcode_path(@brand), promotion_footer: @brand.promotion_footer, promotion_header: @brand.promotion_header } %>
 <% end %>
