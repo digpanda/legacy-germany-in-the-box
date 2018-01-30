@@ -53,26 +53,38 @@ class Guest::PackageSetsController < ApplicationController
   end
 
   def promote_qrcode
-    send_data blob_qrcode, stream: 'false', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
+    if blob_qrcode
+      send_data blob_qrcode, stream: 'false', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
+    end
   end
 
   private
 
     def blob_qrcode
-      if current_user&.referrer
-        url_with_reference = url_for(
-          action:       'show',
-          id:      package_set.id,
-          controller:   'guest/package_sets',
-          host:         ENV['wechat_local_domain'],
-          protocol:     'https',
-          reference_id: current_user&.referrer&.reference_id
-        )
+      @blob_qrcode ||= begin
+        if current_user&.referrer
+          url_with_reference = url_for(
+            action:       'show',
+            id:      package_set.id,
+            controller:   'guest/package_sets',
+            host:         ENV['wechat_local_domain'],
+            protocol:     'https',
+            reference_id: current_user&.referrer&.reference_id
+          )
 
-        # url_with_reference = guest_package_set_url(package_set, reference_id: current_user&.referrer&.reference_id)
-        force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
-        qrcode_path = SmartQrcode.new(force_login_url).perform
-        Flyer.new.process_cover_qrcode(package_set.cover_url, qrcode_path).image.to_blob
+          # url_with_reference = guest_package_set_url(package_set, reference_id: current_user&.referrer&.reference_id)
+          force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
+          smart_qrcode = SmartQrcode.new(force_login_url)
+          qrcode_path = smart_qrcode.perform
+
+          # if anything happens in the middle of the process
+          # we will destroy the file so it doesn't block future scans
+          begin
+            return Flyer.new.process_cover_qrcode(package_set.cover_url, qrcode_path).image.to_blob
+          rescue Magick::ImageMagickError => exception
+            smart_qrcode.destroy
+          end
+        end
       end
     end
 
