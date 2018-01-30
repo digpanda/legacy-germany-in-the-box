@@ -5,7 +5,7 @@ class Admin::OrdersController < ApplicationController
   attr_reader :order, :orders
 
   authorize_resource class: false
-  before_action :set_order, except: [:index, :ongoing]
+  before_action :set_order, except: [:index, :ongoing, :official_bills]
   before_action :set_order_tracking, only: [:show]
 
   layout :custom_sublayout
@@ -29,6 +29,11 @@ class Admin::OrdersController < ApplicationController
   def ongoing
     @orders = Order.ongoing.full_text_search(params[:query])
                            .paginate(page: current_page, per_page: 100)
+  end
+
+  def official_bills
+    @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc).limit(5)
+    redirect_to BillsHandler.new(orders).zip
   end
 
   def show

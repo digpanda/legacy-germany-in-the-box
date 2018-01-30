@@ -18,6 +18,9 @@ gem 'mongoid_includes'
 gem 'mongoid_rails_migrations'
 gem 'mongoid_search', github: 'Loschcode/mongoid_search', branch: 'master' # path: '../../mongoid_search'
 
+gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
+gem 'zip-zip' # will load compatibility for old rubyzip API.
+
 gem 'keen'
 
 gem 'meta-tags'

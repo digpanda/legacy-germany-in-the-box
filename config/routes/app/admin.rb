@@ -87,6 +87,8 @@ namespace :admin do
   end
 
   match 'orders/ongoing' => 'orders#ongoing', :via => :get
+  match 'orders/official_bills' => 'orders#official_bills', :via => :get
+
   resources :orders do
     patch :shipped
     patch :terminate
