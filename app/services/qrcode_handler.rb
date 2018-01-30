@@ -12,6 +12,10 @@ class QrcodeHandler < BaseService
     full_path
   end
 
+  def destroy_stored_file
+    FileUtils.rm(full_storage) if file_already_stored?
+  end
+
   private
 
     def make_image!

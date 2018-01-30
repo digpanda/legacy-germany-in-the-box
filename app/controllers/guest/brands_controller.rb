@@ -25,8 +25,16 @@ class Guest::BrandsController < ApplicationController
         )
 
         force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
-        qrcode_path = SmartQrcode.new(force_login_url).perform
-        Flyer.new.process_cover_qrcode(brand.cover_url, qrcode_path).image.to_blob
+        smart_qrcode = SmartQrcode.new(force_login_url)
+        qrcode_path = smart_qrcode.perform
+
+        # if anything happens in the middle of the process
+        # we will destroy the file so it doesn't block future scans
+        begin
+          Flyer.new.process_cover_qrcode(brand.cover_url, qrcode_path).image.to_blob
+        rescue Magick::ImageMagickError => exception
+          smart_qrcode.destroy
+        end
       end
     end
 

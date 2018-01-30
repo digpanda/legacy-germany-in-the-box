@@ -10,6 +10,10 @@ class SmartQrcode
     qrcode_handler.perform
   end
 
+  def destroy
+    qrcode_handler.destroy_stored_file
+  end
+
   def qrcode_handler
     @qrcode_handler ||= QrcodeHandler.new(url, local_file, full_file)
   end
