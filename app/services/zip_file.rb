@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'zip'
-require 'fileutils' i
+require 'fileutils'
 
 class ZipFile
   attr_reader :input_dir, :output_file
