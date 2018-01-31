@@ -61,8 +61,9 @@ class BillsHandler < BaseService
     IO.copy_stream(download, "#{TEMPORARY_DIRECTORY}#{filename}")
   end
 
-  def ensure_temporary_directory
+  def ensure__directories
     FileUtils.mkdir_p(TEMPORARY_DIRECTORY)
+    FileUtils.mkdir_p(DESTINATION_DIRECTORY)
   end
 
   def remove_temporary_directory
