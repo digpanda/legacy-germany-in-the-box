@@ -47,7 +47,6 @@ class BillsHandler < BaseService
   end
 
   def zip_directory
-    SlackDispatcher.new.message(Dir["#{TEMPORARY_DIRECTORY}*"])
     ZipFile.new(TEMPORARY_DIRECTORY, "#{DESTINATION_DIRECTORY}official-billing.zip").perform
   end
 
@@ -56,7 +55,6 @@ class BillsHandler < BaseService
     # NOTE : this makes huge problems in local.
     # Find a work around if the problem persists on production.
     download = open(order_url)
-    SlackDispatcher.new.message("#{order_url}")
     filename = "#{order.bill_id}.pdf"
     IO.copy_stream(download, "#{TEMPORARY_DIRECTORY}#{filename}")
   end
