@@ -1,7 +1,7 @@
 require 'csv'
 require 'net/ftp'
 
-class Shared::OrdersController < ApplicationController
+class Orders::OrdersController < ApplicationController
   attr_reader :order
 
   authorize_resource class: false
