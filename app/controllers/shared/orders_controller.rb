@@ -27,16 +27,7 @@ class Shared::OrdersController < ApplicationController
     end
   end
 
-  def official_bill
-    respond_to do |format|
-      format.pdf do
-        render pdf: "#{bill_file_name}", disposition: disposition,
-               margin: { bottom: 20, top: 30, right: 5, left: 5 },
-               footer: { html: { template: 'layouts/pdf/footer.pdf.erb' } },
-               header: { html: { template: 'layouts/pdf/header.pdf.erb' } }
-      end
-    end
-  end
+  # NOTE : official_bill is in /guest/ area
 
   def cancel
     canceller = OrderCanceller.new(order).all!

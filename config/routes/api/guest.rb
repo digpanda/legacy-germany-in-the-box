@@ -7,6 +7,9 @@ namespace :guest do
   resource :navigation, controller: 'navigation' do
   end
 
+  resources :orders do
+  end
+
   resources :order_items  do
   end
 

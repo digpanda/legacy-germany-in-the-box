@@ -52,7 +52,7 @@ class BillsHandler < BaseService
   end
 
   def download_official_bill(order)
-    order_url = shared_order_official_bill_url(order, format: :pdf, disposition: :inline)
+    order_url = guest_order_official_bill_url(order, format: :pdf, disposition: :inline)
     # NOTE : this makes huge problems in local.
     # Find a work around if the problem persists on production.
     download = open(order_url)
