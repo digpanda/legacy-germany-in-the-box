@@ -9,6 +9,10 @@ namespace :guest do
   resource :blank, controller: 'blank' do
   end
 
+  resources :orders do
+    get :official_bill
+  end
+
   resource :pages do
     get :business_model
     get :shipping_cost

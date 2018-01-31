@@ -7,10 +7,6 @@ namespace :guest do
   resource :navigation, controller: 'navigation' do
   end
 
-  resources :orders do
-    get :official_bill
-  end
-
   resources :order_items  do
   end
 
