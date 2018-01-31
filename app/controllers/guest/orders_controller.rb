@@ -3,8 +3,6 @@ require 'net/ftp'
 
 class Guest::OrdersController < ApplicationController
   attr_reader :order
-
-  authorize_resource class: false
   before_action :set_order
 
   def official_bill
