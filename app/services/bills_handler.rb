@@ -16,7 +16,7 @@ class BillsHandler < BaseService
   end
 
   def zip
-    ensure_temporary_directory
+    ensure_directories
 
     # we fill-in the temporary directory
     orders.each do |order|
@@ -61,7 +61,7 @@ class BillsHandler < BaseService
     IO.copy_stream(download, "#{TEMPORARY_DIRECTORY}#{filename}")
   end
 
-  def ensure__directories
+  def ensure_directories
     FileUtils.mkdir_p(TEMPORARY_DIRECTORY)
     FileUtils.mkdir_p(DESTINATION_DIRECTORY)
   end
