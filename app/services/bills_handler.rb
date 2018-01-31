@@ -48,7 +48,7 @@ class BillsHandler < BaseService
 
   def zip_directory
     SlackDispatcher.new.message(Dir["#{TEMPORARY_DIRECTORY}*"])
-     ZipFileGenerator.new(TEMPORARY_DIRECTORY, "#{DESTINATION_DIRECTORY}official-billing.zip").write
+    ZipFile.new(TEMPORARY_DIRECTORY, "#{DESTINATION_DIRECTORY}official-billing.zip").perform
   end
 
   def download_official_bill(order)
