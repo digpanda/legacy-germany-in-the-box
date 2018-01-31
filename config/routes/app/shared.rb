@@ -3,7 +3,6 @@ namespace :shared do
 
   resources :orders do
     get :bill
-    get :official_bill
     patch :cancel
   end
   resources :notifications do

@@ -8,6 +8,7 @@ namespace :guest do
   end
 
   resources :orders do
+    get :official_bill
   end
 
   resources :order_items  do
