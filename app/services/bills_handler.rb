@@ -52,8 +52,8 @@ class BillsHandler < BaseService
 
   def download_official_bill(order)
     order_url = guest_order_official_bill_url(order, format: :pdf, disposition: :inline)
-    # NOTE : this makes huge problems in local.
-    # Find a work around if the problem persists on production.
+    # NOTE : this makes huge problems in local. if the server freezes
+    # it's due to double process here
     download = open(order_url)
     filename = "#{order.bill_id}.pdf"
     IO.copy_stream(download, "#{TEMPORARY_DIRECTORY}#{filename}")

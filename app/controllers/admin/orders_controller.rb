@@ -32,7 +32,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def official_bills
-    @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc).limit(5)
+    @orders = Order.nonempty.from_month.order_by(paid_at: :desc, c_at: :desc)
     redirect_to BillsHandler.new(orders).zip
   end
 

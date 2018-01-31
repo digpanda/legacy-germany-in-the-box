@@ -79,6 +79,8 @@ class Order
   scope :bought_or_unverified,      ->  { self.in(status: BOUGHT_OR_UNVERIFIED) } # cancelled isn't included in this
   scope :ongoing, -> { self.in(status: [:paid, :shipped]) }
 
+  scope :from_month, -> { where(:c_at => { :$gte => Time.now.beginning_of_month }) }
+
   def bought_or_cancelled?
     BOUGHT_OR_CANCELLED.include? status
   end
