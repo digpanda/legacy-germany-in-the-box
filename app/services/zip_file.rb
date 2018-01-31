@@ -14,6 +14,7 @@ class ZipFile
     # Dir["#{TEMPORARY_DIRECTORY}*"]
     Zip::File.open(output_file, Zip::File::CREATE) do |zip|
       Dir["#{input_dir}*"].each do |file_to_zip|
+        SlackDispatcher.new.message("TO ZIP #{file_to_zip}")
         filename = File.basename(file_to_zip)
         zip.add(filename, file_to_zip)
       end
