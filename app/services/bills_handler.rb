@@ -54,7 +54,9 @@ class BillsHandler < BaseService
     order_url = shared_order_rendered_official_bill_url(order, format: :pdf, disposition: :inline)
     # NOTE : this makes huge problems in local.
     # Find a work around if the problem persists on production.
+    SlackDispatcher.new.message("#{order_url}")
     download = open(order_url)
+    SlackDispatcher.new.message("download opened")
     filename = download.base_uri.to_s.split('/')[-1]
     IO.copy_stream(download, "#{TEMPORARY_DIRECTORY}#{filename}")
   end
