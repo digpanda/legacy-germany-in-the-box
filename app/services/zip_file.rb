@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'zip'
+require 'fileutils' i
 
 class ZipFile
   attr_reader :input_dir, :output_file
@@ -11,7 +12,8 @@ class ZipFile
   end
 
   def perform
-    # Dir["#{TEMPORARY_DIRECTORY}*"]
+    FileUtils.rm(output_file) if File.exist?(output_file)
+
     Zip::File.open(output_file, Zip::File::CREATE) do |zipfile|
       Dir[File.join(input_dir, '*')].each do |file|
         zipfile.add(file.sub(input_dir, ''), file)
