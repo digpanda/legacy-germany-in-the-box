@@ -51,7 +51,7 @@ class BillsHandler < BaseService
   end
 
   def download_official_bill(order)
-    order_url = shared_order_rendered_official_bill_url(order, format: :pdf, disposition: :inline)
+    order_url = shared_order_official_bill_url(order, format: :pdf, disposition: :inline)
     # NOTE : this makes huge problems in local.
     # Find a work around if the problem persists on production.
     SlackDispatcher.new.message("#{order_url}")
