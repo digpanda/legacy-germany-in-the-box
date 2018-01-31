@@ -12,7 +12,7 @@ class ZipFile
 
   def perform
     # Dir["#{TEMPORARY_DIRECTORY}*"]
-    Zip::File.open(output_file, Zip::File::CREATE) do |zip|
+    Zip::File.open(output_file, Zip::File::CREATE) do |zipfile|
       Dir[File.join(input_dir, '*')].each do |file|
         zipfile.add(file.sub(input_dir, ''), file)
       end
