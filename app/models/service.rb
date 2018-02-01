@@ -20,7 +20,11 @@ class Service
   field :desc, type: String
   field :long_desc, type: String
   field :active, type: Boolean, default: true
-  field :referrer_rate, type: Float, default: 0.0
+
+  field :default_referrer_rate, type: Float, default: 0.0
+  field :junior_referrer_rate, type: Float, default: 0.0
+  field :senior_referrer_rate, type: Float, default: 0.0
+
   field :position, type: Integer, default: 0
 
   belongs_to :category

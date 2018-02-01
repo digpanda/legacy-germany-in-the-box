@@ -34,7 +34,7 @@ class Brand
   end
 
   def package_sets_referrer_rates_range
-    package_sets.active.map(&:referrer_rate).sort.uniq
+    package_sets.active.map(&:default_referrer_rate).sort.uniq
   end
 
   private

@@ -18,9 +18,9 @@ class Customer::ReferrerController < ApplicationController
 
   # we get the provision rates of all the package sets that are not 0.0
   def provision_rates
-    @package_sets = PackageSet.active.where(:referrer_rate.gt => 0.0).order_by(name: :asc).all
+    @package_sets = PackageSet.active.where(:default_referrer_rate.gt => 0.0).order_by(name: :asc).all
     @brands = Brand.with_package_sets
-    @services = Service.active.where(:referrer_rate.gt => 0.0).order_by(name: :asc).all
+    @services = Service.active.where(:default_referrer_rate.gt => 0.0).order_by(name: :asc).all
   end
 
   def agb

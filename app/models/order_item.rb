@@ -78,11 +78,7 @@ class OrderItem
   end
 
   def refresh_referrer_rate!
-    self.referrer_rate = current_referrer_rate
-  end
-
-  def current_referrer_rate
-    self.package_set&.referrer_rate || self.product.referrer_rate || 0.0
+    self.referrer_rate = ReferrerRateCalculator.new(self).solve
   end
 
   def clean_desc
