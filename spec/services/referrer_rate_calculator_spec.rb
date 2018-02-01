@@ -49,12 +49,20 @@ describe ReferrerRateCalculator  do
         expect(order_item.referrer_rate).to eq(15.0)
       end
 
-      it 'gets no referrer rate because there is no referrer' do
-        expect(order_item.referrer_rate).to eq(0.0)
-        order_item.refresh_referrer_rate!
-        expect(order_item.referrer_rate).to eq(0.0)
-      end
     end
+
+     context 'without referrer' do
+
+      let(:customer) { FactoryGirl.create(:customer) }
+      let(:order_item) { FactoryGirl.create(:order, :with_package_sets, user: customer).order_items.first }
+
+       it 'gets no provision rate because there is no referrer' do
+         expect(order_item.referrer_rate).to eq(0.0)
+         order_item.refresh_referrer_rate!
+         expect(order_item.referrer_rate).to eq(0.0)
+       end
+
+     end
 
     # NOTE : service can't be tested because it's not in the order lifecycle
   end
