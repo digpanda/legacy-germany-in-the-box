@@ -100,7 +100,7 @@ feature 'checkout process', js: true do
         end
 
         context 'with no referrer rate' do
-          let(:product) { FactoryGirl.create(:product, shop_id: shop.id, referrer_rate: 0.0) }
+          let(:product) { FactoryGirl.create(:product, shop_id: shop.id, default_referrer_rate: 0.0) }
 
           scenario 'pay successfully and do not give a provision' do
             page.first('#cart').click

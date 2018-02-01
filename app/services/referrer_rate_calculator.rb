@@ -30,7 +30,7 @@ class ReferrerRateCalculator
     when :junior_reseller
       model_entry.junior_referrer_rate
     when :senior_reseller
-      model_entry.senior_reseller
+      model_entry.senior_referrer_rate
     else
       model_entry.default_referrer_rate
     end

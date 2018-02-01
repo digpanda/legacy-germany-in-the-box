@@ -14,7 +14,9 @@ FactoryGirl.define do
     skus      { [FactoryGirl.build(:sku, option_ids: [self.options.first.suboptions.first.id.to_s])] }
     shop      { FactoryGirl.create(:shop) }
 
-    referrer_rate 10.0
+    default_referrer_rate 10.0
+    junior_referrer_rate 15.0
+    senior_referrer_rate 20.0
 
     association :duty_category, factory: :duty_medicine_category, strategy: :build
 

@@ -8,6 +8,13 @@
      category    { Category.offset(rand(Category.count)).first || FactoryGirl.create(:category) }
      shipping_cost { BigDecimal.new(rand(1..10)) }
 
+     # NOTE : different data than Product
+     # to make sure this area is tested
+     # and not mixed up
+     default_referrer_rate 5.0
+     junior_referrer_rate 10.0
+     senior_referrer_rate 15.0
+
      after(:create) do |package_set|
        FactoryGirl.create_list(:package_sku, 5, package_set: package_set)
      end
