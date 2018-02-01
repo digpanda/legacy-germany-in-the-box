@@ -26,8 +26,7 @@ class ApplicationController < ActionController::Base
   # but for the sku / package sets pricing system the best was to actually throw a thread variable
   # rather than changing the whole system
   def ensure_price_origin
-    # TODO : TEMPORARY tester CONDITION
-    if current_user&.referrer && current_user&.tester?
+    if current_user&.referrer
       Thread.current[:price_origin] = :reseller_price
     else
       Thread.current[:price_origin] = :casual_price

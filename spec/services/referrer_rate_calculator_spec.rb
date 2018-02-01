@@ -48,6 +48,12 @@ describe ReferrerRateCalculator  do
         order_item.refresh_referrer_rate!
         expect(order_item.referrer_rate).to eq(15.0)
       end
+
+      it 'gets no referrer rate because there is no referrer' do
+        expect(order_item.referrer_rate).to eq(0.0)
+        order_item.refresh_referrer_rate!
+        expect(order_item.referrer_rate).to eq(0.0)
+      end
     end
 
     # NOTE : service can't be tested because it's not in the order lifecycle

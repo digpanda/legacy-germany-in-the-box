@@ -8,6 +8,8 @@ class ReferrerRateCalculator
   end
 
   def solve
+    return 0.0 unless referrer
+    
     if package_set
       return solve_rate package_set
     end
