@@ -8,8 +8,8 @@ class ReferrerRateCalculator
   end
 
   def solve
-    return 0.0 unless referrer
-    
+    return 0.0 if unappliable?
+
     if package_set
       return solve_rate package_set
     end
@@ -48,6 +48,12 @@ class ReferrerRateCalculator
 
   def product
     order_item.product
+  end
+
+  # cannot be applied if the order has no user assigned
+  # or no referrer
+  def unappliable?
+    !order_item.order.user || !referrer
   end
 
 end
