@@ -27,9 +27,9 @@ class ReferrerRateCalculator
 
   def solve_rate(model_entry)
     case referrer.user.group
-    when :junior_reseller
+    when :junior
       model_entry.junior_referrer_rate
-    when :senior_reseller
+    when :senior
       model_entry.senior_referrer_rate
     else
       model_entry.default_referrer_rate

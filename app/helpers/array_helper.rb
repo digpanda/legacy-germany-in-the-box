@@ -27,9 +27,8 @@ module ArrayHelper
     {
       'Default' => :default,
       'Student' => :student,
-      'Junior Reseller' => :junior_reseller,
-      'Senior Reseller' => :senior_reseller,
-      'Master Reseller' => :master_reseller,
+      'Junior' => :junior,
+      'Senior' => :senior
     }
   end
 

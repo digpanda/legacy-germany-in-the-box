@@ -18,12 +18,12 @@ describe ReferrerRateCalculator  do
         expect(order_item.referrer_rate).to eq(10.0) # default referrer rate engaged by default
 
         # junior update should change the rate on refresh
-        referrer.user.update!(group: :junior_reseller)
+        referrer.user.update!(group: :junior)
         order_item.refresh_referrer_rate!
         expect(order_item.referrer_rate).to eq(15.0)
 
         # senior update should change the rate on refresh
-        referrer.user.update!(group: :senior_reseller)
+        referrer.user.update!(group: :senior)
         order_item.refresh_referrer_rate!
         expect(order_item.referrer_rate).to eq(20.0)
       end
@@ -39,12 +39,12 @@ describe ReferrerRateCalculator  do
         expect(order_item.referrer_rate).to eq(5.0) # default referrer rate engaged by default
 
         # junior update should change the rate on refresh
-        referrer.user.update!(group: :junior_reseller)
+        referrer.user.update!(group: :junior)
         order_item.refresh_referrer_rate!
         expect(order_item.referrer_rate).to eq(10.0)
 
         # senior update should change the rate on refresh
-        referrer.user.update!(group: :senior_reseller)
+        referrer.user.update!(group: :senior)
         order_item.refresh_referrer_rate!
         expect(order_item.referrer_rate).to eq(15.0)
       end

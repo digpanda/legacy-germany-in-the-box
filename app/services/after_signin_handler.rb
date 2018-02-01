@@ -242,11 +242,9 @@ class AfterSigninHandler
       when 1
         :student
       when 2
-        :junior_reseller
+        :junior
       when 3
-        :senior_reseller
-      when 4
-        :master_reseller
+        :senior
       else
         group
       end
