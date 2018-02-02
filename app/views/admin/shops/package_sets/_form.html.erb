@@ -237,6 +237,17 @@
           <label>
             Reseller Price per Unit (EUR)
           </label>
+          <div class="row">
+            <div class="col-md-4">
+              Default
+            </div>
+            <div class="col-md-4">
+              Junior
+            </div>
+            <div class="col-md-4">
+              Senior
+            </div>
+          </div>
         </th>
         <th>
           <label>
@@ -266,8 +277,11 @@
         <td>
           <%= field.text_field :price, class: 'js-currency' %>
         </td>
-        <td>
-          <%= field.text_field :reseller_price, class: 'js-currency' %>
+        <td class="+three-split-fields">
+          <%= field.text_field :default_reseller_price, class: 'js-currency' %>
+          <%= field.text_field :junior_reseller_price, class: 'js-currency', value: (field.object.junior_reseller_price ? field.object.junior_reseller_price : field.object.default_reseller_price) %>
+          <%= field.text_field :senior_reseller_price, class: 'js-currency', value: (field.object.senior_reseller_price ? field.object.senior_reseller_price : field.object.default_reseller_price) %>
+          </div>
         </td>
         <td>
           <%= field.text_field :taxes_per_unit, class: 'js-currency' %>

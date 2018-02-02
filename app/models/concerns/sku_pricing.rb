@@ -5,10 +5,13 @@ module SkuPricing
 
   included do
     field :price, type: Float, default: 0
-    field :reseller_price, type: Float, default: 0
+
+    field :default_reseller_price, type: Float, default: 0
+    field :junior_reseller_price, type: Float, default: 0
+    field :senior_reseller_price, type: Float, default: 0
 
     validates :price, presence: true, numericality: { greater_than: 0 }
-    validates :reseller_price, presence: true, numericality: { greater_than: 0 }
+    validates :default_reseller_price, presence: true, numericality: { greater_than: 0 }
   end
 
   # TODO : at some point we should switch
@@ -27,7 +30,7 @@ module SkuPricing
   def price_per_unit
     case price_origin
     when :reseller_price
-      reseller_price
+      default_reseller_price
     when :casual_price
       price
     else
