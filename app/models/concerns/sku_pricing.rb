@@ -12,6 +12,8 @@ module SkuPricing
 
     validates :price, presence: true, numericality: { greater_than: 0 }
     validates :default_reseller_price, presence: true, numericality: { greater_than: 0 }
+    validates :junior_reseller_price, presence: true, numericality: { greater_than: 0 }
+    validates :senior_reseller_price, presence: true, numericality: { greater_than: 0 }
   end
 
   # TODO : at some point we should switch
@@ -29,8 +31,12 @@ module SkuPricing
   # the context of the user
   def price_per_unit
     case price_origin
-    when :reseller_price
+    when :default_reseller_price
       default_reseller_price
+    when :junior_reseller_price
+      junior_reseller_price
+    when :senior_reseller_price
+      senior_reseller_price
     when :casual_price
       price
     else

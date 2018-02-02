@@ -52,7 +52,7 @@ class Notifier
     def order_has_been_shipped(order)
       # if it's a reseller order then we send the SMS to the reseller himself
       # else we just send it out to the shipping address
-      if order.price_origins.include?(:reseller_price)
+      if order.from_reseller?
         mobile_recipient = order.user.mobile
       else
         mobile_recipient = order.shipping_address.mobile

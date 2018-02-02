@@ -131,7 +131,7 @@ class Order
   end
 
   def from_reseller?
-    price_origins.include?(:reseller_price)
+    price_origins.include?(:default_reseller_price) || price_origins.include?(:junior_reseller_price) || price_origins.include?(:senior_reseller_price)
   end
 
   def coupon_discount_in_percent

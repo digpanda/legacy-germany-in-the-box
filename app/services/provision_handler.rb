@@ -29,7 +29,7 @@ class ProvisionHandler
   # the order is binded to a referrer, was purchased and
   # is not part of any custom pricing ; like reseller
   def valid_order?
-    order.referrer && order.bought? && order.price_origins.exclude?(:reseller_price)
+    order.referrer && order.bought? && !order.from_reseller?
   end
 
   def valid_provision?

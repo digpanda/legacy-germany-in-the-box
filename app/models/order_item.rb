@@ -14,7 +14,7 @@ class OrderItem
   # each item of one order should have one unique price origin
   # but since the price is defined at the sku / package sku level
   # we better set on the order item as well.
-  field :price_origin, type: Symbol, default: :casual_price # [:casual_price, :reseller_price]
+  field :price_origin, type: Symbol, default: :casual_price # [:casual_price, :default_reseller_price, :junior_reseller_price, :senior_reseller_price]
 
   before_save :ensure_price_per_unit, :ensure_taxes_per_unit
 

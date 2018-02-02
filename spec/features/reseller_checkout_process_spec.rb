@@ -16,7 +16,7 @@ feature 'reseller checkout process', js: true do
   end
 
   scenario 'pay successfully with reseller price' do
-    expect(Order.first.price_origins).to eq([:reseller_price])
+    expect(Order.first.price_origins).to eq([:default_reseller_price])
     pay_with_alipay!
     # we check essential things which should not be set
     expect(ReferrerProvision.count).to eq(0)
