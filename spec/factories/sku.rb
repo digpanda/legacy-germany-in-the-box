@@ -6,7 +6,9 @@ FactoryGirl.define do
   factory :sku do
 
     price { BigDecimal.new(rand(1..10)) }
-    reseller_price { BigDecimal.new(rand(1..10)) }
+    default_reseller_price { BigDecimal.new(rand(1..10)) }
+    junior_reseller_price { BigDecimal.new(rand(1..10)) }
+    senior_reseller_price { BigDecimal.new(rand(1..10)) }
     quantity 5
     status true
     unlimited true

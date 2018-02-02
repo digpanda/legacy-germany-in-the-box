@@ -11,10 +11,8 @@
     <a href="<%= group_insight_customer_referrer_path %>" class="big-button --blue-hollow"><%= I18n.t('referrer.group_insight') %></a>
     <div class="+small-spacer"></div>
     <% end %>
-    <% if current_user&.alphatester? %>
     <a href="<%= customer_referrer_customization_path %>" class="big-button --blue-hollow"><%= I18n.t('referrer.customize_site') %></a>
     <div class="+small-spacer"></div>
-    <% end %>
 
     <a href="<%= provision_customer_referrer_path %>" class="big-button --blue"><%= I18n.t('referrer.provision_insight') %></a>
     <div class="+small-spacer"></div>
