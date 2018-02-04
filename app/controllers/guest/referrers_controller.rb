@@ -6,9 +6,10 @@ class Guest::ReferrersController < ApplicationController
   before_action :set_referrer
 
   def service_qrcode
-    if service_qrcode_path && service_qrcode_logo
-      send_data Flyer.new.process_qrcode(service_qrcode_path, logo_path: service_qrcode_logo).image.to_blob, stream: 'false', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
-    end
+    # if service_qrcode_path && service_qrcode_logo
+    send_data Flyer.new.process_qrcode(service_qrcode_path, logo_path: service_qrcode_logo).image.to_blob, stream: 'false', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
+    # send_data Flyer.new.process_qrcode(service_qrcode_path, logo_path: service_qrcode_logo).image.to_blob, stream: 'false', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
+    # end
   end
 
   def customized_qrcode
@@ -42,14 +43,21 @@ class Guest::ReferrersController < ApplicationController
       end
     end
 
+    def service_qrcode_path
+      url_with_reference = guest_package_sets_url(reference_id: referrer&.reference_id)
+      force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
+      qrcode_path = SmartQrcode.new(force_login_url).perform
+      return "#{Rails.root}/public/#{qrcode_path}"
+    end
+
     # the qrcode will be from wechat if its our service
     # if the referrer has a customized site we will
     # generate the qrcode to go to the site directly
-    def service_qrcode_path
-      if wechat_referrer_qrcode.success?
-        return wechat_referrer_qrcode.data[:local_file]
-      end
-    end
+    # def service_qrcode_path
+    #   if wechat_referrer_qrcode.success?
+    #     return wechat_referrer_qrcode.data[:local_file]
+    #   end
+    # end
 
     def wechat_referrer_qrcode
       @wechat_referrer_qrcode ||= WeixinReferrerQrcode.new(referrer).resolve
