@@ -35,6 +35,15 @@
     </div>
 
     <div class="form-group">
+      <div class="row">
+        <div class="col-md-12">
+          <%= form.check_box :active %>
+          <%= form.label :active, "启用冠名店" %>
+        </div>
+       </div>
+    </div>
+
+    <div class="form-group">
       <input class="big-button --blue" type="submit" value="Save"></input>
     </div>
 
@@ -45,6 +54,7 @@
       <div class="+centered">
         <img src="<%= guest_referrer_customized_qrcode_path(@referrer) %>" style="max-height: 500px;">
       </div>
+      <div class="+spacer"></div>
     <% end %>
 
   </div>
