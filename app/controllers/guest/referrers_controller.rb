@@ -36,7 +36,16 @@ class Guest::ReferrersController < ApplicationController
 
     def customized_qrcode_path
       if referrer.customization&.active
-        url_with_reference = guest_package_sets_url(reference_id: referrer&.reference_id)
+        # url_with_reference = guest_package_sets_url(reference_id: referrer&.reference_id)
+
+        url_with_reference = url_for(
+          action:       'index',
+          controller:   'guest/package_sets',
+          host:         ENV['wechat_local_domain'],
+          protocol:     'https',
+          reference_id: referrer&.reference_id,
+        )
+
         force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
         qrcode_path = SmartQrcode.new(force_login_url).perform
         return "#{Rails.root}/public/#{qrcode_path}"
@@ -44,7 +53,15 @@ class Guest::ReferrersController < ApplicationController
     end
 
     def service_qrcode_path
-      url_with_reference = guest_package_sets_url(reference_id: referrer&.reference_id)
+      # url_with_reference = guest_package_sets_url(reference_id: referrer&.reference_id)
+      url_with_reference = url_for(
+        action:       'index',
+        controller:   'guest/package_sets',
+        host:         ENV['wechat_local_domain'],
+        protocol:     'https',
+        reference_id: referrer&.reference_id,
+      )
+
       force_login_url = WechatUrlAdjuster.new(url_with_reference).adjusted_url
       qrcode_path = SmartQrcode.new(force_login_url).perform
       return "#{Rails.root}/public/#{qrcode_path}"
