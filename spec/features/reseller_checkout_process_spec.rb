@@ -43,4 +43,20 @@ feature 'reseller checkout process', js: true do
 
   end
 
+  context 'as senior user' do
+
+      let(:customer) { FactoryGirl.create(:customer, :with_referrer, :with_parent_referrer, group: :senior) }
+
+    before(:each) do
+      customer.group = :senior
+      customer.save(validate: false)
+    end
+
+    scenario 'pay successfully with senior reseller price' do
+      expect(Order.first.price_origins).to eq([:senior_reseller_price])
+      pay_with_alipay!
+    end
+
+  end
+
 end
