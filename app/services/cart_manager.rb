@@ -38,6 +38,10 @@ class CartManager < BaseService
     current_cart.save
   end
 
+  def local
+    request.send(resource)&.[](Rails.application.config.local.first.to_sym)
+  end
+
   # we unlink all the orders from the cart
   # NOTE : it doesn't mean we remove the orders themselves
   def empty!
@@ -107,6 +111,10 @@ class CartManager < BaseService
       session[:current_cart] && Cart.where(id: session[:current_cart]).first
     end
 
+    def resource
+      :session
+    end
+    
     # NOTE : sometimes the parent referrer won't be defined
     # because the order is started anonymously
     def fresh_order(shop, user)

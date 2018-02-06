@@ -24,8 +24,8 @@ class LanguagesController < ActionController::Base # No application because it's
       sign_out
     end
 
+    session[:locations] = params[:locations]
     session[:locale] = language_params[:id]
-    session[:location] = language_params[:location]
 
     if language_params[:location] # go to whatever location is authorized
       redirect_to language_params[:location]
@@ -42,13 +42,14 @@ class LanguagesController < ActionController::Base # No application because it's
       params.permit(:id, :location, :sign_out, :su)
     end
 
+    def valid_location?
+      (ACCEPTED_LOCATIONS.include? language_params[:location]) || language_params[:location].nil? # valid location or nil
+    end
+    
     def valid_language?
       ACCEPTED_LANGUAGES.include? language_params[:id] # small validation, could be put within a model without database
     end
 
-    def valid_location?
-      (ACCEPTED_LOCATIONS.include? language_params[:location]) || language_params[:location].nil? # valid location or nil
-    end
 
     # NOTE : this was duplicated from `application_controller.rb` as this controller
     # does not inherit from it but use this functionality
