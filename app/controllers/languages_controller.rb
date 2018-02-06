@@ -25,6 +25,7 @@ class LanguagesController < ActionController::Base # No application because it's
     end
 
     session[:locale] = language_params[:id]
+    session[:location] = languages_params[:location]
 
     if language_params[:location] # go to whatever location is authorized
       redirect_to language_params[:location]
@@ -38,7 +39,7 @@ class LanguagesController < ActionController::Base # No application because it's
   private
 
     def language_params
-      params.permit(:id, :location, :sign_out)
+      params.permit(:id, :location, :sign_out, :su)
     end
 
     def valid_language?
