@@ -25,7 +25,7 @@ class LanguagesController < ActionController::Base # No application because it's
     end
 
     session[:locale] = language_params[:id]
-    session[:location] = languages_params[:location]
+    session[:location] = language_params[:location]
 
     if language_params[:location] # go to whatever location is authorized
       redirect_to language_params[:location]
