@@ -68,7 +68,7 @@ zh-CN:
   service:
     please_scan_qrcode: 您也可以立即和我们在线客服联系，了解更多相关信息。请扫码访问来因盒服务号。
   referrer:
-    customization_updated: The customization was updated.
+    customization_updated: 已保存
     service: 海外服务
     service_rate_label: 起
     desc: 副标题
