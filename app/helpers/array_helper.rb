@@ -82,7 +82,10 @@ module ArrayHelper
       'EMS' => :ems,
       'EMS Guoji' => :emsguoji,
       'Adler' => :adlerlogi,
-      'UEQ' => :ueq
+      'UEQ' => :ueq,
+      '国内顺丰' => :sf,
+      '国内申通' => :st,
+      '国内圆通' => :yt
     }
   end
 

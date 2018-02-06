@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<% if @brand %>
+<% if @brand && referrer? %>
   <!-- Referrer QRCode -->
   <%= render partial: 'shared/partials/promote_qrcode', locals: { url: guest_brand_promote_qrcode_path(@brand), promotion_footer: @brand.promotion_footer, promotion_header: @brand.promotion_header } %>
 <% end %>

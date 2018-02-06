@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
   # rather than changing the whole system
   def ensure_price_origin
     if current_user&.referrer
+<<<<<<< HEAD
       if current_user.group == :junior
         Thread.current[:price_origin] = :junior_reseller_price
       elsif current_user.group == :senior
@@ -34,6 +35,9 @@ class ApplicationController < ActionController::Base
       else
         Thread.current[:price_origin] = :default_reseller_price
       end
+=======
+      Thread.current[:price_origin] = :reseller_price
+>>>>>>> master
     else
       Thread.current[:price_origin] = :casual_price
     end
