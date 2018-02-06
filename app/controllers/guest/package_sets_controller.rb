@@ -55,6 +55,8 @@ class Guest::PackageSetsController < ApplicationController
   def promote_qrcode
     if blob_qrcode
       send_data blob_qrcode, stream: 'false', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
+    else
+      render text: 'no image'
     end
   end
 
