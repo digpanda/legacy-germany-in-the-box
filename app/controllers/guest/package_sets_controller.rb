@@ -20,7 +20,6 @@ class Guest::PackageSetsController < ApplicationController
   # we show the list of package by category
   # otherwise we redirect the user to the /categories area
   def index
-
     @package_sets = PackageSet.active.order_by(position: :asc)
 
     # category querying
@@ -55,6 +54,8 @@ class Guest::PackageSetsController < ApplicationController
   def promote_qrcode
     if blob_qrcode
       send_data blob_qrcode, stream: 'false', filename: 'qrcode.jpg', type: 'image/jpeg', disposition: 'inline'
+    else
+      render text: 'no image'
     end
   end
 

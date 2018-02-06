@@ -11,7 +11,7 @@ describe Guest::ReferrersController, type: :controller do
       )
     end
 
-    subject { get :qrcode, referrer_id: referrer.id }
+    subject { get :service_qrcode, referrer_id: referrer.id }
     it { is_expected.to have_http_status(200) }
   end
 

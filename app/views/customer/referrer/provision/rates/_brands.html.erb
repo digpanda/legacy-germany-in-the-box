@@ -19,13 +19,13 @@
       <tbody>
 
         <% brands.each do |brand| %>
-          <% unless brand.package_sets_referrer_rates_range == [0.0] %>
+          <% unless brand.package_sets_referrer_rates_range(current_user) == [0.0] %>
             <tr>
               <td>
                 <%= brand.name %>
               </td>
               <td>
-                <%= referrer_rate_range(brand) %>
+                <%= referrer_rate_range(brand, current_user) %>
               </td>
             </tr>
           <% end %>

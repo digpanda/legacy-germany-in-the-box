@@ -22,7 +22,10 @@ class Product
 
   field :exclude_germany, type: Boolean, default: false
   field :shipping_rate_type, type: Symbol, default: :general
-  field :referrer_rate, type: Float, default: 0.0
+  
+  field :default_referrer_rate, type: Float, default: 0.0
+  field :junior_referrer_rate, type: Float, default: 0.0
+  field :senior_referrer_rate, type: Float, default: 0.0
 
   embeds_many :options, inverse_of: :product, cascade_callbacks: true, class_name: 'VariantOption'
   embeds_many :skus, inverse_of: :product, cascade_callbacks: true

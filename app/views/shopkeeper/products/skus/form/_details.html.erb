@@ -87,7 +87,20 @@
           <%= I18n.t('edit_product.reseller_price') %>
         </div>
         <div class="col-md-10">
-          <%= form.text_field :reseller_price, value: @sku.reseller_price, :class => 'form-control js-currency', :required => true %>
+          <div class="row">
+            <div class="col-md-4">
+              Default
+              <%= form.text_field :default_reseller_price, :class => 'form-control js-currency', :required => true %>
+            </div>
+            <div class="col-md-4">
+              Junior
+              <%= form.text_field :junior_reseller_price, value: (form.object.junior_reseller_price ? form.object.junior_reseller_price : form.object.default_reseller_price), :class => 'form-control js-currency', :required => true %>
+            </div>
+            <div class="col-md-4">
+              Senior
+              <%= form.text_field :senior_reseller_price, value: (form.object.senior_reseller_price ? form.object.senior_reseller_price : form.object.default_reseller_price), :class => 'form-control js-currency', :required => true %>
+            </div>
+          </div>
         </div>
       </div>
 

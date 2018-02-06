@@ -2,7 +2,6 @@
 # but this is good enough for now and was fast to write.
 feature 'reseller checkout process', js: true do
 
-  let(:customer) { FactoryGirl.create(:customer, :with_referrer, :with_parent_referrer) }
   let(:shop) { FactoryGirl.create(:shop, :with_payment_gateways) }
   let(:product) { FactoryGirl.create(:product, shop_id: shop.id) }
 
@@ -15,11 +14,49 @@ feature 'reseller checkout process', js: true do
     page.first('#checkout-button').click # go to address step
   end
 
-  scenario 'pay successfully with reseller price' do
-    expect(Order.first.price_origins).to eq([:reseller_price])
-    pay_with_alipay!
-    # we check essential things which should not be set
-    expect(ReferrerProvision.count).to eq(0)
+  context 'as a default user' do
+
+    let(:customer) { FactoryGirl.create(:customer, :with_referrer, :with_parent_referrer) }
+
+    scenario 'pay successfully with default reseller price' do
+      expect(Order.first.price_origins).to eq([:default_reseller_price])
+      pay_with_alipay!
+      # we check essential things which should not be set
+      expect(ReferrerProvision.count).to eq(0)
+    end
+
+  end
+
+  context 'as junior user' do
+
+      let(:customer) { FactoryGirl.create(:customer, :with_referrer, :with_parent_referrer, group: :junior) }
+
+    before(:each) do
+      customer.group = :junior
+      customer.save(validate: false)
+    end
+
+    scenario 'pay successfully with junior reseller price' do
+      expect(Order.first.price_origins).to eq([:junior_reseller_price])
+      pay_with_alipay!
+    end
+
+  end
+
+  context 'as senior user' do
+
+      let(:customer) { FactoryGirl.create(:customer, :with_referrer, :with_parent_referrer, group: :senior) }
+
+    before(:each) do
+      customer.group = :senior
+      customer.save(validate: false)
+    end
+
+    scenario 'pay successfully with senior reseller price' do
+      expect(Order.first.price_origins).to eq([:senior_reseller_price])
+      pay_with_alipay!
+    end
+
   end
 
 end

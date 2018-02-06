@@ -29,7 +29,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # we turn him into a real referrer
         ReferrerMaker.new(user).convert!(group_token: params[:token])
         SlackDispatcher.new.message("ReferrerMaker was called for user `#{user&.id}`")
-        
+
         # is it a new user ?
         handle_after_sign_up! user
 

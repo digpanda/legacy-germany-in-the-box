@@ -16,7 +16,7 @@ class BillsHandler < BaseService
   end
 
   def zip
-    ensure_temporary_directory
+    ensure_directories
 
     # we fill-in the temporary directory
     orders.each do |order|
@@ -47,20 +47,21 @@ class BillsHandler < BaseService
   end
 
   def zip_directory
-     ZipFileGenerator.new(TEMPORARY_DIRECTORY, "#{DESTINATION_DIRECTORY}official-billing.zip").write
+    ZipFile.new(TEMPORARY_DIRECTORY, "#{DESTINATION_DIRECTORY}official-billing.zip").perform
   end
 
   def download_official_bill(order)
-    order_url = shared_order_rendered_official_bill_url(order, format: :pdf, disposition: :inline)
-    # NOTE : this makes huge problems in local.
-    # Find a work around if the problem persists on production.
+    order_url = guest_order_official_bill_url(order, format: :pdf, disposition: :inline)
+    # NOTE : this makes huge problems in local. if the server freezes
+    # it's due to double process here
     download = open(order_url)
-    filename = download.base_uri.to_s.split('/')[-1]
+    filename = "#{order.bill_id}.pdf"
     IO.copy_stream(download, "#{TEMPORARY_DIRECTORY}#{filename}")
   end
 
-  def ensure_temporary_directory
+  def ensure_directories
     FileUtils.mkdir_p(TEMPORARY_DIRECTORY)
+    FileUtils.mkdir_p(DESTINATION_DIRECTORY)
   end
 
   def remove_temporary_directory

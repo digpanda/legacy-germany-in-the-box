@@ -13,10 +13,10 @@ class Customer::Referrer::CustomizationController < ApplicationController
 
   def update
     if customization.update(customization_params)
-      flash[:success] = 'The customization was updated.'
+      flash[:success] = I18n.t('referrer.customization_updated')
       redirect_to customer_referrer_path
     else
-      flash[:error] = "The customization was not updated (#{customization.errors.full_messages.join(', ')})"
+      flash[:error] = "#{customization.errors.full_messages.join(', ')}"
       render :show
     end
   end

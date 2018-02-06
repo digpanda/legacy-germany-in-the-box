@@ -34,7 +34,7 @@ class PackageSetDecorator < Draper::Decorator
   def reseller_total_price
     @reseller_total_price ||= begin
       price_origin = Thread.current[:price_origin]
-      Thread.current[:price_origin] = :reseller_price
+      Thread.current[:price_origin] = :default_reseller_price
       reseller_price = total_price_with_taxes
       Thread.current[:price_origin] = price_origin
       reseller_price

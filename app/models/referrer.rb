@@ -13,16 +13,16 @@ class Referrer
 
   field :group_leader, type: Boolean, default: false
 
-  belongs_to :user, class_name: 'User', inverse_of: :referrer
+  belongs_to :user, inverse_of: :referrer
   has_many :children_users, class_name: 'User', inverse_of: :parent_referrer
 
-  belongs_to :referrer_group, class_name: 'ReferrerGroup', inverse_of: :referrer
+  belongs_to :referrer_group, inverse_of: :referrer
 
   has_one :customization, class_name: 'ReferrerCustomization', inverse_of: :referrer
 
-  has_many :coupons, class_name: 'Coupon', inverse_of: :referrer
-  has_many :orders, class_name: 'Order', inverse_of: :referrer
-  has_many :inquiries, class_name: 'Inquiry', inverse_of: :referrer
+  has_many :coupons, inverse_of: :referrer
+  has_many :orders, inverse_of: :referrer
+  has_many :inquiries, inverse_of: :referrer
 
   has_many :provisions, class_name: 'ReferrerProvision', inverse_of: :referrer
   has_many :provision_operations, class_name: 'ReferrerProvisionOperation', inverse_of: :referrer
@@ -83,7 +83,7 @@ class Referrer
   def total_resells
     Rails.cache.fetch("referrer_#{self.id}_total_resells", expires_in: 24.hours) do
       user.orders.bought.reduce(0.0) do |acc, order|
-        if order.price_origins.include?(:reseller_price)
+        if order.from_reseller?
           acc + order.end_price
         else
           acc

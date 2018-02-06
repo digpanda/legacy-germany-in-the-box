@@ -14,7 +14,11 @@ class PackageSet
   field :promotion_text, type: String
   field :cover,       type: String
   field :details_cover,       type: String
-  field :referrer_rate, type: Float, default: 0.0
+
+  field :default_referrer_rate, type: Float, default: 0.0
+  field :junior_referrer_rate, type: Float, default: 0.0
+  field :senior_referrer_rate, type: Float, default: 0.0
+
   field :active, type: Boolean, default: true
   field :original_price, type: Float, default: 0.0
   field :shipping_cost, type: Float, default: 0.0

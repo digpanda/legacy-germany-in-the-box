@@ -53,6 +53,7 @@ de:
   address:
     apply: Einlösen
   referrer:
+    customization_updated: The customization was updated.
     service: Service
     service_rate_label: "+"
     desc: Description

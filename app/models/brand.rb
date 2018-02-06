@@ -33,8 +33,18 @@ class Brand
     PackageSet.with_brand(self)
   end
 
-  def package_sets_referrer_rates_range
-    package_sets.active.map(&:referrer_rate).sort.uniq
+  def package_sets_referrer_rates_range(user)
+    # NOTE : could be improved and abstracted
+    # if we repeat the process too often
+    if user.group == :junior
+      referrer_rate = :junior_referrer_rate
+    elsif user.group == :senior
+      referrer_rate = :senior_referrer_rate
+    else
+      referrer_rate = :default_referrer_rate
+    end
+    # now we get the range itself
+    package_sets.active.map(&:"#{referrer_rate}").sort.uniq
   end
 
   private

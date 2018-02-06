@@ -24,7 +24,17 @@
                 <%= service.name %>
               </td>
               <td>
-                <%= service.referrer_rate %>%<%= I18n.t('referrer.service_rate_label') %>
+                <!-- NOTE :
+                    for now we kept it like that but if it gets complicated
+                    make a library
+                -->
+                <% if current_user.role == :junior %>
+                  <%= service.default_referrer_rate %>%<%= I18n.t('referrer.service_rate_label') %>
+                <% elsif current_user.role == :senior %>
+                  <%= service.default_referrer_rate %>%<%= I18n.t('referrer.service_rate_label') %>
+                <% else %>
+                  <%= service.default_referrer_rate %>%<%= I18n.t('referrer.service_rate_label') %>
+                <% end %>
               </td>
             </tr>
         <% end %>
