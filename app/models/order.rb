@@ -131,6 +131,7 @@ class Order
   end
 
   def from_reseller?
+    SlackDispatcher.new.message("PRICE ORIGINS : #{price_origins}")
     price_origins.include?(:reseller_price) || price_origins.include?(:default_reseller_price) || price_origins.include?(:junior_reseller_price) || price_origins.include?(:senior_reseller_price)
   end
 
