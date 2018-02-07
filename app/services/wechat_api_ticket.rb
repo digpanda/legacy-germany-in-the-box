@@ -1,4 +1,4 @@
-class WeixinApiTicket < BaseService
+class WechatApiTicket < BaseService
   attr_reader :type
 
   def initialize(type: 'jsapi')
@@ -30,7 +30,7 @@ class WeixinApiTicket < BaseService
     end
 
     def access_token_gateway
-      @access_token_gateway ||= WeixinApiAccessToken.new.resolve
+      @access_token_gateway ||= WechatApiAccessToken.new.resolve
     end
 
     def access_token

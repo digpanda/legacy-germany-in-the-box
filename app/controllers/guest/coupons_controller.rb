@@ -26,7 +26,7 @@ class Guest::CouponsController < ApplicationController
     end
 
     def wechat_referrer_qrcode
-      @wechat_referrer_qrcode ||= WeixinReferrerQrcode.new(coupon.referrer).resolve
+      @wechat_referrer_qrcode ||= WechatReferrerQrcode.new(coupon.referrer).resolve
     end
 
     def set_coupon

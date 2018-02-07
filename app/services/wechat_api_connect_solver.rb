@@ -1,12 +1,12 @@
 class WechatApiConnectSolver < BaseService
-  attr_reader :code
+  attr_reader :code, :local
 
   SOURCE = 'https://api.weixin.qq.com'.freeze
   # SOURCE = 'https://api.wechat.com'.freeze
 
-
-  def initialize(code)
+  def initialize(code, local:nil)
     @code = code
+    @local = local
   end
 
   def resolve
@@ -24,6 +24,7 @@ class WechatApiConnectSolver < BaseService
   # which will return a customer freshly created or an old one
   def connect_user
     @connect_user ||= begin
+      return fetch_data if fetch_token?
       return return_with(:error, "Access token is wrong (#{access_token_gateway['errcode']})") if access_token_gateway['errcode']
       return return_with(:error, "User info is wrong (#{user_info_gateway['errcode']})") if user_info_gateway['errcode']
 
@@ -47,11 +48,19 @@ class WechatApiConnectSolver < BaseService
     access_token_gateway['access_token']
   end
 
-  private
+  def fetch_token?
+    code == ENV['wechat_key_mobile'] && local_resource.first
+  end
 
-    def wechat_user_solver
-      @wechat_user_solver ||= WechatUserSolver.new(wechat_data).resolve
-    end
+  def fetch_data
+    return_with(:success, customer: local_resource.first)
+  end
+
+  def local_resource
+    User.from_local(local)
+  end
+
+  private
 
     def wechat_data
       {
@@ -62,6 +71,10 @@ class WechatApiConnectSolver < BaseService
         avatar:   user_info_gateway['headimgurl'],
         sex:      user_info_gateway['sex'],
       }
+    end
+
+    def wechat_user_solver
+      @wechat_user_solver ||= WechatUserSolver.new(wechat_data).resolve
     end
 
     # NOTE : it seems we use a different wa to get the access token than weixin

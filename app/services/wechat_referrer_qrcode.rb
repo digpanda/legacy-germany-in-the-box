@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'json'
 
-class WeixinReferrerQrcode < BaseService
+class WechatReferrerQrcode < BaseService
   attr_reader :referrer
 
   def initialize(referrer)

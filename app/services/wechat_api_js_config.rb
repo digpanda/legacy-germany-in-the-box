@@ -1,4 +1,4 @@
-class WeixinApiJsConfig < BaseService
+class WechatApiJsConfig < BaseService
   attr_reader :request, :ticket
 
   def initialize(request: nil, ticket: nil)
@@ -37,7 +37,7 @@ class WeixinApiJsConfig < BaseService
     end
 
     def signature_gateway
-      @signature_gateway ||= WeixinApiSignature.new(request: request, ticket: ticket, nonce_str: nonce_str, timestamp: timestamp).resolve
+      @signature_gateway ||= WechatApiSignature.new(request: request, ticket: ticket, nonce_str: nonce_str, timestamp: timestamp).resolve
     end
 
     def js_api_list

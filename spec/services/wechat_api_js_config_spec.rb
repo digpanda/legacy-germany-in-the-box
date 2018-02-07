@@ -1,4 +1,4 @@
-describe WeixinApiJsConfig  do
+describe WechatApiJsConfig  do
 
   context '#resolve' do
 

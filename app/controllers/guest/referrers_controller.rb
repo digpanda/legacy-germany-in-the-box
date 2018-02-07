@@ -77,7 +77,7 @@ class Guest::ReferrersController < ApplicationController
     # end
 
     def wechat_referrer_qrcode
-      @wechat_referrer_qrcode ||= WeixinReferrerQrcode.new(referrer).resolve
+      @wechat_referrer_qrcode ||= WechatReferrerQrcode.new(referrer).resolve
     end
 
     def set_referrer

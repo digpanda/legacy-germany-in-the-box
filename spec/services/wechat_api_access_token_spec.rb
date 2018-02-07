@@ -1,4 +1,4 @@
-describe WeixinApiAccessToken  do
+describe WechatApiAccessToken  do
 
   context '#resolve' do
 

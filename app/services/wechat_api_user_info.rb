@@ -1,4 +1,4 @@
-class WeixinApiUserInfo < BaseService
+class WechatApiUserInfo < BaseService
   attr_reader :openid
 
   def initialize(openid)
@@ -22,7 +22,7 @@ class WeixinApiUserInfo < BaseService
     end
 
     def access_token_gateway
-      @access_token_gateway ||= WeixinApiAccessToken.new.resolve
+      @access_token_gateway ||= WechatApiAccessToken.new.resolve
     end
 
     def access_token

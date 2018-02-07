@@ -82,7 +82,8 @@ class User
 
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
   scope :from_wechat, -> { where(provider: :wechat) }
-
+  scope :from_local, -> (local) { where(id: local) }
+  
   has_many :orders,                                 inverse_of: :user,   dependent: :restrict
 
   has_many :inquiries, inverse_of: :user, dependent: :restrict

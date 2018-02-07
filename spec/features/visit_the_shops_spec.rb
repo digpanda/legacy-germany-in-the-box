@@ -5,15 +5,17 @@ feature 'visits the shops', js: true  do
     FactoryGirl.create_list(:product, 20)
   end
 
-  scenario 'from the homepage' do
-
-    visit root_path
-    page.first('#food').trigger('click') # click on anything
-    expect(page).to have_css 'h1', text: '食品佳酿' # we are now on the food category page
-    first('.shop-block__container').first('.main-button__hollow').trigger('click')
-    on_shop_page?
-
-  end
+  # NOTE : homepage has been cancelled
+  # scenario 'from the homepage' do
+  #
+  #   visit root_path
+  #   screenshot!
+  #   page.first('#food').trigger('click') # click on anything
+  #   expect(page).to have_css 'h1', text: '食品佳酿' # we are now on the food category page
+  #   first('.shop-block__container').first('.main-button__hollow').trigger('click')
+  #   on_shop_page?
+  #
+  # end
 
   let(:shop) { FactoryGirl.create(:shop) }
 

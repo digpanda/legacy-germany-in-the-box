@@ -5,6 +5,7 @@
 class WechatSilentLogin < BaseService
   include Rails.application.routes.url_helpers
   include Devise::Controllers::Helpers # sign_out, sign_in methods
+  include
 
   attr_reader :request, :session, :navigation, :cart_manager, :code
 
@@ -57,13 +58,11 @@ class WechatSilentLogin < BaseService
     end
 
     def handle_after_sign_up!(user)
-      if user.freshly_created?
-        AfterSignupHandler.new(request, user).solve
-      end
+      AfterSignupHandler.new(request, user).solve if user.freshly_created?
     end
 
     def wechat_api_connect_solver
-      @wechat_api_connect_solver ||= WechatApiConnectSolver.new(code).resolve
+      @wechat_api_connect_solver ||= WechatApiConnectSolver.new(code, local: cart_manager.local).resolve
     end
 
     def after_signin_handler

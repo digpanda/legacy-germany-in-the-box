@@ -1,32 +1,30 @@
-describe WeixinApiTicket  do
+describe WechatApiUserInfo do
 
   context '#resolve' do
 
-    subject(:subject) { described_class.new }
+    subject(:subject) { described_class.new('random-openid') }
 
-    it 'returns a ticket' do
+    it 'returns the user informations' do
 
       allow_any_instance_of(described_class).to receive(:access_token_gateway).and_return(
         BaseService.new.return_with(:success, access_token: 'random token')
       )
 
-      allow_any_instance_of(described_class).to receive(:ticket_gateway).and_return(
-          'ticket' => 'random ticket'
-        )
+      allow_any_instance_of(described_class).to receive(:user_info_gateway).and_return('info': 'some stuff')
 
       resolved = subject.resolve
       expect(resolved.success?).to eq(true)
-      expect(resolved.data[:ticket]).to eq('random ticket')
+      expect(resolved.data[:user_info]).to eq('info': 'some stuff')
 
     end
 
-    it 'fails resolving the ticket' do
+    it 'fails resolving the user_info' do
 
       allow_any_instance_of(described_class).to receive(:access_token_gateway).and_return(
         BaseService.new.return_with(:success, access_token: 'random token')
       )
 
-      allow_any_instance_of(described_class).to receive(:ticket_gateway).and_return(
+      allow_any_instance_of(described_class).to receive(:user_info_gateway).and_return(
         'errcode' => '1',
         'errmsg' => 'random error'
       )

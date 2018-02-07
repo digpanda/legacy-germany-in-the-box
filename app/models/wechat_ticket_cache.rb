@@ -1,4 +1,4 @@
-class WeixinTicketCache
+class WechatTicketCache
   include MongoidBase
   EXPIRATION_TIME = -> { 2.hours }
 
