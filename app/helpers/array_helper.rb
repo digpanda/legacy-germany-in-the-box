@@ -76,16 +76,16 @@ module ArrayHelper
     {
       'Postelbe' => :postelbe,
       '德国邮政' => :deutschepost,
-      'DHL中国件' => :dhl,
-      'DHL德国国内' => :dhlde,
-      'DHL英文' => :dhlen,
       'EMS' => :ems,
       'EMS Guoji' => :emsguoji,
       'Adler' => :adlerlogi,
       'UEQ' => :ueq,
-      '国内顺丰' => :sf,
-      '国内申通' => :st,
-      '国内圆通' => :yt
+      'DHL德国国内' => :dhlde,
+      '国内顺丰' => :shunfeng,
+      '国内申通' => :shentong,
+      '国内圆通' => :yuantong,
+      'DHL中国件' => :dhl,
+      'DHL英文' => :dhlen
     }
   end
 
