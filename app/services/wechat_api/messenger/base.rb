@@ -1,5 +1,5 @@
-class WechatApiMessenger < BaseService
-  class Base < WechatApiMessenger
+class WechatApi::Messenger < BaseService
+  class Base < WechatApi::Messenger
     SOURCE = 'https://api.weixin.qq.com'.freeze
 
     attr_reader :openid, :content
@@ -26,7 +26,7 @@ class WechatApiMessenger < BaseService
       end
 
       def access_token_gateway
-        @access_token_gateway ||= WechatApiAccessToken.new.resolve
+        @access_token_gateway ||= WechatApi::AccessToken.new.resolve
       end
 
       def access_token

@@ -1,4 +1,4 @@
-class WechatApiSemantic < BaseService
+class WechatApi::Semantic < BaseService
   attr_reader :user, :query
 
   # query sample : 查一下明天从北京到上海的南航机票
@@ -56,7 +56,7 @@ class WechatApiSemantic < BaseService
     end
 
     def access_token_gateway
-      @access_token_gateway ||= WechatApiAccessToken.new.resolve
+      @access_token_gateway ||= WechatApi::AccessToken.new.resolve
     end
 
     def access_token

@@ -1,4 +1,4 @@
-class WechatApiConnectSolver < BaseService
+class WechatApi::ConnectSolver < BaseService
   attr_reader :code, :local
 
   SOURCE = 'https://api.weixin.qq.com'.freeze

@@ -1,4 +1,4 @@
-class WechatApiMessenger < BaseService
+class WechatApi::Messenger < BaseService
   class Image < Base
 
     private
@@ -32,7 +32,7 @@ class WechatApiMessenger < BaseService
       end
 
       def wechat_api_media
-        @wechat_api_media ||= WechatApiMedia.new(type: :image, target: target).resolve
+        @wechat_api_media ||= WechatApi::Media.new(type: :image, target: target).resolve
       end
   end
 end

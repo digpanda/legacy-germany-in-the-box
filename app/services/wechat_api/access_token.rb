@@ -1,4 +1,4 @@
-class WechatApiAccessToken < BaseService
+class WechatApi::AccessToken < BaseService
   attr_reader :appid, :secret
 
   def initialize(appid: nil, secret: nil)

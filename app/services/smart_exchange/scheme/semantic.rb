@@ -10,7 +10,7 @@ module SmartExchange
       end
 
       def response
-        WechatApiSemantic.new(user, "查一下明天从北京到上海的南航机票").resolve
+        WechatApi::Semantic.new(user, "查一下明天从北京到上海的南航机票").resolve
       end
     end
   end

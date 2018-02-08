@@ -1,4 +1,4 @@
-describe WechatApiTicket  do
+describe WechatApi::Ticket  do
 
   context '#resolve' do
 

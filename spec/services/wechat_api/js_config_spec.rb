@@ -1,4 +1,4 @@
-describe WechatApiJsConfig  do
+describe WechatApi::JsConfig  do
 
   context '#resolve' do
 

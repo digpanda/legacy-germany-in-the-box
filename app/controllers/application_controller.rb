@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
     @weixin_js_config ||= begin
       ticket = WechatTicket.new(cache_scope: request.host).resolve
       return false unless ticket.success?
-      js_config = WechatApiJsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve
+      js_config = WechatApi::JsConfig.new(request: request, ticket: ticket.data[:ticket]).resolve
       return false unless js_config.success?
       js_config.data
     end

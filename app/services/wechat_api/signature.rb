@@ -1,4 +1,4 @@
-class WechatApiSignature < BaseService
+class WechatApi::Signature < BaseService
   attr_reader :request, :ticket, :nonce_str, :timestamp
 
   def initialize(request: nil, ticket: nil, nonce_str: nil, timestamp: nil)

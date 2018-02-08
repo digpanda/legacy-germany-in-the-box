@@ -11,7 +11,7 @@ describe Connect::OmniauthCallbacksController, type: :controller do
 
     it 'creates a new referrer and redirects him to fulfil his informations' do
 
-      allow_any_instance_of(WechatApiConnectSolver).to receive(:resolve).and_return(service_success(customer: user))
+      allow_any_instance_of(WechatApi::ConnectSolver).to receive(:resolve).and_return(service_success(customer: user))
 
       get :referrer, 'code' => 'wechat-code'
       # miss some info from the creation

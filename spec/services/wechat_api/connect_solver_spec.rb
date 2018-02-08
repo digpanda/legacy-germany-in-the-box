@@ -1,18 +1,18 @@
-describe WechatApiConnectSolver  do
+describe WechatApi::ConnectSolver  do
 
   context '#resolve' do
 
-    subject(:wechat_api_connect_solver) { WechatApiConnectSolver.new('fake-code') }
+    subject(:wechat_api_connect_solver) { WechatApi::ConnectSolver.new('fake-code') }
 
     it 'succeed and create a new user' do
 
-      allow_any_instance_of(WechatApiConnectSolver).to receive(:access_token_gateway).and_return(
+      allow_any_instance_of(WechatApi::ConnectSolver).to receive(:access_token_gateway).and_return(
         'openid'       => 'test-open-id',
         'unionid'      => 'test-union-id',
         'access_token' => 'test-access-token'
       )
 
-      allow_any_instance_of(WechatApiConnectSolver).to receive(:user_info_gateway).and_return(
+      allow_any_instance_of(WechatApi::ConnectSolver).to receive(:user_info_gateway).and_return(
         'unionid'    => 'test-union-id',
         'openid'     => 'test-open-id',
         'nickname'   => 'test-nickname',
@@ -30,13 +30,13 @@ describe WechatApiConnectSolver  do
 
     it 'succeeds and retrieve an old user' do
 
-      allow_any_instance_of(WechatApiConnectSolver).to receive(:access_token_gateway).and_return(
+      allow_any_instance_of(WechatApi::ConnectSolver).to receive(:access_token_gateway).and_return(
         'openid'       => 'test-open-id',
         'unionid'      => 'whatever-unionid',
         'access_token' => 'test-access-token'
       )
 
-      allow_any_instance_of(WechatApiConnectSolver).to receive(:user_info_gateway).and_return(
+      allow_any_instance_of(WechatApi::ConnectSolver).to receive(:user_info_gateway).and_return(
         'openid'     => 'test-open-id',
         'unionid'    => 'whatever-unionid',
         'nickname'   => 'test-nickname',
@@ -54,13 +54,13 @@ describe WechatApiConnectSolver  do
 
     it 'fails creating the user with those infos' do
 
-      allow_any_instance_of(WechatApiConnectSolver).to receive(:access_token_gateway).and_return(
+      allow_any_instance_of(WechatApi::ConnectSolver).to receive(:access_token_gateway).and_return(
         'openid'       => nil,
         'unionid'      => nil,
         'access_token' => 'test-access-token'
       )
 
-      allow_any_instance_of(WechatApiConnectSolver).to receive(:user_info_gateway).and_return(
+      allow_any_instance_of(WechatApi::ConnectSolver).to receive(:user_info_gateway).and_return(
         'unionid'    => nil,
         'openid'     => nil,
         'nickname'   => 'test-nickname',
@@ -75,7 +75,7 @@ describe WechatApiConnectSolver  do
 
     it 'throws an error from the API' do
 
-      allow_any_instance_of(WechatApiConnectSolver).to receive(:access_token_gateway).and_return(
+      allow_any_instance_of(WechatApi::ConnectSolver).to receive(:access_token_gateway).and_return(
         'errcode' => '289'
       )
 

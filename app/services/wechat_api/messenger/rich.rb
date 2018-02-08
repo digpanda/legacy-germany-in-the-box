@@ -1,4 +1,4 @@
-class WechatApiMessenger < BaseService
+class WechatApi::Messenger < BaseService
   class Rich < Base
     attr_reader :articles
 
