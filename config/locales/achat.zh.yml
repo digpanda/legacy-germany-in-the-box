@@ -556,7 +556,7 @@ zh-CN:
     add_product_ko: 产品缺货中
     adjust_product_ok: 产品数量修改成功
     adjust_product_ko: 产品缺货中
-    link_tracking: 包裹追踪
+    link_tracking: 追单链接
     tracking_id: 追踪
     open: 追单
     override_maximal_total: 亲，因海关限制进口总额，每日购买多件产品金额不能超过%{total}%{currency}。建议您先放到收藏里，明天欢迎再次光临！.

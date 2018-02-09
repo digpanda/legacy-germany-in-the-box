@@ -86,7 +86,7 @@
           <% if order.decorate.total_price_with_extra_costs > 0 %>
             <%= order.decorate.skus_names %>
             <div class="clearfix"></div>
-            <%= link_to "订单详情 #{order.id}", customer_order_path(order) %>
+            <%= link_to "订单链接 #{order.id}", customer_order_path(order) %>
           <% else %>
             <%= order.decorate.skus_names %>
           <% end %>
