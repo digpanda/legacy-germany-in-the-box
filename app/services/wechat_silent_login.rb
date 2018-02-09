@@ -62,7 +62,7 @@ class WechatSilentLogin < BaseService
     end
 
     def wechat_api_connect_solver
-      @wechat_api_connect_solver ||= WechatApiConnectSolver.new(code, local: cart_manager.local).resolve
+      @wechat_api_connect_solver ||= WechatApi::ConnectSolver.new(code, local: cart_manager.local).resolve
     end
 
     def after_signin_handler

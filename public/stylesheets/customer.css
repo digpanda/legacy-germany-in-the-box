@@ -1073,6 +1073,8 @@ body {
   word-wrap: break-word;
   width: 100%;
   vertical-align: middle; }
+  .main-table table a {
+    text-decoration: underline !important; }
   .main-table table a, .main-table table a:active, .main-table table a:hover, .main-table table a:visited {
     color: #33965e; }
   .main-table table tr:nth-child(even) {

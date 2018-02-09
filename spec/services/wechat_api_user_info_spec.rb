@@ -1,4 +1,4 @@
-describe WechatApiUserInfo do
+describe WechatApi::UserInfo do
 
   context '#resolve' do
 

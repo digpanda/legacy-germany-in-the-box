@@ -8,7 +8,7 @@ module SmartExchange
       end
 
       def messenger
-        @messenger ||= WechatApiMessenger.new(openid: user.wechat_openid)
+        @messenger ||= WechatApi::Messenger.new(openid: user.wechat_openid)
       end
 
       # will parse any file within `data/*.txt` and return its interpreted string

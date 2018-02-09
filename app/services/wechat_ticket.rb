@@ -27,6 +27,6 @@ class WechatTicket < BaseService
     end
 
     def weixin_api_ticket
-      @weixin_api_tickrt ||= WechatApiTicket.new.resolve
+      @weixin_api_tickrt ||= WechatApi::Ticket.new.resolve
     end
 end

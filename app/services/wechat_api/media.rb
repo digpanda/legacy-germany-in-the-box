@@ -1,4 +1,4 @@
-class WechatApiMedia < BaseService
+class WechatApi::Media < BaseService
   attr_reader :type, :target
 
   def initialize(type: :image, target:)
@@ -31,7 +31,7 @@ class WechatApiMedia < BaseService
     end
 
     def access_token_gateway
-      @access_token_gateway ||= WechatApiAccessToken.new.resolve
+      @access_token_gateway ||= WechatApi::AccessToken.new.resolve
     end
 
     def access_token

@@ -1,4 +1,4 @@
-describe WechatApiMessenger do
+describe WechatApi::Messenger do
 
   context '#text' do
 
@@ -16,7 +16,7 @@ describe WechatApiMessenger do
         BaseService.new.return_with(:success, media_id: 'fake-media-id')
       )
 
-      expect { WechatApiMessenger.new(openid: 'openid').image(path: 'image').send }.not_to raise_error
+      expect { WechatApi::Messenger.new(openid: 'openid').image(path: 'image').send }.not_to raise_error
     end
 
   end
@@ -33,7 +33,7 @@ describe WechatApiMessenger do
         'random' => 'random'
       )
 
-      expect { WechatApiMessenger.new(openid: 'openid').text('text').send }.not_to raise_error
+      expect { WechatApi::Messenger.new(openid: 'openid').text('text').send }.not_to raise_error
 
     end
 

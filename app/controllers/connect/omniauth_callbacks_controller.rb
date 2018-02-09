@@ -20,7 +20,7 @@ class Connect::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # the same system than the global one
   def referrer
     if params[:code]
-      wechat_api_connect_solver = WechatApiConnectSolver.new(params[:code]).resolve
+      wechat_api_connect_solver = WechatApi::ConnectSolver.new(params[:code]).resolve
 
       # this is taken from application controller
       if wechat_api_connect_solver.success?

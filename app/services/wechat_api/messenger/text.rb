@@ -1,4 +1,4 @@
-class WechatApiMessenger < BaseService
+class WechatApi::Messenger < BaseService
   class Text < Base
 
     private

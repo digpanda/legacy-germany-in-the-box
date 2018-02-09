@@ -1,8 +1,8 @@
-require 'wechat_api_messenger/image'
-require 'wechat_api_messenger/text'
-require 'wechat_api_messenger/rich'
+require 'wechat_api/messenger/image'
+require 'wechat_api/messenger/text'
+require 'wechat_api/messenger/rich'
 
-class WechatApiMessenger < BaseService
+class WechatApi::Messenger < BaseService
   attr_reader :openid
 
   def initialize(openid:)
@@ -13,15 +13,15 @@ class WechatApiMessenger < BaseService
   # we need a new token each time it's called.
 
   def image(content)
-    WechatApiMessenger::Image.new(self, content)
+    WechatApi::Messenger::Image.new(self, content)
   end
 
   def text(content)
-    WechatApiMessenger::Text.new(self, content)
+    WechatApi::Messenger::Text.new(self, content)
   end
 
   def rich
-    WechatApiMessenger::Rich.new(self)
+    WechatApi::Messenger::Rich.new(self)
   end
 
   # NOTE : Prima Donna Methods

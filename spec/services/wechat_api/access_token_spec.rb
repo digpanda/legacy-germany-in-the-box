@@ -1,4 +1,4 @@
-describe WechatApiAccessToken  do
+describe WechatApi::AccessToken  do
 
   context '#resolve' do
 

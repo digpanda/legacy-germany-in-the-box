@@ -18,7 +18,7 @@ class Notifier
       private
 
         def messenger
-          @messenger ||= WechatApiMessenger.new(openid: dispatcher.user.wechat_openid)
+          @messenger ||= WechatApi::Messenger.new(openid: dispatcher.user.wechat_openid)
         end
 
         def sendable?

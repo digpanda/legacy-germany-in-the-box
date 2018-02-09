@@ -1,4 +1,4 @@
-describe WechatApiSignature  do
+describe WechatApi::Signature  do
 
   context '#resolve' do
 
