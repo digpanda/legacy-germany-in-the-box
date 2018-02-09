@@ -4,7 +4,7 @@ module SkuPricing
   attr_reader :bypass_locked
 
   included do
-    field :price, type: Float, default: 0
+    field :casual_price, type: Float, default: 0
 
     field :default_reseller_price, type: Float, default: 0
     field :junior_reseller_price, type: Float, default: 0
@@ -14,13 +14,6 @@ module SkuPricing
     validates :default_reseller_price, presence: true, numericality: { greater_than: 0 }
     validates :junior_reseller_price, presence: true, numericality: { greater_than: 0 }
     validates :senior_reseller_price, presence: true, numericality: { greater_than: 0 }
-  end
-
-  # TODO : at some point we should switch
-  # `price` to `casual_price` totally but for now
-  # it's safer to keep both of them
-  def casual_price
-    price
   end
 
   def price_origin
@@ -38,9 +31,9 @@ module SkuPricing
     when :senior_reseller_price
       senior_reseller_price
     when :casual_price
-      price
+      casual_price
     else
-      price
+      casual_price
     end
   end
 

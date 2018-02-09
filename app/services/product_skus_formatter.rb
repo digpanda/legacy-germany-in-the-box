@@ -68,7 +68,7 @@ class ProductSkusFormatter < BaseService
         product.hs_code,
         product.highlight,
         sku.id,
-        sku.price,
+        sku.casual_price,
         sku.taxes_per_unit,
         sku.price_with_taxes,
         sku.quantity,

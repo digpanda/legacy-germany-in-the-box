@@ -54,7 +54,7 @@ CustomerAddress <%= @order.decorate.billing_address.decorate.full_address %><br 
         <%= order_item.product.name %> (<%= order_item.selected_options.join(', ') %>)
       </td>
       <td>
-        <%= order_item.sku.price.in_euro.display %>
+        <%= order_item.price_per_unit.in_euro.display %>
       </td>
       <td>
         <%= order_item.quantity %>

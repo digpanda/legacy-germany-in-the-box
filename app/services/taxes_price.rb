@@ -23,11 +23,11 @@ class TaxesPrice < BaseService
   end
 
   def from_special_constant
-    (sku.price * (SPECIAL_CONSTANT_RATE / 100)).to_f
+    (sku.casual_price * (SPECIAL_CONSTANT_RATE / 100)).to_f
   end
 
   def from_constant
-    (sku.price * (CONSTANT_RATE / 100)).to_f
+    (sku.casual_price * (CONSTANT_RATE / 100)).to_f
   end
 
   def from_duty_category
