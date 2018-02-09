@@ -250,7 +250,7 @@ class Order
   end
 
   def shippable?
-    self.bought? && self.status != :shipped && self.order_tracking
+    self.bought? && self.status != :shipped && self&.order_tracking&.delivery_id&.present?
   end
 
   def paid?
