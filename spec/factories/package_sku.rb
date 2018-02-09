@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :package_sku do
 
     quantity 2
-    price { BigDecimal.new(rand(1..10)) }
+    casual_price { BigDecimal.new(rand(1..10)) }
 
     default_reseller_price { BigDecimal.new(rand(1..10)) }
     junior_reseller_price { BigDecimal.new(rand(1..10)) }
