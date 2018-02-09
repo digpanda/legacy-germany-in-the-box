@@ -8,8 +8,10 @@ class Tasks::Cron::RefreshTrackings
   def perform
     puts 'We will refresh the tracking status from the API ...'
     orders.map(&:order_tracking).compact.each do |order_tracking|
-      TrackingHandler.new(order_tracking).refresh!
-      puts "OrderTracking #{order_tracking.id} refreshed."
+      unless order_tracking.state == :signature_received
+        TrackingHandler.new(order_tracking).refresh!
+        puts "OrderTracking #{order_tracking.id} refreshed."
+      end
     end
     puts 'End of process.'
   end
