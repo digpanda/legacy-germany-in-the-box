@@ -10,7 +10,7 @@ module SkuPricing
     field :junior_reseller_price, type: Float, default: 0
     field :senior_reseller_price, type: Float, default: 0
 
-    validates :price, presence: true, numericality: { greater_than: 0 }
+    validates :casual_price, presence: true, numericality: { greater_than: 0 }
     validates :default_reseller_price, presence: true, numericality: { greater_than: 0 }
     validates :junior_reseller_price, presence: true, numericality: { greater_than: 0 }
     validates :senior_reseller_price, presence: true, numericality: { greater_than: 0 }

@@ -8,7 +8,7 @@ module HasProductSummaries
 
   def total_value
     sku_list.inject(0) do |sum, current|
-      sum += current.price * current.send(quantity_attr)
+      sum += current.casual_price * current.send(quantity_attr)
     end
   end
 

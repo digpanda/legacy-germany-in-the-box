@@ -11,7 +11,7 @@ describe TrackingHandler do
     end
 
     it 'update the tracking successfully' do
-
+      
       refreshed = subject.refresh!
       expect(refreshed.success?).to eq(true)
       expect(order_tracking.refreshed_at).to be > 1.minute.ago

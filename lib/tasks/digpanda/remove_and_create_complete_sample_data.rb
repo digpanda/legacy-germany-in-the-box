@@ -129,7 +129,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
       space_height = args[:space_height] || 3.0
 
       sku = Sku.new(
-        price: price,
+        casual_price: price,
         reseller_price: price,
         product: product,
         quantity: quantity,
@@ -478,7 +478,7 @@ class Tasks::Digpanda::RemoveAndCreateCompleteSampleData
             sku_id: sku.id,
             product: sku.product,
             quantity: Faker::Number.between(1, 3),
-            price: Faker::Number.decimal(2),
+            casual_price: Faker::Number.decimal(2),
             reseller_price: Faker::Number.decimal(2),
             taxes_per_unit: Faker::Number.decimal(1)
           )
