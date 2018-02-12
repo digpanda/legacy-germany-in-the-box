@@ -25,7 +25,7 @@
               <%= I18n.t('referrer.insight_full_name') %>
             </th>
             <th>
-              <%= I18n.t('referrer.provision_earned') %>
+              <%= I18n.t('referrer.user_total_bought') %>
             </th>
           </thead>
           <tbody>
@@ -42,7 +42,8 @@
                     <%= user.decorate.full_name %>
                   </td>
                   <td>
-                    <%= current_user.referrer.provisions_with_user(user).sum(:provision).in_euro.display %>
+                    <%= user.orders.bought.map(&:end_price).reduce(&:+).in_euro.display %>
+                    <!-- < current_user.referrer.provisions_with_user(user).sum(:provision).in_euro.display  -->
                   </td>
                 </tr>
             <% end %>

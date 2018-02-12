@@ -53,7 +53,7 @@ de:
   address:
     apply: Einlösen
   referrer:
-    provision_earned: Provision Earned
+    user_total_bought: Total Bought
     customization_updated: The customization was updated.
     service: Service
     service_rate_label: "+"
