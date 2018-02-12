@@ -80,6 +80,12 @@ class Referrer
     end
   end
 
+  def provisions_with_user(user)
+    order_ids = user.orders.pluck(:id)
+    provisions = self.provisions.where(order_id: { in: order_ids })
+    provisions
+  end
+
   def total_resells
     Rails.cache.fetch("referrer_#{self.id}_total_resells", expires_in: 24.hours) do
       user.orders.bought.reduce(0.0) do |acc, order|

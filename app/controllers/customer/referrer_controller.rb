@@ -13,6 +13,10 @@ class Customer::ReferrerController < ApplicationController
     @referrers = Referrer.where(referrer_group: current_user.referrer.referrer_group).all
   end
 
+  def children_insight
+    @children_users = referrer.children_users
+  end
+
   def provision
   end
 

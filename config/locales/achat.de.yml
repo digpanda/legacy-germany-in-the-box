@@ -53,6 +53,7 @@ de:
   address:
     apply: Einlösen
   referrer:
+    provision_earned: Provision Earned
     customization_updated: The customization was updated.
     service: Service
     service_rate_label: "+"
@@ -92,6 +93,7 @@ de:
     rate: Rate
     referrer: Referrer
     group_insight: Group Insight
+    children_insight: Children Insight
     insight_nickname=: Nickname
     insight_full_name: Full Name
     insight_total_binded_sells: Total Binded Sells

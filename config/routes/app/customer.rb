@@ -3,6 +3,7 @@ namespace :customer do
 
   resource :referrer, controller: 'referrer' do
     get :group_insight
+    get :children_insight
     get :provision
     get :provision_rates
     get :coupons

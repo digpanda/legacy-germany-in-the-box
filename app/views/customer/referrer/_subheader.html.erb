@@ -22,7 +22,9 @@
     <!-- REFERRER -->
     <div class="col-xs-3">
       <div class="subheader__right">
-        <i class="fa fa-line-chart"></i> <i class="fa fa-user"> <span class="subheader --highlight +strong"><%= @referrer.children_users.count %></span></i>
+        <a href="<%= children_insight_customer_referrer_path %>">
+          <i class="fa fa-line-chart"></i> <i class="fa fa-user"> <span class="subheader --highlight +strong"><%= @referrer.children_users.count %></span></i>
+        </a>
       </div>
     </div>
 
