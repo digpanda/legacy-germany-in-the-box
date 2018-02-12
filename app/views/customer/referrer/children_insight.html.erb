@@ -42,8 +42,7 @@
                     <%= user.decorate.full_name %>
                   </td>
                   <td>
-                    <%= user.orders.bought.map(&:end_price).reduce(&:+).in_euro.display %>
-                    <!-- < current_user.referrer.provisions_with_user(user).sum(:provision).in_euro.display  -->
+                    <%= user.orders.bought.map(&:end_price)&.reduce(&:+)&.in_euro&.display %>
                   </td>
                 </tr>
             <% end %>
