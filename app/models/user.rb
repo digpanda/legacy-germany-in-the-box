@@ -83,7 +83,7 @@ class User
   scope :without_detail, -> { only(:_id, :pic, :country, :username) }
   scope :from_wechat, -> { where(provider: :wechat) }
   scope :from_local, -> (local) { where(id: local) }
-  
+
   has_many :orders,                                 inverse_of: :user,   dependent: :restrict
 
   has_many :inquiries, inverse_of: :user, dependent: :restrict
@@ -241,6 +241,10 @@ class User
 
   def short_union_id
     self&.wechat_unionid&.split(//)&.last(3)&.join.to_s
+  end
+
+  def total_bought
+    orders.bought.map(&:end_price)&.reduce(&:+) || 0.0
   end
 
   # this is an alias of the decorator
