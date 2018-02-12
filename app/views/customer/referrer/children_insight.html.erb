@@ -36,7 +36,7 @@
                     <%= (index+1) %>
                   </td>
                   <td>
-                    <%= user.nickname %>
+                    <%= user.nickname || user.referrer&.nickname %>
                   </td>
                   <td>
                     <%= user.decorate.full_name %>
