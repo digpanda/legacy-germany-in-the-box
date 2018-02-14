@@ -71,7 +71,7 @@ class WechatUserSolver < BaseService
     end
 
     def new_customer
-        SlackDispatcher.new.message("NICKNAME NEW CUSTOMER : #{nickname}")
+      SlackDispatcher.new.message("NICKNAME NEW CUSTOMER : `#{nickname}`")
       User.create(
         provider:              provider,
         nickname:              nickname,

@@ -15,7 +15,9 @@ class WechatApi::Messenger < BaseService
       end
 
       def media_id
-        wechat_api_media.data[:media_id]
+        if wechat_api_media.data
+          wechat_api_media.data[:media_id]
+        end
       end
 
       # for now there's no differenciation
