@@ -98,12 +98,12 @@ zh-CN:
     update_account: 保存
     agb_agreement: 我已阅读并同意接受<a href="%{url}">AGB</a>条款
     service_provision_rates: 海外服务导购奖金
-    package_set_provision_rates: 商城导购奖金 = 会员代购折扣
+    package_set_provision_rates: 商城品类导购奖金
     balance_history: 收支明细
     type: 类目
     description: 详情
     more_details: 查看详情
-    provision_rates: 🏅导购奖金|代购折扣
+    provision_rates: 🏅导购奖金率
     package_set_product: 订单
     rate: 比率
     referrer: 会员账号
