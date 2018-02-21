@@ -10,6 +10,16 @@ class WechatApi::ConnectSolver < BaseService
   end
 
   def resolve
+    # we have to solve it this way for development purpose
+    # because wechat doesn't allow any test environment
+    unless Rails.env.production?
+      if user_by_email
+        return return_with(:success, customer: user_by_email)
+      else
+        return return_with(:error, error: 'User not found')
+      end
+    end
+
     if connect_user.success?
       return_with(:success, customer: connect_user.data[:customer])
     else
@@ -61,6 +71,13 @@ class WechatApi::ConnectSolver < BaseService
   end
 
   private
+
+    # for dev only
+    # as wechat doesn't have any test environment
+    # we consider valid the `code` as email for dev
+    def user_by_email
+      User.where(email: code).first
+    end
 
     def wechat_data
       {
