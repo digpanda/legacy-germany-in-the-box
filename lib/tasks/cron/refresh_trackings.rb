@@ -11,6 +11,7 @@ class Tasks::Cron::RefreshTrackings
       unless order_tracking.state == :signature_received
         TrackingHandler.new(order_tracking).refresh!
         puts "OrderTracking #{order_tracking.id} refreshed."
+        sleep(1.0)
       end
     end
     puts 'End of process.'

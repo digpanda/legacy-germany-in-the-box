@@ -4,6 +4,7 @@ namespace :api, defaults: { format: :json }  do
   draw :api, :admin
   draw :api, :customer
   draw :api, :guest
+  draw :api, :connect
   draw :api, :webhook
 
 end

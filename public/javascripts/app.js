@@ -1106,10 +1106,12 @@ var Show = {
   },
 
   setupSlider: function setupSlider() {
-    if ($('#js-device').data('current') == 'mobile') {
-      Show.vue = Show.mobileSlider();
-    } else {
-      Show.vue = Show.desktopSlider();
+    if ($('#slider-vue').length > 0) {
+      if ($('#js-device').data('current') == 'mobile') {
+        Show.vue = Show.mobileSlider();
+      } else {
+        Show.vue = Show.desktopSlider();
+      }
     }
   },
 
@@ -4517,10 +4519,12 @@ var Sliders = {
   },
 
   setupSlider: function setupSlider() {
-    if ($('#js-device').data('current') == 'mobile') {
-      Sliders.vue = Sliders.mobileSlider();
-    } else {
-      Sliders.vue = Sliders.desktopSlider();
+    if ($('#slider-vue').length > 0) {
+      if ($('#js-device').data('current') == 'mobile') {
+        Sliders.vue = Sliders.mobileSlider();
+      } else {
+        Sliders.vue = Sliders.desktopSlider();
+      }
     }
   },
 

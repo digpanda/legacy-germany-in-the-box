@@ -51,6 +51,7 @@ namespace :guest do
 
   resources :order_trackings do
     get :public_url
+    get :public_borderguru
   end
 
   resources :order_items  do
