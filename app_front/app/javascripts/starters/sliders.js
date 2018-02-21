@@ -18,10 +18,12 @@ var Sliders = {
   },
 
   setupSlider: function() {
-    if ($('#js-device').data('current') == 'mobile') {
-      Sliders.vue = Sliders.mobileSlider();
-    } else {
-      Sliders.vue = Sliders.desktopSlider();
+    if ($('#slider-vue').length > 0) {
+      if ($('#js-device').data('current') == 'mobile') {
+        Sliders.vue = Sliders.mobileSlider();
+      } else {
+        Sliders.vue = Sliders.desktopSlider();
+      }
     }
   },
 

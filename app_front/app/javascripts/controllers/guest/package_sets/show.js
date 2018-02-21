@@ -17,10 +17,12 @@ var Show = {
   },
 
   setupSlider: function() {
-    if ($('#js-device').data('current') == 'mobile') {
-      Show.vue = Show.mobileSlider();
-    } else {
-      Show.vue = Show.desktopSlider();
+    if ($('#slider-vue').length > 0) {
+      if ($('#js-device').data('current') == 'mobile') {
+        Show.vue = Show.mobileSlider();
+      } else {
+        Show.vue = Show.desktopSlider();
+      }
     }
   },
 

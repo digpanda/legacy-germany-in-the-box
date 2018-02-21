@@ -1,0 +1,22 @@
+<div id="hider">
+</div>
+
+<object data="<%= @object_url %>" width="100%" height="1500px" type="text/html">
+    Tracking unavailable.
+</object>
+
+<!-- Total hack -->
+<style scoped>
+body {
+  background-color: #0078a9;
+}
+#hider {
+  width: 100%;
+  height: 70px;
+  background-color: #0078a9;
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+</style>
