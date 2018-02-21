@@ -18,7 +18,7 @@ class Guest::OrderTrackingsController < ApplicationController
   end
 
   def public_borderguru
-    @object_url = "http://app.borderguru.com/tracking/#{order_tracking.delivery_id}"
+    @object_url = "https://app.borderguru.com/tracking/#{order_tracking.delivery_id}"
   end
 
   private
