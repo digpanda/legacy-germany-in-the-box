@@ -59,7 +59,9 @@ gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'mini_magick'
 gem 'haml-rails'
 gem 'easy_captcha'
+
 gem 'rmagick'
+
 gem 'diff-lcs', '1.2.5'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

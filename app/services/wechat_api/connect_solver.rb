@@ -12,7 +12,7 @@ class WechatApi::ConnectSolver < BaseService
   def resolve
     # we have to solve it this way for development purpose
     # because wechat doesn't allow any test environment
-    unless Rails.env.production?
+    if Rails.env.development? || Rails.env.staging?
       if user_by_email
         return return_with(:success, customer: user_by_email)
       else
