@@ -25,6 +25,9 @@ gem 'keen'
 
 gem 'meta-tags'
 
+# API handling
+gem 'rack-cors', :require => 'rack/cors'
+
 gem 'rest-client'
 
 gem 'mongoid-slug'

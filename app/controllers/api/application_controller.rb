@@ -16,4 +16,5 @@ class Api::ApplicationController < ApplicationController
     render status: :internal_server_error,
            json: throw_error(:server_error).to_json
   end
+
 end
