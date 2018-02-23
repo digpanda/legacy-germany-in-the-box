@@ -68,14 +68,14 @@ zh-CN:
   service:
     please_scan_qrcode: 您也可以立即和我们在线客服联系，了解更多相关信息。请扫码访问来因盒服务号。
   referrer:
-    user_total_bought: Total Bought
+    user_total_bought: 总订单
     customization_updated: 已保存
     service: 海外服务
     service_rate_label: 起
     desc: 副标题
     promotion_text: 广告词(参考)
     a_new_link_was_published: 新的智能软文刚刚发布
-    image: Image
+    image: 图片
     share_page:
       copy: 复制
       copied: 已复制
@@ -98,12 +98,12 @@ zh-CN:
     update_account: 保存
     agb_agreement: 我已阅读并同意接受<a href="%{url}">AGB</a>条款
     service_provision_rates: 海外服务导购奖金
-    package_set_provision_rates: 商城导购奖金 = 会员代购折扣
+    package_set_provision_rates: 商城品类导购奖金
     balance_history: 收支明细
     type: 类目
     description: 详情
     more_details: 查看详情
-    provision_rates: 🏅导购奖金|代购折扣
+    provision_rates: 🏅导购奖金率
     package_set_product: 订单
     rate: 比率
     referrer: 会员账号
@@ -119,7 +119,7 @@ zh-CN:
     customize_title_placeholder: 店铺名称(建议8个字以内)
     customize_logo: 店面图标
     provision_insight: 奖金账户
-    provision_insight_total: Total
+    provision_insight_total: 总奖金
     total_earned: 总奖金
     your_coupons: 专属95折码(导购分享)
     current_balance: 未提取奖金
@@ -190,11 +190,11 @@ zh-CN:
     shipping_and_taxes_excluded: 不含运费及关税
     taxes_included: 已含税，运费另计
   coupon:
-    cannot_apply_reseller: You can't apply this coupon to a reseller order.
-    cannot_apply_user: You can't apply this coupon on this user.
-    cannot_apply_shop: You can't apply this coupon on this shop.
+    cannot_apply_reseller: 折扣或优惠码不适用于本用户订单
+    cannot_apply_user: 折扣或优惠码不适用于本用户订单
+    cannot_apply_shop: 折扣或优惠码不适用于本店铺订单
     no_minimum_price: "无法使用本代金券，因为未达到使用代金券的最低购物金额（不含物流及关税）： %{minimum} 人民币。"
-    cannot_apply:  此折扣或优惠码不适用于该订单。
+    cannot_apply:  折扣或优惠码不适用于该订单。
     error_occurred_applying: 使用折扣码时出现错误。
     not_valid_anymore: 此折扣码已失效。
     cannot_remove: 无法删除已用于该订单的折扣码。
