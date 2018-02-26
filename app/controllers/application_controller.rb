@@ -155,4 +155,20 @@ class ApplicationController < ActionController::Base
       throw_unauthorized_page
     end
   end
+
+  def valid_group_leader?
+    unless current_user&.referrer&.group_leader
+      flash[:error] = I18n.t('general.not_allowed_section')
+      redirect_to root_path
+      false
+    end
+  end
+
+  def valid_referrer?
+    unless current_user&.referrer?
+      flash[:error] = I18n.t('general.not_allowed_section')
+      redirect_to root_path
+      false
+    end
+  end
 end

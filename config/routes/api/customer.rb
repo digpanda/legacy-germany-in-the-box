@@ -1,6 +1,24 @@
 # Customer related
 namespace :customer do
 
+  resource :referrer, controller: 'referrer' do
+    get :group_insight
+    # get :children_insight
+    # get :provision
+    get :provision_rates
+    # get :coupons
+    # get :qrcode
+    # post :claim
+    # get :agb
+    #
+    # resource :customization, controller: 'referrer/customization' do
+    # end
+    #
+    # resources :links, controller: 'referrer/links' do
+    #   get :share
+    # end
+  end
+
   resources :favorites do
   end
 

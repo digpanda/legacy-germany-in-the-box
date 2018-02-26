@@ -25,7 +25,7 @@
                 <%= brand.name %>
               </td>
               <td>
-                <%= referrer_rate_range(brand, current_user) %>
+                <%= brand.decorate.referrer_rate_range(current_user) %>
               </td>
             </tr>
           <% end %>

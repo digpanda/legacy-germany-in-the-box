@@ -44,7 +44,16 @@ class Service
   scope :with_referrer, -> { self.and(:referrers_only => true) }
   scope :without_referrer, -> { self.and(:referrers_only.ne => true) }
 
-
+  def solve_rate(user)
+    if user.group == :senior
+      self.senior_referrer_rate
+    elsif user.group == :junior
+      self.junior_referrer_rate
+    else
+      self.default_referrer_rate
+    end
+  end
+  
   # fetch the product and place them sorted by brand
   class << self
 

@@ -22,7 +22,6 @@ class Customer::ReferrerController < ApplicationController
 
   # we get the provision rates of all the package sets that are not 0.0
   def provision_rates
-    @package_sets = PackageSet.active.where(:default_referrer_rate.gt => 0.0).order_by(name: :asc).all
     @brands = Brand.with_package_sets
     @services = Service.active.where(:default_referrer_rate.gt => 0.0).order_by(name: :asc).all
   end
@@ -52,21 +51,5 @@ class Customer::ReferrerController < ApplicationController
 
     def set_referrer
       @referrer = current_user.referrer
-    end
-
-    def valid_group_leader?
-      unless current_user&.referrer&.group_leader
-        flash[:error] = I18n.t('general.not_allowed_section')
-        redirect_to root_path
-        false
-      end
-    end
-
-    def valid_referrer?
-      unless current_user&.referrer?
-        flash[:error] = I18n.t('general.not_allowed_section')
-        redirect_to root_path
-        false
-      end
     end
 end
