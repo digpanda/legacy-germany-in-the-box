@@ -1,6 +1,7 @@
 class Api::ApplicationController < ApplicationController
   # we skip all the normal base before_action because we are in API here
   skip_before_action :verify_authenticity_token, :force_wechat_login, :solve_silent_login, :solve_origin, :solve_landing
+  before_action :set_token_user
 
   def throw_resource_not_found
     render status: :not_found,
@@ -15,6 +16,12 @@ class Api::ApplicationController < ApplicationController
   def throw_server_error_page
     render status: :internal_server_error,
            json: throw_error(:server_error).to_json
+  end
+
+  def set_token_user
+    if params[:token] && !current_user
+      @current_user = User.where(token: params[:token]).first
+    end
   end
 
 end

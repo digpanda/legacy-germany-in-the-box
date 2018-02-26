@@ -9,14 +9,17 @@ class Api::Customer::ReferrerController < Api::ApplicationController
     render json: Referrer.where(referrer_group: current_user.referrer.referrer_group).all
   end
 
-  def provision_rates
-    @brands = Brand.with_package_sets
+  def services_rates
     @services = Service.active.where(:default_referrer_rate.gt => 0.0).order_by(name: :asc).all
-
-    render json: {brands_rates: brands_rates, services_rates: services_rates}
+    render json: fetch_services_rates
   end
 
   def brands_rates
+    @brands = Brand.with_package_sets
+    render json: fetch_brands_rates
+  end
+
+  def fetch_brands_rates
     @brands.reduce([]) do |acc, brand|
       if brand.package_sets_referrer_rates_range(current_user) == [0.0]
         acc
@@ -29,7 +32,7 @@ class Api::Customer::ReferrerController < Api::ApplicationController
     end
   end
 
-  def services_rates
+  def fetch_services_rates
     @services.reduce([]) do |acc, service|
       acc << {
         name: service.name,
@@ -37,5 +40,4 @@ class Api::Customer::ReferrerController < Api::ApplicationController
       }
     end
   end
-
 end

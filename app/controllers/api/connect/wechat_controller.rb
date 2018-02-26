@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class Api::Connect::WechatController < Api::ApplicationController
 
   # here we solve the connection from wechat and send the customer
@@ -5,13 +7,11 @@ class Api::Connect::WechatController < Api::ApplicationController
   # please use `code` params to make it work
   def create
     if connect_solver.success?
-      # we store the session
-      # TODO : we have to update and generate a new token here
-      # NOTE : working with tokens would be better for the API.
-      # this part might be useless afterwards
-      sign_in(:user, connect_solver.data[:customer])
+      user.token = current_token
+      user.save(validate: false)
+      # sign_in(:user, user)
       # we send the customer straight and it'll be processed on the front-end side
-      render json: connect_solver.data[:customer]
+      render json: user
     else
       render json: { error: 'Impossible to resolve customer' }
     end
@@ -19,8 +19,20 @@ class Api::Connect::WechatController < Api::ApplicationController
 
   private
 
+    def current_token
+      BCrypt::Password.create(token_chain)
+    end
+
+    def token_chain
+      "#{user.email}#{user.encrypted_password}#{Time.now}"
+    end
+
     def connect_solver
       @connect_solver ||= WechatApi::ConnectSolver.new(code).resolve
+    end
+
+    def user
+      @user ||= connect_solver.data[:customer]
     end
 
     def code
