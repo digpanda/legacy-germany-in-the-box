@@ -11,12 +11,12 @@ class Api::Customer::ReferrerController < Api::ApplicationController
 
   def services_rates
     @services = Service.active.where(:default_referrer_rate.gt => 0.0).order_by(name: :asc).all
-    render json: fetch_services_rates
+    render json: fetch_services_rates.to_json
   end
 
   def brands_rates
     @brands = Brand.with_package_sets
-    render json: fetch_brands_rates
+    render json: fetch_brands_rates.to_json
   end
 
   def fetch_brands_rates

@@ -23,6 +23,8 @@ gem 'zip-zip' # will load compatibility for old rubyzip API.
 
 gem 'keen'
 
+gem 'active_model_serializers'
+
 gem 'meta-tags'
 
 # API handling

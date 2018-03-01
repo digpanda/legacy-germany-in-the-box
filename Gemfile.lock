@@ -42,6 +42,11 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    active_model_serializers (0.10.7)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (4.2.1)
       activesupport (= 4.2.1)
       globalid (>= 0.3.0)
@@ -146,6 +151,8 @@ GEM
     carrierwave-qiniu (0.2.3)
       carrierwave
       qiniu (~> 6.5.1)
+    case_transform (0.2)
+      activesupport
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     chromedriver-helper (1.0.0)
@@ -286,6 +293,7 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.6)
+    jsonapi-renderer (0.2.0)
     jwt (1.5.1)
     keen (0.7.8)
       multi_json (~> 1.0)
@@ -627,6 +635,7 @@ DEPENDENCIES
   abstract_method
   actionpack-action_caching
   actionpack-page_caching
+  active_model_serializers
   addressable
   alipay (~> 0.14.0)
   api_cache
