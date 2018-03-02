@@ -1,5 +1,5 @@
 class ReferrerSerializer < ActiveModel::Serializer
-  attributes :id, :agb, :c_at, :group, :group_leader, :label, :nickname, :reference_id
+  attributes :id, :agb, :c_at, :group, :group_leader, :label, :nickname, :reference_id, :total_growth, :total_resells
 
   belongs_to :user
   has_one :referrer_group
