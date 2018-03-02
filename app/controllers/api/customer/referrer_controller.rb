@@ -9,6 +9,11 @@ class Api::Customer::ReferrerController < Api::ApplicationController
     render json: Referrer.where(referrer_group: current_user.referrer.referrer_group).all
   end
 
+  # TODO to finish
+  def children_insight
+    render json: current_user.referrer.children_users
+  end
+
   def services_rates
     @services = Service.active.where(:default_referrer_rate.gt => 0.0).order_by(name: :asc).all
     render json: fetch_services_rates.to_json
