@@ -8,7 +8,7 @@ namespace :customer do
     get :brands_rates
     get :services_rates
     # get :coupons
-    # get :qrcode
+    get :qrcode
     # post :claim
     # get :agb
     #

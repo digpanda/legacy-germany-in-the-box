@@ -9,6 +9,10 @@ class Api::Customer::ReferrerController < Api::ApplicationController
     render json: Referrer.where(referrer_group: current_user.referrer.referrer_group).all
   end
 
+  def qrcode
+    render json: { url: guest_referrer_service_qrcode_url(current_user.referrer) }
+  end
+
   # TODO to finish
   def children_insight
     render json: current_user.referrer.children_users
