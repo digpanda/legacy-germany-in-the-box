@@ -45,8 +45,14 @@ class Tasks::Digpanda::RemoveAndCreateUiCategories
       desc_translations: { en: '', de: '', 'zh-CN': '简约的风格，和材料永不妥协的死磕，古典🎼般的制作工艺，完美主义的匠人精神📐，这些基因一一融入来因盒挑选的德国家居用品🏡。满足你身在东方古国，却对欧陆风情的偏爱，对品质生活的追求。但最好的是，这一切会随着的🕙流逝而愈发彰显它们的价值、、、' }
     )
 
+    Category.create!(
+      name_translations: { en: 'Services', 'zh-CN': 'Services', de: 'Services' },
+      slug_name: 'services',
+      desc_translations: { en: '', de: '', 'zh-CN': '客服为您解答旅行和购物中遇到的疑问。大笔采购、商业合作。' }
+    )
+
     # cosmetics, medicine, fashion, food, household
-    ['cosmetics', 'medicine', 'fashion', 'food', 'household'].each_with_index do |slug, index|
+    ['cosmetics', 'medicine', 'fashion', 'food', 'household', 'services'].each_with_index do |slug, index|
       category = Category.where(slug_name: slug).first
       category.position = index
       category.save
