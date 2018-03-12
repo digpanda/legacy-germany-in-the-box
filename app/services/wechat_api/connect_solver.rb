@@ -76,7 +76,9 @@ class WechatApi::ConnectSolver < BaseService
     # as wechat doesn't have any test environment
     # we consider valid the `code` as email for dev
     def user_by_email
-      User.where(email: code).first
+      if code
+        User.where(email: code).first
+      end
     end
 
     def wechat_data
