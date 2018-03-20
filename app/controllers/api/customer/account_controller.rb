@@ -1,17 +1,15 @@
-class Api::Customer::AccountController < ApplicationController
+class Api::Customer::AccountController < Api::ApplicationController
   attr_reader :user
 
   authorize_resource class: false
   before_action :set_user
 
   def update
-    binding.pry
     if update_user
-      render json: { success: true, message: I18n.t('notice.account_updated') }
+      render json: { success: true, message: I18n.t('notice.account_updated'), user: user }
     else
       render json: { success: false, error: user.errors.full_messages.join(',') }
     end
-    render json:
   end
 
   private
@@ -40,8 +38,10 @@ class Api::Customer::AccountController < ApplicationController
     # if it's a boolean saying true then we replace with the current date
     # only if the user doesn't have a date already
     def ensure_resellers_platform_at
-      if !user.resellers_platform_at && user_params[:resellers_platform_at] == true
-        user_params[:resellers_platform_at] = Time.now
+      if !user.resellers_platform_at && params[:user][:resellers_platform_at] == true
+        params[:user][:resellers_platform_at] = Time.now
+      else
+        params[:user][:resellers_platform_at] = user.resellers_platform_at
       end
     end
 end
