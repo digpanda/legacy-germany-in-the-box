@@ -15,6 +15,7 @@ class User
   field :email,               type: String, default: ''
   field :encrypted_password,  type: String, default: ''
   field :precreated, type: Boolean, default: false
+  field :resellers_platform_at, type: Time
 
   ## Recoverable
   field :reset_password_token,   type: String

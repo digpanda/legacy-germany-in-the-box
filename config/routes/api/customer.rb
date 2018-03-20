@@ -1,6 +1,9 @@
 # Customer related
 namespace :customer do
 
+  resource :account, controller: 'account' do
+  end
+  
   resource :referrer, controller: 'referrer' do
     get :group_insight
     get :children_insight
