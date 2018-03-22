@@ -27,7 +27,10 @@
 
       <div class="col-md-6">
         <h4>Status</h4>
-        TO DO
+        <% orders_status.each do |status| %>
+          <%= label_tag "status[#{status.last}]", status.first %>
+          <%= check_box_tag "status[#{status.last}]", '1', true %>
+        <% end %>
       </div>
 
     </div>

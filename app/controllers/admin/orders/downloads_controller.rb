@@ -2,6 +2,7 @@
 class Admin::Orders::DownloadsController < ApplicationController
   CSV_ENCODE = 'UTF-8'.freeze
 
+  # orders_status from ArrayHelper
   attr_reader :orders
   authorize_resource class: false
 
@@ -16,6 +17,10 @@ class Admin::Orders::DownloadsController < ApplicationController
   def create
     # we first get the orders
     @orders = Order.nonempty.where(c_at: date_range).order_by(paid_at: :desc, c_at: :desc)
+    # we also manage the status conditions
+    if params[:status].keys.count > 0
+      @orders = @orders.where(:status.in => params[:status].keys)
+    end
     # then we call the format method (method csv, official_bills, ...)
     self.send(output_type)
   end
