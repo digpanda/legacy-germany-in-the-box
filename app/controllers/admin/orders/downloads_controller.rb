@@ -20,6 +20,12 @@ class Admin::Orders::DownloadsController < ApplicationController
     self.send(output_type)
   end
 
+  def official_bills
+    flash[:error] = "This feature has been deactivated (for now)."
+    redirect_to navigation.back(1)
+    # redirect_to BillsHandler.new(orders).zip
+  end
+
   def csv
     send_data orders_in_csv,
            filename: "#{filename}.csv",
@@ -27,8 +33,11 @@ class Admin::Orders::DownloadsController < ApplicationController
            disposition: 'inline'
   end
 
-  def official_bills
-    redirect_to BillsHandler.new(orders).zip
+  def txt
+    send_data UmfHandler.new(orders).text,
+              filename: "#{filename}.txt",
+              type: "text/csv; charset=#{CSV_ENCODE}; header=present",
+              disposition: 'inline'
   end
 
   private
@@ -66,6 +75,8 @@ class Admin::Orders::DownloadsController < ApplicationController
         :official_bills
       elsif params[:csv]
         :csv
+      elsif params[:txt]
+        :txt
       end
     end
 end
