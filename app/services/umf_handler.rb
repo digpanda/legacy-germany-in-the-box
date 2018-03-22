@@ -24,7 +24,7 @@ class UmfHandler < BaseService
         business_subsector: solve_business_subsector(order),
         order_number: order.id,
         order_currency_foreign_currency: '',
-        order_amount_rmb: 'CNY',
+        order_amount_rmb: solve_order_amount_rmb(order),
         order_date: solve_order_date(order),
         order_time: solve_order_time(order),
         transaction_date: solve_order_date(order), # same as order for now
@@ -48,6 +48,11 @@ class UmfHandler < BaseService
   end
 
   private
+
+  # the amount should be a whole number (cent is taken as unit)
+  def solve_order_amount_rmb(order)
+    (order.total_paid_in_yuan.to_f * 100).to_i
+  end
 
   # names of products in this order, and the name of the shipping company
   def solve_products_and_logistics_info(order)
