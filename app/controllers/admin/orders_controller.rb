@@ -1,7 +1,5 @@
 # order management from the admin dashboard
 class Admin::OrdersController < ApplicationController
-  CSV_ENCODE = 'UTF-8'.freeze
-
   attr_reader :order, :orders
 
   authorize_resource class: false
@@ -64,16 +62,6 @@ class Admin::OrdersController < ApplicationController
     def ship_order
       order.update(status: :shipped)
       Notifier::Customer.new(order.user).order_has_been_shipped(order)
-    end
-
-    def render_csv
-      render text: orders_in_csv,
-             type: "text/csv; charset=#{CSV_ENCODE}; header=present",
-             disposition: 'attachment'
-    end
-
-    def orders_in_csv
-      @orders_in_csv ||= OrdersFormatter.new(orders).to_csv.encode(CSV_ENCODE)
     end
 
     def set_order
