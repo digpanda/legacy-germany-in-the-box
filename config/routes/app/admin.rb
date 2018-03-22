@@ -87,11 +87,15 @@ namespace :admin do
   end
 
   match 'orders/ongoing' => 'orders#ongoing', :via => :get
-  match 'orders/official_bills' => 'orders#official_bills', :via => :get
+
+  resource :orders_downloads, controller: 'orders/downloads' do
+  end
 
   resources :orders do
     patch :shipped
     patch :terminate
+
+
     resources :addresses, controller: 'orders/addresses' do
     end
     resources :order_trackings, controller: 'orders/order_trackings' do

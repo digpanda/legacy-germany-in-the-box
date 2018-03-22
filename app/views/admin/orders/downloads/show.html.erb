@@ -1,0 +1,61 @@
+<%= form_tag [:admin, :orders_downloads] do |form| %>
+
+<div class="row">
+  <div class="col-md-10">
+    <h2>Orders Downloads</h2>
+    <hr>
+  </div>
+  <div class="col-md-2 details__action">
+  </div>
+
+</div>
+
+<div class="row details__block">
+
+  <div class="col-md-12">
+    <div class="row">
+      <h3>Filters</h3>
+      <hr>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Date range</h4>
+        From <input type="date" name="start_date" value="<%= 1.month.ago.strftime('%Y-%m-%d') %>">
+        To <input type="date" name="end_date" value="<%= Time.now.strftime('%Y-%m-%d') %>">
+      </div>
+
+      <div class="col-md-6">
+        <h4>Status</h4>
+        TO DO
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<div class="row details__block">
+
+  <div class="col-md-12">
+    <div class="row">
+      <h3>Output Files</h3>
+      <hr>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <input type="submit" class="text-button --blue" name="official_bills" value="Download Official Bills">
+        <input type="submit" class="text-button --blue" name="csv" value="Download as CSV"></br />
+      </div>
+
+      <div class="col-md-6">
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<% end %>

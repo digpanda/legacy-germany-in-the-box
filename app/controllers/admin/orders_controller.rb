@@ -14,26 +14,12 @@ class Admin::OrdersController < ApplicationController
   before_action :breadcrumb_admin_order, only: [:show]
 
   def index
-    @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc)
-    respond_to do |format|
-      format.html do
-        @orders = orders.full_text_search(params[:query])
-                        .paginate(page: current_page, per_page: 100)
-      end
-      format.csv do
-        render_csv
-      end
-    end
+    @orders = Order.nonempty.order_by(paid_at: :desc, c_at: :desc).full_text_search(params[:query]).paginate(page: current_page, per_page: 100)
   end
 
   def ongoing
     @orders = Order.ongoing.full_text_search(params[:query])
                            .paginate(page: current_page, per_page: 100)
-  end
-
-  def official_bills
-    @orders = Order.nonempty.from_month.order_by(paid_at: :desc, c_at: :desc)
-    redirect_to BillsHandler.new(orders).zip
   end
 
   def show

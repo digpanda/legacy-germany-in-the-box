@@ -6,7 +6,7 @@ class Api::Customer::AccountController < Api::ApplicationController
 
   def update
     if update_user
-      render json: { success: true, message: I18n.t('notice.account_updated'), user: user }
+      render json: { success: true, message: I18n.t('notice.account_updated'), user: UserSerializer.new(user) }
     else
       render json: { success: false, error: user.errors.full_messages.join(',') }
     end
