@@ -51,7 +51,7 @@ class UmfHandler < BaseService
 
   # the amount should be a whole number (cent is taken as unit)
   def solve_order_amount_rmb(order)
-    (order.total_paid_in_yuan.to_f * 100).to_i
+    (order.total_paid(:cny) * 100).to_i
   end
 
   # names of products in this order, and the name of the shipping company
