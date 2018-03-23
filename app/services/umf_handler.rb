@@ -1,5 +1,5 @@
 class UmfHandler < BaseService
-  ACCOUNT_NUMBER = 'FAKENUMBER'.freeze
+  ACCOUNT_NUMBER = '50898'.freeze
 
   include ArrayHelper
 
@@ -56,9 +56,9 @@ class UmfHandler < BaseService
 
   # names of products in this order, and the name of the shipping company
   def solve_products_and_logistics_info(order)
-    readable_products = order.order_items.reduce([]) { |acc, order_item| acc << order_item.product.name }.join(', ')
-    readable_logistic = delivery_providers.select{|key, hash| hash == order.order_tracking&.delivery_provider.to_sym }.keys.join(' ')
-    "#{readable_logistic} - #{readable_products}"
+    readable_products = order.order_items.reduce([]) { |acc, order_item| acc << order_item.product.name }.join(',')
+    readable_logistic = delivery_providers.select{|key, hash| hash == order.order_tracking&.delivery_provider&.to_sym }.keys.join(',')
+    "#{readable_products},#{readable_logistic}"
   end
 
   # hhmmss
