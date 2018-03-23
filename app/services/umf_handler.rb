@@ -11,9 +11,14 @@ class UmfHandler < BaseService
 
   # we generate the txt for UMF
   def text
-    hashes.reduce([]) do |acc, order|
+    items = hashes.reduce([]) do |acc, order|
       acc << order.values.join('|')
     end.join("\r\n")
+
+    sum = orders.reduce(0) do |acc, order|
+      acc + order.total_paid(:cny)
+    end
+    "#{items}\r\nSUM: #{sum}"
   end
 
   def hashes
@@ -43,7 +48,8 @@ class UmfHandler < BaseService
         product_tax: '',
         product_shipping_cost: '',
         customs_code: '',
-        product_total_price: ''
+        product_total_price: '',
+        placeholder: ''
       }
     end
   end
