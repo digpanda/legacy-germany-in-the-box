@@ -53,7 +53,7 @@ class UmfHandler < BaseService
   # `+` and such should be removed
   def solve_payer_phone_number(order)
     raw = order.shipping_address&.mobile
-    if raw.first == '+'
+    if raw&.first == '+'
       raw = raw.slice(3,raw.length)
     end
     raw
