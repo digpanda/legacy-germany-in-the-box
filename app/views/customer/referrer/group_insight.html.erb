@@ -9,7 +9,7 @@
 
       <!-- ORDERS LIST -->
       <div class="referrer__title">
-        <%= I18n.t('referrer.group_insight') %>
+        <%= I18n.t('referrer.group_insight') %> <%= current_user.referrer&.referrer_group&.name %>
       </div>
 
       <div class="referrer__list">
@@ -31,7 +31,7 @@
               <%= I18n.t('referrer.insight_total_resells') %>
             </th>
             <th>
-              <%= I18n.t('referrer.insight_group') %>
+              <%= I18n.t('referrer.login_counter') %>
             </th>
           </thead>
           <tbody>
@@ -54,7 +54,7 @@
                     <%= referrer.total_resells.in_euro.display %>
                   </td>
                   <td>
-                    <%= referrer&.referrer_group&.name %>
+                    <%= referrer.user.sign_in_count %>
                   </td>
                 </tr>
             <% end %>

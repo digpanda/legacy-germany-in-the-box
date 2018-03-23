@@ -23,7 +23,8 @@ class UmfHandler < BaseService
         business_sector: solve_business_sector(order),
         business_subsector: solve_business_subsector(order),
         order_number: order.id,
-        order_currency_foreign_currency: 'CNY',
+        order_currency_foreign_currency: 'EUR',
+        placeholder: '',
         order_amount_rmb: solve_order_amount_rmb(order),
         order_date: solve_order_date(order),
         order_time: solve_order_time(order),
@@ -33,7 +34,7 @@ class UmfHandler < BaseService
         payer_name: order.shipping_address&.decorate&.full_name,
         payer_id_number: order.shipping_address&.pid,
         shipping_tracking_number: order.order_tracking&.delivery_id,
-        payer_phone_number: order.shipping_address&.mobile,
+        payer_phone_number: solve_payer_phone_number(order),
         customs_clearance: 'N',
         payer_account_id: '',
         transaction_number: '',
@@ -48,6 +49,15 @@ class UmfHandler < BaseService
   end
 
   private
+
+  # `+` and such should be removed
+  def solve_payer_phone_number(order)
+    raw = order.shipping_address&.mobile
+    if raw.first == '+'
+      raw = raw.slice(3,raw.length)
+    end
+    raw
+  end
 
   # the amount should be a whole number (cent is taken as unit)
   def solve_order_amount_rmb(order)

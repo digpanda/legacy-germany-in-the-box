@@ -113,7 +113,7 @@ zh-CN:
     insight_full_name: 姓名
     insight_total_binded_sells: 导购总额
     insight_total_resells: 代购总额
-    insight_group: 群组
+    login_counter: 登录次数
     customize_site: 我的店
     customize_title: 店铺名称
     customize_title_placeholder: 店铺名称(建议8个字以内)
