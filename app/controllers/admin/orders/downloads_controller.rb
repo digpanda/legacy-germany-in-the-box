@@ -16,11 +16,20 @@ class Admin::Orders::DownloadsController < ApplicationController
   # entry point for any output
   def create
     # we first get the orders
-    @orders = Order.nonempty.where(c_at: date_range).order_by(paid_at: :desc, c_at: :desc)
+    @orders = Order.nonempty.where(:c_at.gte => start_date.beginning_of_day).where(:c_at.lte => end_date.end_of_day).order_by(paid_at: :desc, c_at: :desc)
+
     # we also manage the status conditions
     if params[:status].keys.count > 0
       @orders = @orders.where(:status.in => params[:status].keys)
     end
+
+    # what about the marketing orders ?
+    if params[:marketing] == "true"
+      @orders = @orders.where(:marketing => true)
+    else
+      @orders = @orders.where(:marketing => false)
+    end
+    
     # then we call the format method (method csv, official_bills, ...)
     self.send(output_type)
   end
@@ -49,14 +58,6 @@ class Admin::Orders::DownloadsController < ApplicationController
 
     def filename
       "orders-from-#{start_date}-to-#{end_date}"
-    end
-
-    def date_range
-      if start_date == end_date
-        start_date.beginning_of_day..end_date.end_of_day
-      else
-        start_date..end_date
-      end
     end
 
     def start_date

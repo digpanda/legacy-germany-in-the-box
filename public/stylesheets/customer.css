@@ -1649,6 +1649,9 @@ body {
   .text-button.\--green {
     background-color: #33965e;
     border-bottom: 2px solid #29754a; }
+  .text-button.\--black {
+    background-color: #666666;
+    border-bottom: 2px solid #464646; }
 
 .variant-box {
   border: 2px solid #bdc3c7;
@@ -3301,6 +3304,20 @@ input[type=checkbox] {
   cursor: pointer;
   margin: 0em;
   vertical-align: middle; }
+
+input[type=radio] {
+  height: 18px;
+  width: 18px;
+  border: 1px solid #919191;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  margin: 0em;
+  vertical-align: middle; }
+
+input[type=radio]:checked {
+  border: 1px solid #33965e;
+  background: url("/images/elements/cross-checkbox-green.png") center center no-repeat;
+  background-size: 10px 10px; }
 
 input[type=checkbox]:checked {
   border: 1px solid #33965e;

@@ -33,6 +33,17 @@
         <% end %>
       </div>
 
+      <div class="col-md-6">
+      </div>
+
+      <div class="col-md-6">
+        <h4>Marketing</h4>
+          <%= label_tag :marketing_true, "Include" %>
+          <%= radio_button_tag :marketing, true %>
+          <%= label_tag :marketing_false, "Exclude" %>
+          <%= radio_button_tag :marketing, false, :checked %>
+      </div>
+
     </div>
   </div>
 

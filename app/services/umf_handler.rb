@@ -49,7 +49,7 @@ class UmfHandler < BaseService
         product_shipping_cost: '',
         customs_code: '',
         product_total_price: '',
-        placeholder: ''
+        placeholder_bis: '',
       }
     end
   end
