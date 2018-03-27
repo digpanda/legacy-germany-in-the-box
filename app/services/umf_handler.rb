@@ -92,7 +92,7 @@ class UmfHandler < BaseService
     if order.order_tracking&.delivery_provider == :emsguoji
       '01122030'
     else
-      '01121990'
+      '01122030'
     end
   end
 
