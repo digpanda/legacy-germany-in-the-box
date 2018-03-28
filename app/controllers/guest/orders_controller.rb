@@ -9,7 +9,7 @@ class Guest::OrdersController < ApplicationController
     respond_to do |format|
       format.pdf do
         render pdf: "#{bill_file_name}", disposition: disposition,
-               margin: { bottom: 20, top: 30, right: 5, left: 5 },
+               margin: { bottom: 30, top: 30, right: 5, left: 5 },
                footer: { html: { template: 'layouts/pdf/footer.pdf.erb' } },
                header: { html: { template: 'layouts/pdf/header.pdf.erb' } }
       end
