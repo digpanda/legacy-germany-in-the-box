@@ -8,6 +8,8 @@ class Api::Connect::WechatController < Api::ApplicationController
   # and it will go through the all process of wechat login and provide the callback URL with a specific token
   # you can then use the token for different API calls as the system has a connect system for tokens as well (/api/connect/token)
   def show
+
+
     # we can't go through wechat in dev or test so we have to fake a success
     # it's not ideal to put this code here but there's no much choices.
     if Rails.env.development? || Rails.env.test?
@@ -15,6 +17,12 @@ class Api::Connect::WechatController < Api::ApplicationController
       fake_user.token = BCrypt::Password.create(Time.now)
       fake_user.save(validate: false)
       redirect_to UrlSolver.new(callback, app_type: :vuejs).insert_get(token: fake_user.token)
+      return
+    end
+
+    # only wechat users can go through this process
+    unless identity_solver.wechat_browser?
+      render text: "Please use your Wechat Application."
       return
     end
 
