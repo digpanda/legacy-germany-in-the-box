@@ -81,6 +81,7 @@ module ArrayHelper
       'Adler' => :adlerlogi,
       'UEQ' => :ueq,
       'DHL德国国内' => :dhlde,
+      '德国优拜' => :ubuy,
       '国内顺丰' => :shunfeng,
       '国内申通' => :shentong,
       '国内圆通' => :yuantong,
