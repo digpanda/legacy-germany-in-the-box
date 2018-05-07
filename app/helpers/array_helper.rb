@@ -85,6 +85,7 @@ module ArrayHelper
       '国内顺丰' => :shunfeng,
       '国内申通' => :shentong,
       '国内圆通' => :yuantong,
+      '国内中通' => :zhongtong,
       'DHL中国件' => :dhl,
       'DHL英文' => :dhlen,
       'BorderGuru' => :borderguru
