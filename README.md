@@ -1,6 +1,6 @@
 # Germany In The Box
 
-![alt text](https://www.germanyinthebox.com/images/logo-half-small.png "Germany In The Box")
+![Germany In The Box GmbH](https://laurent.tech/assets/images/github/germany-in-the-box-gmbh.png "Germany In The Box GmbH")
 
 ## Getting Started
 
